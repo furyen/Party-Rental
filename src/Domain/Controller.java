@@ -198,10 +198,4 @@ public class Controller {
          dbFacade.truckBooking(tr);
     }
 
-    public void bleh(){
-        System.out.println("HIA!");
-    }
-     public void Seppuku(){
-         
-     }
 }
