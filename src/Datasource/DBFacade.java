@@ -202,4 +202,10 @@ public class DBFacade {
         }
         
     }
+
+    public ArrayList<Order> getOrders() {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = orderMapper.getOrders(connection);
+        return list;
+    }
 }
