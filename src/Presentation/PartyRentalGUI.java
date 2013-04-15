@@ -941,7 +941,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1');
             }
         }
-
+        //to do = add con.createInvoice
+        
+        
         con.finishOrder();
     }//GEN-LAST:event_jButton7ActionPerformed
 
