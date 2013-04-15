@@ -4,7 +4,7 @@
  */
 package Datasource;
 
-import Domain.Invoice;
+import Domain.Order;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,15 +14,17 @@ import java.util.ArrayList;
  */
 public class InvoiceMapper {
 
-    public boolean createNewInvoice(ArrayList<Invoice> newInvoiceList, Connection connection) {
+    public boolean createNewInvoice(ArrayList<Order> newInvoiceList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
         String SQLString = "insert into invoice values(?,?,?)";
         PreparedStatement statement = null;
+        System.out.println(newInvoiceList.toString());
+        System.out.println("Reached createNewInvoice - InvoiceMapper Level - " + newInvoiceList.toString());
         
         try{
             statement = connection.prepareStatement(SQLString);
-            for(Invoice invoice : newInvoiceList){
+            for(Order invoice : newInvoiceList){
                 statement.setInt(1, invoice.getOrderID());
                 statement.setDouble(2, invoice.getDiscount());
                 statement.setDouble(3, invoice.getFinalPrice());

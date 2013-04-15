@@ -25,18 +25,28 @@ public class Main {
             java.util.Date startD = df.parse("31-12-1995");
             java.util.Date endD = df.parse("02-10-2001");
        
-        availableResources = control.getAvailableResources(startD ,endD );
+//        availableResources = control.getAvailableResources(startD ,endD );
 //  "31-12-1995", "02-10-2001"      
 //        for(int i=0; i<availableResources.size(); i++){
 //            System.out.println(availableResources.get(i).getResourceName()+"  "+availableResources.get(i).getQuantity()
 //                );
 //        }
        
-        trucks = control.getTruckDeliveryForDate(startD,'0');
-         for(int i=0; i<trucks.size(); i++){
-            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
-                );
-        }
+//        trucks = control.getTruckDeliveryForDate(startD,'0');
+//         for(int i=0; i<trucks.size(); i++){
+//            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
+//                );
+//        }
+           
+            control.getConnection();
+            
+            Customer customer = control.createCustomer("Nicklas", "Jensen", "Brøndby");
+            //System.out.println(customer);
+            control.createOrder(customer.getCustomerID(), 50, "Brøndby", startD, endD);
+            
+            control.createNewInvoice(0.25, 10303);
+            
+            control.finishOrder();
         
     }
     
