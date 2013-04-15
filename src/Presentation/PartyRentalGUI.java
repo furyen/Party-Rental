@@ -109,6 +109,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         for (Truck truck : truckRuns) {
             //set the dropdown items in the Combo Box
+            System.out.println(truck.getSize());
+            System.out.println("filled "+truck.getFilledSpace());
+            System.out.println(truck.getTruckID());
+            System.out.println(truck.getTruckRun());
             Integer[] freeSpace = new Integer[truck.getSize() - truck.getFilledSpace()];
             for (int i = 0; i < truck.getSize() - truck.getFilledSpace(); i++) {
                 freeSpace[i] = i;
@@ -944,6 +948,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         for (Map.Entry<Truck, JComboBox> entry : truckDelivery.entrySet()) {
             if (entry.getValue().getSelectedIndex()!=0) {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '0',entry.getValue().getSelectedIndex());
+                
             }
         }
         //Book ingoing trucks
@@ -959,12 +964,16 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        truckDelivery.clear();
+        truckReturn.clear();
+        resources.clear();
         gbInventory.removeAll();
         deliveryPanel.removeAll();
         returnPanel.removeAll();
         Order.repaint();
         refreshAvailableResources(con.getAvailableResources(startDate.getDate(), endDate.getDate()));
         // 0 is for delivery, 1 for return of truck
+        
         refreshTruckDelivery(con.getTruckDeliveryForDate(startDate.getDate(), '0'));
         refreshTruckReturn(con.getTruckDeliveryForDate(endDate.getDate(), '1'));
         Order.repaint();
