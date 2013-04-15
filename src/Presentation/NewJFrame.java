@@ -28,34 +28,34 @@ public class NewJFrame extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         EventManagement = new javax.swing.JPanel();
-        getOrder = new javax.swing.JPanel();
+        orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        orderList = new javax.swing.JList();
+        fullyPaidRadio = new javax.swing.JRadioButton();
+        depositPaidRadio = new javax.swing.JRadioButton();
+        nothingPaidRadio = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        depositPaidButton = new javax.swing.JButton();
+        editOrderButton = new javax.swing.JButton();
+        cancelOrderButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        firstNameSearch = new javax.swing.JTextField();
+        lastNameSearch = new javax.swing.JTextField();
+        searchCustomerButton = new javax.swing.JButton();
+        orderDetails = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        orderDetailsJList = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        addressTextF = new javax.swing.JTextField();
+        discountTextF = new javax.swing.JTextField();
+        truckDeliverTextF = new javax.swing.JTextField();
+        truckReturnTextF = new javax.swing.JTextField();
+        backToMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(835, 739));
@@ -65,37 +65,37 @@ public class NewJFrame extends javax.swing.JFrame {
         EventManagement.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Event Managenent", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
         EventManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getOrder.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
-        getOrder.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        orders.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
+        orders.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        orderList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(orderList);
 
-        getOrder.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
+        orders.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
 
-        jRadioButton1.setText("Fully Paid");
-        getOrder.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 147, -1));
+        fullyPaidRadio.setText("Fully Paid");
+        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 147, -1));
 
-        jRadioButton2.setText("Deposit Paid");
-        getOrder.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
+        depositPaidRadio.setText("Deposit Paid");
+        orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
 
-        jRadioButton3.setText("Nothing Paid");
-        getOrder.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        nothingPaidRadio.setText("Nothing Paid");
+        orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
-        jButton2.setText("Deposit Paid");
+        depositPaidButton.setText("Deposit Paid");
 
-        jButton3.setText("Edit Order");
+        editOrderButton.setText("Edit Order");
 
-        jButton1.setText("Cancel Order");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cancelOrderButton.setText("Cancel Order");
+        cancelOrderButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cancelOrderButtonActionPerformed(evt);
             }
         });
 
@@ -106,21 +106,21 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
-        getOrder.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 330, 130));
+        orders.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 330, 130));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,89 +131,89 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel2.setText("Last Name");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, -1, -1));
 
-        jTextField1.setText("jTextField1");
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, -1, -1));
+        firstNameSearch.setText("jTextField1");
+        jPanel3.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, -1, -1));
 
-        jTextField2.setText("jTextField1");
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, -1, -1));
+        lastNameSearch.setText("jTextField1");
+        jPanel3.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, -1, -1));
 
-        jButton4.setText("Search");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        searchCustomerButton.setText("Search");
+        searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                searchCustomerButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        jPanel3.add(searchCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
-        getOrder.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 350, 130));
+        orders.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 350, 130));
 
-        EventManagement.add(getOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 720, 390));
+        EventManagement.add(orders, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 720, 390));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Order Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14)))); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(394, 395));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        orderDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Order Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14)))); // NOI18N
+        orderDetails.setPreferredSize(new java.awt.Dimension(394, 395));
+        orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        orderDetailsJList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(orderDetailsJList);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 260, 150));
+        orderDetails.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 260, 150));
 
         jLabel3.setText("Address");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
+        orderDetails.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
 
         jLabel4.setText("Discount");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
+        orderDetails.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
 
         jLabel5.setText("Truck delivering");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
+        orderDetails.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
 
         jLabel6.setText("Truck return");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
+        orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
 
-        jTextField3.setText("jTextField3");
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
+        addressTextF.setText("jTextField3");
+        orderDetails.add(addressTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
 
-        jTextField4.setText("jTextField3");
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
+        discountTextF.setText("jTextField3");
+        orderDetails.add(discountTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
 
-        jTextField5.setText("jTextField3");
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
+        truckDeliverTextF.setText("jTextField3");
+        orderDetails.add(truckDeliverTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
 
-        jTextField6.setText("jTextField3");
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        truckReturnTextF.setText("jTextField3");
+        orderDetails.add(truckReturnTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
 
-        EventManagement.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 720, 220));
+        EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 720, 220));
 
-        jButton5.setText("Back to Main Menu");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        backToMenu.setText("Back to Main Menu");
+        backToMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                backToMenuActionPerformed(evt);
             }
         });
-        EventManagement.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
+        EventManagement.add(backToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
 
         getContentPane().add(EventManagement, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 750, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cancelOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cancelOrderButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
 //        CardLayout cl = (CardLayout) (mainPanel.getLayout());
 //
 //        cl.show(mainPanel, "menu");
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_backToMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,34 +251,34 @@ public class NewJFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EventManagement;
+    private javax.swing.JTextField addressTextF;
+    private javax.swing.JButton backToMenu;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JPanel getOrder;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton cancelOrderButton;
+    private javax.swing.JButton depositPaidButton;
+    private javax.swing.JRadioButton depositPaidRadio;
+    private javax.swing.JTextField discountTextF;
+    private javax.swing.JButton editOrderButton;
+    private javax.swing.JTextField firstNameSearch;
+    private javax.swing.JRadioButton fullyPaidRadio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField lastNameSearch;
+    private javax.swing.JRadioButton nothingPaidRadio;
+    private javax.swing.JPanel orderDetails;
+    private javax.swing.JList orderDetailsJList;
+    private javax.swing.JList orderList;
+    private javax.swing.JPanel orders;
+    private javax.swing.JButton searchCustomerButton;
+    private javax.swing.JTextField truckDeliverTextF;
+    private javax.swing.JTextField truckReturnTextF;
     // End of variables declaration//GEN-END:variables
 }
