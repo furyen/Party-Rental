@@ -23,7 +23,7 @@ public class TruckMapper {
     public ArrayList<Truck> getTruckDeliveryForDate(Date date,char ch,Connection con) {
         ArrayList<Truck> listRuns = new ArrayList();
         ArrayList<Truck> auxiliarList = new ArrayList();
-        String SQLString1 = "select truck_id, truck_run, unit_size, order_id"
+        String SQLString1 = "select truck_id, truck_run, order_partial_size, order_id"
                            + " from truck_delivery natural join orders";
         if (ch == '0'){
             SQLString1 += " where orders.start_date = ?";
@@ -73,8 +73,7 @@ public class TruckMapper {
         }catch (Exception e) {
             System.out.println("Fail in TruckMapper - getTruckDeliveryForDate");
             System.out.println(e.getMessage());
-        }
-        
+        }   
         return listRuns;
     }
     
@@ -87,7 +86,7 @@ public class TruckMapper {
         else {
             SQLString += "truck_return";
         }
-        SQLString += " values (?,?,?)";
+        SQLString += " values (?,?,?,?)";
         PreparedStatement statement = null; 
         int rowsInserted = 0;
         
@@ -95,11 +94,13 @@ public class TruckMapper {
         statement.setInt(1, tr.getTruckID());
         statement.setInt(2, tr.getOrderID());
         statement.setInt(3, tr.getTruckRun());
+        statement.setInt(4, tr.getOrderPartSize());
         System.out.println("muie");
         rowsInserted = statement.executeUpdate();   
         System.out.println("muie");
         return (rowsInserted == 1);
     }
+    
     
 }
 

@@ -193,8 +193,8 @@ public class Controller {
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-     public void truckBooking(int truckID, int  truckRun, char ch){
-         TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch);  
+     public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
+         TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch, orderPartSize);  
          dbFacade.truckBooking(tr);
     }
 
