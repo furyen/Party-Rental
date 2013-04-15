@@ -102,5 +102,6 @@ public class TruckMapper {
         return (rowsInserted == 1);
     }
     
+    
 }
 
