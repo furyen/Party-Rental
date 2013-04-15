@@ -149,11 +149,13 @@ public class Controller {
     public boolean createNewInvoice(int orderID, double discount, double finalPrice) {
         boolean status = false;
         Invoice newInvoice = null;
+        
+        if(currentOrder != null){
+            newInvoice = new Invoice(orderID, discount, finalPrice);
+            System.out.println(newInvoice.getOrderID());
+            status = dbFacade.createNewInvoice(newInvoice);
 
-        newInvoice = new Invoice(orderID, discount, finalPrice);
-        System.out.println(newInvoice.getOrderID());
-        status = dbFacade.createNewInvoice(newInvoice);
-
+        }
         return status;
     }
 
