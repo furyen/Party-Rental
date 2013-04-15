@@ -93,7 +93,35 @@ public class OrderMapper {
     }
 
     public ArrayList<Order> getOrders(Connection connection) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        ArrayList<Order> orderList = new ArrayList();
+//        String SQLString = "select *"
+//                         + " from orders natural join invoice";
+//        PreparedStatement statement = null;
+//        
+//        try{
+//            statement = connection.prepareStatement(SQLString);
+//            ResultSet rs = statement.executeQuery();
+//            while (rs.next()){
+//                int order_id = rs.getInt(1);
+//                int customer_id = rs.getInt(2);
+//                Date startDate = 
+//                                        rs.getInt(3),
+//                                        rs.getString(4),
+//                                        rs.getDate(5),
+//                                        rs.getDate(6),
+//                                        rs.getInt(7),
+//                                        rs.getDouble(8),
+//                                        rs.getDouble(9)
+//                                        );
+//            }
+//            
+//            
+//        }catch(Exception ex){
+//            System.out.println("Error in the OrderMapper - getOrders");
+//            System.out.println(ex);
+//        } 
+        
+        return orderList;
     }
     
     

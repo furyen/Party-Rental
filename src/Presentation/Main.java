@@ -40,11 +40,11 @@ public class Main {
            
             control.getConnection();
             
-            Customer customer = control.createCustomer("Nicklas", "Jensen", "Brøndby");
+            Customer customer = control.createCustomer("muie", "tie", "Brøndby");
             //System.out.println(customer);
-            control.createOrder(customer.getCustomerID(), 50, "Brøndby", startD, endD);
+            control.createOrder(customer.getCustomerID(), 50, "Brødsadndby", startD, endD);
             
-            control.createNewInvoice(0.25, 10303);
+            control.createNewInvoice(0.15, 1000);
             
             control.finishOrder();
         
