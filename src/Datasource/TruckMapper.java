@@ -73,8 +73,7 @@ public class TruckMapper {
         }catch (Exception e) {
             System.out.println("Fail in TruckMapper - getTruckDeliveryForDate");
             System.out.println(e.getMessage());
-        }
-        
+        }   
         return listRuns;
     }
     
