@@ -197,4 +197,7 @@ public class Controller {
          TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch);  
          dbFacade.truckBooking(tr);
     }
+     public void Seppuku(){
+         
+     }
 }
