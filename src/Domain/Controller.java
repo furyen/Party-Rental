@@ -125,7 +125,6 @@ public class Controller {
             System.out.println(customerID);
             newCustomer = new Customer(customerID, firstName, lastName, adress);
             status = dbFacade.createCustomer(newCustomer);
-            System.out.println(status);
             currentCustomer = newCustomer;
         } catch (SQLException ex) {
             System.out.println("Error in createCustomer - " + ex);
@@ -146,16 +145,15 @@ public class Controller {
         return finalPrice;
     }
 
-    public boolean createNewInvoice(int orderID, double discount, double finalPrice) {
+    public boolean createNewInvoice(double discount, double finalPrice) {
         boolean status = false;
-        Invoice newInvoice = null;
+        currentOrder.setDiscount(discount);
+        currentOrder.setFinalPrice(finalPrice);
         
         if(currentOrder != null){
-            newInvoice = new Invoice(orderID, discount, finalPrice);
-            System.out.println(newInvoice.getOrderID());
-            status = dbFacade.createNewInvoice(newInvoice);
-
-        }
+            status = dbFacade.createNewInvoice(currentOrder);
+        }       
+        
         return status;
     }
 
@@ -182,8 +180,6 @@ public class Controller {
         orderID = dbFacade.getUniqueOrderID();
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0);
         currentOrder = newOrder;
-        System.out.println("Inside create order");
-        System.out.println(newOrder.getAdress());
         status = dbFacade.createOrder(newOrder);
 
 
