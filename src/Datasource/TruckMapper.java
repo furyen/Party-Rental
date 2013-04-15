@@ -87,7 +87,7 @@ public class TruckMapper {
         else {
             SQLString += "truck_return";
         }
-        SQLString += " values (?,?,?)";
+        SQLString += " values (?,?,?,?)";
         PreparedStatement statement = null; 
         int rowsInserted = 0;
         
@@ -95,6 +95,7 @@ public class TruckMapper {
         statement.setInt(1, tr.getTruckID());
         statement.setInt(2, tr.getOrderID());
         statement.setInt(3, tr.getTruckRun());
+        statement.setInt(4, tr.getOrderPartSize());
         System.out.println("muie");
         rowsInserted = statement.executeUpdate();   
         System.out.println("muie");
