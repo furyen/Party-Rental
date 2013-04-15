@@ -178,7 +178,7 @@ public class Controller {
         dbFacade.startNewBusinessTransaction();
         
         orderID = dbFacade.getUniqueOrderID();
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0);
         currentOrder = newOrder;
         System.out.println("Inside create order");
         System.out.println(newOrder.getAdress());
@@ -193,9 +193,15 @@ public class Controller {
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-     public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
+    
+    public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
          TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch, orderPartSize);  
          dbFacade.truckBooking(tr);
     }
-
+    
+    public ArrayList<Order> getOrders(){
+        ArrayList<Order> list = dbFacade.getOrders();
+        return list;
+    }
+    
 }
