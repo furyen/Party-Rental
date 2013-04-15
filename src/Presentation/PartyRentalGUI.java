@@ -31,8 +31,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
      */
     Controller con = Controller.getInstance();
     LinkedHashMap<Resource, JComboBox> resources = new LinkedHashMap();
-    LinkedHashMap<Truck, JCheckBox> truckDelivery = new LinkedHashMap();
-    LinkedHashMap<Truck, JCheckBox> truckReturn = new LinkedHashMap();
+    LinkedHashMap<Truck, JComboBox> truckDelivery = new LinkedHashMap();
+    LinkedHashMap<Truck, JComboBox> truckReturn = new LinkedHashMap();
     DefaultListModel searchModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
     DefaultListModel model = new DefaultListModel();
@@ -73,7 +73,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             gbInventory.add(new JLabel("" + inventory.get(added).getQuantity()), gbc);
             gbc.gridx = 4;
 
-            //set ComboBox Layout
+            //set the dropdown items in the Combo Box
             Integer[] quantity = new Integer[inventory.get(added).getQuantity()];
             for (int i = 0; i < inventory.get(added).getQuantity(); i++) {
                 quantity[i] = i;
@@ -106,7 +106,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         gbc.gridx = 6;
         deliveryPanel.add(new JLabel("Total Space"), gbc);
 
+
         for (Truck truck : truckRuns) {
+            //set the dropdown items in the Combo Box
+            Integer[] freeSpace = new Integer[truck.getSize() - truck.getFilledSpace()];
+            for (int i = 0; i < truck.getSize() - truck.getFilledSpace(); i++) {
+                freeSpace[i] = i;
+            }
             gbc.gridy = gbc.gridy + 2;
             gbc.gridx = 0;
             deliveryPanel.add(new JLabel("" + truck.getTruckID()), gbc);
@@ -118,7 +124,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             deliveryPanel.add(new JLabel("" + truck.getSize()), gbc);
             gbc.gridx = 8;
 
-            truckDelivery.put(truck, new JCheckBox());
+            truckDelivery.put(truck, new JComboBox(freeSpace));
             deliveryPanel.add(truckDelivery.get(truck), gbc);
         }
 
@@ -140,6 +146,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         returnPanel.add(new JLabel("Total Space"), gbc);
 
         for (Truck truck : truckRuns) {
+            //set the dropdown items in the Combo Box
+            Integer[] freeSpace = new Integer[truck.getSize() - truck.getFilledSpace()];
+            for (int i = 0; i < truck.getSize() - truck.getFilledSpace(); i++) {
+                freeSpace[i] = i;
+            }
             gbc.gridy = gbc.gridy + 2;
             gbc.gridx = 0;
             returnPanel.add(new JLabel("" + truck.getTruckID()), gbc);
@@ -150,7 +161,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             gbc.gridx = 6;
             returnPanel.add(new JLabel("" + truck.getSize()), gbc);
             gbc.gridx = 8;
-            truckReturn.put(truck, new JCheckBox());
+            truckReturn.put(truck, new JComboBox(freeSpace));
             returnPanel.add(truckReturn.get(truck), gbc);
 
         }
@@ -930,20 +941,20 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             con.createOrderDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex());
         }
         //Book outgoing trucks
-        for (Map.Entry<Truck, JCheckBox> entry : truckDelivery.entrySet()) {
-            if (entry.getValue().isSelected()) {
-                con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '0');
+        for (Map.Entry<Truck, JComboBox> entry : truckDelivery.entrySet()) {
+            if (entry.getValue().getSelectedIndex()!=0) {
+                con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '0',entry.getValue().getSelectedIndex());
             }
         }
         //Book ingoing trucks
-        for (Map.Entry<Truck, JCheckBox> entry : truckReturn.entrySet()) {
-            if (entry.getValue().isSelected()) {
-                con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1');
+        for (Map.Entry<Truck, JComboBox> entry : truckReturn.entrySet()) {
+            if (entry.getValue().getSelectedIndex()!=0) {
+                con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1',entry.getValue().getSelectedIndex());
             }
         }
         //to do = add con.createInvoice
-        
-        
+
+
         con.finishOrder();
     }//GEN-LAST:event_jButton7ActionPerformed
 
