@@ -91,6 +91,10 @@ public class OrderMapper {
         
         return status;
     }
+
+    public ArrayList<Order> getOrders(Connection connection) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     
     

@@ -17,8 +17,10 @@ public class Order {
     String adress;
     Date startDate, endDate;
     boolean deposit;
+    double finalPrice;
+    double discount;
 
-    public Order(int customerID, int orderID, int unitSize, String eventAddress, Date startDate, Date endDate, boolean deposit) {
+    public Order(int customerID, int orderID, int unitSize, String eventAddress, Date startDate, Date endDate, boolean deposit, double finalPrice, double discount) {
         this.customerID = customerID;
         this.orderID = orderID;
         this.unitSize = unitSize;
@@ -27,6 +29,8 @@ public class Order {
         this.endDate = endDate;
         this.deposit = deposit;
         orderDetails = new ArrayList();
+        this.finalPrice = finalPrice;
+        this.discount = discount;
     }
 
     public void insertOrderDetail(OrderDetail orderDetail){
@@ -51,6 +55,14 @@ public class Order {
 
     public int getUnitSize() {
         return unitSize;
+    }
+
+    public double getFinalPrice() {
+        return finalPrice;
+    }
+
+    public double getDiscount() {
+        return discount;
     }
 
     public void setUnitSize(int unitSize) {
