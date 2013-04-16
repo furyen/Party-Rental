@@ -127,7 +127,8 @@ public class RessourceMapper {
 //            java.util.Date endD = df.parse(endDate);
             java.util.Date auxDate;
             int i;
-           
+            
+            if ( ! auxiliarList.isEmpty()) 
             while (startD.compareTo(endD) <= 0 ) {
                 for(i = 0; i<fullList.size()-1; i++){
                     auxiliarList2.get(i).setQuantity(fullList.get(i).getQuantity());

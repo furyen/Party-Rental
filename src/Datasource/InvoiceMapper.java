@@ -27,7 +27,7 @@ public class InvoiceMapper {
             for(Order invoice : newInvoiceList){
                 statement.setInt(1, invoice.getOrderID());
                 statement.setDouble(2, invoice.getDiscount());
-                statement.setDouble(3, invoice.getFinalPrice());
+                statement.setDouble(3, invoice.getFullPrice());
                 rowsInserted += statement.executeUpdate();
             }
             

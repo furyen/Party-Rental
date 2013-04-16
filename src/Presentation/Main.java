@@ -20,6 +20,9 @@ public class Main {
         Controller control = Controller.getInstance();
         ArrayList<Resource> availableResources = new ArrayList();
         ArrayList<Truck> trucks = new ArrayList();
+        ArrayList<Order> orders = new ArrayList();
+        
+        control.getConnection();
         
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date startD = df.parse("31-12-1995");

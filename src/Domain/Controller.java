@@ -148,7 +148,7 @@ public class Controller {
     public boolean createNewInvoice(double discount, double finalPrice) {
         boolean status = false;
         currentOrder.setDiscount(discount);
-        currentOrder.setFinalPrice(finalPrice);
+        currentOrder.setFullPrice(finalPrice);
         
         if(currentOrder != null){
             status = dbFacade.createNewInvoice(currentOrder);
@@ -178,7 +178,7 @@ public class Controller {
         dbFacade.startNewBusinessTransaction();
         
         orderID = dbFacade.getUniqueOrderID();
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0,0,(byte)1);
         currentOrder = newOrder;
         status = dbFacade.createOrder(newOrder);
 
