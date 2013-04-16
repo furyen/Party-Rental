@@ -38,8 +38,8 @@ public class UnitOfWorkProcessOrder {
             if(newCustomerList.size() != 0){
                 status = status && customerMapper.createNewCustomer(newCustomerList, connection);
             }
-            status = status && invoiceMapper.createNewInvoice(newInvoiceList, connection);
             status = status && orderMapper.createNewOrder(newOrderList, connection);
+            status = status && invoiceMapper.createNewInvoice(newInvoiceList, connection);
             status = status && orderMapper.createNewOrderDetail(newOrderDetailList, connection);
             for (int i=0; i< newTruckBooking.size(); i++){
                 status = status && truckMapper.truckBooking(newTruckBooking.get(i), connection);
