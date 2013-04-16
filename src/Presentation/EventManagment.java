@@ -44,6 +44,7 @@ public class EventManagment extends javax.swing.JFrame {
         firstNameSearch = new javax.swing.JTextField();
         lastNameSearch = new javax.swing.JTextField();
         searchCustomerButton = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         orderDetails = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderDetailsJList = new javax.swing.JList();
@@ -78,13 +79,13 @@ public class EventManagment extends javax.swing.JFrame {
         orders.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
 
         fullyPaidRadio.setText("Fully Paid");
-        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 147, -1));
+        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 147, -1));
 
         depositPaidRadio.setText("Deposit Paid");
-        orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, -1, -1));
+        orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
 
         nothingPaidRadio.setText("Nothing Paid");
-        orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
@@ -120,7 +121,7 @@ public class EventManagment extends javax.swing.JFrame {
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
-        orders.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 330, 130));
+        orders.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 330, 130));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,9 +146,12 @@ public class EventManagment extends javax.swing.JFrame {
         });
         jPanel3.add(searchCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
-        orders.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 350, 130));
+        orders.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 350, 130));
 
-        EventManagement.add(orders, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 720, 390));
+        jRadioButton1.setText("Search by Only Name");
+        orders.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
+
+        EventManagement.add(orders, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 720, 410));
 
         orderDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Order Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14)))); // NOI18N
         orderDetails.setPreferredSize(new java.awt.Dimension(394, 395));
@@ -186,7 +190,7 @@ public class EventManagment extends javax.swing.JFrame {
         truckReturnTextF.setText("jTextField3");
         orderDetails.add(truckReturnTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
 
-        EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 720, 220));
+        EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 720, 200));
 
         backToMenu.setText("Back to Main Menu");
         backToMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +273,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameSearch;
