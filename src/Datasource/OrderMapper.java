@@ -94,14 +94,14 @@ public class OrderMapper {
 
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
-        String SQLString1 = "select *"
+        String SQLString1 = " select * "
                             + " FROM orders natural join invoice ";
         PreparedStatement statement = null;
         System.out.println("muita");
         try{
             System.out.println("muita");
-//            statement = connection.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery(SQLString1);
+            statement = connection.prepareStatement(SQLString1);
+            ResultSet rs = statement.executeQuery();
             System.out.println("muita");
             while (rs.next()){
                 System.out.println("muie");
