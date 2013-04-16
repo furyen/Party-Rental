@@ -25,12 +25,13 @@ public class Main {
             java.util.Date startD = df.parse("31-12-1995");
             java.util.Date endD = df.parse("02-10-2001");
        
-//        availableResources = control.getAvailableResources(startD ,endD );
+        availableResources = control.getAvailableResources(startD ,endD );
+        System.out.println(availableResources.toString());
 //  "31-12-1995", "02-10-2001"      
-//        for(int i=0; i<availableResources.size(); i++){
-//            System.out.println(availableResources.get(i).getResourceName()+"  "+availableResources.get(i).getQuantity()
-//                );
-//        }
+        for(int i=0; i<availableResources.size(); i++){
+            System.out.println(availableResources.get(i).getResourceName()+"  "+availableResources.get(i).getQuantity()
+                );
+        }
        
 //        trucks = control.getTruckDeliveryForDate(startD,'0');
 //         for(int i=0; i<trucks.size(); i++){

@@ -9,9 +9,10 @@ package Domain;
  * @author dekez
  */
 public class Truck {
+
     int truckID, size, truckRun, filledSpace;
 
-    public Truck(int truckID,  int truckRun,int filledSpace, int size ) {
+    public Truck(int truckID, int truckRun, int filledSpace, int size) {
         this.truckID = truckID;
         this.size = size;
         this.truckRun = truckRun;
@@ -20,6 +21,10 @@ public class Truck {
 
     public void setFilledSpace(int filledSpace) {
         this.filledSpace = filledSpace;
+    }
+
+    public int getFreeSpace() {
+        return size - filledSpace;
     }
 
     public int getTruckID() {
@@ -37,11 +42,4 @@ public class Truck {
     public int getFilledSpace() {
         return filledSpace;
     }
-
-    
-    
-    
-    
-    
-    
 }
