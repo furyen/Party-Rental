@@ -37,9 +37,9 @@ public class EventManagment extends javax.swing.JFrame {
         nothingPaidRadio = new javax.swing.JRadioButton();
         searchByName = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
+        depositPaidButton = new javax.swing.JButton();
         editOrderButton = new javax.swing.JButton();
         cancelOrderButton = new javax.swing.JButton();
-        depositPaid = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,6 +93,13 @@ public class EventManagment extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
+        depositPaidButton.setText("Deposit Paid");
+        depositPaidButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositPaidButtonActionPerformed(evt);
+            }
+        });
+
         editOrderButton.setText("Edit Order");
 
         cancelOrderButton.setText("Cancel Order");
@@ -102,30 +109,23 @@ public class EventManagment extends javax.swing.JFrame {
             }
         });
 
-        depositPaid.setText("Deposit Paid");
-        depositPaid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                depositPaidActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(depositPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(cancelOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(depositPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,13 +231,10 @@ public class EventManagment extends javax.swing.JFrame {
 //        cl.show(mainPanel, "menu");
     }//GEN-LAST:event_backToMenuActionPerformed
 
-    private void depositPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidActionPerformed
+    private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
         Order currentOrder = (Order)orderList.getSelectedValue();
-        if (depositPaid.isSelected() )
-            currentOrder.setDeposit(true);
-        else currentOrder.setDeposit(false);
-            
-    }//GEN-LAST:event_depositPaidActionPerformed
+        currentOrder.setDeposit(true);
+    }//GEN-LAST:event_depositPaidButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,7 +276,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton backToMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
-    private javax.swing.JToggleButton depositPaid;
+    private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JTextField discountTextF;
     private javax.swing.JButton editOrderButton;
