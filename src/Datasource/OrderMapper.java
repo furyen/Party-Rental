@@ -110,18 +110,20 @@ public class OrderMapper {
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
                 String eventAddress = rs.getString(5);
-                char dp = rs.getString(6).charAt(0);
-                boolean deposit;
-                if (dp == 'Y') {
-                    deposit = true;
+                byte paymantState = rs.getByte(6);
+                int unitSize = rs.getInt(7);
+                char can = rs.getString(8).charAt(0);
+                boolean canceled;
+                if (can == 'Y') {
+                    canceled = true;
                 }
                 else{
-                    deposit = false;
+                    canceled = false;
                 }
-                int unitSize = rs.getInt(7);
-                double discount = rs.getDouble(8);
-                double finalPrice = rs.getInt(9);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, deposit, finalPrice, discount);
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paymantState);
                 
 //                                        rs.getInt(3),
 //                                        rs.getString(4),
