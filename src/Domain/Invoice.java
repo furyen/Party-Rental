@@ -18,7 +18,7 @@ public class Invoice {
         this.finalPrice = finalPrice;
         this.discount = discount;
     }
-
+    
     public int getOrderID() {
         return orderID;
     }

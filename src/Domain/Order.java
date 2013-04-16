@@ -12,13 +12,14 @@ import java.util.Date;
  * @author dekez
  */
 public class Order {
-    ArrayList<OrderDetail> orderDetails;
-    int customerID, orderID, unitSize;
-    String adress;
-    Date startDate, endDate;
-    boolean deposit;
+    private ArrayList<OrderDetail> orderDetails;
+    private int customerID, orderID, unitSize;
+    private String adress;
+    private Date startDate, endDate;
+    private boolean deposit;
+    private double finalPrice, discount;
 
-    public Order(int customerID, int orderID, int unitSize, String eventAddress, Date startDate, Date endDate, boolean deposit) {
+    public Order(int customerID, int orderID, int unitSize, String eventAddress, Date startDate, Date endDate, boolean deposit, double finalPrice, double discount) {
         this.customerID = customerID;
         this.orderID = orderID;
         this.unitSize = unitSize;
@@ -27,6 +28,24 @@ public class Order {
         this.endDate = endDate;
         this.deposit = deposit;
         orderDetails = new ArrayList();
+        this.finalPrice = finalPrice;
+        this.discount = discount;
+    }
+    
+    public void setDiscount(double discount){
+        this.discount = discount;
+    }
+    
+    public double getDiscount(){
+        return discount;
+    }
+    
+    public void setFinalPrice(double finalPrice){
+        this.finalPrice = finalPrice;
+    }
+    
+    public double getFinalPrice(){
+        return finalPrice;
     }
 
     public void insertOrderDetail(OrderDetail orderDetail){
@@ -89,5 +108,7 @@ public class Order {
         this.deposit = deposit;
     }
     
-    
+    public String toString(){
+        return orderID + "-" + customerID;
+    }
 }

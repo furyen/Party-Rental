@@ -153,12 +153,11 @@ public class DBFacade {
         
         return status;
     }
-    public boolean createNewInvoice(Invoice newInvoice) {
+    public boolean createNewInvoice(Order newInvoice) {
         boolean status = false;
         
         if(uow != null){
             uow.createNewInvoice(newInvoice);
-            System.out.println("Reached and finished UOW for Invoice");
             status = true;
         }
         
@@ -178,7 +177,6 @@ public class DBFacade {
         boolean status = false;
         
         if(uow != null){
-            System.out.println("inside the dbFacade");
             uow.createNewOrder(newOrder);
             status = true;
         }
@@ -201,5 +199,11 @@ public class DBFacade {
             uow.registerTruckBooking(tr);
         }
         
+    }
+
+    public ArrayList<Order> getOrders() {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = orderMapper.getOrders(connection);
+        return list;
     }
 }

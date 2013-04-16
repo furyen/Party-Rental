@@ -125,7 +125,6 @@ public class Controller {
             System.out.println(customerID);
             newCustomer = new Customer(customerID, firstName, lastName, adress);
             status = dbFacade.createCustomer(newCustomer);
-            System.out.println(status);
             currentCustomer = newCustomer;
         } catch (SQLException ex) {
             System.out.println("Error in createCustomer - " + ex);
@@ -146,14 +145,15 @@ public class Controller {
         return finalPrice;
     }
 
-    public boolean createNewInvoice(int orderID, double discount, double finalPrice) {
+    public boolean createNewInvoice(double discount, double finalPrice) {
         boolean status = false;
-        Invoice newInvoice = null;
-
-        newInvoice = new Invoice(orderID, discount, finalPrice);
-        System.out.println(newInvoice.getOrderID());
-        status = dbFacade.createNewInvoice(newInvoice);
-
+        currentOrder.setDiscount(discount);
+        currentOrder.setFinalPrice(finalPrice);
+        
+        if(currentOrder != null){
+            status = dbFacade.createNewInvoice(currentOrder);
+        }       
+        
         return status;
     }
 
@@ -178,10 +178,8 @@ public class Controller {
         dbFacade.startNewBusinessTransaction();
         
         orderID = dbFacade.getUniqueOrderID();
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0);
         currentOrder = newOrder;
-        System.out.println("Inside create order");
-        System.out.println(newOrder.getAdress());
         status = dbFacade.createOrder(newOrder);
 
 
@@ -193,9 +191,15 @@ public class Controller {
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-     public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
+    
+    public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
          TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch, orderPartSize);  
          dbFacade.truckBooking(tr);
     }
-
+    
+    public ArrayList<Order> getOrders(){
+        ArrayList<Order> list = dbFacade.getOrders();
+        return list;
+    }
+    
 }
