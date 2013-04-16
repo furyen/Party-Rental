@@ -201,5 +201,10 @@ public class Controller {
         ArrayList<Order> list = dbFacade.getOrders();
         return list;
     }
+    public ArrayList<Order> getCustomerOrderHistory(int customerID){
+        ArrayList<Order> orders = dbFacade.getCustomerOrders(customerID);
+        return orders;
+        
+    }
     
 }
