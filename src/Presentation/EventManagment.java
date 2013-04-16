@@ -80,13 +80,13 @@ public class EventManagment extends javax.swing.JFrame {
         orders.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
 
         fullyPaidRadio.setText("Fully Paid");
-        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 147, -1));
+        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 147, -1));
 
         depositPaidRadio.setText("Deposit Paid");
-        orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, -1, -1));
+        orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         nothingPaidRadio.setText("Nothing Paid");
-        orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
+        orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         searchByName.setText("Search by Only Name");
         orders.add(searchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
