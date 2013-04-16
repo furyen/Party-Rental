@@ -136,6 +136,16 @@
                 </Constraint>
               </Constraints>
             </Component>
+            <Component class="javax.swing.JRadioButton" name="searchByName">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Search by Only Name"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="460" y="240" width="-1" height="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
             <Container class="javax.swing.JPanel" name="jPanel2">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -161,10 +171,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="79" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="depositPaidButton" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="editOrderButton" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="cancelOrderButton" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="depositPaid" max="32767" attributes="0"/>
+                              <Component id="editOrderButton" alignment="1" pref="170" max="32767" attributes="0"/>
+                              <Component id="cancelOrderButton" alignment="1" pref="170" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
@@ -173,8 +183,10 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="depositPaidButton" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="depositPaid" min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="editOrderButton" min="-2" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="cancelOrderButton" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
                       </Group>
@@ -182,11 +194,6 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="depositPaidButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Deposit Paid"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JButton" name="editOrderButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Edit Order"/>
@@ -198,6 +205,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelOrderButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JToggleButton" name="depositPaid">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Deposit Paid"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depositPaidActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -280,16 +295,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Search by Only Name"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="460" y="240" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="orderDetails">

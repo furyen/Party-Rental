@@ -4,6 +4,7 @@
  */
 package Presentation;
 
+import Domain.Order;
 /**
  *
  * @author Petko
@@ -34,17 +35,17 @@ public class EventManagment extends javax.swing.JFrame {
         fullyPaidRadio = new javax.swing.JRadioButton();
         depositPaidRadio = new javax.swing.JRadioButton();
         nothingPaidRadio = new javax.swing.JRadioButton();
+        searchByName = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
-        depositPaidButton = new javax.swing.JButton();
         editOrderButton = new javax.swing.JButton();
         cancelOrderButton = new javax.swing.JButton();
+        depositPaid = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         firstNameSearch = new javax.swing.JTextField();
         lastNameSearch = new javax.swing.JTextField();
         searchCustomerButton = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
         orderDetails = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderDetailsJList = new javax.swing.JList();
@@ -87,9 +88,10 @@ public class EventManagment extends javax.swing.JFrame {
         nothingPaidRadio.setText("Nothing Paid");
         orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
+        searchByName.setText("Search by Only Name");
+        orders.add(searchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
 
-        depositPaidButton.setText("Deposit Paid");
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
         editOrderButton.setText("Edit Order");
 
@@ -100,23 +102,32 @@ public class EventManagment extends javax.swing.JFrame {
             }
         });
 
+        depositPaid.setText("Deposit Paid");
+        depositPaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositPaidActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(depositPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(cancelOrderButton, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(depositPaidButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(depositPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(editOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(cancelOrderButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 15, Short.MAX_VALUE))
         );
@@ -147,9 +158,6 @@ public class EventManagment extends javax.swing.JFrame {
         jPanel3.add(searchCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
         orders.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 350, 130));
-
-        jRadioButton1.setText("Search by Only Name");
-        orders.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
 
         EventManagement.add(orders, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 720, 410));
 
@@ -210,7 +218,11 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelOrderButtonActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
-        // TODO add your handling code here:
+        String first, last;
+        first = firstNameSearch.getText();
+        last = lastNameSearch.getText();
+        
+        
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
@@ -218,6 +230,14 @@ public class EventManagment extends javax.swing.JFrame {
 //
 //        cl.show(mainPanel, "menu");
     }//GEN-LAST:event_backToMenuActionPerformed
+
+    private void depositPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidActionPerformed
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        if (depositPaid.isSelected() )
+            currentOrder.setDeposit(true);
+        else currentOrder.setDeposit(false);
+            
+    }//GEN-LAST:event_depositPaidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +279,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton backToMenu;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
-    private javax.swing.JButton depositPaidButton;
+    private javax.swing.JToggleButton depositPaid;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JTextField discountTextF;
     private javax.swing.JButton editOrderButton;
@@ -273,7 +293,6 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameSearch;
@@ -282,6 +301,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JRadioButton searchByName;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JTextField truckDeliverTextF;
     private javax.swing.JTextField truckReturnTextF;
