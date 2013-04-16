@@ -94,20 +94,34 @@ public class OrderMapper {
 
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
-        String SQLString = "select *"
-                         + " from orders natural join invoice";
+        String SQLString1 = "select *"
+                            + " FROM orders natural join invoice ";
         PreparedStatement statement = null;
-        
+        System.out.println("muita");
         try{
-            statement = connection.prepareStatement(SQLString);
-            ResultSet rs = statement.executeQuery();
+            System.out.println("muita");
+//            statement = connection.prepareStatement(SQLString1);
+            ResultSet rs = statement.executeQuery(SQLString1);
+            System.out.println("muita");
             while (rs.next()){
-                int order_id = rs.getInt(1);
-                int customer_id = rs.getInt(2);
-                java.sql.Date startDate = rs.getDate(3);
-                java.sql.Date endDate = rs.getDate(4);
-                String delivery_adress = rs.getString(5);
-                char deposit = rs.getString(5).charAt(0);
+                System.out.println("muie");
+                int orderID = rs.getInt(1);
+                int customerID = rs.getInt(2);
+                java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
+                String eventAddress = rs.getString(5);
+                char dp = rs.getString(6).charAt(0);
+                boolean deposit;
+                if (dp == 'Y') {
+                    deposit = true;
+                }
+                else{
+                    deposit = false;
+                }
+                int unitSize = rs.getInt(7);
+                double discount = rs.getDouble(8);
+                double finalPrice = rs.getInt(9);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, deposit, finalPrice, discount);
                 
 //                                        rs.getInt(3),
 //                                        rs.getString(4),
@@ -117,6 +131,7 @@ public class OrderMapper {
 //                                        rs.getDouble(8),
 //                                        rs.getDouble(9)
 //                                        );
+                orderList.add(order);
             }
             
             

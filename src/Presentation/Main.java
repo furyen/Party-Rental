@@ -33,21 +33,14 @@ public class Main {
                 );
         }
        
-//        trucks = control.getTruckDeliveryForDate(startD,'0');
-//         for(int i=0; i<trucks.size(); i++){
-//            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
-//                );
-//        }
-           
-            control.getConnection();
-            
-            Customer customer = control.createCustomer("muie", "tie", "Brøndby");
-            //System.out.println(customer);
-            control.createOrder(customer.getCustomerID(), 50, "Brødsadndby", startD, endD);
-            
-            control.createNewInvoice(0.15, 1000);
-            
-            control.finishOrder();
+        trucks = control.getTruckDeliveryForDate(startD,'0');
+         for(int i=0; i<trucks.size(); i++){
+            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
+                );
+        }
+//           control.getOrders();
+//            
+         
         
     }
     
