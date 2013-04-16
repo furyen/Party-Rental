@@ -94,17 +94,21 @@ public class OrderMapper {
 
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
-//        String SQLString = "select *"
-//                         + " from orders natural join invoice";
-//        PreparedStatement statement = null;
-//        
-//        try{
-//            statement = connection.prepareStatement(SQLString);
-//            ResultSet rs = statement.executeQuery();
-//            while (rs.next()){
-//                int order_id = rs.getInt(1);
-//                int customer_id = rs.getInt(2);
-//                Date startDate = 
+        String SQLString = "select *"
+                         + " from orders natural join invoice";
+        PreparedStatement statement = null;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                int order_id = rs.getInt(1);
+                int customer_id = rs.getInt(2);
+                java.sql.Date startDate = rs.getDate(3);
+                java.sql.Date endDate = rs.getDate(4);
+                String delivery_adress = rs.getString(5);
+                char deposit = rs.getString(5).charAt(0);
+                
 //                                        rs.getInt(3),
 //                                        rs.getString(4),
 //                                        rs.getDate(5),
@@ -113,13 +117,13 @@ public class OrderMapper {
 //                                        rs.getDouble(8),
 //                                        rs.getDouble(9)
 //                                        );
-//            }
-//            
-//            
-//        }catch(Exception ex){
-//            System.out.println("Error in the OrderMapper - getOrders");
-//            System.out.println(ex);
-//        } 
+            }
+            
+            
+        }catch(Exception ex){
+            System.out.println("Error in the OrderMapper - getOrders");
+            System.out.println(ex);
+        } 
         
         return orderList;
     }
