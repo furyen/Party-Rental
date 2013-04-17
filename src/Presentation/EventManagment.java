@@ -232,7 +232,7 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
-        Order currentOrder = (Order)orderList.getSelectedValue();
+//        Order currentOrder = (Order)orderList.getSelectedValue();
 //        currentOrder.setDeposit(true);
     }//GEN-LAST:event_depositPaidButtonActionPerformed
 

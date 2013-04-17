@@ -202,4 +202,30 @@ public class Controller {
         return list;
     }
     
+    public boolean checkOrder(){
+        boolean status = true;
+        
+        if(currentOrder != null){
+            ArrayList<Resource> resourceList = getAvailableResources(currentOrder.getStartDate(), currentOrder.getEndDate());
+            ArrayList<OrderDetail> orderDetailList = currentOrder.getOrderDetails();
+            
+            for(OrderDetail orderDetail : orderDetailList){
+                if(orderDetail.getQuantity() != 0){
+                    for(Resource resource : resourceList){
+                        if(orderDetail.getResourceID() == resource.getResourceID()){
+                            status = status && (orderDetail.getQuantity() < resource.getQuantity());
+                        }
+                    }
+                }
+            }
+            
+            if(status == true){
+                finishOrder();
+            }
+            
+        }
+        
+        return status;
+    }
+    
 }
