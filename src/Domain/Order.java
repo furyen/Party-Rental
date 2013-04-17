@@ -127,7 +127,7 @@ public class Order {
         this.aditionalCost = aditionalCost;
     }
 
-    public void setPaymentState(byte paymentState) {
+    public void setPaymentState(double paymentState) {
         this.paymentState = paymentState;
     }
 
