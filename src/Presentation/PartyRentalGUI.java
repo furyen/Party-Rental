@@ -6,6 +6,7 @@ package Presentation;
 
 import Domain.Controller;
 import Domain.Customer;
+import Domain.Order;
 import Domain.Resource;
 import Domain.Truck;
 import java.awt.CardLayout;
@@ -17,9 +18,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
@@ -40,6 +39,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     DefaultListModel searchModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
     DefaultListModel model = new DefaultListModel();
+    DefaultListModel customerOrdersModel = new DefaultListModel();
     java.util.Date startD, endD;
     int unitsDeliver, unitsReturn, totalUnits;
 
@@ -94,13 +94,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         entry.getKey().setQuantity(entry.getValue().getSelectedIndex());
                         totalUnits = totalUnits + entry.getKey().getUnitSize() * entry.getValue().getSelectedIndex();
                     }
-                         for(Map.Entry<Truck,JToggleButton> entry: truckDelivery.entrySet()){
-                      if(entry.getValue().isSelected()) {
+                    for (Map.Entry<Truck, JToggleButton> entry : truckDelivery.entrySet()) {
+                        if (entry.getValue().isSelected()) {
                             entry.getValue().doClick();
                         }
                     }
-                    for(Map.Entry<Truck,JToggleButton> entry: truckReturn.entrySet()){
-                        if(entry.getValue().isSelected()) {
+                    for (Map.Entry<Truck, JToggleButton> entry : truckReturn.entrySet()) {
+                        if (entry.getValue().isSelected()) {
                             entry.getValue().doClick();
                         }
                     }
@@ -110,7 +110,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     unitsReturn = totalUnits;
                     remainingDelivery.setText("Units left to deliver: " + unitsDeliver);
                     remainingReturn.setText("Units left to return: " + unitsReturn);
-               
+
                 }
             });
 
@@ -261,15 +261,24 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         searchCustomer = new javax.swing.JDialog();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         fName = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         lName = new javax.swing.JTextField();
         searchCustomersButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         customerList = new javax.swing.JList();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customerOrders = new javax.swing.JList();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -340,23 +349,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         JList_resources = new javax.swing.JList();
 
-        searchCustomer.setBounds(new java.awt.Rectangle(150, 150, 0, 0));
+        searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
         searchCustomer.setMinimumSize(new java.awt.Dimension(470, 267));
         searchCustomer.setResizable(false);
-
-        jLabel12.setText("First Name");
-
-        jLabel13.setText("Last Name");
-
-        searchCustomersButton.setText("Search");
-        searchCustomersButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchCustomersButtonActionPerformed(evt);
-            }
-        });
-
-        customerList.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Results", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
-        jScrollPane3.setViewportView(customerList);
 
         jButton10.setText("Choose");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -372,20 +367,36 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
         });
 
-        org.jdesktop.layout.GroupLayout searchCustomerLayout = new org.jdesktop.layout.GroupLayout(searchCustomer.getContentPane());
-        searchCustomer.getContentPane().setLayout(searchCustomerLayout);
-        searchCustomerLayout.setHorizontalGroup(
-            searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(searchCustomerLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(searchCustomerLayout.createSequentialGroup()
-                        .add(jButton11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jButton10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 167, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane3)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, searchCustomerLayout.createSequentialGroup()
-                        .add(0, 14, Short.MAX_VALUE)
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        jLabel12.setText("First Name");
+
+        jLabel13.setText("Last Name");
+
+        searchCustomersButton.setText("Search");
+        searchCustomersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCustomersButtonActionPerformed(evt);
+            }
+        });
+
+        customerList.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Results", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+        customerList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(customerList);
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(jScrollPane3)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                         .add(jLabel12)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(fName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -394,22 +405,118 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 101, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(searchCustomersButton)))
-                .addContainerGap())
+                        .add(searchCustomersButton))))
         );
-        searchCustomerLayout.setVerticalGroup(
-            searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(searchCustomerLayout.createSequentialGroup()
-                .add(15, 15, 15)
-                .add(searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel12)
                     .add(jLabel13)
                     .add(fName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(lName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(searchCustomersButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Customer Order History", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        customerOrders.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "No Customer Selected" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(customerOrders);
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane2)
+                .addContainerGap())
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Order Details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        jLabel6.setText("Customer Name");
+
+        jLabel7.setText("Event Address");
+
+        jLabel11.setText("Total Price");
+
+        jLabel15.setText("Paid");
+
+        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel6)
+                    .add(jLabel7))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel15)
+                    .add(jLabel11))
+                .add(150, 150, 150))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel3Layout.createSequentialGroup()
+                .add(180, 180, 180)
+                .add(jLabel15)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .add(jLabel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jLabel6)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel7)
+                .addContainerGap())
+        );
+
+        org.jdesktop.layout.GroupLayout searchCustomerLayout = new org.jdesktop.layout.GroupLayout(searchCustomer.getContentPane());
+        searchCustomer.getContentPane().setLayout(searchCustomerLayout);
+        searchCustomerLayout.setHorizontalGroup(
+            searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchCustomerLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(searchCustomerLayout.createSequentialGroup()
+                        .add(jButton11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 572, Short.MAX_VALUE)
+                        .add(jButton10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 167, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(searchCustomerLayout.createSequentialGroup()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(27, 27, 27)
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        searchCustomerLayout.setVerticalGroup(
+            searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(searchCustomerLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(18, 18, 18)
                 .add(searchCustomerLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton11)
                     .add(jButton10))
@@ -446,7 +553,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 161, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(resourcesMenuButton)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -455,7 +562,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(resourcesMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
@@ -973,7 +1080,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(getRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, editRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, createRes1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 449, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 413, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1038,13 +1145,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         }
         //Book outgoing trucks
         for (Map.Entry<Truck, JToggleButton> entry : truckDelivery.entrySet()) {
-            if (entry.getValue().isSelected()&&Integer.parseInt(entry.getValue().getText())!=0) {
+            if (entry.getValue().isSelected() && Integer.parseInt(entry.getValue().getText()) != 0) {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '0', Integer.parseInt(entry.getValue().getText()));
             }
         }
         //Book ingoing trucks
         for (Map.Entry<Truck, JToggleButton> entry : truckReturn.entrySet()) {
-            if (entry.getValue().isSelected()&&Integer.parseInt(entry.getValue().getText())!=0) {
+            if (entry.getValue().isSelected() && Integer.parseInt(entry.getValue().getText()) != 0) {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1', Integer.parseInt(entry.getValue().getText()));
             }
         }
@@ -1082,6 +1189,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
 
         searchCustomer.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        searchCustomer.pack();
         searchCustomer.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1168,6 +1276,24 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_discountActionPerformed
 
+    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+            customerOrders.setModel(customerOrdersModel);
+        if (customerList.isSelectionEmpty()) {
+            customerOrdersModel.clear();
+            customerOrdersModel.add(1, "No Customer Selected");
+        } else {
+            customerOrdersModel.clear();
+            Customer c = (Customer) customerList.getSelectedValue();
+            
+            ArrayList<Order> orders = con.getCustomerOrderHistory(c.getCustomerID());
+            
+            for (int i = 0; i < orders.size(); i++) {
+                System.out.println(orders.get(i).getOrderID());
+                customerOrdersModel.add(i, orders.get(i));
+            }
+        }
+    }//GEN-LAST:event_customerListMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1216,6 +1342,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField customerAddress;
     private javax.swing.JTextField customerID;
     private javax.swing.JList customerList;
+    private javax.swing.JList customerOrders;
     private javax.swing.JPanel deliveryPanel;
     private javax.swing.JTextField discount;
     private javax.swing.JPanel editRes;
@@ -1241,9 +1368,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1257,9 +1386,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;

@@ -27,7 +27,12 @@ public class EventManagment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        paymentStatus = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        oldPaymentTextField = new javax.swing.JTextField();
+        saveNewPayment = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        newPaymentTextField = new javax.swing.JTextField();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -58,6 +63,65 @@ public class EventManagment extends javax.swing.JFrame {
         truckDeliverTextF = new javax.swing.JTextField();
         truckReturnTextF = new javax.swing.JTextField();
         backToMenu = new javax.swing.JButton();
+
+        jLabel7.setText("Payment until now");
+
+        oldPaymentTextField.setEditable(false);
+        oldPaymentTextField.setText("jTextField1");
+        oldPaymentTextField.setEnabled(false);
+
+        saveNewPayment.setText("Save");
+        saveNewPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveNewPaymentActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Payment new amount");
+
+        newPaymentTextField.setText("jTextField1");
+        newPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPaymentTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout paymentStatusLayout = new javax.swing.GroupLayout(paymentStatus.getContentPane());
+        paymentStatus.getContentPane().setLayout(paymentStatusLayout);
+        paymentStatusLayout.setHorizontalGroup(
+            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentStatusLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(saveNewPayment)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentStatusLayout.createSequentialGroup()
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(paymentStatusLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(newPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(paymentStatusLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(oldPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65))
+        );
+        paymentStatusLayout.setVerticalGroup(
+            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentStatusLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(oldPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(newPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(saveNewPayment)
+                .addGap(32, 32, 32))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(835, 739));
@@ -93,7 +157,7 @@ public class EventManagment extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
-        depositPaidButton.setText("Deposit Paid");
+        depositPaidButton.setText("Payment Status");
         depositPaidButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 depositPaidButtonActionPerformed(evt);
@@ -232,9 +296,22 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
-//        Order currentOrder = (Order)orderList.getSelectedValue();
-//        currentOrder.setDeposit(true);
+        paymentStatus.setVisible(true);
+        
     }//GEN-LAST:event_depositPaidButtonActionPerformed
+
+    private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());      
+        Double newPayment = Double.parseDouble(newPaymentTextField.getText());
+        currentOrder.setPaidAmount(newPayment);
+        paymentStatus.setVisible(false);
+        
+    }//GEN-LAST:event_saveNewPaymentActionPerformed
+
+    private void newPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPaymentTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newPaymentTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +351,6 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JPanel EventManagement;
     private javax.swing.JTextField addressTextF;
     private javax.swing.JButton backToMenu;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
@@ -288,16 +364,22 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameSearch;
+    private javax.swing.JTextField newPaymentTextField;
     private javax.swing.JRadioButton nothingPaidRadio;
+    private javax.swing.JTextField oldPaymentTextField;
     private javax.swing.JPanel orderDetails;
     private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JDialog paymentStatus;
+    private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JTextField truckDeliverTextF;
