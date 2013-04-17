@@ -27,7 +27,10 @@ public class EventManagment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        paymentStatus = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -58,6 +61,39 @@ public class EventManagment extends javax.swing.JFrame {
         truckDeliverTextF = new javax.swing.JTextField();
         truckReturnTextF = new javax.swing.JTextField();
         backToMenu = new javax.swing.JButton();
+
+        jLabel7.setText("Payment in the box");
+
+        jTextField1.setText("jTextField1");
+
+        jButton1.setText("Save");
+
+        javax.swing.GroupLayout paymentStatusLayout = new javax.swing.GroupLayout(paymentStatus.getContentPane());
+        paymentStatus.getContentPane().setLayout(paymentStatusLayout);
+        paymentStatusLayout.setHorizontalGroup(
+            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentStatusLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+            .addGroup(paymentStatusLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        paymentStatusLayout.setVerticalGroup(
+            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paymentStatusLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(835, 739));
@@ -93,7 +129,7 @@ public class EventManagment extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
-        depositPaidButton.setText("Deposit Paid");
+        depositPaidButton.setText("Payment Status");
         depositPaidButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 depositPaidButtonActionPerformed(evt);
@@ -274,7 +310,6 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JPanel EventManagement;
     private javax.swing.JTextField addressTextF;
     private javax.swing.JButton backToMenu;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
@@ -282,22 +317,26 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton editOrderButton;
     private javax.swing.JTextField firstNameSearch;
     private javax.swing.JRadioButton fullyPaidRadio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField lastNameSearch;
     private javax.swing.JRadioButton nothingPaidRadio;
     private javax.swing.JPanel orderDetails;
     private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JDialog paymentStatus;
     private javax.swing.JRadioButton searchByName;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JTextField truckDeliverTextF;
