@@ -96,23 +96,21 @@ public class OrderMapper {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
                             + " FROM orders natural join invoice ";
+        String SQLString2 = " select order_detail.order_id, order_detail.ressource_id, order_detail.quantity, ressource.ressource_name  "
+                            + " from order_detail,ressource  "
+                            + " where order_detail.ressource_id = ressource.ressource_id";
         PreparedStatement statement = null;
-        System.out.println("muita");
         try{
-            System.out.println("muita");
             statement = connection.prepareStatement(SQLString1);
             ResultSet rs = statement.executeQuery();
-            System.out.println("muita");
             while (rs.next()){
-                System.out.println("muie");
                 int orderID = rs.getInt(1);
                 int customerID = rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
                 String eventAddress = rs.getString(5);
-                byte paymantState = rs.getByte(6);
-                int unitSize = rs.getInt(7);
-                char can = rs.getString(8).charAt(0);
+                int unitSize = rs.getInt(6);
+                char can = rs.getString(7).charAt(0);
                 boolean canceled;
                 if (can == 'Y') {
                     canceled = true;
@@ -120,23 +118,42 @@ public class OrderMapper {
                 else{
                     canceled = false;
                 }
-                double discount = rs.getDouble(9);
-                double fulllPrice = rs.getDouble(10);
-                double additionalCosts = rs.getDouble(11);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paymantState);
-                
-//                                        rs.getInt(3),
-//                                        rs.getString(4),
-//                                        rs.getDate(5),
-//                                        rs.getDate(6),
-//                                        rs.getInt(7),
-//                                        rs.getDouble(8),
-//                                        rs.getDouble(9)
-//                                        );
+                double discount = rs.getDouble(8);
+                double fulllPrice = rs.getDouble(9);
+                double additionalCosts = rs.getDouble(10);
+                double paidAmount = rs.getDouble(11);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
                 orderList.add(order);
             }
-            
-            
+            statement = connection.prepareStatement(SQLString2);
+            rs = statement.executeQuery();
+            System.out.println("muie");
+            while (rs.next()){
+                System.out.println("muita");
+                OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
+                                                          rs.getInt(2),  
+                                                          rs.getInt(3)  
+                                                          );
+                System.out.println("muita");
+                orderDetail.setOrderName(rs.getString(4));
+                System.out.println("muita");
+                int orderID = orderDetail.getOrderID();
+                int counter = 0;
+                boolean found = false;
+                System.out.println("muita");
+                while( !found ){
+                    Order order = orderList.get(counter);
+                    System.out.println("muie");
+                    if (orderID == order.getOrderID()){
+                         System.out.println("muie");
+                         order.insertOrderDetail(orderDetail);
+                         System.out.println("muie");
+                        found = true;
+                    }
+                    else { counter++; } 
+                    System.out.println("muie");
+                }
+            }  
         }catch(Exception ex){
             System.out.println("Error in the OrderMapper - getOrders");
             System.out.println(ex);
