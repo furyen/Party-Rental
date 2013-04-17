@@ -28,7 +28,7 @@ public class OrderMapper {
                 uniqueID = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            System.out.println("Error in OrderMapper - " + ex);
+            System.out.println("Error in OrderMapper (getUniqueOrderID) - " + ex);
         }
 
         return uniqueID;
@@ -58,7 +58,7 @@ public class OrderMapper {
                 status = true;
             }
         } catch (SQLException ex) {
-            System.out.println("Problem in the orderMapper - " + ex);
+            System.out.println("Problem in the orderMapper (createNewOrder)- " + ex);
         }
 
         return status;
@@ -83,7 +83,7 @@ public class OrderMapper {
                 status = true;
             }
         } catch (SQLException ex) {
-            System.out.println("Error in the OrderMapper - " + ex);
+            System.out.println("Error in the OrderMapper (createNewOrderDetail) - " + ex);
         }
 
         return status;
@@ -149,38 +149,34 @@ public class OrderMapper {
         return orderList;
     }
 
-
     boolean cancelOrder(Order order, Connection connection) {
         boolean status = false;
         String SQLString = "UPDATE orders"
-                         + "SET canceled=?"
-                         + "where order_id=?";
+                + "SET canceled=?"
+                + "where order_id=?";
         PreparedStatement statement = null;
         int rowsUpdated = 0;
-        
-        
-        try{
+
+
+        try {
             statement = connection.prepareStatement(SQLString);
-            if(order.isCancelled() == true){
+            if (order.isCancelled() == true) {
                 statement.setString(1, "y");
-            }
-            else{
+            } else {
                 return status;
             }
             statement.setInt(2, order.getOrderID());
             rowsUpdated = statement.executeUpdate();
-            
-            if(rowsUpdated == 1){
+
+            if (rowsUpdated == 1) {
                 status = true;
             }
-        }
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             System.out.println("Error in the OrderMapper(CancelOrder) - " + ex);
         }
-        
+
         return status;
     }
-    
 
     public ArrayList<Order> getCustomerOrders(Connection connection, int customerID) {
         ArrayList<Order> orderList = new ArrayList();
@@ -234,7 +230,7 @@ public class OrderMapper {
                         found = true;
                     } else {
                         counter++;
-                        
+
                     }
                 }
             }
