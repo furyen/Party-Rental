@@ -206,4 +206,14 @@ public class DBFacade {
         ArrayList<Order> list = orderMapper.getOrders(connection);
         return list;
     }
+
+    public boolean cancelOrder(Order order) {
+        boolean status = false;
+        OrderMapper orderMapper = new OrderMapper();
+        
+        status = orderMapper.cancelOrder(order, connection);
+        
+        
+        return status;
+    }
 }

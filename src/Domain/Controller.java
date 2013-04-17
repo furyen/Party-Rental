@@ -5,6 +5,7 @@
 package Domain;
 
 import Datasource.DBFacade;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -154,6 +155,8 @@ public class Controller {
             status = dbFacade.createNewInvoice(currentOrder);
         }       
         
+        
+        
         return status;
     }
 
@@ -231,7 +234,56 @@ public class Controller {
     public boolean cancelOrder(Order order){
         boolean status = false;
         
+        order.setCancelled(true);
         
+        status = dbFacade.cancelOrder(order);
+        
+        
+        return status;
+    }
+    
+    public Order editOrder(Order order){
+        boolean status  = false;
+        
+        status = cancelOrder(order);
+        
+        return order;
+    }
+    
+    public Order cancelEditOrder(Order order){
+        order.setCancelled(false);
+        boolean status = false;
+        
+        status = dbFacade.cancelOrder(order);
+        
+        return order;
+    }
+    
+    public boolean createInvoiceFile(Order order){
+        boolean status = false;
+        FileWriter fileWriter;
+        String invoiceString = 
+                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                + "\t\t\t\t\t\t\t\tOrder nr: " + "on" + "\n"
+                + "\n"
+                + "Dear " + "Customer Name"
+                + "\n"
+                + "You are receiving this invoice in accordance to your order\n"
+                + "with to the following address: " + "Order address"
+                + "You have ordered the following things:\n"
+                + "\n";
+        
+        for(OrderDetail orderDetail : order.getOrderDetails()){
+            
+        }
+        
+        try{
+            fileWriter = new FileWriter(new File("Order - " + order.getOrderID() + ".txt"));
+            
+        }
+        catch(IOException ex){
+            System.out.println("Error in writing invoice file - " + ex);
+        }
         
         
         return status;
