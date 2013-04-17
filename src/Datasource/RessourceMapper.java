@@ -162,6 +162,7 @@ public class RessourceMapper {
     
         return finalList;
     }
+    
      public boolean editResource(Resource resource, Connection connection) throws SQLException{
         boolean status = false;
         String SQLString = "update ressource "

@@ -228,4 +228,13 @@ public class Controller {
         return status;
     }
     
+    public boolean cancelOrder(Order order){
+        boolean status = false;
+        
+        
+        
+        
+        return status;
+    }
+    
 }
