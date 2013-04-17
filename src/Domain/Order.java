@@ -17,11 +17,11 @@ public class Order {
     private String adress;
     private Date startDate, endDate;
     private boolean cancelled;
-    private double fullPrice, discount, aditionalCost;
-    private byte paymentState;
+    private double fullPrice, discount, aditionalCost,paymentState;
+    
 
-    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, byte paymentState) {
-        this.orderDetails = orderDetails;
+    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paymentState) {
+        this.orderDetails = new ArrayList();
         this.customerID = customerID;
         this.orderID = orderID;
         this.unitSize = unitSize;
@@ -79,7 +79,7 @@ public class Order {
         return aditionalCost;
     }
 
-    public byte getPaymentState() {
+    public double getPaymentState() {
         return paymentState;
     }
 

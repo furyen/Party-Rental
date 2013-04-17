@@ -38,7 +38,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     LinkedHashMap<Truck, JToggleButton> truckReturn = new LinkedHashMap();
     DefaultListModel searchModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
-    DefaultListModel model = new DefaultListModel();
+    DefaultListModel resourceModel = new DefaultListModel();
     DefaultListModel customerOrdersModel = new DefaultListModel();
     java.util.Date startD, endD;
     int unitsDeliver, unitsReturn, totalUnits;
@@ -48,9 +48,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         con.getConnection();
         allResources = con.getAvailableResources(null, null);
         for (Resource res : allResources) {
-            model.addElement(res);
+            resourceModel.addElement(res);
         }
-        JList_resources.setModel(model);
+        JList_resources.setModel(resourceModel);
 
     }
 
@@ -1228,12 +1228,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         int newUnitSize = Integer.parseInt(newResUnitSize.getText());
         createdRes.setText(newName + " is created ");
         con.createNewResource(newName, newQuantity, newPrice, newUnitSize);
-        model.clear();
+        resourceModel.clear();
         allResources = con.getAvailableResources(null, null);
         for (Resource res : allResources) {
-            model.addElement(res);
+            resourceModel.addElement(res);
         }
-        JList_resources.setModel(model);
+        JList_resources.setModel(resourceModel);
 
     }//GEN-LAST:event_createNewResActionPerformed
 
@@ -1280,7 +1280,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             customerOrders.setModel(customerOrdersModel);
         if (customerList.isSelectionEmpty()) {
             customerOrdersModel.clear();
-            customerOrdersModel.add(1, "No Customer Selected");
+            customerOrdersModel.add(0, "No Customer Selected");
         } else {
             customerOrdersModel.clear();
             Customer c = (Customer) customerList.getSelectedValue();
