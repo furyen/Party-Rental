@@ -127,31 +127,22 @@ public class OrderMapper {
             }
             statement = connection.prepareStatement(SQLString2);
             rs = statement.executeQuery();
-            System.out.println("muie");
             while (rs.next()){
-                System.out.println("muita");
                 OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
                                                           rs.getInt(2),  
                                                           rs.getInt(3)  
                                                           );
-                System.out.println("muita");
-                orderDetail.setOrderName(rs.getString(4));
-                System.out.println("muita");
+                orderDetail.setRessourceName(rs.getString(4));
                 int orderID = orderDetail.getOrderID();
                 int counter = 0;
                 boolean found = false;
-                System.out.println("muita");
                 while( !found ){
                     Order order = orderList.get(counter);
-                    System.out.println("muie");
                     if (orderID == order.getOrderID()){
-                         System.out.println("muie");
                          order.insertOrderDetail(orderDetail);
-                         System.out.println("muie");
                         found = true;
                     }
                     else { counter++; } 
-                    System.out.println("muie");
                 }
             }  
         }catch(Exception ex){
