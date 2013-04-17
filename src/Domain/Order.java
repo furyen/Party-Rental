@@ -17,11 +17,10 @@ public class Order {
     private String adress;
     private Date startDate, endDate;
     private boolean cancelled;
-    private double fullPrice, discount, aditionalCost;
-    private byte paymentState;
+    private double fullPrice, discount, aditionalCost, paidAmount;
 
-    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, byte paymentState) {
-        this.orderDetails = orderDetails;
+    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
+        this.orderDetails = new ArrayList();
         this.customerID = customerID;
         this.orderID = orderID;
         this.unitSize = unitSize;
@@ -31,8 +30,8 @@ public class Order {
         this.cancelled = canceled;
         this.fullPrice = fullPrice;
         this.discount = discount;
-        this.aditionalCost = aditionalCost;
-        this.paymentState = paymentState;
+        this.aditionalCost = additionalCost;
+        this.paidAmount = paidAmount;
     }
 
     public ArrayList<OrderDetail> getOrderDetails() {
@@ -79,8 +78,8 @@ public class Order {
         return aditionalCost;
     }
 
-    public byte getPaymentState() {
-        return paymentState;
+    public double getPaidAmount() {
+        return paidAmount;
     }
 
     public void setOrderDetails(ArrayList<OrderDetail> orderDetails) {
@@ -127,8 +126,8 @@ public class Order {
         this.aditionalCost = aditionalCost;
     }
 
-    public void setPaymentState(byte paymentState) {
-        this.paymentState = paymentState;
+    public void setPaidAmount(byte paidAmount) {
+        this.paidAmount = paidAmount;
     }
 
     public void insertOrderDetail(OrderDetail orderDetail){
