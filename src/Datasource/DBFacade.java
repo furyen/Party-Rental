@@ -216,4 +216,13 @@ public class DBFacade {
         
         return status;
     }
+
+    public Customer getCustomer(int customerID) {
+        CustomerMapper customerMapper = new CustomerMapper();
+        Customer customer = null;
+        
+        customer = customerMapper.getCustomer(customerID, connection);
+        
+        return customer;
+    }
 }
