@@ -7,6 +7,7 @@ package Presentation;
 import Domain.Controller;
 import Domain.Customer;
 import Domain.Order;
+import Domain.OrderDetail;
 import Domain.Resource;
 import Domain.Truck;
 import java.awt.CardLayout;
@@ -32,16 +33,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     /**
      * Creates new form PartyRentalGUI
      */
-    Controller con = Controller.getInstance();
-    LinkedHashMap<Resource, JComboBox> resources = new LinkedHashMap();
-    LinkedHashMap<Truck, JToggleButton> truckDelivery = new LinkedHashMap();
-    LinkedHashMap<Truck, JToggleButton> truckReturn = new LinkedHashMap();
-    DefaultListModel searchModel = new DefaultListModel();
+    private Controller con = Controller.getInstance();
+    private LinkedHashMap<Resource, JComboBox> resources = new LinkedHashMap();
+    private LinkedHashMap<Truck, JToggleButton> truckDelivery = new LinkedHashMap();
+    private LinkedHashMap<Truck, JToggleButton> truckReturn = new LinkedHashMap();
+    private DefaultListModel searchModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
-    DefaultListModel resourceModel = new DefaultListModel();
-    DefaultListModel customerOrdersModel = new DefaultListModel();
-    java.util.Date startD, endD;
-    int unitsDeliver, unitsReturn, totalUnits;
+    private DefaultListModel resourceModel = new DefaultListModel();
+    private DefaultListModel customerOrdersModel = new DefaultListModel();
+    private DefaultListModel orderDetailsModel = new DefaultListModel();
+    private java.util.Date startD, endD;
+    private int unitsDeliver, unitsReturn, totalUnits;
 
     public PartyRentalGUI() {
         initComponents();
@@ -279,6 +281,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        orderDetailsList = new javax.swing.JList();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -429,6 +433,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        customerOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerOrdersMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(customerOrders);
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -458,34 +467,52 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel15.setText("Paid");
 
+        orderDetailsList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "No order selected" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(orderDetailsList);
+
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
+            .add(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 337, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel6)
-                    .add(jLabel7))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel15)
-                    .add(jLabel11))
-                .add(150, 150, 150))
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(10, 10, 10)
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel6)
+                            .add(jLabel7))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel15)
+                            .add(jLabel11))
+                        .add(150, 150, 150))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
-                .add(180, 180, 180)
-                .add(jLabel15)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jLabel6)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel7)
+                .addContainerGap()
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(169, 169, 169)
+                                .add(jLabel15)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jLabel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jPanel3Layout.createSequentialGroup()
+                                .add(jLabel6)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jLabel7)))
+                        .add(0, 11, Short.MAX_VALUE))
+                    .add(jScrollPane5))
                 .addContainerGap())
         );
 
@@ -1155,10 +1182,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1', Integer.parseInt(entry.getValue().getText()));
             }
         }
-        //to do = add con.createInvoice
+        con.checkOrder();
 
 
-        con.finishOrder();
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1277,22 +1304,40 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_discountActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
-            customerOrders.setModel(customerOrdersModel);
+        customerOrders.setModel(customerOrdersModel);
         if (customerList.isSelectionEmpty()) {
             customerOrdersModel.clear();
             customerOrdersModel.add(0, "No Customer Selected");
         } else {
             customerOrdersModel.clear();
             Customer c = (Customer) customerList.getSelectedValue();
-            
+
             ArrayList<Order> orders = con.getCustomerOrderHistory(c.getCustomerID());
-            
+
             for (int i = 0; i < orders.size(); i++) {
                 System.out.println(orders.get(i).getOrderID());
                 customerOrdersModel.add(i, orders.get(i));
             }
         }
     }//GEN-LAST:event_customerListMouseClicked
+
+    private void customerOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerOrdersMouseClicked
+        orderDetailsList.setModel(orderDetailsModel);
+        if (orderDetailsList.isSelectionEmpty()) {
+            orderDetailsModel.clear();
+            orderDetailsModel.add(0, "No order selected");
+        } else {
+            orderDetailsModel.clear();
+            Order c = (Order) orderDetailsList.getSelectedValue();
+
+            ArrayList<OrderDetail> details = c.getOrderDetails();
+
+            for (int i = 0; i < details.size(); i++) {
+                customerOrdersModel.add(i, details.get(i));
+            }
+        }
+
+    }//GEN-LAST:event_customerOrdersMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1397,6 +1442,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1407,6 +1453,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField newResPrice;
     private javax.swing.JTextField newResQuantity;
     private javax.swing.JTextField newResUnitSize;
+    private javax.swing.JList orderDetailsList;
     private javax.swing.JLabel remainingDelivery;
     private javax.swing.JLabel remainingReturn;
     private javax.swing.JLabel resSelected;
