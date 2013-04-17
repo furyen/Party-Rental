@@ -302,7 +302,7 @@ public class EventManagment extends javax.swing.JFrame {
 
     private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
         Order currentOrder = (Order)orderList.getSelectedValue();
-        String oldPayment = oldPaymentTextField.setText(currentOrder.getPaidAmount + "");
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());      
         Double newPayment = Double.parseDouble(newPaymentTextField.getText());
         
     }//GEN-LAST:event_saveNewPaymentActionPerformed
