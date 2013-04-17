@@ -50,8 +50,8 @@ public class OrderMapper {
             statement.setDate(3, startSQL);
             statement.setDate(4, endSQL);
             statement.setString(5, newOrderList.get(0).getAdress());
-            statement.setString(6, "Y");
-            statement.setInt(7, newOrderList.get(0).getUnitSize());
+            statement.setInt(6, newOrderList.get(0).getUnitSize());
+            statement.setString(7, "N");
             rowsInserted = statement.executeUpdate();
 
             if (rowsInserted == 1) {

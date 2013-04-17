@@ -23,12 +23,13 @@ public class TruckMapper {
     public ArrayList<Truck> getTruckDeliveryForDate(Date date,char ch,Connection con) {
         ArrayList<Truck> listRuns = new ArrayList();
         ArrayList<Truck> auxiliarList = new ArrayList();
-        String SQLString1 = "select truck_id, truck_run, order_partial_size, order_id"
-                           + " from truck_delivery natural join orders";
+        String SQLString1 = "select truck_id, truck_run, order_partial_size, order_id";
         if (ch == '0'){
+            SQLString1 +=" from truck_delivery natural join orders";
             SQLString1 += " where orders.start_date = ?";
         }
         else {
+            SQLString1 += " from truck_return natural join orders";
             SQLString1 += " where orders.end_date = ?";
         }                   
         String SQLString2 = "select *"
