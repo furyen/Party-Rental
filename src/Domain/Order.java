@@ -17,10 +17,10 @@ public class Order {
     private String adress;
     private Date startDate, endDate;
     private boolean cancelled;
-    private double fullPrice, discount, aditionalCost,paymentState;
+    private double fullPrice, discount, aditionalCost,paidAmount;
     
 
-    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paymentState) {
+    public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
         this.orderDetails = new ArrayList();
         this.customerID = customerID;
         this.orderID = orderID;
@@ -32,7 +32,7 @@ public class Order {
         this.fullPrice = fullPrice;
         this.discount = discount;
         this.aditionalCost = aditionalCost;
-        this.paymentState = paymentState;
+        this.paidAmount = paidAmount;
     }
 
     public ArrayList<OrderDetail> getOrderDetails() {
@@ -79,8 +79,8 @@ public class Order {
         return aditionalCost;
     }
 
-    public double getPaymentState() {
-        return paymentState;
+    public double getPaidAmount() {
+        return paidAmount;
     }
 
     public void setOrderDetails(ArrayList<OrderDetail> orderDetails) {
@@ -127,8 +127,8 @@ public class Order {
         this.aditionalCost = aditionalCost;
     }
 
-    public void setPaymentState(double paymentState) {
-        this.paymentState = paymentState;
+    public void setPaidAmount(double paidAmount) {
+        this.paidAmount = paidAmount;
     }
 
     public void insertOrderDetail(OrderDetail orderDetail){
