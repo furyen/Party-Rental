@@ -4,18 +4,31 @@
  */
 package Presentation;
 
+import Domain.Controller;
 import Domain.Order;
+import Domain.Resource;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author Petko
  */
 public class EventManagment extends javax.swing.JFrame {
-
+    Controller con = Controller.getInstance();
+    private ArrayList<Order> allOrders = null;
+    DefaultListModel ordersModel = new DefaultListModel();
+    
     /**
      * Creates new form NewJFrame
      */
     public EventManagment() {
         initComponents();
+        con.getConnection();
+        allOrders = con.getOrders();
+        for (Order o : allOrders) {
+            ordersModel.addElement(o);
+        }
+        orderList.setModel(ordersModel);
     }
 
     /**
@@ -27,7 +40,12 @@ public class EventManagment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        paymentStatus = new javax.swing.JDialog();
+        jLabel7 = new javax.swing.JLabel();
+        oldPaymentTextField = new javax.swing.JTextField();
+        saveNewPayment = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        newPaymentTextField = new javax.swing.JTextField();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -59,8 +77,41 @@ public class EventManagment extends javax.swing.JFrame {
         truckReturnTextF = new javax.swing.JTextField();
         backToMenu = new javax.swing.JButton();
 
+        paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
+        paymentStatus.setMinimumSize(new java.awt.Dimension(355, 155));
+        paymentStatus.setPreferredSize(new java.awt.Dimension(355, 155));
+        paymentStatus.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setText("Payment until now");
+        paymentStatus.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 20, 136, -1));
+
+        oldPaymentTextField.setEnabled(false);
+        oldPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldPaymentTextFieldActionPerformed(evt);
+            }
+        });
+        paymentStatus.getContentPane().add(oldPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 14, 80, -1));
+
+        saveNewPayment.setText("Save");
+        saveNewPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveNewPaymentActionPerformed(evt);
+            }
+        });
+        paymentStatus.getContentPane().add(saveNewPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 94, -1, -1));
+
+        jLabel8.setText("Payment new amount");
+        paymentStatus.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 54, 136, -1));
+
+        newPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPaymentTextFieldActionPerformed(evt);
+            }
+        });
+        paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, 20));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(835, 739));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -93,7 +144,7 @@ public class EventManagment extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
-        depositPaidButton.setText("Deposit Paid");
+        depositPaidButton.setText("Payment Status");
         depositPaidButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 depositPaidButtonActionPerformed(evt);
@@ -232,9 +283,28 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
-//        Order currentOrder = (Order)orderList.getSelectedValue();
-//        currentOrder.setDeposit(true);
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount()); 
+        paymentStatus.setVisible(true);
+        
     }//GEN-LAST:event_depositPaidButtonActionPerformed
+
+    private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());  
+        Double newPayment = Double.parseDouble(newPaymentTextField.getText());
+        currentOrder.setPaidAmount(newPayment);
+        paymentStatus.setVisible(false);
+        
+    }//GEN-LAST:event_saveNewPaymentActionPerformed
+
+    private void newPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPaymentTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newPaymentTextFieldActionPerformed
+
+    private void oldPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPaymentTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldPaymentTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,7 +344,6 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JPanel EventManagement;
     private javax.swing.JTextField addressTextF;
     private javax.swing.JButton backToMenu;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
@@ -288,16 +357,22 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameSearch;
+    private javax.swing.JTextField newPaymentTextField;
     private javax.swing.JRadioButton nothingPaidRadio;
+    private javax.swing.JTextField oldPaymentTextField;
     private javax.swing.JPanel orderDetails;
     private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JDialog paymentStatus;
+    private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JTextField truckDeliverTextF;

@@ -17,7 +17,8 @@ public class Order {
     private String adress;
     private Date startDate, endDate;
     private boolean cancelled;
-    private double fullPrice, discount, aditionalCost, paidAmount;
+    private double fullPrice, discount, aditionalCost,paidAmount;
+    
 
     public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
         this.orderDetails = new ArrayList();
@@ -30,7 +31,7 @@ public class Order {
         this.cancelled = canceled;
         this.fullPrice = fullPrice;
         this.discount = discount;
-        this.aditionalCost = additionalCost;
+        this.aditionalCost = aditionalCost;
         this.paidAmount = paidAmount;
     }
 
@@ -133,4 +134,10 @@ public class Order {
     public void insertOrderDetail(OrderDetail orderDetail){
         orderDetails.add(orderDetail);
     }
+
+    @Override
+    public String toString() {
+        return "Delivery Date: " + startDate + ", Return Date: " + endDate + "Address: " + adress;
+    }
+    
 }
