@@ -4,18 +4,31 @@
  */
 package Presentation;
 
+import Domain.Controller;
 import Domain.Order;
+import Domain.Resource;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author Petko
  */
 public class EventManagment extends javax.swing.JFrame {
-
+    Controller con = Controller.getInstance();
+    private ArrayList<Order> allOrders = null;
+    DefaultListModel ordersModel = new DefaultListModel();
+    
     /**
      * Creates new form NewJFrame
      */
     public EventManagment() {
         initComponents();
+        con.getConnection();
+        allOrders = con.getOrders();
+        for (Order o : allOrders) {
+            ordersModel.addElement(o);
+        }
+        orderList.setModel(ordersModel);
     }
 
     /**
@@ -64,11 +77,21 @@ public class EventManagment extends javax.swing.JFrame {
         truckReturnTextF = new javax.swing.JTextField();
         backToMenu = new javax.swing.JButton();
 
-        jLabel7.setText("Payment until now");
+        paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
+        paymentStatus.setMinimumSize(new java.awt.Dimension(355, 155));
+        paymentStatus.setPreferredSize(new java.awt.Dimension(355, 155));
+        paymentStatus.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        oldPaymentTextField.setEditable(false);
-        oldPaymentTextField.setText("jTextField1");
+        jLabel7.setText("Payment until now");
+        paymentStatus.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 20, 136, -1));
+
         oldPaymentTextField.setEnabled(false);
+        oldPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldPaymentTextFieldActionPerformed(evt);
+            }
+        });
+        paymentStatus.getContentPane().add(oldPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 14, 80, -1));
 
         saveNewPayment.setText("Save");
         saveNewPayment.addActionListener(new java.awt.event.ActionListener() {
@@ -76,55 +99,19 @@ public class EventManagment extends javax.swing.JFrame {
                 saveNewPaymentActionPerformed(evt);
             }
         });
+        paymentStatus.getContentPane().add(saveNewPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 94, -1, -1));
 
         jLabel8.setText("Payment new amount");
+        paymentStatus.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 54, 136, -1));
 
-        newPaymentTextField.setText("jTextField1");
         newPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newPaymentTextFieldActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout paymentStatusLayout = new javax.swing.GroupLayout(paymentStatus.getContentPane());
-        paymentStatus.getContentPane().setLayout(paymentStatusLayout);
-        paymentStatusLayout.setHorizontalGroup(
-            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentStatusLayout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addComponent(saveNewPayment)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentStatusLayout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(paymentStatusLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(newPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(paymentStatusLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(oldPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(65, 65, 65))
-        );
-        paymentStatusLayout.setVerticalGroup(
-            paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentStatusLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(oldPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(paymentStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(newPaymentTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(saveNewPayment)
-                .addGap(32, 32, 32))
-        );
+        paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, 20));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(835, 739));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -296,13 +283,15 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount()); 
         paymentStatus.setVisible(true);
         
     }//GEN-LAST:event_depositPaidButtonActionPerformed
 
     private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
         Order currentOrder = (Order)orderList.getSelectedValue();
-        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());      
+        oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());  
         Double newPayment = Double.parseDouble(newPaymentTextField.getText());
         currentOrder.setPaidAmount(newPayment);
         paymentStatus.setVisible(false);
@@ -312,6 +301,10 @@ public class EventManagment extends javax.swing.JFrame {
     private void newPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPaymentTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newPaymentTextFieldActionPerformed
+
+    private void oldPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPaymentTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldPaymentTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
