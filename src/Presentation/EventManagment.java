@@ -296,7 +296,7 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
-
+        paymentStatus.setVisible(true);
         
     }//GEN-LAST:event_depositPaidButtonActionPerformed
 
@@ -304,6 +304,8 @@ public class EventManagment extends javax.swing.JFrame {
         Order currentOrder = (Order)orderList.getSelectedValue();
         oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());      
         Double newPayment = Double.parseDouble(newPaymentTextField.getText());
+        currentOrder.setPaidAmount(newPayment);
+        paymentStatus.setVisible(false);
         
     }//GEN-LAST:event_saveNewPaymentActionPerformed
 
