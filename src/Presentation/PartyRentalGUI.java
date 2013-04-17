@@ -1167,7 +1167,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         //  Create order detail
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             if (entry.getValue().getSelectedIndex() != 0) {
-                con.createOrderDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex());
+                con.createOrderDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex(),entry.getKey().getResourceName());
             }
         }
         //Book outgoing trucks
@@ -1323,12 +1323,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void customerOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerOrdersMouseClicked
         orderDetailsList.setModel(orderDetailsModel);
-        if (orderDetailsList.isSelectionEmpty()) {
+        if (customerOrders.isSelectionEmpty()) {
             orderDetailsModel.clear();
             orderDetailsModel.add(0, "No order selected");
         } else {
             orderDetailsModel.clear();
-            Order c = (Order) orderDetailsList.getSelectedValue();
+            Order c = (Order) customerOrders.getSelectedValue();
 
             ArrayList<OrderDetail> details = c.getOrderDetails();
 

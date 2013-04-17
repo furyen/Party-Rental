@@ -226,6 +226,7 @@ public class DBFacade {
         customer = customerMapper.getCustomer(customerID, connection);
         
         return customer;
+    }
 
     public ArrayList<Order> getCustomerOrders(int customerID) {
         OrderMapper orderMapper = new OrderMapper();
