@@ -134,4 +134,10 @@ public class Order {
     public void insertOrderDetail(OrderDetail orderDetail){
         orderDetails.add(orderDetail);
     }
+
+    @Override
+    public String toString() {
+        return "Delivery Date: " + startDate + ", Return Date: " + endDate + "Address: " + adress;
+    }
+    
 }
