@@ -71,7 +71,7 @@ public class RessourceMapper {
                 + " from ressource"
                 + " order by ressource_id";
         String SQLString2 =
-                "select order_detail.ressource_id, order_detail.quantity, orders.start_date, orders.end_date"
+                "select order_detail.ressource_id, order_detail.quantity, orders.start_date, orders.end_date, "
                 +" FROM order_detail natural join orders"
                 +" where ((orders.start_date >= ?) and (orders.start_date <= ?))"
                 +" or ((orders.end_date >= ?) and (orders.end_date <= ?))";
