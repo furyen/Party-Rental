@@ -27,7 +27,7 @@ public class Main {
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             java.util.Date startD = df.parse("31-12-1995");
             java.util.Date endD = df.parse("02-10-2001");
-       control.getConnection();
+//       
 //        availableResources = control.getAvailableResources(startD ,endD );
 //        System.out.println(availableResources.toString());
 ////  "31-12-1995", "02-10-2001"      
@@ -41,10 +41,9 @@ public class Main {
 //            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
 //                );
 //        }
-//         control.getOrders();
-//            
-         control.getCustomerOrderHistory(1).get(0);
-       
+           control.getOrders();
+            
+         
         
     }
     

@@ -10,6 +10,7 @@ package Domain;
  */
 public class OrderDetail {
     int orderID, resourceID, quantity;
+    String ressourceName;
 
     public OrderDetail(int orderID, int resourceID, int quantity) {
         this.orderID = orderID;
@@ -40,6 +41,16 @@ public class OrderDetail {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public String getRessourceName() {
+        return ressourceName;
+    }
+
+    public void setRessourceName(String ressourceName) {
+        this.ressourceName = ressourceName;
+    }
+
+    
     
     
     

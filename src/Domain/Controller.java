@@ -178,7 +178,7 @@ public class Controller {
         dbFacade.startNewBusinessTransaction();
         
         orderID = dbFacade.getUniqueOrderID();
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0,0,(byte)1);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0,0,0);
         currentOrder = newOrder;
         status = dbFacade.createOrder(newOrder);
 
