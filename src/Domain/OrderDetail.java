@@ -10,7 +10,7 @@ package Domain;
  */
 public class OrderDetail {
     int orderID, resourceID, quantity;
-    String orderName;
+    String ressourceName;
 
     public OrderDetail(int orderID, int resourceID, int quantity) {
         this.orderID = orderID;
@@ -42,13 +42,15 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public void setOrderName(String orderName) {
-        this.orderName = orderName;
+    public String getRessourceName() {
+        return ressourceName;
     }
 
-    public String getOrderName() {
-        return orderName;
+    public void setRessourceName(String ressourceName) {
+        this.ressourceName = ressourceName;
     }
+
+    
     
     
     
