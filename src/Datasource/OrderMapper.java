@@ -91,14 +91,14 @@ public class OrderMapper {
 
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
-        String SQLString1 = "select *"
+        String SQLString1 = " select * "
                 + " FROM orders natural join invoice ";
         PreparedStatement statement = null;
         System.out.println("muita");
         try {
             System.out.println("muita");
-//            statement = connection.prepareStatement(SQLString1);
-            ResultSet rs = statement.executeQuery(SQLString1);
+            statement = connection.prepareStatement(SQLString1);
+            ResultSet rs = statement.executeQuery();
             System.out.println("muita");
             while (rs.next()) {
                 System.out.println("muie");
@@ -107,17 +107,19 @@ public class OrderMapper {
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
                 String eventAddress = rs.getString(5);
-                char dp = rs.getString(6).charAt(0);
-                boolean deposit;
-                if (dp == 'Y') {
-                    deposit = true;
-                } else {
-                    deposit = false;
-                }
+                byte paymantState = rs.getByte(6);
                 int unitSize = rs.getInt(7);
-                double discount = rs.getDouble(8);
-                double finalPrice = rs.getInt(9);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, deposit, finalPrice, discount);
+                char can = rs.getString(8).charAt(0);
+                boolean canceled;
+                if (can == 'Y') {
+                    canceled = true;
+                } else {
+                    canceled = false;
+                }
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paymantState);
 
 //                                        rs.getInt(3),
 //                                        rs.getString(4),
@@ -158,20 +160,32 @@ public class OrderMapper {
             while (rs.next()) {
                 System.out.println("muie");
                 int orderID = rs.getInt(1);
+                rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
                 String eventAddress = rs.getString(5);
-                char dp = rs.getString(6).charAt(0);
-                boolean deposit;
-                if (dp == 'Y') {
-                    deposit = true;
-                } else {
-                    deposit = false;
-                }
+                byte paymantState = rs.getByte(6);
                 int unitSize = rs.getInt(7);
-                double discount = rs.getDouble(8);
-                double finalPrice = rs.getInt(9);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, deposit, finalPrice, discount);
+                char can = rs.getString(8).charAt(0);
+                boolean canceled;
+                if (can == 'Y') {
+                    canceled = true;
+                } else {
+                    canceled = false;
+                }
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paymantState);
+
+//                                        rs.getInt(3),
+//                                        rs.getString(4),
+//                                        rs.getDate(5),
+//                                        rs.getDate(6),
+//                                        rs.getInt(7),
+//                                        rs.getDouble(8),
+//                                        rs.getDouble(9)
+//                                        );
                 orderList.add(order);
             }
         } catch (Exception ex) {
