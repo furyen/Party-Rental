@@ -16,11 +16,11 @@ public class Order {
     private int customerID, orderID, unitSize;
     private String adress;
     private Date startDate, endDate;
-    private boolean canceled;
+    private boolean cancelled;
     private double fullPrice, discount, aditionalCost;
-    private byte paymantState;
+    private byte paymentState;
 
-    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double aditionalCost, byte paymantState) {
+    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, byte paymentState) {
         this.orderDetails = orderDetails;
         this.customerID = customerID;
         this.orderID = orderID;
@@ -28,11 +28,11 @@ public class Order {
         this.adress = adress;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.canceled = canceled;
+        this.cancelled = canceled;
         this.fullPrice = fullPrice;
         this.discount = discount;
         this.aditionalCost = aditionalCost;
-        this.paymantState = paymantState;
+        this.paymentState = paymentState;
     }
 
     public ArrayList<OrderDetail> getOrderDetails() {
@@ -63,8 +63,8 @@ public class Order {
         return endDate;
     }
 
-    public boolean isCanceled() {
-        return canceled;
+    public boolean isCancelled() {
+        return cancelled;
     }
 
     public double getFullPrice() {
@@ -79,8 +79,8 @@ public class Order {
         return aditionalCost;
     }
 
-    public byte getPaymantState() {
-        return paymantState;
+    public byte getPaymentState() {
+        return paymentState;
     }
 
     public void setOrderDetails(ArrayList<OrderDetail> orderDetails) {
@@ -111,8 +111,8 @@ public class Order {
         this.endDate = endDate;
     }
 
-    public void setCanceled(boolean canceled) {
-        this.canceled = canceled;
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 
     public void setFullPrice(double fullPrice) {
@@ -127,8 +127,8 @@ public class Order {
         this.aditionalCost = aditionalCost;
     }
 
-    public void setPaymantState(byte paymantState) {
-        this.paymantState = paymantState;
+    public void setPaymentState(byte paymentState) {
+        this.paymentState = paymentState;
     }
 
     public void insertOrderDetail(OrderDetail orderDetail){

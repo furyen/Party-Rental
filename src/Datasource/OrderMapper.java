@@ -92,7 +92,7 @@ public class OrderMapper {
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
-                + " FROM orders natural join invoice ";
+                            + " FROM orders natural join invoice ";
         PreparedStatement statement = null;
         System.out.println("muita");
         try {
@@ -113,14 +113,15 @@ public class OrderMapper {
                 boolean canceled;
                 if (can == 'Y') {
                     canceled = true;
-                } else {
+                }
+                else{
                     canceled = false;
                 }
                 double discount = rs.getDouble(9);
                 double fulllPrice = rs.getDouble(10);
                 double additionalCosts = rs.getDouble(11);
                 Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paymantState);
-
+                
 //                                        rs.getInt(3),
 //                                        rs.getString(4),
 //                                        rs.getDate(5),
