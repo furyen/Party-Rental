@@ -189,8 +189,9 @@ public class Controller {
         return status;
     }
 
-    public void createOrderDetail(int resourceID, int quantity) {
+    public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
+        orderDetail.setResourceName(resourceName);
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
@@ -274,7 +275,7 @@ public class Controller {
                 + "\n";
         
         for(OrderDetail orderDetail : order.getOrderDetails()){
-            
+            invoiceString += orderDetail.getResourceName() + "\t\t - ";
         }
         
         try{
