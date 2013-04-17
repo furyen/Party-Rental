@@ -5,6 +5,7 @@
 package Domain;
 
 import Datasource.DBFacade;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -112,6 +113,14 @@ public class Controller {
 
         return customerList;
     }
+    
+    public Customer getCustomer(int customerID){
+        Customer customer = null;
+        
+        customer = dbFacade.getCustomer(customerID);
+        
+        return customer;
+    }
 
     public Customer createCustomer(String firstName, String lastName, String adress) {
         boolean status = false;
@@ -152,7 +161,10 @@ public class Controller {
         
         if(currentOrder != null){
             status = dbFacade.createNewInvoice(currentOrder);
+            createDepositInvoiceFile(currentOrder);
         }       
+        
+        
         
         return status;
     }
@@ -186,8 +198,9 @@ public class Controller {
         return status;
     }
 
-    public void createOrderDetail(int resourceID, int quantity) {
+    public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
+        orderDetail.setRessourceName(resourceName);
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
@@ -233,4 +246,120 @@ public class Controller {
         return status;
     }
     
+    public boolean cancelOrder(Order order){
+        boolean status = false;
+        
+        order.setCancelled(true);
+        
+        status = dbFacade.cancelOrder(order);
+        
+        
+        return status;
+    }
+    
+    public Order editOrder(Order order){
+        boolean status  = false;
+        
+        status = cancelOrder(order);
+        
+        return order;
+    }
+    
+    public Order cancelEditOrder(Order order){
+        order.setCancelled(false);
+        boolean status = false;
+        
+        status = dbFacade.cancelOrder(order);
+        
+        return order;
+    }
+    
+    public boolean createDepositInvoiceFile(Order order){
+        boolean status = false;
+        FileWriter fileWriter;
+        Customer customer = getCustomer(order.getCustomerID());
+        String invoiceString = 
+                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
+                + "\n"
+                + "\n"
+                + "Dear " + customer.getFirstName() + " " + customer.getLastName()
+                + "\n"
+                + "You are receiving this invoice in accordance to your order\n"
+                + "with to the following address: " + order.getAdress()
+                + "\nYou have ordered the following things:\n"
+                + "\n";
+        
+        for(OrderDetail orderDetail : order.getOrderDetails()){
+            Resource resource = getResource(orderDetail.getRessourceName());
+            invoiceString += orderDetail.getRessourceName() + ": " + resource.getPrice() + "\n";
+        }
+        
+        invoiceString += 
+                  "\n"
+                + "The full price: " + order.getFullPrice() + "\n"
+                + "\n"
+                + "You are to pay the deposit of 25% which amounts to: " + (order.getFullPrice() * 0.25) + "\n"
+                + "\n"
+                + "We hope you will enjoy the event";
+        
+        System.out.println(invoiceString);
+        
+        try{
+            fileWriter = new FileWriter(new File("Deposit Invoice - Order ID - " + order.getOrderID() + ".txt"));
+            fileWriter.write(invoiceString);
+            status = true;
+            fileWriter.close();
+            
+        }
+        catch(IOException ex){
+            System.out.println("Error in writing invoice file - " + ex);
+        }
+        return status;
+    }
+    
+    public boolean createFinalInvoiceFile(Order order){
+        boolean status = false;
+        FileWriter fileWriter;
+        Customer customer = getCustomer(order.getCustomerID());
+        String invoiceString = 
+                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
+                + "\n"
+                + "\n"
+                + "Dear " + customer.getFirstName() + " " + customer.getLastName()
+                + "\n"
+                + "You are receiving this invoice in accordance to your order\n"
+                + "with to the following address: " + order.getAdress()
+                + "\nYou have ordered the following things:\n"
+                + "\n";
+        
+        for(OrderDetail orderDetail : order.getOrderDetails()){
+            Resource resource = getResource(orderDetail.getRessourceName());
+            invoiceString += orderDetail.getRessourceName() + ": " + resource.getPrice() + "\n";
+        }
+        
+        invoiceString += 
+                  "\n"
+                + "The full price: " + order.getFullPrice() + "\n"
+                + "\n"
+                + "You have payed the deposit of 25% which amounts to: " + ((order.getFullPrice() * (1 - order.getDiscount())) * 0.25) + "\n"
+                + "The remaining amount to be payed amounts to: " + ((order.getFullPrice() * (1 - order.getDiscount())) - (order.getFullPrice() * 0.25)) + "\n"
+                + "\n"
+                + "We hope you enjoyed the event";
+        
+        System.out.println(invoiceString);
+        
+        try{
+            fileWriter = new FileWriter(new File("Final Invoice - Order ID - " + order.getOrderID() + ".txt"));
+            fileWriter.write(invoiceString);
+            status = true;
+            fileWriter.close();
+            
+        }
+        catch(IOException ex){
+            System.out.println("Error in writing invoice file - " + ex);
+        }
+        return status;
+    }
 }

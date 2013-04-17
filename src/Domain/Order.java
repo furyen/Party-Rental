@@ -20,7 +20,7 @@ public class Order {
     private double fullPrice, discount, aditionalCost,paidAmount;
     
 
-    public Order( int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
+    public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
         this.orderDetails = new ArrayList();
         this.customerID = customerID;
         this.orderID = orderID;
