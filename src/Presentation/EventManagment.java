@@ -46,6 +46,9 @@ public class EventManagment extends javax.swing.JFrame {
         saveNewPayment = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         newPaymentTextField = new javax.swing.JTextField();
+        paymentEditingDonePopup = new javax.swing.JDialog();
+        paymentEditedLabel = new javax.swing.JLabel();
+        OK = new javax.swing.JButton();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,7 +94,7 @@ public class EventManagment extends javax.swing.JFrame {
                 oldPaymentTextFieldActionPerformed(evt);
             }
         });
-        paymentStatus.getContentPane().add(oldPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 14, 80, -1));
+        paymentStatus.getContentPane().add(oldPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 12, 80, 30));
 
         saveNewPayment.setText("Save");
         saveNewPayment.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +112,21 @@ public class EventManagment extends javax.swing.JFrame {
                 newPaymentTextFieldActionPerformed(evt);
             }
         });
-        paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, 20));
+        paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, -1));
+
+        paymentEditingDonePopup.setMinimumSize(new java.awt.Dimension(355, 155));
+        paymentEditingDonePopup.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        paymentEditedLabel.setText("Payment is edited!");
+        paymentEditingDonePopup.getContentPane().add(paymentEditedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, -1, -1));
+
+        OK.setText("OK");
+        OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKActionPerformed(evt);
+            }
+        });
+        paymentEditingDonePopup.getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -139,7 +156,7 @@ public class EventManagment extends javax.swing.JFrame {
         nothingPaidRadio.setText("Nothing Paid");
         orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
-        searchByName.setText("Search by Only Name");
+        searchByName.setText("Only Name");
         orders.add(searchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
@@ -291,9 +308,16 @@ public class EventManagment extends javax.swing.JFrame {
 
     private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
         Order currentOrder = (Order)orderList.getSelectedValue();
+        boolean status;
         oldPaymentTextField.setText(""+ currentOrder.getPaidAmount());  
         Double newPayment = Double.parseDouble(newPaymentTextField.getText());
-        currentOrder.setPaidAmount(newPayment);
+        status = con.savePayment(currentOrder, newPayment);
+        if (status == true){
+            paymentEditingDonePopup.setVisible(true);
+        } else {
+            paymentEditingDonePopup.setVisible(true);
+            paymentEditedLabel.setText("Editing payment failed");
+        }
         paymentStatus.setVisible(false);
         
     }//GEN-LAST:event_saveNewPaymentActionPerformed
@@ -305,6 +329,10 @@ public class EventManagment extends javax.swing.JFrame {
     private void oldPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPaymentTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_oldPaymentTextFieldActionPerformed
+
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+        paymentEditingDonePopup.setVisible(false);
+    }//GEN-LAST:event_OKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,6 +370,7 @@ public class EventManagment extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EventManagement;
+    private javax.swing.JButton OK;
     private javax.swing.JTextField addressTextF;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
@@ -371,6 +400,8 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JLabel paymentEditedLabel;
+    private javax.swing.JDialog paymentEditingDonePopup;
     private javax.swing.JDialog paymentStatus;
     private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;

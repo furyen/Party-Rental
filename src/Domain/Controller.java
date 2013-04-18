@@ -258,7 +258,13 @@ public class Controller {
         return status;
     }
 
-    public boolean cancelOrder(Order order) {
+    public boolean savePayment(Order currentOrder, Double newPayment) {
+        boolean status = false;
+        currentOrder.setPaidAmount(newPayment);
+        return status = dbFacade.savePayment(currentOrder);
+    }
+    
+    public boolean cancelOrder(Order order){
         boolean status = false;
 
         order.setCancelled(true);
@@ -372,4 +378,6 @@ public class Controller {
         }
         return status;
     }
+    
+    
 }
