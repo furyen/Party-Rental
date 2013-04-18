@@ -201,11 +201,31 @@ public class DBFacade {
         }
 
     }
-
+     
     public ArrayList<Order> getOrders() {
         OrderMapper orderMapper = new OrderMapper();
         ArrayList<Order> list = orderMapper.getOrders(connection);
         return list;
+    }
+
+
+    public boolean cancelOrder(Order order) {
+        boolean status = false;
+        OrderMapper orderMapper = new OrderMapper();
+        
+        status = orderMapper.cancelOrder(order, connection);
+        
+        
+        return status;
+    }
+
+    public Customer getCustomer(int customerID) {
+        CustomerMapper customerMapper = new CustomerMapper();
+        Customer customer = null;
+        
+        customer = customerMapper.getCustomer(customerID, connection);
+        
+        return customer;
     }
 
     public ArrayList<Order> getCustomerOrders(int customerID) {

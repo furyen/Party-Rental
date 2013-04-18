@@ -9,8 +9,8 @@ package Domain;
  * @author dekez
  */
 public class OrderDetail {
-    int orderID, resourceID, quantity;
-    String ressourceName;
+    private int orderID, resourceID, quantity;
+    private String ressourceName;
 
     public OrderDetail(int orderID, int resourceID, int quantity) {
         this.orderID = orderID;

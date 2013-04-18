@@ -77,5 +77,27 @@ public class CustomerMapper {
         return status;
         
     }
+
+    Customer getCustomer(int customerID, Connection connection) {
+        Customer customer = null;
+        String SQLString = "select * from customer where customer_id=?";
+        PreparedStatement statement = null;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setInt(1, customerID);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+            }
+            
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the getCustomer in CustomerMapper - " + ex);
+        }
+        
+        return customer;
+        
+    }
     
 }

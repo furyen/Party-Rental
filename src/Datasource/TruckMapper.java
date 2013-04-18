@@ -23,12 +23,13 @@ public class TruckMapper {
     public ArrayList<Truck> getTruckDeliveryForDate(Date date,char ch,Connection con) {
         ArrayList<Truck> listRuns = new ArrayList();
         ArrayList<Truck> auxiliarList = new ArrayList();
-        String SQLString1 = "select truck_id, truck_run, order_partial_size, order_id"
-                           + " from truck_delivery natural join orders";
+        String SQLString1 = "select truck_id, truck_run, order_partial_size, order_id, canceled";
         if (ch == '0'){
+            SQLString1 +=" from truck_delivery natural join orders";
             SQLString1 += " where orders.start_date = ?";
         }
         else {
+            SQLString1 += " from truck_return natural join orders";
             SQLString1 += " where orders.end_date = ?";
         }                   
         String SQLString2 = "select *"
@@ -45,19 +46,24 @@ public class TruckMapper {
                 truck = new Truck(rs.getInt(1),
                                   rs.getInt(2),
                                   rs.getInt(3),
-                                  0);
+                                  0,0);
                 rs.getInt(4);
-                auxiliarList.add(truck);
+                char canceled = rs.getString(4).charAt(0);
+                if (canceled == 'N'){
+                    auxiliarList.add(truck);
+                } 
             }
             statement = con.prepareStatement(SQLString2);
             rs = statement.executeQuery();
             int id;
             int size;
+            double unitPrice;
             while (rs.next()){
                 id = rs.getInt(1);
                 size = rs.getInt(2);
+                unitPrice = rs.getDouble(3);
                 for(int i = 0; i<3; i++){
-                    truck = new Truck(id,i+1,0,size);
+                    truck = new Truck(id,i+1,0,size,unitPrice);
                     listRuns.add(truck);
                 }
             }
