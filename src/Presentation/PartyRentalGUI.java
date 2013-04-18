@@ -53,7 +53,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             resourceModel.addElement(res);
         }
         JList_resources.setModel(resourceModel);
-
+        orderDetailsList.setModel(orderDetailsModel);
+        customerOrders.setModel(customerOrdersModel);
     }
 
     public void refreshAvailableResources(ArrayList<Resource> inventory) {
@@ -1167,7 +1168,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         //  Create order detail
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             if (entry.getValue().getSelectedIndex() != 0) {
-                con.createOrderDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex(),entry.getKey().getResourceName());
+                con.createOrderDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex(), entry.getKey().getResourceName());
             }
         }
         //Book outgoing trucks
@@ -1304,7 +1305,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_discountActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
-        customerOrders.setModel(customerOrdersModel);
+
         if (customerList.isSelectionEmpty()) {
             customerOrdersModel.clear();
             customerOrdersModel.add(0, "No Customer Selected");
@@ -1322,7 +1323,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_customerListMouseClicked
 
     private void customerOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerOrdersMouseClicked
-        orderDetailsList.setModel(orderDetailsModel);
+
         if (customerOrders.isSelectionEmpty()) {
             orderDetailsModel.clear();
             orderDetailsModel.add(0, "No order selected");
@@ -1333,7 +1334,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             ArrayList<OrderDetail> details = c.getOrderDetails();
 
             for (int i = 0; i < details.size(); i++) {
-                customerOrdersModel.add(i, details.get(i));
+                orderDetailsModel.add(i, details.get(i));
             }
         }
 
