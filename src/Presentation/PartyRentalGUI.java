@@ -42,8 +42,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private DefaultListModel resourceModel = new DefaultListModel();
     private DefaultListModel customerOrdersModel = new DefaultListModel();
     private DefaultListModel orderDetailsModel = new DefaultListModel();
-    private java.util.Date startD, endD;
-    private int unitsDeliver, unitsReturn, totalUnits;
+    private int unitsDeliver, unitsReturn;
 
     public PartyRentalGUI() {
         initComponents();
@@ -107,7 +106,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             entry.getValue().doClick();
                         }
                     }
-                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()))));
+                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
                     totalSize.setText("Total Unit Size: " + totalUnits);
                     unitsDeliver = totalUnits;
                     unitsReturn = totalUnits;
@@ -186,6 +185,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             }
                         }
                     }
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
                 }
             });
             deliveryPanel.add(truckDelivery.get(truck), gbc);
@@ -246,6 +247,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             }
                         }
                     }
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
+
                 }
             });
             returnPanel.add(truckReturn.get(truck), gbc);
@@ -1183,6 +1187,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1', Integer.parseInt(entry.getValue().getText()));
             }
         }
+        con.createNewInvoice(Integer.parseInt(discount.getText()), Double.parseDouble(totalPrice.getText().substring(13)));
+
         con.checkOrder();
 
 
@@ -1215,7 +1221,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         fName.setText("");
         lName.setText("");
 
-
+        //keeps focus on window until closed
         searchCustomer.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         searchCustomer.pack();
         searchCustomer.setVisible(true);
@@ -1300,7 +1306,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             entry.getKey().setQuantity(entry.getValue().getSelectedIndex());
         }
-        totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()))));
+        totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
 
     }//GEN-LAST:event_discountActionPerformed
 
