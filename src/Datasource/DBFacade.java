@@ -213,4 +213,8 @@ public class DBFacade {
         ArrayList<Order> orders = orderMapper.getCustomerOrders(connection,customerID);
         return orders;
     }
+
+    public boolean savePayment(Order currentOrder) {
+        return true;
+    }
 }

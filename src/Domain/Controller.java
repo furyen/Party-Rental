@@ -232,5 +232,11 @@ public class Controller {
         
         return status;
     }
+
+    public boolean savePayment(Order currentOrder, Double newPayment) {
+        boolean status = false;
+        currentOrder.setPaidAmount(newPayment);
+        return status = dbFacade.savePayment(currentOrder);
+    }
     
 }
