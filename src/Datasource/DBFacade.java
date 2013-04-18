@@ -247,4 +247,10 @@ public class DBFacade {
         InvoiceMapper invoiceMapper = new InvoiceMapper();
         return status = invoiceMapper.savePayment(currentOrder, connection);
     }
+    
+    public boolean createTruck(int truckSize, int unitPrice){
+        TruckMapper truckMapper = new TruckMapper();
+        boolean bool = truckMapper.createTruck( truckSize, unitPrice, connection);
+        return bool;
+    } 
 }
