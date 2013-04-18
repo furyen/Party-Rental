@@ -19,6 +19,8 @@ public class UnitOfWorkProcessOrder {
     private ArrayList<OrderDetail> newOrderDetailList = new ArrayList();
     private ArrayList<TruckOrder> newTruckBooking = new ArrayList();
     
+    private ArrayList<Order> dirtyOrderList = new ArrayList();
+    
     
     public void newCustomer(Customer newCustomer){
         if(!newCustomerList.contains(newCustomer)){

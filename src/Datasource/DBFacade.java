@@ -234,10 +234,16 @@ public class DBFacade {
         return orders;
     }
 
+
     public ArrayList<Order> deleteResource(int resourceID) {
         ArrayList<Order> list = null;
         RessourceMapper ressourceMapper = new RessourceMapper();
         list = ressourceMapper.deleteResource(resourceID, connection);
         return list;
+    }
+
+    public boolean savePayment(Order currentOrder) {
+        return true;
+
     }
 }
