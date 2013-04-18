@@ -11,12 +11,18 @@ package Domain;
 public class Truck {
 
     int truckID, size, truckRun, filledSpace;
+    double unitPrice;
 
-    public Truck(int truckID, int truckRun, int filledSpace, int size) {
+    public Truck(int truckID, int truckRun, int filledSpace, int size, double unitPrice) {
         this.truckID = truckID;
         this.size = size;
         this.truckRun = truckRun;
         this.filledSpace = filledSpace;
+        this.unitPrice = unitPrice;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
     public void setFilledSpace(int filledSpace) {
