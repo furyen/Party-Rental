@@ -363,5 +363,9 @@ public class Controller {
         return status;
     }
     
-    
+    public ArrayList<Order> deleteResource(int resourceID){
+        ArrayList<Order> list = null;
+        list = dbFacade.deleteResource(resourceID);
+        return list;
+    } 
 }

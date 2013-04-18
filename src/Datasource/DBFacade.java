@@ -233,4 +233,11 @@ public class DBFacade {
         ArrayList<Order> orders = orderMapper.getCustomerOrders(connection,customerID);
         return orders;
     }
+
+    public ArrayList<Order> deleteResource(int resourceID) {
+        ArrayList<Order> list = null;
+        RessourceMapper ressourceMapper = new RessourceMapper();
+        list = ressourceMapper.deleteResource(resourceID, connection);
+        return list;
+    }
 }
