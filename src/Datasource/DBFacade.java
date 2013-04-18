@@ -235,6 +235,8 @@ public class DBFacade {
     }
 
     public boolean savePayment(Order currentOrder) {
-        return true;
+        boolean status = false;
+        InvoiceMapper invoiceMapper = new InvoiceMapper();
+        return status = invoiceMapper.savePayment(currentOrder, connection);
     }
 }
