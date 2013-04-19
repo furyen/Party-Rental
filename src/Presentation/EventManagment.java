@@ -5,6 +5,7 @@
 package Presentation;
 
 import Domain.Controller;
+import Domain.Customer;
 import Domain.Order;
 import Domain.OrderDetail;
 import Domain.Resource;
@@ -24,6 +25,8 @@ public class EventManagment extends javax.swing.JFrame {
     DefaultListModel ordersModel = new DefaultListModel();
     DefaultListModel selectedOrderDetailModel = new DefaultListModel();
     private ArrayList<OrderDetail> selectedOrderDetail = null;
+    DefaultListModel searchCustomerModel2 = new DefaultListModel();
+    
     
     /**
      * Creates new form NewJFrame
@@ -60,6 +63,12 @@ public class EventManagment extends javax.swing.JFrame {
         paymentEditingDonePopup = new javax.swing.JDialog();
         paymentEditedLabel = new javax.swing.JLabel();
         OK = new javax.swing.JButton();
+        searchCustomer2 = new javax.swing.JDialog();
+        searchChoose = new javax.swing.JButton();
+        searchCancel = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        customerList = new javax.swing.JList();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -85,10 +94,10 @@ public class EventManagment extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        addressTextF = new javax.swing.JTextField();
-        discountTextF = new javax.swing.JTextField();
-        truckDeliverTextF = new javax.swing.JTextField();
-        truckReturnTextF = new javax.swing.JTextField();
+        addressLabel = new javax.swing.JLabel();
+        discountLabel = new javax.swing.JLabel();
+        truckDeliverLabel = new javax.swing.JLabel();
+        truckReturnLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
         paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
@@ -138,6 +147,77 @@ public class EventManagment extends javax.swing.JFrame {
             }
         });
         paymentEditingDonePopup.getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+
+        searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
+        searchCustomer2.setMinimumSize(new java.awt.Dimension(470, 267));
+        searchCustomer2.setResizable(false);
+
+        searchChoose.setText("Choose");
+        searchChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchChooseActionPerformed(evt);
+            }
+        });
+
+        searchCancel.setText("Cancel");
+        searchCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCancelActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        customerList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(customerList);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout searchCustomer2Layout = new javax.swing.GroupLayout(searchCustomer2.getContentPane());
+        searchCustomer2.getContentPane().setLayout(searchCustomer2Layout);
+        searchCustomer2Layout.setHorizontalGroup(
+            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchCustomer2Layout.createSequentialGroup()
+                        .addComponent(searchCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addComponent(searchChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchCustomer2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        searchCustomer2Layout.setVerticalGroup(
+            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCancel)
+                    .addComponent(searchChoose))
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -226,12 +306,8 @@ public class EventManagment extends javax.swing.JFrame {
 
         jLabel2.setText("Last Name");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, -1, -1));
-
-        firstNameSearch.setText("jTextField1");
-        jPanel3.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, -1, -1));
-
-        lastNameSearch.setText("jTextField1");
-        jPanel3.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, -1, -1));
+        jPanel3.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, 90, 30));
+        jPanel3.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, 90, 30));
 
         searchCustomerButton.setText("Search");
         searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +326,7 @@ public class EventManagment extends javax.swing.JFrame {
         orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orderDetailList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "No customer selected" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -269,18 +345,10 @@ public class EventManagment extends javax.swing.JFrame {
 
         jLabel6.setText("Truck return");
         orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-
-        addressTextF.setText("jTextField3");
-        orderDetails.add(addressTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
-
-        discountTextF.setText("jTextField3");
-        orderDetails.add(discountTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
-
-        truckDeliverTextF.setText("jTextField3");
-        orderDetails.add(truckDeliverTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
-
-        truckReturnTextF.setText("jTextField3");
-        orderDetails.add(truckReturnTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, -1));
+        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
+        orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
+        orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 720, 200));
 
@@ -305,6 +373,12 @@ public class EventManagment extends javax.swing.JFrame {
         String first, last;
         first = firstNameSearch.getText();
         last = lastNameSearch.getText();
+        searchCustomer2.setVisible(true);
+        customerList.setModel(searchCustomerModel2);
+//        ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
+//        for (Customer c : list) {
+//            searchCustomerModel.addElement(c);
+//        }
         
         
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
@@ -357,21 +431,33 @@ public class EventManagment extends javax.swing.JFrame {
         } else {
             selectedOrderDetailModel.clear();
             Order o = (Order)orderList.getSelectedValue(); 
-            ArrayList <OrderDetail> od = o.getOrderDetails();
-            System.out.println(od.size());
-            for (int i = 0; i < od.size(); i++) {
-                System.out.println(od);
-            }
+            ArrayList <OrderDetail> selectedOrderDetails = con.getOrderDetail(o);
+            for (OrderDetail od : selectedOrderDetails) {
+            selectedOrderDetailModel.addElement(od);
+            orderDetailList.setModel(selectedOrderDetailModel);
+            discountLabel.setText(o.getDiscount() + "");
+//            truckDeliverLabel.setText(null);
+//            truckReturnLabel.setText();
+            addressLabel.setText(o.getAdress());
+
         }
-//        selectedOrderDetail = ((Order)orderList.getSelectedValue()).getOrderDetails();
-//        System.out.println("lenth of od list " + selectedOrderDetail.size());
-//          for (OrderDetail od : selectedOrderDetail) {
-//            selectedOrderDetailModel.addElement(od);
-//              System.out.println(od);
-//        }
-//        orderDetailList.setModel(selectedOrderDetailModel);
+        }
 
     }//GEN-LAST:event_orderListMouseClicked
+
+    private void searchChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchChooseActionPerformed
+        
+    }//GEN-LAST:event_searchChooseActionPerformed
+
+    private void searchCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCancelActionPerformed
+
+        searchCustomer2.setVisible(false);
+    }//GEN-LAST:event_searchCancelActionPerformed
+
+    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+
+
+    }//GEN-LAST:event_customerListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -410,12 +496,13 @@ public class EventManagment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EventManagement;
     private javax.swing.JButton OK;
-    private javax.swing.JTextField addressTextF;
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
+    private javax.swing.JList customerList;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
-    private javax.swing.JTextField discountTextF;
+    private javax.swing.JLabel discountLabel;
     private javax.swing.JButton editOrderButton;
     private javax.swing.JTextField firstNameSearch;
     private javax.swing.JRadioButton fullyPaidRadio;
@@ -427,10 +514,12 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField lastNameSearch;
     private javax.swing.JTextField newPaymentTextField;
     private javax.swing.JRadioButton nothingPaidRadio;
@@ -444,8 +533,11 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JDialog paymentStatus;
     private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;
+    private javax.swing.JButton searchCancel;
+    private javax.swing.JButton searchChoose;
+    private javax.swing.JDialog searchCustomer2;
     private javax.swing.JButton searchCustomerButton;
-    private javax.swing.JTextField truckDeliverTextF;
-    private javax.swing.JTextField truckReturnTextF;
+    private javax.swing.JLabel truckDeliverLabel;
+    private javax.swing.JLabel truckReturnLabel;
     // End of variables declaration//GEN-END:variables
 }

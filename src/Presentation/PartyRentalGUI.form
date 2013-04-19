@@ -120,7 +120,7 @@
                           <Component id="searchCustomersButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="132" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1536,7 +1536,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="TruckSizeTextField" max="32767" attributes="0"/>
-                                      <Component id="TruckUnitPriceTextField" pref="62" max="32767" attributes="0"/>
+                                      <Component id="TruckUnitPriceTextField" pref="82" max="32767" attributes="0"/>
                                       <Component id="TruckIDTextField" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1642,15 +1642,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="GetAllTrucksButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane8" min="-2" pref="257" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                          <Component id="GetAllTrucksButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="29" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1723,18 +1723,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel30" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel31" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="AddNewTruckIDTextField" pref="63" max="32767" attributes="0"/>
-                                      <Component id="AddNewTruckSizeTextField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="AddNewTruckUnitPriceTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="AddNewTruckSizeTextField" pref="89" max="32767" attributes="0"/>
+                                      <Component id="AddNewTruckUnitPriceTextField" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1742,8 +1740,8 @@
                                   <Component id="AddNewTruckButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                                  <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" min="-2" pref="27" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -1753,24 +1751,19 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel29" max="32767" attributes="0"/>
-                              <Component id="AddNewTruckIDTextField" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel30" max="32767" attributes="0"/>
-                              <Component id="AddNewTruckSizeTextField" max="32767" attributes="0"/>
+                              <Component id="AddNewTruckSizeTextField" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="AddNewTruckUnitPriceTextField" max="32767" attributes="0"/>
-                              <Component id="jLabel31" max="32767" attributes="0"/>
+                              <Component id="jLabel31" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel33" min="-2" pref="20" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="AddNewTruckButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1778,16 +1771,9 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="AddNewTruckIDTextField">
-                </Component>
                 <Component class="javax.swing.JTextField" name="AddNewTruckSizeTextField">
                 </Component>
                 <Component class="javax.swing.JTextField" name="AddNewTruckUnitPriceTextField">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel29">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Truck ID"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel30">
                   <Properties>

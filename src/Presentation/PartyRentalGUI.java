@@ -37,7 +37,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private LinkedHashMap<Resource, JComboBox> resources = new LinkedHashMap();
     private LinkedHashMap<Truck, JToggleButton> truckDelivery = new LinkedHashMap();
     private LinkedHashMap<Truck, JToggleButton> truckReturn = new LinkedHashMap();
-    private DefaultListModel searchModel = new DefaultListModel();
+    private DefaultListModel searchCustomerModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
     private DefaultListModel resourceModel = new DefaultListModel();
     private DefaultListModel customerOrdersModel = new DefaultListModel();
@@ -61,7 +61,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         JList_resources.setModel(resourceModel);
         orderDetailsList.setModel(orderDetailsModel);
         customerOrders.setModel(customerOrdersModel);
-
+        allTrucks = con.getTrucks();
+        TruckList.setModel(truckListModel);
+        for(Truck truck : allTrucks){
+            truckListModel.addElement(truck);
+        }
 
     }
 
@@ -399,10 +403,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         GetAllTrucksButton = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         AddNewTruckPanel = new javax.swing.JPanel();
-        AddNewTruckIDTextField = new javax.swing.JTextField();
         AddNewTruckSizeTextField = new javax.swing.JTextField();
         AddNewTruckUnitPriceTextField = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         AddNewTruckButton = new javax.swing.JButton();
@@ -1296,7 +1298,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(18, 18, 18)
                         .add(TruckHandlingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(TruckSizeTextField)
-                            .add(TruckUnitPriceTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                            .add(TruckUnitPriceTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                             .add(TruckIDTextField)))
                     .add(TruckHandlingPanelLayout.createSequentialGroup()
                         .add(40, 40, 40)
@@ -1350,13 +1352,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             GetExistingTrucksPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(GetExistingTrucksPanelLayout.createSequentialGroup()
                 .add(23, 23, 23)
-                .add(GetExistingTrucksPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(GetExistingTrucksPanelLayout.createSequentialGroup()
-                        .add(jLabel28)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(GetAllTrucksButton))
-                    .add(jScrollPane8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 257, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jLabel28)
+                .add(182, 182, 182)
+                .add(GetAllTrucksButton)
                 .addContainerGap(29, Short.MAX_VALUE))
+            .add(GetExistingTrucksPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane8)
+                .addContainerGap())
         );
         GetExistingTrucksPanelLayout.setVerticalGroup(
             GetExistingTrucksPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1371,8 +1374,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         );
 
         AddNewTruckPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Add New Truck", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
-
-        jLabel29.setText("Truck ID");
 
         jLabel30.setText("Truck Size");
 
@@ -1392,42 +1393,36 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             .add(AddNewTruckPanelLayout.createSequentialGroup()
                 .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(AddNewTruckPanelLayout.createSequentialGroup()
-                        .add(54, 54, 54)
+                        .add(56, 56, 56)
                         .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel29)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel30)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel31))
                         .add(18, 18, 18)
                         .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(AddNewTruckIDTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                            .add(AddNewTruckSizeTextField)
+                            .add(AddNewTruckSizeTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                             .add(AddNewTruckUnitPriceTextField)))
                     .add(AddNewTruckPanelLayout.createSequentialGroup()
                         .add(83, 83, 83)
                         .add(AddNewTruckButton))
                     .add(AddNewTruckPanelLayout.createSequentialGroup()
-                        .add(110, 110, 110)
-                        .add(jLabel33)))
+                        .add(75, 75, 75)
+                        .add(jLabel33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AddNewTruckPanelLayout.setVerticalGroup(
             AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(AddNewTruckPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jLabel29, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(AddNewTruckIDTextField))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(14, 14, 14)
                 .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jLabel30, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(AddNewTruckSizeTextField))
+                    .add(AddNewTruckSizeTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(AddNewTruckUnitPriceTextField)
-                    .add(jLabel31, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jLabel33)
+                    .add(jLabel31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(jLabel33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(AddNewTruckButton)
                 .addContainerGap())
         );
@@ -1747,11 +1742,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void searchCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomersButtonActionPerformed
-        searchModel.clear();
-        customerList.setModel(searchModel);
+        searchCustomerModel.clear();
+        customerList.setModel(searchCustomerModel);
         ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
         for (Customer c : list) {
-            searchModel.addElement(c);
+            searchCustomerModel.addElement(c);
         }
     }//GEN-LAST:event_searchCustomersButtonActionPerformed
 
@@ -1904,10 +1899,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void AddNewTruckButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewTruckButtonActionPerformed1
         int truckSize = Integer.parseInt(AddNewTruckSizeTextField.getText());
         int unitPrice = Integer.parseInt(AddNewTruckUnitPriceTextField.getText());
-
-        if (con.createTruck(truckSize, unitPrice)) {
-            jLabel33.setText("Truck creating");
-        } else {
+        
+        if(con.createTruck(truckSize, unitPrice)){
+            jLabel33.setText("Truck Created");
+        }
+        else{
             jLabel33.setText("There was an error creating the truck");
         }
     }//GEN-LAST:event_AddNewTruckButtonActionPerformed1
@@ -2044,7 +2040,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddNewTruckButton;
-    private javax.swing.JTextField AddNewTruckIDTextField;
     private javax.swing.JPanel AddNewTruckPanel;
     private javax.swing.JTextField AddNewTruckSizeTextField;
     private javax.swing.JTextField AddNewTruckUnitPriceTextField;
@@ -2127,7 +2122,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
