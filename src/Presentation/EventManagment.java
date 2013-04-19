@@ -60,6 +60,12 @@ public class EventManagment extends javax.swing.JFrame {
         paymentEditingDonePopup = new javax.swing.JDialog();
         paymentEditedLabel = new javax.swing.JLabel();
         OK = new javax.swing.JButton();
+        searchCustomer2 = new javax.swing.JDialog();
+        searchChoose = new javax.swing.JButton();
+        searchCancel = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        customerList = new javax.swing.JList();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -138,6 +144,77 @@ public class EventManagment extends javax.swing.JFrame {
             }
         });
         paymentEditingDonePopup.getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+
+        searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
+        searchCustomer2.setMinimumSize(new java.awt.Dimension(470, 267));
+        searchCustomer2.setResizable(false);
+
+        searchChoose.setText("Choose");
+        searchChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchChooseActionPerformed(evt);
+            }
+        });
+
+        searchCancel.setText("Cancel");
+        searchCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCancelActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        customerList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerListMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(customerList);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout searchCustomer2Layout = new javax.swing.GroupLayout(searchCustomer2.getContentPane());
+        searchCustomer2.getContentPane().setLayout(searchCustomer2Layout);
+        searchCustomer2Layout.setHorizontalGroup(
+            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchCustomer2Layout.createSequentialGroup()
+                        .addComponent(searchCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addComponent(searchChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchCustomer2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        searchCustomer2Layout.setVerticalGroup(
+            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomer2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCancel)
+                    .addComponent(searchChoose))
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -359,6 +436,20 @@ public class EventManagment extends javax.swing.JFrame {
 
     }//GEN-LAST:event_orderListMouseClicked
 
+    private void searchChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchChooseActionPerformed
+        
+    }//GEN-LAST:event_searchChooseActionPerformed
+
+    private void searchCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCancelActionPerformed
+
+        searchCustomer2.setVisible(false);
+    }//GEN-LAST:event_searchCancelActionPerformed
+
+    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+
+
+    }//GEN-LAST:event_customerListMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -399,6 +490,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
+    private javax.swing.JList customerList;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JLabel discountLabel;
@@ -413,10 +505,12 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField lastNameSearch;
     private javax.swing.JTextField newPaymentTextField;
     private javax.swing.JRadioButton nothingPaidRadio;
@@ -430,6 +524,9 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JDialog paymentStatus;
     private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;
+    private javax.swing.JButton searchCancel;
+    private javax.swing.JButton searchChoose;
+    private javax.swing.JDialog searchCustomer2;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JLabel truckDeliverLabel;
     private javax.swing.JLabel truckReturnLabel;
