@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -297,7 +298,7 @@ public class Controller {
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
         String invoiceString =
-                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
                 + "\n"
@@ -340,7 +341,7 @@ public class Controller {
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
         String invoiceString =
-                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
                 + "\n"
@@ -379,7 +380,23 @@ public class Controller {
         return status;
     }
     
-    public boolean createTruck(int truckSize, double unitPrice){
+    public String createDeliveryList(Date searchDate){
+        String deliveryList = "";
+        ArrayList<Order> orderList = getOrderDeliveryOnDate(searchDate);
+        
+        
+        return deliveryList;
+    }
+    
+    public ArrayList<Order> getOrderDeliveryOnDate(Date searchDate){
+        ArrayList<Order> orderList = null;
+        
+        
+        
+        return orderList;
+    }
+    
+    public boolean createTruck(int truckSize, int unitPrice){
         boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
         return bool;
     } 
@@ -391,3 +408,4 @@ public class Controller {
     
     
 }
+
