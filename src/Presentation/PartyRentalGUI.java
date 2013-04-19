@@ -43,6 +43,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private DefaultListModel customerOrdersModel = new DefaultListModel();
     private DefaultListModel orderDetailsModel = new DefaultListModel();
     private int unitsDeliver, unitsReturn;
+    double totalPriceValue;
 
     public PartyRentalGUI() {
         initComponents();
@@ -54,6 +55,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         JList_resources.setModel(resourceModel);
         orderDetailsList.setModel(orderDetailsModel);
         customerOrders.setModel(customerOrdersModel);
+        DecimalFormat f = new DecimalFormat("##.00");
+
     }
 
     public void refreshAvailableResources(ArrayList<Resource> inventory) {
@@ -91,7 +94,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int totalUnits = 0;
-                    DecimalFormat df = new DecimalFormat("#.##");
+
                     for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
                         entry.getKey().setQuantity(entry.getValue().getSelectedIndex());
                         totalUnits = totalUnits + entry.getKey().getUnitSize() * entry.getValue().getSelectedIndex();
@@ -106,7 +109,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             entry.getValue().doClick();
                         }
                     }
-                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
+
+                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    DecimalFormat f = new DecimalFormat("##.00");
+                    totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                     totalSize.setText("Total Unit Size: " + totalUnits);
                     unitsDeliver = totalUnits;
                     unitsReturn = totalUnits;
@@ -185,8 +191,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             }
                         }
                     }
-                    DecimalFormat df = new DecimalFormat("#.##");
-                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
+                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    DecimalFormat f = new DecimalFormat("##.00");
+                    totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
             });
             deliveryPanel.add(truckDelivery.get(truck), gbc);
@@ -247,9 +254,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             }
                         }
                     }
-                    DecimalFormat df = new DecimalFormat("#.##");
-                    totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
 
+                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    DecimalFormat f = new DecimalFormat("##.00");
+                    totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
             });
             returnPanel.add(truckReturn.get(truck), gbc);
@@ -288,6 +296,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         orderDetailsList = new javax.swing.JList();
+        saveOrderResult = new javax.swing.JDialog();
+        saveOrderResultLabel = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -553,6 +564,35 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(jButton11)
                     .add(jButton10))
                 .addContainerGap())
+        );
+
+        saveOrderResult.setMinimumSize(new java.awt.Dimension(167, 71));
+
+        jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout saveOrderResultLayout = new org.jdesktop.layout.GroupLayout(saveOrderResult.getContentPane());
+        saveOrderResult.getContentPane().setLayout(saveOrderResultLayout);
+        saveOrderResultLayout.setHorizontalGroup(
+            saveOrderResultLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(saveOrderResultLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(saveOrderResultLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jButton2)
+                    .add(saveOrderResultLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 147, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        saveOrderResultLayout.setVerticalGroup(
+            saveOrderResultLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(saveOrderResultLayout.createSequentialGroup()
+                .add(saveOrderResultLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jButton2)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1187,9 +1227,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 con.truckBooking(entry.getKey().getTruckID(), entry.getKey().getTruckRun(), '1', Integer.parseInt(entry.getValue().getText()));
             }
         }
-        con.createNewInvoice(Integer.parseInt(discount.getText()), Double.parseDouble(totalPrice.getText().substring(13)));
+        con.createNewInvoice(Double.parseDouble(discount.getText()), totalPriceValue);
 
-        con.checkOrder();
+        if (con.checkOrder() == false) {
+            saveOrderResultLabel.setText("Failed to save order.");
+            saveOrderResult.pack();
+            saveOrderResult.setVisible(true);
+        } else {
+            saveOrderResult.pack();
+            saveOrderResultLabel.setText("Order saved succesfully.");
+            saveOrderResult.setVisible(true);
+        }
 
 
 
@@ -1302,12 +1350,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountActionPerformed
-        DecimalFormat df = new DecimalFormat("#.##");
+
+
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             entry.getKey().setQuantity(entry.getValue().getSelectedIndex());
         }
-        totalPrice.setText("Total Price: " + df.format(con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn)));
-
+        totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+        DecimalFormat f = new DecimalFormat("##.00");
+        totalPrice.setText("Total Price: " + f.format(totalPriceValue));
     }//GEN-LAST:event_discountActionPerformed
 
     private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
@@ -1345,6 +1395,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_customerOrdersMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        saveOrderResult.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1412,6 +1466,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1466,6 +1521,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel resSelected;
     private javax.swing.JButton resourcesMenuButton;
     private javax.swing.JPanel returnPanel;
+    private javax.swing.JDialog saveOrderResult;
+    private javax.swing.JLabel saveOrderResultLabel;
     private javax.swing.JDialog searchCustomer;
     private javax.swing.JButton searchCustomersButton;
     private com.toedter.calendar.JDateChooser startDate;

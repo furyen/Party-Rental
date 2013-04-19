@@ -169,7 +169,9 @@ public class Controller {
         boolean status = false;
         currentOrder.setDiscount(discount);
         currentOrder.setFullPrice(finalPrice);
-
+        currentOrder.setPaidAmount(0);
+        currentOrder.setAditionalCost(0);
+        
         if (currentOrder != null) {
             status = dbFacade.createNewInvoice(currentOrder);
             createDepositInvoiceFile(currentOrder);
