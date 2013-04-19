@@ -21,6 +21,7 @@ public class Main {
         ArrayList<Resource> availableResources = new ArrayList();
         ArrayList<Truck> trucks = new ArrayList();
         ArrayList<Order> orders = new ArrayList();
+        control.getConnection();
 //        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //        java.util.Date startD = df.parse("31-12-1995");
 //        java.util.Date endD = df.parse("02-10-2001");
@@ -52,17 +53,16 @@ public class Main {
 ////            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
 ////                );
 ////        }
-//////           control.getOrders();
+           System.out.println(control.getOrders().get(0).isTruckDelivery());
 //////            
 //        
 //          control.createFinalInvoiceFile(order);
-        control.getConnection();
 //        control.createTruck(5000, 10000);
-        //control.editTruck(21, 6);
-        ArrayList<Order> list = control.getOrders();
-        for(int i=0 ; i<list.size(); i++){
-            System.out.println(list.get(i).getOrderDetails().toString());;
-        }
+//        System.out.println(control.getTrucks().toString());
+//        ArrayList<Order> list = control.getOrders();
+//        for(int i=0 ; i<list.size(); i++){
+//            System.out.println(list.get(i).getOrderDetails().toString());;
+//        }
         
     }
     

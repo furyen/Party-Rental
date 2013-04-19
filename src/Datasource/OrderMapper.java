@@ -92,10 +92,17 @@ public class OrderMapper {
     public ArrayList<Order> getOrders(Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
-                + " FROM orders natural join invoice ";
+                + " FROM orders natural join invoice "
+                + " order by order_id";
         String SQLString2 = " select order_detail.order_id, order_detail.ressource_id, order_detail.quantity, ressource.ressource_name  "
                 + " from order_detail,ressource  "
                 + " where order_detail.ressource_id = ressource.ressource_id";
+        String SQLString3 = " select unique order_id "
+                          + " from truck_delivery"
+                          + " order by order_id";
+        String SQLString4 = " select unique order_id "
+                          + " from truck_return"
+                          + " order by order_id";
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(SQLString1);
@@ -140,6 +147,32 @@ public class OrderMapper {
                         counter++;
                     }
                 }
+            }
+            statement = connection.prepareStatement(SQLString3);
+            rs = statement.executeQuery();
+            ArrayList<Integer> list = new ArrayList();
+            while (rs.next()) {
+                 list.add(rs.getInt(1));
+            }
+            int k=0;
+            for (int i = 0; i<list.size(); i++){
+                while (orderList.get(k).getOrderID()< list.get(i)){
+                    k++;
+                }
+                orderList.get(k).setTruckDelivery(true);
+            }
+            statement = connection.prepareStatement(SQLString4);
+            rs = statement.executeQuery();
+            list = new ArrayList();
+            while (rs.next()) {
+                 list.add(rs.getInt(1));
+            }
+            k=0;
+            for (int i = 0; i<list.size(); i++){
+                while (orderList.get(k).getOrderID()< list.get(i)){
+                    k++;
+                }
+                orderList.get(k).setTruckReturn(true);
             }
         } catch (Exception ex) {
             System.out.println("Error in the OrderMapper - getOrders");

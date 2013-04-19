@@ -48,4 +48,8 @@ public class Truck {
     public int getFilledSpace() {
         return filledSpace;
     }
+    
+    public String toString(){
+        return "Truck ID: " + truckID + " - Size: " + size + " - Unit Price: " + unitPrice;
+    }
 }

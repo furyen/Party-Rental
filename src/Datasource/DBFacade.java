@@ -259,4 +259,10 @@ public class DBFacade {
         boolean bool = truckMapper.editTruck(truckID, unitPrice ,connection);
         return bool;
     }
+
+    public ArrayList<Truck> getTrucks() {
+        TruckMapper truckMapper = new TruckMapper();
+        ArrayList<Truck> list = truckMapper.getTrucks(connection);
+        return list;
+    }
 }

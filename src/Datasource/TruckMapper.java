@@ -135,15 +135,36 @@ public class TruckMapper {
             statement.setDouble(1, unitPrice);
             statement.setInt(2, truckID);
             updatedRows = statement.executeUpdate();
-            System.out.println("muie");
             connection.commit();
-        System.out.println("muie");
-
         }catch(Exception e){
             System.out.println("Fail in TruckMapper - editTruck");
             System.out.println(e.getMessage());
         }
         return updatedRows == 1;
+    }
+
+    ArrayList<Truck> getTrucks(Connection connection) {
+        String SQLScript = " select * "
+                          + " from truck ";
+        PreparedStatement statement = null;
+        ArrayList<Truck> list = new ArrayList();
+        try{
+            statement = connection.prepareCall(SQLScript);
+            ResultSet rs = statement.executeQuery();
+            Truck truck;
+            while (rs.next()){
+                truck = new Truck(rs.getInt(1),
+                                  0,0,
+                                  rs.getInt(2),
+                                  rs.getDouble(3)
+                                  );
+                list.add(truck);
+            }
+        }catch(Exception e){
+            System.out.println("Fail in TruckMapper - getTrucks");
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
     
     
