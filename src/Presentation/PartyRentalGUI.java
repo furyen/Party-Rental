@@ -57,7 +57,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         JList_resources.setModel(resourceModel);
         orderDetailsList.setModel(orderDetailsModel);
         customerOrders.setModel(customerOrdersModel);
-        DecimalFormat f = new DecimalFormat("##.00");
+       
 
     }
 
@@ -1269,6 +1269,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel31.setText("Unit Prize");
 
         jButton2.setText("Add Truck");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed1(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1625,6 +1630,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void EditTruckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTruckButtonActionPerformed
         
     }//GEN-LAST:event_EditTruckButtonActionPerformed
+
+    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed1
 
     /**
      * @param args the command line arguments
