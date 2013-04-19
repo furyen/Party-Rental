@@ -131,9 +131,10 @@ public class OrderMapper {
                 int orderID = orderDetail.getOrderID();
                 int counter = 0;
                 boolean found = false;
-                while (!found) {
+                while (!found && counter < orderList.size()) {
                     Order order = orderList.get(counter);
                     if (orderID == order.getOrderID()) {
+                        System.out.println("muie mare");
                         order.insertOrderDetail(orderDetail);
                         found = true;
                     } else {
