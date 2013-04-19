@@ -58,7 +58,7 @@ public class Main {
 //          control.createFinalInvoiceFile(order);
         control.getConnection();
 //        control.createTruck(5000, 10000);
-        control.editTruck(3, 334);
+        System.out.println(control.getTrucks().toString());
 //        ArrayList<Order> list = control.getOrders();
 //        for(int i=0 ; i<list.size(); i++){
 //            System.out.println(list.get(i).getOrderDetails().toString());;
