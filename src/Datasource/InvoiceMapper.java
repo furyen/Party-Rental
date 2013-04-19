@@ -17,7 +17,7 @@ public class InvoiceMapper {
     public boolean createNewInvoice(ArrayList<Order> newInvoiceList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
-        String SQLString = "insert into invoice values(?,?,?)";
+        String SQLString = "insert into invoice values(?,?,?,?,?)";
         PreparedStatement statement = null;
         System.out.println(newInvoiceList.toString());
         System.out.println("Reached createNewInvoice - InvoiceMapper Level - " + newInvoiceList.toString());
@@ -28,6 +28,8 @@ public class InvoiceMapper {
                 statement.setInt(1, invoice.getOrderID());
                 statement.setDouble(2, invoice.getDiscount());
                 statement.setDouble(3, invoice.getFullPrice());
+                statement.setDouble(4, 0);
+                statement.setDouble(5, 0);
                 rowsInserted += statement.executeUpdate();
             }
             
