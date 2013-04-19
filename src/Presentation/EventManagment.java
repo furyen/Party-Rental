@@ -5,6 +5,7 @@
 package Presentation;
 
 import Domain.Controller;
+import Domain.Customer;
 import Domain.Order;
 import Domain.OrderDetail;
 import Domain.Resource;
@@ -24,6 +25,8 @@ public class EventManagment extends javax.swing.JFrame {
     DefaultListModel ordersModel = new DefaultListModel();
     DefaultListModel selectedOrderDetailModel = new DefaultListModel();
     private ArrayList<OrderDetail> selectedOrderDetail = null;
+    DefaultListModel searchCustomerModel2 = new DefaultListModel();
+    
     
     /**
      * Creates new form NewJFrame
@@ -370,6 +373,12 @@ public class EventManagment extends javax.swing.JFrame {
         String first, last;
         first = firstNameSearch.getText();
         last = lastNameSearch.getText();
+        searchCustomer2.setVisible(true);
+        customerList.setModel(searchCustomerModel2);
+//        ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
+//        for (Customer c : list) {
+//            searchCustomerModel.addElement(c);
+//        }
         
         
     }//GEN-LAST:event_searchCustomerButtonActionPerformed

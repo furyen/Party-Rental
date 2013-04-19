@@ -37,7 +37,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private LinkedHashMap<Resource, JComboBox> resources = new LinkedHashMap();
     private LinkedHashMap<Truck, JToggleButton> truckDelivery = new LinkedHashMap();
     private LinkedHashMap<Truck, JToggleButton> truckReturn = new LinkedHashMap();
-    private DefaultListModel searchModel = new DefaultListModel();
+    private DefaultListModel searchCustomerModel = new DefaultListModel();
     private ArrayList<Resource> allResources = null;
     private DefaultListModel resourceModel = new DefaultListModel();
     private DefaultListModel customerOrdersModel = new DefaultListModel();
@@ -1488,11 +1488,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void searchCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomersButtonActionPerformed
-        searchModel.clear();
-        customerList.setModel(searchModel);
+        searchCustomerModel.clear();
+        customerList.setModel(searchCustomerModel);
         ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
         for (Customer c : list) {
-            searchModel.addElement(c);
+            searchCustomerModel.addElement(c);
         }
     }//GEN-LAST:event_searchCustomersButtonActionPerformed
 
