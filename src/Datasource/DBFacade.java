@@ -234,7 +234,23 @@ public class DBFacade {
         return orders;
     }
 
-    public boolean savePayment(Order currentOrder) {
-        return true;
+
+    public ArrayList<Order> deleteResource(int resourceID) {
+        ArrayList<Order> list = null;
+        RessourceMapper ressourceMapper = new RessourceMapper();
+        list = ressourceMapper.deleteResource(resourceID, connection);
+        return list;
     }
+
+    public boolean savePayment(Order currentOrder) {
+        boolean status = false;
+        InvoiceMapper invoiceMapper = new InvoiceMapper();
+        return status = invoiceMapper.savePayment(currentOrder, connection);
+    }
+    
+    public boolean createTruck(int truckSize, int unitPrice){
+        TruckMapper truckMapper = new TruckMapper();
+        boolean bool = truckMapper.createTruck( truckSize, unitPrice, connection);
+        return bool;
+    } 
 }

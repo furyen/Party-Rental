@@ -55,7 +55,6 @@ public class Main {
 ////           control.getOrders();
 ////            
         
-          control.createFinalInvoiceFile(order);
          
         
     }

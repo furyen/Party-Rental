@@ -169,9 +169,7 @@ public class Controller {
         boolean status = false;
         currentOrder.setDiscount(discount);
         currentOrder.setFullPrice(finalPrice);
-        currentOrder.setPaidAmount(0);
-        currentOrder.setAditionalCost(0);
-        
+
         if (currentOrder != null) {
             status = dbFacade.createNewInvoice(currentOrder);
             createDepositInvoiceFile(currentOrder);
@@ -381,5 +379,19 @@ public class Controller {
         return status;
     }
     
+    public String createDeliveryList(Date searchDate){
+        String deliveryList = "";
+        ArrayList<Order> orderList = getOrderDeliveryOnDate(searchDate);
+        
+        
+        return deliveryList;
+    }
     
+    public ArrayList<Order> getOrderDeliveryOnDate(Date searchDate){
+        ArrayList<Order> orderList = null;
+        
+        
+        
+        return orderList;
+    }
 }

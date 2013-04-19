@@ -4,6 +4,7 @@
  */
 package Datasource;
 
+import Domain.Order;
 import Domain.Resource;
 import Domain.ResourceDate;
 import java.sql.*;
@@ -203,6 +204,23 @@ public class RessourceMapper {
         }
         
         return resource;
+    }
+
+    public ArrayList<Order> deleteResource(int resourceID, Connection connection) {
+        ArrayList<Order> list = null;
+        String SQLString1 = "delete from ressource "
+                           + " where ressource_id = ? ";
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(SQLString1);
+            statement.setInt(1, resourceID);
+            int updatedRows = statement.executeUpdate();
+        
+        }catch(Exception e){
+            System.out.println("Fail in RessourceMapper - deleteResource");
+            System.out.println(e.getMessage());
+        }
+        return list;
     }
     
 }
