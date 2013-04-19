@@ -9,6 +9,7 @@ package Domain;
  * @author dekez
  */
 public class OrderDetail {
+
     private int orderID, resourceID, quantity;
     private String ressourceName;
 
@@ -50,9 +51,8 @@ public class OrderDetail {
         this.ressourceName = ressourceName;
     }
 
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return ressourceName + quantity;
+    }
 }

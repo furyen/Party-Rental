@@ -43,4 +43,25 @@ public class InvoiceMapper {
         return status;
     }
     
+        public boolean savePayment(Order currentOrder, Connection connection) {
+        boolean status = false;
+        int rowsInserted = 0;
+        String SQLString = "update invoice set paid_amount = ? where order_id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQLString);
+            statement.setDouble(1, currentOrder.getPaidAmount());
+            statement.setInt(2, currentOrder.getOrderID());
+            rowsInserted += statement.executeUpdate();
+            if (rowsInserted > 0)
+                status = true;
+            connection.commit();
+        } catch (SQLException ex)
+                { 
+                    System.err.println("Error in InvoiceMapper - " + ex);
+                }
+        
+        return status;
+    }
+    
 }

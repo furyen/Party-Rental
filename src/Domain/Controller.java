@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -35,12 +36,11 @@ public class Controller {
         }
         return instance;
     }
-    
-    
-    public void getConnection(){
+
+    public void getConnection() {
         dbFacade.getConnection();
     }
-    
+
     public ArrayList getAvailableResources(Date startDate, Date endDate) {
         ArrayList<Resource> availableResources = new ArrayList();
 
@@ -113,12 +113,12 @@ public class Controller {
 
         return customerList;
     }
-    
-    public Customer getCustomer(int customerID){
+
+    public Customer getCustomer(int customerID) {
         Customer customer = null;
-        
+
         customer = dbFacade.getCustomer(customerID);
-        
+
         return customer;
     }
 
@@ -142,13 +142,24 @@ public class Controller {
         return newCustomer;
     }
 
-    public double calculatePrice(LinkedHashMap<Resource,JComboBox> resourceList,int discount) {
+    public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, int discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
         double finalPrice = 0;
 
-        for (Map.Entry<Resource,JComboBox> entry : resourceList.entrySet()) {
+        for (Map.Entry<Resource, JComboBox> entry : resourceList.entrySet()) {
             finalPrice += entry.getKey().getQuantity() * entry.getKey().getPrice();
         }
-        finalPrice=finalPrice/100*(100-discount);
+        for (Map.Entry<Truck, JToggleButton> entry : truckDelivery.entrySet()) {
+            if(!"Fill Truck".equals(entry.getValue().getText())&&!"0".equals(entry.getValue().getText())) {
+                finalPrice += Integer.parseInt(entry.getValue().getText()) * entry.getKey().getUnitPrice();
+            }
+        }
+          for (Map.Entry<Truck, JToggleButton> entry : truckReturn.entrySet()) {
+            if(!"Fill Truck".equals(entry.getValue().getText())&&!"0".equals(entry.getValue().getText())) {
+                finalPrice += Integer.parseInt(entry.getValue().getText()) * entry.getKey().getUnitPrice();
+            }
+        }
+        
+        finalPrice = finalPrice / 100 * (100 - discount);
 
 
         return finalPrice;
@@ -158,19 +169,19 @@ public class Controller {
         boolean status = false;
         currentOrder.setDiscount(discount);
         currentOrder.setFullPrice(finalPrice);
-        
-        if(currentOrder != null){
+
+        if (currentOrder != null) {
             status = dbFacade.createNewInvoice(currentOrder);
             createDepositInvoiceFile(currentOrder);
-        }       
-        
-        
-        
+        }
+
+
+
         return status;
     }
 
     public boolean finishOrder() {
-        
+
         boolean status = false;
         try {
             status = dbFacade.finishOrder();
@@ -188,9 +199,9 @@ public class Controller {
         int orderID;
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
-        
+
         orderID = dbFacade.getUniqueOrderID();
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false,0,0,0,0);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
         currentOrder = newOrder;
         status = dbFacade.createOrder(newOrder);
 
@@ -204,81 +215,88 @@ public class Controller {
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-    
-    public void truckBooking(int truckID, int  truckRun, char ch, int orderPartSize){
-         TruckOrder tr = new TruckOrder(truckID, truckRun,currentOrder.getOrderID(),ch, orderPartSize);  
-         dbFacade.truckBooking(tr);
+
+    public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
+        TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
+        dbFacade.truckBooking(tr);
     }
-    
-    public ArrayList<Order> getOrders(){
+
+    public ArrayList<Order> getOrders() {
         ArrayList<Order> list = dbFacade.getOrders();
         return list;
     }
-    public ArrayList<Order> getCustomerOrderHistory(int customerID){
+
+    public ArrayList<Order> getCustomerOrderHistory(int customerID) {
         ArrayList<Order> orders = dbFacade.getCustomerOrders(customerID);
         return orders;
-        
+
     }
-    
-    public boolean checkOrder(){
+
+    public boolean checkOrder() {
         boolean status = true;
-        
-        if(currentOrder != null){
+
+        if (currentOrder != null) {
             ArrayList<Resource> resourceList = getAvailableResources(currentOrder.getStartDate(), currentOrder.getEndDate());
             ArrayList<OrderDetail> orderDetailList = currentOrder.getOrderDetails();
-            
-            for(OrderDetail orderDetail : orderDetailList){
-                if(orderDetail.getQuantity() != 0){
-                    for(Resource resource : resourceList){
-                        if(orderDetail.getResourceID() == resource.getResourceID()){
+
+            for (OrderDetail orderDetail : orderDetailList) {
+                if (orderDetail.getQuantity() != 0) {
+                    for (Resource resource : resourceList) {
+                        if (orderDetail.getResourceID() == resource.getResourceID()) {
                             status = status && (orderDetail.getQuantity() < resource.getQuantity());
                         }
                     }
                 }
             }
-            
-            if(status == true){
+
+            if (status == true) {
                 finishOrder();
             }
-            
+
         }
-        
+
         return status;
+    }
+
+    public boolean savePayment(Order currentOrder, Double newPayment) {
+        boolean status = false;
+        currentOrder.setPaidAmount(newPayment);
+        return status = dbFacade.savePayment(currentOrder);
     }
     
     public boolean cancelOrder(Order order){
         boolean status = false;
-        
+
         order.setCancelled(true);
-        
+
         status = dbFacade.cancelOrder(order);
-        
-        
+
+
         return status;
     }
-    
-    public Order editOrder(Order order){
-        boolean status  = false;
-        
+
+    public Order editOrder(Order order) {
+        boolean status = false;
+
         status = cancelOrder(order);
-        
+
         return order;
     }
-    
-    public Order cancelEditOrder(Order order){
+
+    public Order cancelEditOrder(Order order) {
         order.setCancelled(false);
         boolean status = false;
-        
+
         status = dbFacade.cancelOrder(order);
-        
+
         return order;
     }
-    
-    public boolean createDepositInvoiceFile(Order order){
+
+    public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
-        String invoiceString = 
+        String invoiceString =
                 "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
@@ -289,40 +307,39 @@ public class Controller {
                 + "with to the following address: " + order.getAdress()
                 + "\nYou have ordered the following things:\n"
                 + "\n";
-        
-        for(OrderDetail orderDetail : order.getOrderDetails()){
+
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
             Resource resource = getResource(orderDetail.getRessourceName());
             invoiceString += orderDetail.getRessourceName() + ": " + resource.getPrice() + "\n";
         }
-        
-        invoiceString += 
-                  "\n"
+
+        invoiceString +=
+                "\n"
                 + "The full price: " + order.getFullPrice() + "\n"
                 + "\n"
                 + "You are to pay the deposit of 25% which amounts to: " + (order.getFullPrice() * 0.25) + "\n"
                 + "\n"
                 + "We hope you will enjoy the event";
-        
+
         System.out.println(invoiceString);
-        
-        try{
+
+        try {
             fileWriter = new FileWriter(new File("Deposit Invoice - Order ID - " + order.getOrderID() + ".txt"));
             fileWriter.write(invoiceString);
             status = true;
             fileWriter.close();
-            
-        }
-        catch(IOException ex){
+
+        } catch (IOException ex) {
             System.out.println("Error in writing invoice file - " + ex);
         }
         return status;
     }
-    
-    public boolean createFinalInvoiceFile(Order order){
+
+    public boolean createFinalInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
-        String invoiceString = 
+        String invoiceString =
                 "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
@@ -333,31 +350,30 @@ public class Controller {
                 + "with to the following address: " + order.getAdress()
                 + "\nYou have ordered the following things:\n"
                 + "\n";
-        
-        for(OrderDetail orderDetail : order.getOrderDetails()){
+
+        for (OrderDetail orderDetail : order.getOrderDetails()) {
             Resource resource = getResource(orderDetail.getRessourceName());
             invoiceString += orderDetail.getRessourceName() + ": " + resource.getPrice() + "\n";
         }
-        
-        invoiceString += 
-                  "\n"
+
+        invoiceString +=
+                "\n"
                 + "The full price: " + order.getFullPrice() + "\n"
                 + "\n"
                 + "You have payed the deposit of 25% which amounts to: " + ((order.getFullPrice() * (1 - order.getDiscount())) * 0.25) + "\n"
                 + "The remaining amount to be payed amounts to: " + ((order.getFullPrice() * (1 - order.getDiscount())) - (order.getFullPrice() * 0.25)) + "\n"
                 + "\n"
                 + "We hope you enjoyed the event";
-        
+
         System.out.println(invoiceString);
-        
-        try{
+
+        try {
             fileWriter = new FileWriter(new File("Final Invoice - Order ID - " + order.getOrderID() + ".txt"));
             fileWriter.write(invoiceString);
             status = true;
             fileWriter.close();
-            
-        }
-        catch(IOException ex){
+
+        } catch (IOException ex) {
             System.out.println("Error in writing invoice file - " + ex);
         }
         return status;

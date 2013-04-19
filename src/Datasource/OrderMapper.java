@@ -192,7 +192,7 @@ public class OrderMapper {
             statement.setInt(1, customerID);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-
+                System.out.println("muie");
                 int orderID = rs.getInt(1);
                 rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
@@ -216,6 +216,7 @@ public class OrderMapper {
             statement = connection.prepareStatement(SQLString2);
             rs = statement.executeQuery();
             while (rs.next()) {
+                System.out.println("muie");
                 OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3));
@@ -226,6 +227,7 @@ public class OrderMapper {
                 while (!found && counter < orderList.size()) {
                     Order order = orderList.get(counter);
                     if (orderID == order.getOrderID()) {
+                        System.out.println("muie");
                         order.insertOrderDetail(orderDetail);
                         found = true;
                     } else {

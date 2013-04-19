@@ -31,7 +31,7 @@ public class Order {
         this.cancelled = canceled;
         this.fullPrice = fullPrice;
         this.discount = discount;
-        this.aditionalCost = aditionalCost;
+        this.aditionalCost = additionalCost;
         this.paidAmount = paidAmount;
     }
 
