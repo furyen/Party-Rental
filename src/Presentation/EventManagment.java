@@ -85,10 +85,10 @@ public class EventManagment extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        addressTextF = new javax.swing.JTextField();
-        discountTextF = new javax.swing.JTextField();
-        truckDeliverTextF = new javax.swing.JTextField();
-        truckReturnTextF = new javax.swing.JTextField();
+        addressLabel = new javax.swing.JLabel();
+        discountLabel = new javax.swing.JLabel();
+        truckDeliverLabel = new javax.swing.JLabel();
+        truckReturnLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
         paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
@@ -226,12 +226,8 @@ public class EventManagment extends javax.swing.JFrame {
 
         jLabel2.setText("Last Name");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, -1, -1));
-
-        firstNameSearch.setText("jTextField1");
-        jPanel3.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, -1, -1));
-
-        lastNameSearch.setText("jTextField1");
-        jPanel3.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, -1, -1));
+        jPanel3.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, 90, 30));
+        jPanel3.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, 90, 30));
 
         searchCustomerButton.setText("Search");
         searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +246,7 @@ public class EventManagment extends javax.swing.JFrame {
         orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orderDetailList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "No customer selected" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -269,18 +265,10 @@ public class EventManagment extends javax.swing.JFrame {
 
         jLabel6.setText("Truck return");
         orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-
-        addressTextF.setText("jTextField3");
-        orderDetails.add(addressTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
-
-        discountTextF.setText("jTextField3");
-        orderDetails.add(discountTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
-
-        truckDeliverTextF.setText("jTextField3");
-        orderDetails.add(truckDeliverTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
-
-        truckReturnTextF.setText("jTextField3");
-        orderDetails.add(truckReturnTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, -1));
+        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
+        orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
+        orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 720, 200));
 
@@ -357,9 +345,14 @@ public class EventManagment extends javax.swing.JFrame {
         } else {
             selectedOrderDetailModel.clear();
             Order o = (Order)orderList.getSelectedValue(); 
-            ArrayList <OrderDetail> odList = con.getOrderDetail(o);
-            for (OrderDetail od : selectedOrderDetail) {
+            ArrayList <OrderDetail> selectedOrderDetails = con.getOrderDetail(o);
+            for (OrderDetail od : selectedOrderDetails) {
             selectedOrderDetailModel.addElement(od);
+            orderDetailList.setModel(selectedOrderDetailModel);
+            discountLabel.setText(o.getDiscount() + "");
+//            truckDeliverLabel.setText(null);
+//            truckReturnLabel.setText();
+            addressLabel.setText(o.getAdress());
 
         }
         }
@@ -403,12 +396,12 @@ public class EventManagment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EventManagement;
     private javax.swing.JButton OK;
-    private javax.swing.JTextField addressTextF;
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
-    private javax.swing.JTextField discountTextF;
+    private javax.swing.JLabel discountLabel;
     private javax.swing.JButton editOrderButton;
     private javax.swing.JTextField firstNameSearch;
     private javax.swing.JRadioButton fullyPaidRadio;
@@ -438,7 +431,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton saveNewPayment;
     private javax.swing.JRadioButton searchByName;
     private javax.swing.JButton searchCustomerButton;
-    private javax.swing.JTextField truckDeliverTextF;
-    private javax.swing.JTextField truckReturnTextF;
+    private javax.swing.JLabel truckDeliverLabel;
+    private javax.swing.JLabel truckReturnLabel;
     // End of variables declaration//GEN-END:variables
 }

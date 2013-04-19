@@ -53,6 +53,6 @@ public class OrderDetail {
 
     @Override
     public String toString() {
-        return ressourceName + quantity;
+        return ressourceName + " " + quantity;
     }
 }
