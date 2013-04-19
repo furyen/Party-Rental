@@ -410,6 +410,10 @@ public class Controller {
         return bool;
     }
     
+    public ArrayList<Truck> getTrucks(){
+        ArrayList<Truck> list = dbFacade.getTrucks();
+        return list;
+    }
     
 }
 
