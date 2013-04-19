@@ -357,19 +357,12 @@ public class EventManagment extends javax.swing.JFrame {
         } else {
             selectedOrderDetailModel.clear();
             Order o = (Order)orderList.getSelectedValue(); 
-            ArrayList <OrderDetail> od = o.getOrderDetails();
-            System.out.println(od.size());
-            for (int i = 0; i < od.size(); i++) {
-                System.out.println(od);
-            }
+            ArrayList <OrderDetail> odList = con.getOrderDetail(o);
+            for (OrderDetail od : selectedOrderDetail) {
+            selectedOrderDetailModel.addElement(od);
+
         }
-//        selectedOrderDetail = ((Order)orderList.getSelectedValue()).getOrderDetails();
-//        System.out.println("lenth of od list " + selectedOrderDetail.size());
-//          for (OrderDetail od : selectedOrderDetail) {
-//            selectedOrderDetailModel.addElement(od);
-//              System.out.println(od);
-//        }
-//        orderDetailList.setModel(selectedOrderDetailModel);
+        }
 
     }//GEN-LAST:event_orderListMouseClicked
 
