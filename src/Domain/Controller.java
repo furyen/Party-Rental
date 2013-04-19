@@ -394,4 +394,9 @@ public class Controller {
         
         return orderList;
     }
+    
+    public boolean createTruck(int truckSize, int unitPrice){
+        boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
+        return bool;
+    } 
 }
