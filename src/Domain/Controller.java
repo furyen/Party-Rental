@@ -379,6 +379,10 @@ public class Controller {
         }
         return status;
     }
+
+    public ArrayList<OrderDetail> getOrderDetail(Order o) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
     public String createDeliveryList(Date searchDate){
         String deliveryList = "";
@@ -406,6 +410,10 @@ public class Controller {
         return bool;
     }
     
+    public ArrayList<Truck> getTrucks(){
+        ArrayList<Truck> list = dbFacade.getTrucks();
+        return list;
+    }
     
 }
 

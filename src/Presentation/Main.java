@@ -58,11 +58,11 @@ public class Main {
 //          control.createFinalInvoiceFile(order);
         control.getConnection();
 //        control.createTruck(5000, 10000);
-        //control.editTruck(21, 6);
-        ArrayList<Order> list = control.getOrders();
-        for(int i=0 ; i<list.size(); i++){
-            System.out.println(list.get(i).getOrderDetails().toString());;
-        }
+        control.editTruck(3, 334);
+//        ArrayList<Order> list = control.getOrders();
+//        for(int i=0 ; i<list.size(); i++){
+//            System.out.println(list.get(i).getOrderDetails().toString());;
+//        }
         
     }
     

@@ -135,10 +135,7 @@ public class TruckMapper {
             statement.setDouble(1, unitPrice);
             statement.setInt(2, truckID);
             updatedRows = statement.executeUpdate();
-            System.out.println("muie");
             connection.commit();
-        System.out.println("muie");
-
         }catch(Exception e){
             System.out.println("Fail in TruckMapper - editTruck");
             System.out.println(e.getMessage());
