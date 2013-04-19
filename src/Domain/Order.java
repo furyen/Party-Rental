@@ -18,6 +18,23 @@ public class Order {
     private Date startDate, endDate;
     private boolean cancelled;
     private double fullPrice, discount, aditionalCost,paidAmount;
+    private boolean truckDelivery, truckReturn;
+
+    public boolean isTruckDelivery() {
+        return truckDelivery;
+    }
+
+    public boolean isTruckReturn() {
+        return truckReturn;
+    }
+
+    public void setTruckDelivery(boolean truckDelivery) {
+        this.truckDelivery = truckDelivery;
+    }
+
+    public void setTruckReturn(boolean truckReturn) {
+        this.truckReturn = truckReturn;
+    }
     
 
     public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
