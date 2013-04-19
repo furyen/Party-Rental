@@ -298,7 +298,7 @@ public class Controller {
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
         String invoiceString =
-                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
                 + "\n"
@@ -341,7 +341,7 @@ public class Controller {
         FileWriter fileWriter;
         Customer customer = getCustomer(order.getCustomerID());
         String invoiceString =
-                "Hellebæk Party Rental\t\t\t\t\t\tCVR: 32139429\n"
+                "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
                 + "\n"
                 + "\n"
@@ -400,5 +400,12 @@ public class Controller {
         boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
         return bool;
     } 
+    
+    public boolean editTruck(int truckID, double unitPrice){
+        boolean bool = dbFacade.editTruck(truckID, unitPrice);
+        return bool;
+    }
+    
+    
 }
 
