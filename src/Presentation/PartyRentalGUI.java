@@ -378,19 +378,21 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         TruckSizeTextField = new javax.swing.JTextField();
         TruckUnitPriceTextField = new javax.swing.JTextField();
         EditTruckButton = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
         GetExistingTrucksPanel = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         TruckList = new javax.swing.JList();
         GetAllTrucksButton = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        AddNewTruckPanel = new javax.swing.JPanel();
+        AddNewTruckIDTextField = new javax.swing.JTextField();
+        AddNewTruckSizeTextField = new javax.swing.JTextField();
+        AddNewTruckUnitPriceTextField = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        AddNewTruckButton = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
 
         searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
         searchCustomer.setMinimumSize(new java.awt.Dimension(470, 267));
@@ -659,7 +661,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(resourcesMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addContainerGap(504, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
@@ -825,7 +827,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(jLabel9)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 126, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 172, Short.MAX_VALUE)
                                 .add(jButton4))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
@@ -1195,7 +1197,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(TruckIDTextField)))
                     .add(TruckHandlingPanelLayout.createSequentialGroup()
                         .add(40, 40, 40)
-                        .add(EditTruckButton)))
+                        .add(EditTruckButton))
+                    .add(TruckHandlingPanelLayout.createSequentialGroup()
+                        .add(60, 60, 60)
+                        .add(jLabel32)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TruckHandlingPanelLayout.setVerticalGroup(
@@ -1213,7 +1218,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(TruckHandlingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(TruckUnitPriceTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(37, 37, 37)
+                .add(15, 15, 15)
+                .add(jLabel32)
+                .add(22, 22, 22)
                 .add(EditTruckButton)
                 .addContainerGap())
         );
@@ -1260,7 +1267,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Add New Truck", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
+        AddNewTruckPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Add New Truck", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
         jLabel29.setText("Truck ID");
 
@@ -1268,52 +1275,57 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel31.setText("Unit Prize");
 
-        jButton2.setText("Add Truck");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AddNewTruckButton.setText("Add Truck");
+        AddNewTruckButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed1(evt);
+                AddNewTruckButtonActionPerformed1(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel4Layout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout AddNewTruckPanelLayout = new org.jdesktop.layout.GroupLayout(AddNewTruckPanel);
+        AddNewTruckPanel.setLayout(AddNewTruckPanelLayout);
+        AddNewTruckPanelLayout.setHorizontalGroup(
+            AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(AddNewTruckPanelLayout.createSequentialGroup()
+                .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(AddNewTruckPanelLayout.createSequentialGroup()
                         .add(54, 54, 54)
-                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel29)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel30)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel31))
                         .add(18, 18, 18)
-                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                            .add(jTextField2)
-                            .add(jTextField3)))
-                    .add(jPanel4Layout.createSequentialGroup()
+                        .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(AddNewTruckIDTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                            .add(AddNewTruckSizeTextField)
+                            .add(AddNewTruckUnitPriceTextField)))
+                    .add(AddNewTruckPanelLayout.createSequentialGroup()
                         .add(83, 83, 83)
-                        .add(jButton2)))
+                        .add(AddNewTruckButton))
+                    .add(AddNewTruckPanelLayout.createSequentialGroup()
+                        .add(110, 110, 110)
+                        .add(jLabel33)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
+        AddNewTruckPanelLayout.setVerticalGroup(
+            AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(AddNewTruckPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jLabel29, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jTextField1))
+                    .add(AddNewTruckIDTextField))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jLabel30, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jTextField2))
+                    .add(AddNewTruckSizeTextField))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jTextField3)
+                .add(AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(AddNewTruckUnitPriceTextField)
                     .add(jLabel31, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel33)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jButton2)
+                .add(AddNewTruckButton)
                 .addContainerGap())
         );
 
@@ -1328,7 +1340,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
-                        .add(0, 46, Short.MAX_VALUE)
+                        .add(0, 92, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(ResourceDoneLayout.createSequentialGroup()
                                 .add(getRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1341,7 +1353,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(createRes1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         ResourceDoneLayout.setVerticalGroup(
@@ -1354,10 +1366,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, createRes1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 307, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1612,11 +1624,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void GetAllTrucksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetAllTrucksButtonActionPerformed
         
         if(TruckList.isSelectionEmpty()){
-            jLabel28.setText("No value seleceted");            
+            jLabel28.setText("No value selected");            
             jLabel28.setVisible(true);
         }
         else{
-            truckListModel.clear();
             Truck truck = allTrucks.get(allTrucks.indexOf(TruckList.getSelectedValue()));
             TruckIDTextField.setText("" + truck.getTruckID());
             TruckSizeTextField.setText("" + truck.getSize());
@@ -1628,12 +1639,27 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_GetAllTrucksButtonActionPerformed
 
     private void EditTruckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTruckButtonActionPerformed
-        
+        int truckID = Integer.parseInt(TruckIDTextField.getText());
+        int truckUnitPrice = Integer.parseInt(TruckUnitPriceTextField.getText());
+        if(con.editTruck(truckID, truckUnitPrice)){
+            jLabel32.setText("Truck edited!");
+        }
+        else{
+            jLabel32.setText("There was an error editing the truck");
+        }
     }//GEN-LAST:event_EditTruckButtonActionPerformed
 
-    private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed1
+    private void AddNewTruckButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewTruckButtonActionPerformed1
+        int truckSize = Integer.parseInt(AddNewTruckSizeTextField.getText());
+        int unitPrice = Integer.parseInt(AddNewTruckUnitPriceTextField.getText());
+        
+        if(con.createTruck(truckSize, unitPrice)){
+            jLabel33.setText("Truck creating");
+        }
+        else{
+            jLabel33.setText("There was an error creating the truck");
+        }
+    }//GEN-LAST:event_AddNewTruckButtonActionPerformed1
 
     /**
      * @param args the command line arguments
@@ -1670,6 +1696,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddNewTruckButton;
+    private javax.swing.JTextField AddNewTruckIDTextField;
+    private javax.swing.JPanel AddNewTruckPanel;
+    private javax.swing.JTextField AddNewTruckSizeTextField;
+    private javax.swing.JTextField AddNewTruckUnitPriceTextField;
     private javax.swing.JPanel Booking;
     private javax.swing.JPanel Customer;
     private javax.swing.JButton EditTruckButton;
@@ -1710,7 +1741,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1742,6 +1772,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1751,7 +1783,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1761,9 +1792,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField lName;
     private javax.swing.JTextField lastName;
     private javax.swing.JPanel mainPanel;
