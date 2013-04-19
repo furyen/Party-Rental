@@ -589,8 +589,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        saveOrderResult.setBounds(new java.awt.Rectangle(600, 600, 0, 0));
+        saveOrderResult.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         saveOrderResult.setMinimumSize(new java.awt.Dimension(167, 71));
+        saveOrderResult.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
         confirm.setText("OK");
         confirm.addActionListener(new java.awt.event.ActionListener() {
