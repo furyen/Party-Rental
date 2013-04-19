@@ -106,6 +106,45 @@ public class TruckMapper {
         System.out.println("muie");
         return (rowsInserted == 1);
     }
+
+    public boolean createTruck(int truckSize, double unitPrice, Connection connection) {
+        String SQLScript = "insert into truck values (seq_truck.nextval,?,?)";
+        PreparedStatement statement = null;
+        int updatedRows = 0;
+        try{
+            statement = connection.prepareStatement(SQLScript);
+            statement.setInt(1, truckSize);
+            statement.setDouble(2, unitPrice);
+            updatedRows = statement.executeUpdate();
+            connection.commit();
+        }catch(Exception e){
+            System.out.println("Fail in TruckMapper - creatTruck");
+            System.out.println(e.getMessage());
+        }
+        return updatedRows == 1;
+    }
+
+    boolean editTruck(int truckID, double unitPrice, Connection connection) {
+        String SQLScript = " update truck "
+                          + " SET unit_price = ? "
+                          + " where truck_id = ? ";
+        int updatedRows = 0;
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(SQLScript);
+            statement.setDouble(1, unitPrice);
+            statement.setInt(2, truckID);
+            updatedRows = statement.executeUpdate();
+            System.out.println("muie");
+            connection.commit();
+        System.out.println("muie");
+
+        }catch(Exception e){
+            System.out.println("Fail in TruckMapper - editTruck");
+            System.out.println(e.getMessage());
+        }
+        return updatedRows == 1;
+    }
     
     
 }
