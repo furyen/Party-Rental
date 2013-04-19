@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -394,4 +395,10 @@ public class Controller {
         
         return orderList;
     }
+    
+    public boolean createTruck(int truckSize, int unitPrice){
+        boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
+        return bool;
+    } 
 }
+
