@@ -6,7 +6,12 @@ package Presentation;
 
 import Domain.Controller;
 import Domain.Order;
+import Domain.OrderDetail;
 import Domain.Resource;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ContainerListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 /**
@@ -17,6 +22,8 @@ public class EventManagment extends javax.swing.JFrame {
     Controller con = Controller.getInstance();
     private ArrayList<Order> allOrders = null;
     DefaultListModel ordersModel = new DefaultListModel();
+    DefaultListModel selectedOrderDetailModel = new DefaultListModel();
+    private ArrayList<OrderDetail> selectedOrderDetail = null;
     
     /**
      * Creates new form NewJFrame
@@ -29,6 +36,10 @@ public class EventManagment extends javax.swing.JFrame {
             ordersModel.addElement(o);
         }
         orderList.setModel(ordersModel);
+        
+        
+      
+        
     }
 
     /**
@@ -69,7 +80,7 @@ public class EventManagment extends javax.swing.JFrame {
         searchCustomerButton = new javax.swing.JButton();
         orderDetails = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        orderDetailsJList = new javax.swing.JList();
+        orderDetailList = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -142,6 +153,11 @@ public class EventManagment extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        orderList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderListMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(orderList);
 
@@ -233,12 +249,12 @@ public class EventManagment extends javax.swing.JFrame {
         orderDetails.setPreferredSize(new java.awt.Dimension(394, 395));
         orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        orderDetailsJList.setModel(new javax.swing.AbstractListModel() {
+        orderDetailList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(orderDetailsJList);
+        jScrollPane2.setViewportView(orderDetailList);
 
         orderDetails.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 260, 150));
 
@@ -334,6 +350,29 @@ public class EventManagment extends javax.swing.JFrame {
         paymentEditingDonePopup.setVisible(false);
     }//GEN-LAST:event_OKActionPerformed
 
+    private void orderListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderListMouseClicked
+        if (orderList.isSelectionEmpty()) {
+            selectedOrderDetailModel.clear();
+            selectedOrderDetailModel.add(0, "No Customer Selected");
+        } else {
+            selectedOrderDetailModel.clear();
+            Order o = (Order)orderList.getSelectedValue(); 
+            ArrayList <OrderDetail> od = o.getOrderDetails();
+            System.out.println(od.size());
+            for (int i = 0; i < od.size(); i++) {
+                System.out.println(od);
+            }
+        }
+//        selectedOrderDetail = ((Order)orderList.getSelectedValue()).getOrderDetails();
+//        System.out.println("lenth of od list " + selectedOrderDetail.size());
+//          for (OrderDetail od : selectedOrderDetail) {
+//            selectedOrderDetailModel.addElement(od);
+//              System.out.println(od);
+//        }
+//        orderDetailList.setModel(selectedOrderDetailModel);
+
+    }//GEN-LAST:event_orderListMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -396,8 +435,8 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JTextField newPaymentTextField;
     private javax.swing.JRadioButton nothingPaidRadio;
     private javax.swing.JTextField oldPaymentTextField;
+    private javax.swing.JList orderDetailList;
     private javax.swing.JPanel orderDetails;
-    private javax.swing.JList orderDetailsJList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
     private javax.swing.JLabel paymentEditedLabel;
