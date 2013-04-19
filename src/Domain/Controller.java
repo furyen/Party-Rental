@@ -362,4 +362,20 @@ public class Controller {
         }
         return status;
     }
+    
+    public String createDeliveryList(Date searchDate){
+        String deliveryList = "";
+        ArrayList<Order> orderList = getOrderDeliveryOnDate(searchDate);
+        
+        
+        return deliveryList;
+    }
+    
+    public ArrayList<Order> getOrderDeliveryOnDate(Date searchDate){
+        ArrayList<Order> orderList = null;
+        
+        
+        
+        return orderList;
+    }
 }
