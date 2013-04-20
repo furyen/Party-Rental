@@ -22,6 +22,7 @@ import javax.swing.DefaultListModel;
 public class EventManagment extends javax.swing.JFrame {
     Controller con = Controller.getInstance();
     private ArrayList<Order> allOrders = null;
+    private ArrayList<Order> filteredOrdersByName = new ArrayList();
     DefaultListModel ordersModel = new DefaultListModel();
     DefaultListModel selectedOrderDetailModel = new DefaultListModel();
     private ArrayList<OrderDetail> selectedOrderDetail = null;
@@ -68,7 +69,7 @@ public class EventManagment extends javax.swing.JFrame {
         searchCancel = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        customerList = new javax.swing.JList();
+        customerList2 = new javax.swing.JList();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -151,6 +152,7 @@ public class EventManagment extends javax.swing.JFrame {
         searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
         searchCustomer2.setMinimumSize(new java.awt.Dimension(470, 267));
         searchCustomer2.setResizable(false);
+        searchCustomer2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         searchChoose.setText("Choose");
         searchChoose.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +160,7 @@ public class EventManagment extends javax.swing.JFrame {
                 searchChooseActionPerformed(evt);
             }
         });
+        searchCustomer2.getContentPane().add(searchChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 223, 167, -1));
 
         searchCancel.setText("Cancel");
         searchCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -165,15 +168,16 @@ public class EventManagment extends javax.swing.JFrame {
                 searchCancelActionPerformed(evt);
             }
         });
+        searchCustomer2.getContentPane().add(searchCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 223, 130, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
-        customerList.addMouseListener(new java.awt.event.MouseAdapter() {
+        customerList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                customerListMouseClicked(evt);
+                customerList2MouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(customerList);
+        jScrollPane3.setViewportView(customerList2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,33 +195,7 @@ public class EventManagment extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout searchCustomer2Layout = new javax.swing.GroupLayout(searchCustomer2.getContentPane());
-        searchCustomer2.getContentPane().setLayout(searchCustomer2Layout);
-        searchCustomer2Layout.setHorizontalGroup(
-            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchCustomer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchCustomer2Layout.createSequentialGroup()
-                        .addComponent(searchCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
-                        .addComponent(searchChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(searchCustomer2Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        searchCustomer2Layout.setVerticalGroup(
-            searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchCustomer2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(searchCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchCancel)
-                    .addComponent(searchChoose))
-                .addContainerGap())
-        );
+        searchCustomer2.getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -326,7 +304,7 @@ public class EventManagment extends javax.swing.JFrame {
         orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orderDetailList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "No customer selected" };
+            String[] strings = { "No order selected" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -374,11 +352,11 @@ public class EventManagment extends javax.swing.JFrame {
         first = firstNameSearch.getText();
         last = lastNameSearch.getText();
         searchCustomer2.setVisible(true);
-        customerList.setModel(searchCustomerModel2);
-//        ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
-//        for (Customer c : list) {
-//            searchCustomerModel.addElement(c);
-//        }
+        customerList2.setModel(searchCustomerModel2);
+        ArrayList<Customer> list = con.getCustomerList(firstNameSearch.getText(), lastNameSearch.getText());
+        for (Customer c : list) {
+            searchCustomerModel2.addElement(c);
+        }
         
         
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
@@ -427,7 +405,7 @@ public class EventManagment extends javax.swing.JFrame {
     private void orderListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderListMouseClicked
         if (orderList.isSelectionEmpty()) {
             selectedOrderDetailModel.clear();
-            selectedOrderDetailModel.add(0, "No Customer Selected");
+            selectedOrderDetailModel.add(0, "No Order Selected");
         } else {
             selectedOrderDetailModel.clear();
             Order o = (Order)orderList.getSelectedValue(); 
@@ -436,8 +414,16 @@ public class EventManagment extends javax.swing.JFrame {
             selectedOrderDetailModel.addElement(od);
             orderDetailList.setModel(selectedOrderDetailModel);
             discountLabel.setText(o.getDiscount() + "");
-//            truckDeliverLabel.setText(null);
-//            truckReturnLabel.setText();
+            if(o.isTruckDelivery()== true){
+                truckDeliverLabel.setText("yes");
+            } else {
+                truckDeliverLabel.setText("no");
+            }
+            if(o.isTruckReturn()== true){
+                truckReturnLabel.setText("yes");
+            } else {
+                truckReturnLabel.setText("no");
+            }
             addressLabel.setText(o.getAdress());
 
         }
@@ -446,18 +432,29 @@ public class EventManagment extends javax.swing.JFrame {
     }//GEN-LAST:event_orderListMouseClicked
 
     private void searchChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchChooseActionPerformed
+        Customer c = (Customer)customerList2.getSelectedValue();
+        int customerID = c.getCustomerID();
+        ordersModel.clear();
+        for (Order o : allOrders){
+            if (o.getCustomerID() == customerID){
+                filteredOrdersByName.add(o);}
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+        orderList.setModel(ordersModel);
+        searchCustomer2.setVisible(false);
         
     }//GEN-LAST:event_searchChooseActionPerformed
 
     private void searchCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCancelActionPerformed
-
         searchCustomer2.setVisible(false);
     }//GEN-LAST:event_searchCancelActionPerformed
 
-    private void customerListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListMouseClicked
+    private void customerList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerList2MouseClicked
 
 
-    }//GEN-LAST:event_customerListMouseClicked
+    }//GEN-LAST:event_customerList2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -499,7 +496,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
-    private javax.swing.JList customerList;
+    private javax.swing.JList customerList2;
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JLabel discountLabel;
