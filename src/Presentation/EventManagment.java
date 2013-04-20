@@ -40,6 +40,10 @@ public class EventManagment extends javax.swing.JFrame {
             ordersModel.addElement(o);
         }
         orderList.setModel(ordersModel);
+        buttonGroup1.add(depositPaidRadio);
+        buttonGroup1.add(nothingPaidRadio);
+        buttonGroup1.add(searchByName);
+        buttonGroup1.add(fullyPaidRadio);
         
         
       
@@ -70,14 +74,15 @@ public class EventManagment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         customerList2 = new javax.swing.JList();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         orderList = new javax.swing.JList();
-        fullyPaidRadio = new javax.swing.JRadioButton();
         depositPaidRadio = new javax.swing.JRadioButton();
         nothingPaidRadio = new javax.swing.JRadioButton();
         searchByName = new javax.swing.JRadioButton();
+        fullyPaidRadio = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
         depositPaidButton = new javax.swing.JButton();
         editOrderButton = new javax.swing.JButton();
@@ -221,17 +226,32 @@ public class EventManagment extends javax.swing.JFrame {
 
         orders.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
 
-        fullyPaidRadio.setText("Fully Paid");
-        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 147, -1));
-
         depositPaidRadio.setText("Deposit Paid");
+        depositPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositPaidRadioActionPerformed(evt);
+            }
+        });
         orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         nothingPaidRadio.setText("Nothing Paid");
+        nothingPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nothingPaidRadioActionPerformed(evt);
+            }
+        });
         orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         searchByName.setText("Only Name");
         orders.add(searchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
+
+        fullyPaidRadio.setText("Fully Paid");
+        fullyPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fullyPaidRadioActionPerformed(evt);
+            }
+        });
+        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 147, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
@@ -243,6 +263,11 @@ public class EventManagment extends javax.swing.JFrame {
         });
 
         editOrderButton.setText("Edit Order");
+        editOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editOrderButtonActionPerformed(evt);
+            }
+        });
 
         cancelOrderButton.setText("Cancel Order");
         cancelOrderButton.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +369,8 @@ public class EventManagment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderButtonActionPerformed
-        // TODO add your handling code here:
+        Order currentOrder = (Order)orderList.getSelectedValue();
+        currentOrder.setCancelled(true);
     }//GEN-LAST:event_cancelOrderButtonActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
@@ -435,6 +461,7 @@ public class EventManagment extends javax.swing.JFrame {
         Customer c = (Customer)customerList2.getSelectedValue();
         int customerID = c.getCustomerID();
         ordersModel.clear();
+        orderList.setModel(ordersModel);
         for (Order o : allOrders){
             if (o.getCustomerID() == customerID){
                 filteredOrdersByName.add(o);}
@@ -442,7 +469,6 @@ public class EventManagment extends javax.swing.JFrame {
         for (Order o : filteredOrdersByName) {
             ordersModel.addElement(o);
         }
-        orderList.setModel(ordersModel);
         searchCustomer2.setVisible(false);
         
     }//GEN-LAST:event_searchChooseActionPerformed
@@ -455,6 +481,43 @@ public class EventManagment extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_customerList2MouseClicked
+
+    private void nothingPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nothingPaidRadioActionPerformed
+        ordersModel.clear(); 
+        for (Order o : allOrders){
+            if (o.getPaidAmount() == 0){
+                filteredOrdersByName.add(o);}
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_nothingPaidRadioActionPerformed
+
+    private void fullyPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullyPaidRadioActionPerformed
+        ordersModel.clear(); 
+        for (Order o : allOrders){
+            if (o.getPaidAmount() == o.getFullPrice()){
+                filteredOrdersByName.add(o);}
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_fullyPaidRadioActionPerformed
+
+    private void depositPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidRadioActionPerformed
+         ordersModel.clear(); 
+        for (Order o : allOrders){
+            if ((o.getFullPrice()* 0.25)<= o.getPaidAmount()){
+                filteredOrdersByName.add(o);}
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_depositPaidRadioActionPerformed
+
+    private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
+         
+    }//GEN-LAST:event_editOrderButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -495,6 +558,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton OK;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JList customerList2;
     private javax.swing.JButton depositPaidButton;
