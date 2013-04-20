@@ -381,7 +381,7 @@ public class Controller {
     }
 
     public ArrayList<OrderDetail> getOrderDetail(Order o) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return o.getOrderDetails();
     }
     
     public String createDeliveryList(Date searchDate){
