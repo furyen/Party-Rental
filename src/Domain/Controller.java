@@ -167,14 +167,14 @@ public class Controller {
         return finalPrice;
     }
 
-    public boolean createNewInvoice(double discount, double finalPrice) {
+    public boolean createNewInvoice(Customer newCustomer, double discount, double finalPrice) {
         boolean status = false;
         currentOrder.setDiscount(discount);
         currentOrder.setFullPrice(finalPrice);
 
         if (currentOrder != null) {
             status = dbFacade.createNewInvoice(currentOrder);
-            createDepositInvoiceFile(currentOrder);
+            createDepositInvoiceFile(currentOrder, newCustomer);
         }
 
 
