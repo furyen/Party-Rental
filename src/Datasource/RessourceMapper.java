@@ -42,16 +42,22 @@ public class RessourceMapper {
     
     public boolean createNewResource(Resource resource, Connection connection) throws SQLException {
         boolean status = false;
-        String SQLString = "INSERT INTO ressource values(?,?,?,?,?)";
+        String SQLString = "INSERT INTO ressource values(?,?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = connection.prepareStatement(SQLString);
         int rowsInserted = 0;
+        char active = 'n';
+        
+        if(resource.isActive()){
+            active = 'y';
+        }
         
         statement.setInt(1, resource.getResourceID());
         statement.setString(2, resource.getResourceName());
         statement.setInt(3, resource.getQuantity());
         statement.setDouble(4, resource.getPrice());
         statement.setInt(5, resource.getUnitSize());
+        statement.setString(6, "" + active);
         rowsInserted = statement.executeUpdate();
         
         if(rowsInserted == 1){
@@ -70,6 +76,7 @@ public class RessourceMapper {
         String SQLString1 = 
                 "select *"
                 + " from ressource"
+                + " where active = 'Y' "
                 + " order by ressource_id";
         String SQLString2 =
                 "select order_detail.ressource_id, order_detail.quantity, orders.start_date, orders.end_date, orders.canceled"
@@ -221,6 +228,56 @@ public class RessourceMapper {
             System.out.println(e.getMessage());
         }
         return list;
+    }
+
+    boolean deactivateOrder(int resourceID, Connection connection) {
+        boolean status = false;
+        String SQLString = "update resource"
+                         + "set activated=false"
+                         + "where resource_id=?";
+        PreparedStatement statement = null;
+        int rowsUpdated = 0;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setInt(1, resourceID);
+            rowsUpdated = statement.executeUpdate();
+            
+            if(rowsUpdated == 1){
+                status = true;
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the deactivateResource() in RessourceMapper - " + ex);
+        }
+        
+        
+        return status;
+    }
+
+    boolean reactivateResource(String resourceName, Connection connection) {
+        boolean status = false;
+        String SQLString = "update resource"
+                + "set activated=true"
+                + "where resource_name=?";
+        PreparedStatement statement = null;
+        int rowsUpdated = 0;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setString(1, resourceName);
+            rowsUpdated = statement.executeUpdate();
+            
+            if(rowsUpdated == 1){
+                status = true;
+            }
+            
+        }
+        catch(SQLException ex){
+            System.out.println("Error in reactivateResource() in RessourceMapper - " + ex);
+        }
+        
+        return status;
     }
     
 }

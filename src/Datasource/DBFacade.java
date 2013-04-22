@@ -265,4 +265,29 @@ public class DBFacade {
         ArrayList<Truck> list = truckMapper.getTrucks(connection);
         return list;
     }
+
+    public boolean deactiveResource(int resourceID) {
+        boolean status = false;
+        RessourceMapper resourceMapper = new RessourceMapper();
+        
+        status = resourceMapper.deactivateOrder(resourceID, connection);
+        
+        return status;
+    }
+
+    public boolean reactivateResource(String resourceName) {
+        boolean status = false;
+        RessourceMapper resourceMapper = new RessourceMapper();
+        
+        status = resourceMapper.reactivateResource(resourceName, connection);
+        
+        
+        return status;
+    }
+
+    public ArrayList<Order> getAffectedOrders(int resourceID) {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = orderMapper.getAffectedOrders(resourceID,connection);
+        return list;
+    }
 }

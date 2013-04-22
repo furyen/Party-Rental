@@ -52,6 +52,7 @@ public class UnitOfWorkProcessOrder {
             }
             
             connection.commit();
+            connection.setAutoCommit(true);
         }
         catch(SQLException ex){
             try{
