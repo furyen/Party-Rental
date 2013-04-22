@@ -284,4 +284,10 @@ public class DBFacade {
         
         return status;
     }
+
+    public ArrayList<Order> getAffectedOrders(int resourceID) {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = orderMapper.getAffectedOrders(resourceID,connection);
+        return list;
+    }
 }
