@@ -95,9 +95,4 @@ public class UnitOfWorkProcessOrder {
         newTruckBooking.add(tr);
     }
 
-    public Customer getNewCustomer(int customerID) {
-        Customer customer = newCustomerList.get(0);
-        
-        return customer;
-    }
 }

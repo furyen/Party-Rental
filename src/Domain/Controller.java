@@ -119,6 +119,7 @@ public class Controller {
         Customer customer = null;
 
         customer = dbFacade.getCustomer(customerID);
+        currentCustomer = customer;
 
         return customer;
     }
@@ -293,10 +294,10 @@ public class Controller {
         return order;
     }
 
-    public boolean createDepositInvoiceFile(Order order) {
+    public boolean createDepositInvoiceFile(Order order, Customer newCustomer) {
         boolean status = false;
         FileWriter fileWriter;
-        Customer customer = dbFacade.getNewCustomer(order.getCustomerID());
+        Customer customer = newCustomer;
         String invoiceString =
                 "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"

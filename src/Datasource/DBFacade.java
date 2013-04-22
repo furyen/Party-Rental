@@ -291,9 +291,4 @@ public class DBFacade {
         return list;
     }
 
-    public Customer getNewCustomer(int customerID) {
-        Customer customer = uow.getNewCustomer(customerID);
-        
-        return customer;
-    }
 }
