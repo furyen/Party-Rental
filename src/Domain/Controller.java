@@ -409,7 +409,7 @@ public class Controller {
         return orderList;
     }
     
-    public boolean createTruck(int truckSize, int unitPrice){
+    public boolean createTruck(int truckSize, Double unitPrice){
         boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
         return bool;
     } 

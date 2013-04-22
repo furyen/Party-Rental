@@ -48,7 +48,7 @@ public class RessourceMapper {
         int rowsInserted = 0;
         char active = 'N';
         
-        if(resource.isActive()){
+        if(resource.isActive() == true){
             active = 'Y';
         }
         
@@ -183,7 +183,7 @@ public class RessourceMapper {
         int rowsInserted = 0;
         char active = 'N';
         
-        if(resource.isActive()){
+        if(resource.isActive() == true){
             active = 'Y';
         }
         
@@ -196,6 +196,7 @@ public class RessourceMapper {
         rowsInserted = statement.executeUpdate();
         if(rowsInserted == 1){
             status = true;
+            connection.commit();
         }
         
         return status;

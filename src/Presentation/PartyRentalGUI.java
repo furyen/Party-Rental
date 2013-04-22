@@ -1418,11 +1418,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(AddNewTruckUnitPriceTextField)))
                     .add(AddNewTruckPanelLayout.createSequentialGroup()
                         .add(83, 83, 83)
-                        .add(AddNewTruckButton))
-                    .add(AddNewTruckPanelLayout.createSequentialGroup()
-                        .add(75, 75, 75)
-                        .add(jLabel33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(AddNewTruckButton)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, AddNewTruckPanelLayout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jLabel33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 217, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(28, 28, 28))
         );
         AddNewTruckPanelLayout.setVerticalGroup(
             AddNewTruckPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1671,6 +1672,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void resourcesMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resourcesMenuButtonActionPerformed
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
         cl.show(mainPanel, "resources");
+        allTrucks = con.getTrucks();
+        truckListModel.clear();
+        TruckList.setModel(truckListModel);
+        for (Truck truck : allTrucks) {
+            truckListModel.addElement(truck);
+        }
 
     }//GEN-LAST:event_resourcesMenuButtonActionPerformed
 
@@ -1921,20 +1928,36 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void EditTruckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditTruckButtonActionPerformed
         int truckID = Integer.parseInt(TruckIDTextField.getText());
-        int truckUnitPrice = Integer.parseInt(TruckUnitPriceTextField.getText());
+        double truckUnitPrice = Double.parseDouble(TruckUnitPriceTextField.getText());
         if (con.editTruck(truckID, truckUnitPrice)) {
             jLabel32.setText("Truck edited!");
-        } else {
+            TruckIDTextField.setText("");
+            TruckSizeTextField.setText("");
+            TruckUnitPriceTextField.setText("");
+            allTrucks = con.getTrucks();
+            truckListModel.clear();
+            TruckList.setModel(truckListModel);
+            for (Truck truck : allTrucks) {
+                truckListModel.addElement(truck);
+            }
+        } 
+        else {
             jLabel32.setText("There was an error editing the truck");
         }
     }//GEN-LAST:event_EditTruckButtonActionPerformed
 
     private void AddNewTruckButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewTruckButtonActionPerformed1
         int truckSize = Integer.parseInt(AddNewTruckSizeTextField.getText());
-        int unitPrice = Integer.parseInt(AddNewTruckUnitPriceTextField.getText());
+        Double unitPrice = Double.parseDouble(AddNewTruckUnitPriceTextField.getText());
 
         if (con.createTruck(truckSize, unitPrice)) {
             jLabel33.setText("Truck Created");
+            allTrucks = con.getTrucks();
+            truckListModel.clear();
+            TruckList.setModel(truckListModel);
+            for (Truck truck : allTrucks) {
+                truckListModel.addElement(truck);
+            }
         } else {
             jLabel33.setText("There was an error creating the truck");
         }
