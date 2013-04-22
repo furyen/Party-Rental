@@ -167,14 +167,14 @@ public class Controller {
         return finalPrice;
     }
 
-    public boolean createNewInvoice(Customer newCustomer, double discount, double finalPrice) {
+    public boolean createNewInvoice(double discount, double finalPrice) {
         boolean status = false;
         currentOrder.setDiscount(discount);
         currentOrder.setFullPrice(finalPrice);
 
         if (currentOrder != null) {
             status = dbFacade.createNewInvoice(currentOrder);
-            createDepositInvoiceFile(currentOrder, newCustomer);
+            createDepositInvoiceFile(currentOrder);
         }
 
 
@@ -201,6 +201,10 @@ public class Controller {
         int orderID;
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
+        
+        if(currentCustomer == null){
+            getCustomer(customerID);
+        }
 
         orderID = dbFacade.getUniqueOrderID();
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
@@ -294,10 +298,10 @@ public class Controller {
         return order;
     }
 
-    public boolean createDepositInvoiceFile(Order order, Customer newCustomer) {
+    public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
-        Customer customer = newCustomer;
+        Customer customer = currentCustomer;
         String invoiceString =
                 "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
