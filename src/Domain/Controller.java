@@ -296,7 +296,7 @@ public class Controller {
     public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
-        Customer customer = getCustomer(order.getCustomerID());
+        Customer customer = dbFacade.getNewCustomer(order.getCustomerID());
         String invoiceString =
                 "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"

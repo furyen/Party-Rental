@@ -290,4 +290,10 @@ public class DBFacade {
         ArrayList<Order> list = orderMapper.getAffectedOrders(resourceID,connection);
         return list;
     }
+
+    public Customer getNewCustomer(int customerID) {
+        Customer customer = uow.getNewCustomer(customerID);
+        
+        return customer;
+    }
 }
