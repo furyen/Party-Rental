@@ -50,6 +50,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private DefaultListModel ordersModel = new DefaultListModel();
     private DefaultListModel selectedOrderDetailModel = new DefaultListModel();
     private ArrayList<OrderDetail> selectedOrderDetail = null;
+    private Order editOrder;
 
     public PartyRentalGUI() {
         initComponents();
@@ -63,7 +64,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         customerOrders.setModel(customerOrdersModel);
         allTrucks = con.getTrucks();
         TruckList.setModel(truckListModel);
-        for(Truck truck : allTrucks){
+        for (Truck truck : allTrucks) {
             truckListModel.addElement(truck);
         }
 
@@ -341,7 +342,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         startDate = new com.toedter.calendar.JDateChooser();
         endDate = new com.toedter.calendar.JDateChooser();
-        jButton4 = new javax.swing.JButton();
+        getAvailableResourcesButton = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         eventAddress = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -434,10 +435,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        addressTextF = new javax.swing.JTextField();
-        discountTextF = new javax.swing.JTextField();
-        truckDeliverTextF = new javax.swing.JTextField();
-        truckReturnTextF = new javax.swing.JTextField();
+        discountLabel = new javax.swing.JLabel();
+        addressLabel = new javax.swing.JLabel();
+        truckDeliverLabel = new javax.swing.JLabel();
+        truckReturnLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
         searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
@@ -509,7 +510,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(lName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(searchCustomersButton))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                .add(jScrollPane3)
                 .addContainerGap())
         );
 
@@ -682,9 +683,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
         paymentEditingDonePopup.getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
-        paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
         paymentStatus.setMinimumSize(new java.awt.Dimension(355, 155));
-        paymentStatus.setPreferredSize(new java.awt.Dimension(355, 155));
         paymentStatus.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel40.setText("Payment until now");
@@ -871,10 +870,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel9.setText("End Date");
 
-        jButton4.setText("Get Available Resources");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        getAvailableResourcesButton.setText("Get Available Resources");
+        getAvailableResourcesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                getAvailableResourcesButtonActionPerformed(evt);
             }
         });
 
@@ -933,7 +932,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 172, Short.MAX_VALUE)
-                                .add(jButton4))
+                                .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -976,7 +975,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(11, 11, 11))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, OrderLayout.createSequentialGroup()
-                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(getAvailableResourcesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)))
                 .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
@@ -1467,7 +1466,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 307, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1516,6 +1515,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
 
         editOrderButton.setText("Edit Order");
+        editOrderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editOrderButtonActionPerformed(evt);
+            }
+        });
 
         cancelOrderButton.setText("Cancel Order");
         cancelOrderButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1600,18 +1604,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel39.setText("Truck return");
         orderDetails.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-
-        addressTextF.setText("jTextField3");
-        orderDetails.add(addressTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
-
-        discountTextF.setText("jTextField3");
-        orderDetails.add(discountTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
-
-        truckDeliverTextF.setText("jTextField3");
-        orderDetails.add(truckDeliverTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, -1));
-
-        truckReturnTextF.setText("jTextField3");
-        orderDetails.add(truckReturnTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, -1));
+        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, 20));
+        orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
+        orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 720, 200));
 
@@ -1621,7 +1617,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 backToMenuActionPerformed(evt);
             }
         });
-        EventManagement.add(backToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
+        EventManagement.add(backToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 790, -1, -1));
 
         mainPanel.add(EventManagement, "eventManagement");
 
@@ -1709,7 +1705,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void getAvailableResourcesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAvailableResourcesButtonActionPerformed
         truckDelivery.clear();
         truckReturn.clear();
         resources.clear();
@@ -1723,7 +1719,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         refreshTruckDelivery(con.getTruckDeliveryForDate(startDate.getDate(), '0'));
         refreshTruckReturn(con.getTruckDeliveryForDate(endDate.getDate(), '1'));
         Order.repaint();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_getAvailableResourcesButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Customer c = con.createCustomer(firstName.getText(), lastName.getText(), customerAddress.getText());
@@ -1899,11 +1895,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void AddNewTruckButtonActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewTruckButtonActionPerformed1
         int truckSize = Integer.parseInt(AddNewTruckSizeTextField.getText());
         int unitPrice = Integer.parseInt(AddNewTruckUnitPriceTextField.getText());
-        
-        if(con.createTruck(truckSize, unitPrice)){
+
+        if (con.createTruck(truckSize, unitPrice)) {
             jLabel33.setText("Truck Created");
-        }
-        else{
+        } else {
             jLabel33.setText("There was an error creating the truck");
         }
     }//GEN-LAST:event_AddNewTruckButtonActionPerformed1
@@ -1915,19 +1910,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         } else {
             selectedOrderDetailModel.clear();
             Order o = (Order) orderList.getSelectedValue();
-            ArrayList<OrderDetail> od = o.getOrderDetails();
-            System.out.println(od.size());
-            for (int i = 0; i < od.size(); i++) {
-                System.out.println(od);
+            ArrayList<OrderDetail> selectedOrderDetails = con.getOrderDetail(o);
+            for (OrderDetail od : selectedOrderDetails) {
+                selectedOrderDetailModel.addElement(od);
+                orderDetailList.setModel(selectedOrderDetailModel);
+                discountLabel.setText(o.getDiscount() + "");
+//            truckDeliverLabel.setText(null);
+//            truckReturnLabel.setText();
+                addressLabel.setText(o.getAdress());
+
             }
         }
-        //        selectedOrderDetail = ((Order)orderList.getSelectedValue()).getOrderDetails();
-        //        System.out.println("lenth of od list " + selectedOrderDetail.size());
-        //          for (OrderDetail od : selectedOrderDetail) {
-        //            selectedOrderDetailModel.addElement(od);
-        //              System.out.println(od);
-        //        }
-        //        orderDetailList.setModel(selectedOrderDetailModel);
     }//GEN-LAST:event_orderListMouseClicked
 
     private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
@@ -1949,9 +1942,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
     private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
-        //        CardLayout cl = (CardLayout) (mainPanel.getLayout());
-        //
-        //        cl.show(mainPanel, "menu");
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
+        cl.show(mainPanel, "menu");
     }//GEN-LAST:event_backToMenuActionPerformed
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
@@ -1984,6 +1977,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
         allOrders = con.getOrders();
+        ordersModel.clear();
         for (Order o : allOrders) {
             ordersModel.addElement(o);
         }
@@ -1992,11 +1986,46 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
 
-        cl.show(mainPanel,
-                "eventManagement");
+        cl.show(mainPanel, "eventManagement");
 
 
     }//GEN-LAST:event_jButton2ActionPerformed1
+
+    private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
+
+        if (!orderList.isSelectionEmpty()) {
+            con.editOrder((Order) orderList.getSelectedValue());
+            editOrder = (Order) orderList.getSelectedValue();
+            resources.clear();
+            truckDelivery.clear();
+            truckReturn.clear();
+            gbInventory.removeAll();
+            deliveryPanel.removeAll();
+            returnPanel.removeAll();
+            startDate.setDate(editOrder.getStartDate());
+            endDate.setDate(editOrder.getEndDate());
+            getAvailableResourcesButton.doClick();
+            ArrayList<OrderDetail> details = editOrder.getOrderDetails();
+            for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                for (int i = 0; i < details.size(); i++) {
+                    if (details.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                        entry.getValue().setSelectedIndex(details.get(i).getQuantity());
+                    }
+                }
+            }
+            Customer c = con.getCustomer(editOrder.getCustomerID());
+            eventAddress.setText(editOrder.getAdress());
+            customerID.setText("" + c.getCustomerID());
+            firstName.setText(c.getFirstName());
+            lastName.setText(c.getLastName());
+            customerAddress.setText(c.getAdress());
+
+
+            CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
+            cl.show(mainPanel, "booking");
+        }
+    }//GEN-LAST:event_editOrderButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2060,7 +2089,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField TruckSizeTextField;
     private javax.swing.JTextField TruckUnitPriceTextField;
     private javax.swing.JButton UpdateResource;
-    private javax.swing.JTextField addressTextF;
+    private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JButton confirm;
@@ -2075,7 +2104,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton depositPaidButton;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JTextField discount;
-    private javax.swing.JTextField discountTextF;
+    private javax.swing.JLabel discountLabel;
     private javax.swing.JButton editOrderButton;
     private javax.swing.JPanel editRes;
     private javax.swing.JTextField editResName;
@@ -2089,6 +2118,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField firstNameSearch;
     private javax.swing.JRadioButton fullyPaidRadio;
     private javax.swing.JPanel gbInventory;
+    private javax.swing.JButton getAvailableResourcesButton;
     private javax.swing.JPanel getRes;
     private javax.swing.JButton getResource;
     private javax.swing.JButton jButton1;
@@ -2096,7 +2126,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -2191,7 +2220,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JLabel totalPrice;
     private javax.swing.JLabel totalSize;
-    private javax.swing.JTextField truckDeliverTextF;
-    private javax.swing.JTextField truckReturnTextF;
+    private javax.swing.JLabel truckDeliverLabel;
+    private javax.swing.JLabel truckReturnLabel;
     // End of variables declaration//GEN-END:variables
 }

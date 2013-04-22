@@ -185,7 +185,7 @@ public class OrderMapper {
     boolean cancelOrder(Order order, Connection connection) {
         boolean status = false;
         String SQLString = "UPDATE orders"
-                + "SET canceled=?"
+                + " SET canceled=?"
                 + "where order_id=?";
         PreparedStatement statement = null;
         int rowsUpdated = 0;
@@ -195,12 +195,14 @@ public class OrderMapper {
             statement = connection.prepareStatement(SQLString);
             if (order.isCancelled() == true) {
                 statement.setString(1, "y");
+              
             } else {
                 return status;
             }
             statement.setInt(2, order.getOrderID());
+         
             rowsUpdated = statement.executeUpdate();
-
+ 
             if (rowsUpdated == 1) {
                 status = true;
             }
