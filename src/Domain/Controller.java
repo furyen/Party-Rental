@@ -78,21 +78,25 @@ public class Controller {
         return currentResource;
     }
 
-    public boolean editResource(String name, int quantitiy, double price) {
+    /*
+     * 0 = Error in SQL or the program
+     * 1 = Orders using this object
+     */
+    public boolean editResource(String name, int quantitiy, double price, boolean active) {
         boolean status = false;
 
         if (currentResource != null) {
             currentResource.setResourceName(name);
             currentResource.setQuantity(quantitiy);
             currentResource.setPrice(price);
+            currentResource.setActive(active);
+            try {
+                status = dbFacade.editResource(currentResource);
+            } catch (SQLException ex) {
+                System.out.println("Error in the editResource - " + ex);
+            }
         }
-
-        try {
-            status = dbFacade.editResource(currentResource);
-        } catch (SQLException ex) {
-            System.out.println("Error in the editResource - " + ex);
-        }
-
+        
         return status;
     }
 
