@@ -94,4 +94,5 @@ public class UnitOfWorkProcessOrder {
     public void registerTruckBooking(TruckOrder tr) {
         newTruckBooking.add(tr);
     }
+
 }

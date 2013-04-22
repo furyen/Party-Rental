@@ -119,6 +119,7 @@ public class Controller {
         Customer customer = null;
 
         customer = dbFacade.getCustomer(customerID);
+        currentCustomer = customer;
 
         return customer;
     }
@@ -200,6 +201,10 @@ public class Controller {
         int orderID;
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
+        
+        if(currentCustomer == null){
+            getCustomer(customerID);
+        }
 
         orderID = dbFacade.getUniqueOrderID();
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
@@ -296,7 +301,7 @@ public class Controller {
     public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
-        Customer customer = getCustomer(order.getCustomerID());
+        Customer customer = currentCustomer;
         String invoiceString =
                 "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
