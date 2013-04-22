@@ -46,10 +46,10 @@ public class RessourceMapper {
         PreparedStatement statement = null;
         statement = connection.prepareStatement(SQLString);
         int rowsInserted = 0;
-        char active = 'n';
+        char active = 'N';
         
         if(resource.isActive()){
-            active = 'y';
+            active = 'Y';
         }
         
         statement.setInt(1, resource.getResourceID());
@@ -177,17 +177,22 @@ public class RessourceMapper {
      public boolean editResource(Resource resource, Connection connection) throws SQLException{
         boolean status = false;
         String SQLString = "update ressource "
-                            + "set ressource_name=?, quantity=?, price=?"
+                            + "set ressource_name=?, quantity=?, price=?, active=?"
                             + "where ressource_id=?";
         PreparedStatement statement = null;
         int rowsInserted = 0;
-        System.out.println("Attributes created in mapper");
+        char active = 'N';
+        
+        if(resource.isActive()){
+            active = 'Y';
+        }
         
         statement = connection.prepareStatement(SQLString);
         statement.setString(1, resource.getResourceName());
         statement.setInt(2, resource.getQuantity());
         statement.setFloat(3, (float)resource.getPrice());
         statement.setInt(4, resource.getResourceID());
+        statement.setString(5, "" + active);
         rowsInserted = statement.executeUpdate();
         if(rowsInserted == 1){
             status = true;
