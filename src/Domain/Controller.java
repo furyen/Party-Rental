@@ -415,5 +415,10 @@ public class Controller {
         return list;
     }
     
+    public ArrayList<Order> getAffectedOrders(int resourceID){
+        ArrayList<Order> list = dbFacade.getAffectedOrders(resourceID);
+        return list;
+    }
+    
 }
 

@@ -265,4 +265,10 @@ public class DBFacade {
         ArrayList<Truck> list = truckMapper.getTrucks(connection);
         return list;
     }
+
+    public ArrayList<Order> getAffectedOrders(int resourceID) {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = orderMapper.getAffectedOrders(resourceID,connection);
+        return list;
+    }
 }

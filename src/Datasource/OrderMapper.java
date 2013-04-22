@@ -276,4 +276,8 @@ public class OrderMapper {
 
         return orderList;
     }
+
+    ArrayList<Order> getAffectedOrders(int resourceID, Connection connection) {
+        return null;
+    }
 }
