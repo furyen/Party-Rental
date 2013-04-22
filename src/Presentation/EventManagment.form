@@ -210,7 +210,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="searchOrdersButtonGroup">
     </Component>
   </NonVisualComponents>
   <Properties>

@@ -40,10 +40,11 @@ public class EventManagment extends javax.swing.JFrame {
             ordersModel.addElement(o);
         }
         orderList.setModel(ordersModel);
-        buttonGroup1.add(depositPaidRadio);
-        buttonGroup1.add(nothingPaidRadio);
-        buttonGroup1.add(searchByName);
-        buttonGroup1.add(fullyPaidRadio);
+        searchOrdersButtonGroup.add(depositPaidRadio);
+        searchOrdersButtonGroup.add(nothingPaidRadio);
+        searchOrdersButtonGroup.add(searchByName);
+        searchOrdersButtonGroup.add(fullyPaidRadio);
+  
         
         
       
@@ -74,7 +75,7 @@ public class EventManagment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         customerList2 = new javax.swing.JList();
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        searchOrdersButtonGroup = new javax.swing.ButtonGroup();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -556,7 +557,6 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton OK;
     private javax.swing.JLabel addressLabel;
     private javax.swing.JButton backToMenu;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JList customerList2;
     private javax.swing.JButton depositPaidButton;
@@ -596,6 +596,7 @@ public class EventManagment extends javax.swing.JFrame {
     private javax.swing.JButton searchChoose;
     private javax.swing.JDialog searchCustomer2;
     private javax.swing.JButton searchCustomerButton;
+    private javax.swing.ButtonGroup searchOrdersButtonGroup;
     private javax.swing.JLabel truckDeliverLabel;
     private javax.swing.JLabel truckReturnLabel;
     // End of variables declaration//GEN-END:variables
