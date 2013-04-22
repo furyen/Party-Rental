@@ -1738,7 +1738,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void searchCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomersButtonActionPerformed
         searchCustomerModel.clear();
-        
+
         customerList.setModel(searchCustomerModel);
         ArrayList<Customer> list = con.getCustomerList(fName.getText().toUpperCase(), lName.getText().toUpperCase());
         for (Customer c : list) {
@@ -1848,10 +1848,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         } else {
             orderDetailsModel.clear();
             Order c = (Order) customerOrders.getSelectedValue();
-            spEventAddress.setText("Event Address: "+ c.getAdress());
-            spPaid.setText("Paid: "+c.getPaidAmount());
-            spTotalPrice.setText("Total Price: "+c.getFullPrice());
-            
+            spEventAddress.setText("Event Address: " + c.getAdress());
+            spPaid.setText("Paid: " + c.getPaidAmount());
+            spTotalPrice.setText("Total Price: " + c.getFullPrice());
+
             ArrayList<OrderDetail> details = c.getOrderDetails();
 
             for (int i = 0; i < details.size(); i++) {
