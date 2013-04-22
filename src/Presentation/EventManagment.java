@@ -100,9 +100,7 @@ public class EventManagment extends javax.swing.JFrame {
         truckReturnLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
-        paymentStatus.setMaximumSize(new java.awt.Dimension(355, 155));
         paymentStatus.setMinimumSize(new java.awt.Dimension(355, 155));
-        paymentStatus.setPreferredSize(new java.awt.Dimension(355, 155));
         paymentStatus.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setText("Payment until now");
@@ -345,7 +343,7 @@ public class EventManagment extends javax.swing.JFrame {
 
         jLabel6.setText("Truck return");
         orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, -1));
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, 20));
         orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
         orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
         orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
