@@ -1716,7 +1716,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_getAvailableResourcesButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Customer c = con.createCustomer(firstName.getText(), lastName.getText(), customerAddress.getText());
+        Customer c = con.createCustomer(firstName.getText().toUpperCase(), lastName.getText().toUpperCase(), customerAddress.getText());
         customerID.setText("" + c.getCustomerID());
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1724,7 +1724,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         customerList.removeAll();
         fName.setText("");
         lName.setText("");
-
+        spTotalPrice.setText("Total Price: ");
+        spPaid.setText("Paid: ");
+        spEventAddress.setText("Event Address: ");
+        searchCustomerModel.clear();
+        customerOrdersModel.clear();
+        orderDetailsModel.clear();
         //keeps focus on window until closed
         searchCustomer.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         searchCustomer.pack();
@@ -1733,8 +1738,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void searchCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomersButtonActionPerformed
         searchCustomerModel.clear();
+        
         customerList.setModel(searchCustomerModel);
-        ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
+        ArrayList<Customer> list = con.getCustomerList(fName.getText().toUpperCase(), lName.getText().toUpperCase());
         for (Customer c : list) {
             searchCustomerModel.addElement(c);
         }
@@ -1825,11 +1831,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             customerOrdersModel.clear();
             Customer c = (Customer) customerList.getSelectedValue();
 
-            ArrayList<Order> orders = con.getCustomerOrderHistory(c.getCustomerID());
+            ArrayList<Order> order = con.getCustomerOrderHistory(c.getCustomerID());
 
-            for (int i = 0; i < orders.size(); i++) {
-                System.out.println(orders.get(i).getOrderID());
-                customerOrdersModel.add(i, orders.get(i));
+            for (int i = 0; i < order.size(); i++) {
+                System.out.println(order.get(i).getOrderID());
+                customerOrdersModel.add(i, order.get(i));
             }
         }
     }//GEN-LAST:event_customerListMouseClicked
@@ -1842,7 +1848,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         } else {
             orderDetailsModel.clear();
             Order c = (Order) customerOrders.getSelectedValue();
-
+            spEventAddress.setText("Event Address: "+ c.getAdress());
+            spPaid.setText("Paid: "+c.getPaidAmount());
+            spTotalPrice.setText("Total Price: "+c.getFullPrice());
+            
             ArrayList<OrderDetail> details = c.getOrderDetails();
 
             for (int i = 0; i < details.size(); i++) {
