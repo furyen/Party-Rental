@@ -66,7 +66,7 @@ public class UnitOfWorkProcessOrder {
             
             status = false;
         }
-        
+
         return status;
     }
 
@@ -94,4 +94,5 @@ public class UnitOfWorkProcessOrder {
     public void registerTruckBooking(TruckOrder tr) {
         newTruckBooking.add(tr);
     }
+
 }

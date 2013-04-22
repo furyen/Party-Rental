@@ -78,21 +78,25 @@ public class Controller {
         return currentResource;
     }
 
-    public boolean editResource(String name, int quantitiy, double price) {
+    /*
+     * 0 = Error in SQL or the program
+     * 1 = Orders using this object
+     */
+    public boolean editResource(String name, int quantitiy, double price, boolean active) {
         boolean status = false;
 
         if (currentResource != null) {
             currentResource.setResourceName(name);
             currentResource.setQuantity(quantitiy);
             currentResource.setPrice(price);
+            currentResource.setActive(active);
+            try {
+                status = dbFacade.editResource(currentResource);
+            } catch (SQLException ex) {
+                System.out.println("Error in the editResource - " + ex);
+            }
         }
-
-        try {
-            status = dbFacade.editResource(currentResource);
-        } catch (SQLException ex) {
-            System.out.println("Error in the editResource - " + ex);
-        }
-
+        
         return status;
     }
 
@@ -119,6 +123,7 @@ public class Controller {
         Customer customer = null;
 
         customer = dbFacade.getCustomer(customerID);
+        currentCustomer = customer;
 
         return customer;
     }
@@ -200,6 +205,10 @@ public class Controller {
         int orderID;
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
+        
+        if(currentCustomer == null){
+            getCustomer(customerID);
+        }
 
         orderID = dbFacade.getUniqueOrderID();
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
@@ -296,7 +305,7 @@ public class Controller {
     public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
         FileWriter fileWriter;
-        Customer customer = getCustomer(order.getCustomerID());
+        Customer customer = currentCustomer;
         String invoiceString =
                 "HellebÃ¦k Party Rental\t\t\t\t\t\tCVR: 32139429\n"
                 + "\t\t\t\t\t\t\t\tOrder nr: " + order.getOrderID() + "\n"
