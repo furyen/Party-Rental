@@ -20,6 +20,7 @@ public class Resource {
         this.unitSize = unitSize;
         this.resourceName = resourceName;
         this.resourceID = resourceID;
+        this.active = true;
     }
     
     public boolean isActive(){
