@@ -76,6 +76,7 @@ public class RessourceMapper {
         String SQLString1 = 
                 "select *"
                 + " from ressource"
+                + " where active = 'Y' "
                 + " order by ressource_id";
         String SQLString2 =
                 "select order_detail.ressource_id, order_detail.quantity, orders.start_date, orders.end_date, orders.canceled"

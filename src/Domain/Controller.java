@@ -421,9 +421,15 @@ public class Controller {
         ArrayList<Order> affectedOrders = getAffectedOrders(resourceID);
         
         if(affectedOrders.size() > 0){
-            status = false;
+            for(Order order : affectedOrders){
+                cancelledStatus = cancelledStatus && order.isCancelled();
+            }
         }
         else{
+            cancelledStatus = false;
+        }
+        
+        if(cancelledStatus == true){
             status = dbFacade.deactiveResource(resourceID);
         }
         
@@ -444,5 +450,9 @@ public class Controller {
         return status;
     }
     
+    public ArrayList<Order> getAffectedOrders(int resourceID){
+        ArrayList<Order> list = dbFacade.getAffectedOrders(resourceID);
+        return list;
+    }
 }
 
