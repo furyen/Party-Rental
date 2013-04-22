@@ -418,18 +418,12 @@ public class Controller {
     public boolean deactivateResource(int resourceID){
         boolean status = false;
         boolean cancelledStatus = true;
-        ArrayList<Order> affectedOrders = getAffectedOrders();
+        ArrayList<Order> affectedOrders = getAffectedOrders(resourceID);
         
         if(affectedOrders.size() > 0){
-            for(Order order : affectedOrders){
-                cancelledStatus = cancelledStatus && order.isCancelled();
-            }
+            status = false;
         }
         else{
-            cancelledStatus = false;
-        }
-        
-        if(cancelledStatus == true){
             status = dbFacade.deactiveResource(resourceID);
         }
         

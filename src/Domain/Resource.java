@@ -12,6 +12,7 @@ public class Resource {
     private int resourceID, unitSize, quantity;
     private String resourceName;
     private double price;
+    private boolean active;
     
     public Resource(int resourceID, String resourceName,  int quantity,  double price, int unitSize){
         this.price = price;
@@ -20,7 +21,15 @@ public class Resource {
         this.resourceName = resourceName;
         this.resourceID = resourceID;
     }
-
+    
+    public boolean isActive(){
+        return active;
+    }
+    
+    public void setActive(boolean active){
+        this.active = active;
+    }
+    
     public int getResourceID() {
         return resourceID;
     }

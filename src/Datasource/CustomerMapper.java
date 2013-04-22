@@ -16,12 +16,12 @@ public class CustomerMapper {
 
     public ArrayList<Customer> getCustomerList(String firstName, String lastName, Connection connection) throws SQLException {
         ArrayList<Customer> customerList = new ArrayList();;
-        String SQLString = "select * from customer where first_name=? and last_name=?";
+        String SQLString = "select * from customer where first_name like ? and last_name like ?";
         PreparedStatement statement = null;
         
         statement = connection.prepareStatement(SQLString);
-        statement.setString(1, firstName);
-        statement.setString(2, lastName);
+        statement.setString(1, firstName + "%");
+        statement.setString(2, lastName + "%");
         ResultSet rs = statement.executeQuery();
         
         while(rs.next()){
