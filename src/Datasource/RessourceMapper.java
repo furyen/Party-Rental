@@ -222,6 +222,56 @@ public class RessourceMapper {
         }
         return list;
     }
+
+    boolean deactivateOrder(int resourceID, Connection connection) {
+        boolean status = false;
+        String SQLString = "update resource"
+                         + "set activated=false"
+                         + "where resource_id=?";
+        PreparedStatement statement = null;
+        int rowsUpdated = 0;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setInt(1, resourceID);
+            rowsUpdated = statement.executeUpdate();
+            
+            if(rowsUpdated == 1){
+                status = true;
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the deactivateResource() in RessourceMapper - " + ex);
+        }
+        
+        
+        return status;
+    }
+
+    boolean reactivateResource(String resourceName, Connection connection) {
+        boolean status = false;
+        String SQLString = "update resource"
+                + "set activated=true"
+                + "where resource_name=?";
+        PreparedStatement statement = null;
+        int rowsUpdated = 0;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setString(1, resourceName);
+            rowsUpdated = statement.executeUpdate();
+            
+            if(rowsUpdated == 1){
+                status = true;
+            }
+            
+        }
+        catch(SQLException ex){
+            System.out.println("Error in reactivateResource() in RessourceMapper - " + ex);
+        }
+        
+        return status;
+    }
     
 }
 

@@ -415,5 +415,40 @@ public class Controller {
         return list;
     }
     
+    public boolean deactivateResource(int resourceID){
+        boolean status = false;
+        boolean cancelledStatus = true;
+        ArrayList<Order> affectedOrders = getAffectedOrders();
+        
+        if(affectedOrders.size() > 0){
+            for(Order order : affectedOrders){
+                cancelledStatus = cancelledStatus && order.isCancelled();
+            }
+        }
+        else{
+            cancelledStatus = false;
+        }
+        
+        if(cancelledStatus == true){
+            status = dbFacade.deactiveResource(resourceID);
+        }
+        
+        
+        return status;
+    }
+    
+    public boolean reactivateResource(String resourceName){
+        boolean status = false;
+        ArrayList<Resource> resourceList = getAvailableResources(null, null);
+        
+        for(Resource resource : resourceList){
+            if(resource.equals(resourceName)){
+                status = dbFacade.reactivateResource(resourceName);
+            }
+        }
+        
+        return status;
+    }
+    
 }
 
