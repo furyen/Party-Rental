@@ -1813,7 +1813,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         String newName = editResName.getText();
         int newQuantity = Integer.parseInt(editResQuantity.getText());
         double newPrice = Double.parseDouble(editResPrice.getText());
-        con.editResource(newName, newQuantity, newPrice);
+        boolean active = activeRes.isSelected();
+        con.editResource(newName, newQuantity, newPrice, active);
 
     }//GEN-LAST:event_UpdateResourceActionPerformed
 
@@ -1832,7 +1833,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         editResQuantity.setText(con.getResource(selectedResource).getQuantity() + "");
         editResPrice.setText(con.getResource(selectedResource).getPrice() + "");
         editResUnitSize.setText(con.getResource(selectedResource).getUnitSize() + "");
-        //if ()
+        if (con.getResource(selectedResource).isActive()){
+            activeRes.setSelected(true);
+        } else {
+          inactiveRes.setSelected(true);  
+        }
     }//GEN-LAST:event_getResourceActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
