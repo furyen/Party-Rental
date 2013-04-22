@@ -418,7 +418,7 @@ public class Controller {
     public boolean deactivateResource(int resourceID){
         boolean status = false;
         boolean cancelledStatus = true;
-        ArrayList<Order> affectedOrders = getAffectedOrders();
+        ArrayList<Order> affectedOrders = getAffectedOrders(resourceID);
         
         if(affectedOrders.size() > 0){
             for(Order order : affectedOrders){
@@ -450,5 +450,9 @@ public class Controller {
         return status;
     }
     
+    public ArrayList<Order> getAffectedOrders(int resourceID){
+        ArrayList<Order> list = dbFacade.getAffectedOrders(resourceID);
+        return list;
+    }
 }
 

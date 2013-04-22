@@ -227,7 +227,6 @@ public class OrderMapper {
             statement.setInt(1, customerID);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                System.out.println("muie");
                 int orderID = rs.getInt(1);
                 rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
@@ -276,6 +275,46 @@ public class OrderMapper {
             System.out.println(ex);
         }
 
+        return orderList;
+    }
+
+    ArrayList<Order> getAffectedOrders(int resourceID, Connection connection) {
+        ArrayList<Order> orderList = new ArrayList();
+        String SQLString = " select * "
+                + " FROM orders natural join invoice natural join order_detail"
+                + " where ressource_id=?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SQLString);
+            statement.setInt(1, resourceID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                int orderID = rs.getInt(1);
+                int customerID = rs.getInt(2);
+                java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
+                String eventAddress = rs.getString(5);
+                int unitSize = rs.getInt(6);
+                char can = rs.getString(7).charAt(0);
+                boolean canceled;
+                if (can == 'Y') {
+                    canceled = true;
+                } else {
+                    canceled = false;
+                }
+                double discount = rs.getDouble(8);
+                double fulllPrice = rs.getDouble(9);
+                double additionalCosts = rs.getDouble(10);
+                double paidAmount = rs.getDouble(11);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
+                if (!canceled){
+                    orderList.add(order);
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Error in the OrderMapper - getAffectedOrders");
+            System.out.println(ex);
+        }
         return orderList;
     }
 }
