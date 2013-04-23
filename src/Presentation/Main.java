@@ -53,7 +53,7 @@ public class Main {
 ////            System.out.println(trucks.get(i).getTruckID()+"  "+trucks.get(i).getTruckRun()+" "+ trucks.get(i).getFilledSpace()+ " "+ trucks.get(i).getSize()
 ////                );
 ////        }
-           System.out.println(control.getOrders().get(0).isTruckDelivery());
+//          System.out.println(control.getOrders().get(0).isTruckDelivery());
 //////            
 //        
 //          control.createFinalInvoiceFile(order);
@@ -64,6 +64,9 @@ public class Main {
 //            System.out.println(list.get(i).getOrderDetails().toString());;
 //        }
         
+        ArrayList<Order> list = control.getOrders();
+        Order order = list.get(0);
+        control.cancelOrder(order);
     }
     
 }

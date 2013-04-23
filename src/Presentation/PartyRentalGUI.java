@@ -810,7 +810,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(resourcesMenuButton)
                 .add(37, 37, 37)
                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -987,7 +987,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(jLabel9)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 218, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 137, Short.MAX_VALUE)
                                 .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
@@ -998,7 +998,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(totalSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(OrderLayout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 250, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 112, Short.MAX_VALUE)
                                 .add(jLabel14)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(discount, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1013,7 +1013,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                     .add(jTabbedPane1)
                                     .add(OrderLayout.createSequentialGroup()
                                         .add(remainingDelivery, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, Short.MAX_VALUE)
                                         .add(remainingReturn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(21, 21, 21)))))))
                 .addContainerGap())
@@ -1521,7 +1521,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
-                        .add(0, 138, Short.MAX_VALUE)
+                        .add(0, 0, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(ResourceDoneLayout.createSequentialGroup()
                                 .add(getRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1720,7 +1720,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -2223,7 +2223,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void cancelOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderButtonActionPerformed
         Order currentOrder = (Order) orderList.getSelectedValue();
-        currentOrder.setCancelled(true);
+        con.cancelOrder(currentOrder);
     }//GEN-LAST:event_cancelOrderButtonActionPerformed
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed

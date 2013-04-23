@@ -184,28 +184,19 @@ public class OrderMapper {
 
     boolean cancelOrder(Order order, Connection connection) {
         boolean status = false;
-        String SQLString = "UPDATE orders"
-                + " SET canceled=?"
-                + "where order_id=?";
+        String SQLString = "update orders "
+                        + " set canceled = 'Y' "
+                        + " where order_id = ? ";
         PreparedStatement statement = null;
         int rowsUpdated = 0;
-
-
         try {
             statement = connection.prepareStatement(SQLString);
-            if (order.isCancelled() == true) {
-                statement.setString(1, "y");
-              
-            } else {
-                return status;
-            }
-            statement.setInt(2, order.getOrderID());
-         
+            statement.setInt(1, order.getOrderID());
             rowsUpdated = statement.executeUpdate();
- 
             if (rowsUpdated == 1) {
                 status = true;
             }
+            connection.commit();
         } catch (SQLException ex) {
             System.out.println("Error in the OrderMapper(CancelOrder) - " + ex);
         }
