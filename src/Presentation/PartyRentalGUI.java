@@ -1283,6 +1283,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel27.setText("Unit Price");
 
         TruckIDTextField.setEditable(false);
+        TruckIDTextField.setEnabled(false);
         TruckIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TruckIDTextFieldActionPerformed(evt);
@@ -1290,6 +1291,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
 
         TruckSizeTextField.setEditable(false);
+        TruckSizeTextField.setEnabled(false);
 
         EditTruckButton.setText("Edit Truck");
         EditTruckButton.addActionListener(new java.awt.event.ActionListener() {

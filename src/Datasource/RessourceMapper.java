@@ -191,10 +191,12 @@ public class RessourceMapper {
         statement.setString(1, resource.getResourceName());
         statement.setInt(2, resource.getQuantity());
         statement.setFloat(3, (float)resource.getPrice());
-        statement.setInt(4, resource.getResourceID());
-        statement.setString(5, "" + active);
+        statement.setInt(5, resource.getResourceID());
+        statement.setString(4, "" + active);
         rowsInserted = statement.executeUpdate();
+         System.out.println(rowsInserted);
         if(rowsInserted == 1){
+            System.out.println("Returned true");
             status = true;
             connection.commit();
         }
