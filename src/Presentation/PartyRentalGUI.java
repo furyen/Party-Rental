@@ -2188,7 +2188,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
         if (!orderList.isSelectionEmpty()) {
-            con.editOrder((Order) orderList.getSelectedValue());
+            con.cancelOrder((Order) orderList.getSelectedValue());
             editOrder = (Order) orderList.getSelectedValue();
             resources.clear();
             truckDelivery.clear();

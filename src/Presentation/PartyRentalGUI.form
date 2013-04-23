@@ -673,7 +673,7 @@
                               <Component id="resourcesMenuButton" alignment="3" min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="554" max="32767" attributes="0"/>
+                      <EmptySpace pref="584" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -930,7 +930,7 @@
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="endDate" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <EmptySpace pref="218" max="32767" attributes="0"/>
+                                          <EmptySpace pref="265" max="32767" attributes="0"/>
                                           <Component id="getAvailableResourcesButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="eventAddress" max="32767" attributes="0"/>
@@ -1199,7 +1199,7 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="138" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="185" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="getRes" min="-2" max="-2" attributes="0"/>
@@ -1238,7 +1238,7 @@
                           <Component id="GetExistingTrucksPanel" max="32767" attributes="0"/>
                           <Component id="TruckHandlingPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="348" max="32767" attributes="0"/>
+                      <EmptySpace pref="387" max="32767" attributes="0"/>
                       <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

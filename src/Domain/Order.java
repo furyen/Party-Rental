@@ -154,7 +154,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Delivery: " + startDate  +" - Address: " + adress;
+        return "Delivery: " + startDate  +" - Address: " + adress + "Cancelled : " + cancelled;
     }
     
 }
