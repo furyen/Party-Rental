@@ -51,6 +51,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private DefaultListModel selectedOrderDetailModel = new DefaultListModel();
     private ArrayList<OrderDetail> selectedOrderDetail = null;
     private Order editOrder;
+    private DefaultListModel searchCustomerModel2 = new DefaultListModel();
+    private ArrayList<Order> filteredOrdersByName = new ArrayList();
 
     public PartyRentalGUI() {
         initComponents();
@@ -67,10 +69,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         for (Truck truck : allTrucks) {
             truckListModel.addElement(truck);
         }
-        
+
         activeResButtonGroup.add(activeRes);
         activeResButtonGroup.add(inactiveRes);
-
+        searchOrdersButtonGroup.add(depositPaidRadio);
+        searchOrdersButtonGroup.add(nothingPaidRadio);
+        searchOrdersButtonGroup.add(searchByName);
+        searchOrdersButtonGroup.add(fullyPaidRadio);
     }
 
     public void refreshAvailableResources(ArrayList<Resource> inventory) {
@@ -322,6 +327,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         newPaymentTextField = new javax.swing.JTextField();
         activeResButtonGroup = new javax.swing.ButtonGroup();
+        searchCustomer2 = new javax.swing.JDialog();
+        searchChoose = new javax.swing.JButton();
+        searchCancel = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        customerList2 = new javax.swing.JList();
+        searchOrdersButtonGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -419,10 +431,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         orders = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         orderList = new javax.swing.JList();
-        fullyPaidRadio = new javax.swing.JRadioButton();
         depositPaidRadio = new javax.swing.JRadioButton();
         nothingPaidRadio = new javax.swing.JRadioButton();
         searchByName = new javax.swing.JRadioButton();
+        fullyPaidRadio = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         depositPaidButton = new javax.swing.JButton();
         editOrderButton = new javax.swing.JButton();
@@ -439,9 +451,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        discountLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         addressLabel = new javax.swing.JLabel();
+        discountLabel = new javax.swing.JLabel();
         truckDeliverLabel = new javax.swing.JLabel();
         truckReturnLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
@@ -632,7 +644,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        saveOrderResult.setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        saveOrderResult.setBounds(new java.awt.Rectangle(300, 300, 0, 0));
+        saveOrderResult.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         saveOrderResult.setMinimumSize(new java.awt.Dimension(167, 71));
         saveOrderResult.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
 
@@ -677,6 +690,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
         paymentEditingDonePopup.getContentPane().add(OK, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
+        paymentStatus.setBounds(new java.awt.Rectangle(300, 300, 0, 0));
         paymentStatus.setMinimumSize(new java.awt.Dimension(355, 155));
         paymentStatus.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -708,6 +722,54 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
         });
         paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, -1));
+
+        searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
+        searchCustomer2.setMinimumSize(new java.awt.Dimension(470, 267));
+        searchCustomer2.setResizable(false);
+        searchCustomer2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        searchChoose.setText("Choose");
+        searchChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchChooseActionPerformed(evt);
+            }
+        });
+        searchCustomer2.getContentPane().add(searchChoose, new org.netbeans.lib.awtextra.AbsoluteConstraints(297, 223, 167, -1));
+
+        searchCancel.setText("Cancel");
+        searchCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchCancelActionPerformed(evt);
+            }
+        });
+        searchCustomer2.getContentPane().add(searchCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 223, 130, -1));
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        customerList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerList2MouseClicked(evt);
+            }
+        });
+        jScrollPane13.setViewportView(customerList2);
+
+        org.jdesktop.layout.GroupLayout jPanel8Layout = new org.jdesktop.layout.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel8Layout.createSequentialGroup()
+                .add(0, 0, Short.MAX_VALUE)
+                .add(jScrollPane13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 445, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        searchCustomer2.getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 150, 0, 0));
@@ -748,7 +810,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(resourcesMenuButton)
                 .add(37, 37, 37)
                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(317, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -759,7 +821,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(resourcesMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(545, Short.MAX_VALUE))
+                .addContainerGap(554, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
@@ -951,7 +1013,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                     .add(jTabbedPane1)
                                     .add(OrderLayout.createSequentialGroup()
                                         .add(remainingDelivery, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 196, Short.MAX_VALUE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 243, Short.MAX_VALUE)
                                         .add(remainingReturn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 169, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(22, 22, 22)))))))
                 .addContainerGap())
@@ -1023,7 +1085,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, BookingLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(Order, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 104, Short.MAX_VALUE)
                 .add(Customer, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(BookingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -1510,17 +1572,32 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         orders.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 67, 670, 140));
 
-        fullyPaidRadio.setText("Fully Paid");
-        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 147, -1));
-
         depositPaidRadio.setText("Deposit Paid");
+        depositPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositPaidRadioActionPerformed(evt);
+            }
+        });
         orders.add(depositPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, -1, -1));
 
         nothingPaidRadio.setText("Nothing Paid");
+        nothingPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nothingPaidRadioActionPerformed(evt);
+            }
+        });
         orders.add(nothingPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
         searchByName.setText("Only Name");
         orders.add(searchByName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
+
+        fullyPaidRadio.setText("Fully Paid");
+        fullyPaidRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fullyPaidRadioActionPerformed(evt);
+            }
+        });
+        orders.add(fullyPaidRadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 147, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
 
@@ -1578,12 +1655,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel35.setText("Last Name");
         jPanel5.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, -1, -1));
-
-        firstNameSearch.setText("jTextField1");
-        jPanel5.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, -1, -1));
-
-        lastNameSearch.setText("jTextField1");
-        jPanel5.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, -1, -1));
+        jPanel5.add(firstNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 25, 90, 30));
+        jPanel5.add(lastNameSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 59, 90, 30));
 
         searchCustomerButton.setText("Search");
         searchCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1602,7 +1675,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         orderDetails.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orderDetailList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "No order selected" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -1619,10 +1692,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel38.setText("Truck delivering");
         orderDetails.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
 
-        jLabel39.setText("Truck return");
-        orderDetails.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
+        jLabel6.setText("Truck return");
+        orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
         orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, 20));
+        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
         orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
         orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
 
@@ -1634,7 +1707,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 backToMenuActionPerformed(evt);
             }
         });
-        EventManagement.add(backToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 790, -1, -1));
+        EventManagement.add(backToMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 640, -1, -1));
 
         mainPanel.add(EventManagement, "eventManagement");
 
@@ -1840,10 +1913,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         editResQuantity.setText(con.getResource(selectedResource).getQuantity() + "");
         editResPrice.setText(con.getResource(selectedResource).getPrice() + "");
         editResUnitSize.setText(con.getResource(selectedResource).getUnitSize() + "");
-        if (con.getResource(selectedResource).isActive()){
+        if (con.getResource(selectedResource).isActive()) {
             activeRes.setSelected(true);
         } else {
-          inactiveRes.setSelected(true);  
+            inactiveRes.setSelected(true);
         }
     }//GEN-LAST:event_getResourceActionPerformed
 
@@ -1940,8 +2013,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             for (Truck truck : allTrucks) {
                 truckListModel.addElement(truck);
             }
-        } 
-        else {
+        } else {
             jLabel32.setText("There was an error editing the truck");
         }
     }//GEN-LAST:event_EditTruckButtonActionPerformed
@@ -1962,50 +2034,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             jLabel33.setText("There was an error creating the truck");
         }
     }//GEN-LAST:event_AddNewTruckButtonActionPerformed1
-
-    private void orderListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderListMouseClicked
-        if (orderList.isSelectionEmpty()) {
-            selectedOrderDetailModel.clear();
-            selectedOrderDetailModel.add(0, "No Customer Selected");
-        } else {
-            selectedOrderDetailModel.clear();
-            Order o = (Order) orderList.getSelectedValue();
-            ArrayList<OrderDetail> selectedOrderDetails = con.getOrderDetail(o);
-            for (OrderDetail od : selectedOrderDetails) {
-                selectedOrderDetailModel.addElement(od);
-                orderDetailList.setModel(selectedOrderDetailModel);
-                discountLabel.setText(o.getDiscount() + "");
-//            truckDeliverLabel.setText(null);
-//            truckReturnLabel.setText();
-                addressLabel.setText(o.getAdress());
-
-            }
-        }
-    }//GEN-LAST:event_orderListMouseClicked
-
-    private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
-        Order currentOrder = (Order) orderList.getSelectedValue();
-        oldPaymentTextField.setText("" + currentOrder.getPaidAmount());
-        paymentStatus.setVisible(true);
-
-    }//GEN-LAST:event_depositPaidButtonActionPerformed
-
-    private void cancelOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelOrderButtonActionPerformed
-
-    private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
-        String first, last;
-        first = firstNameSearch.getText();
-        last = lastNameSearch.getText();
-
-    }//GEN-LAST:event_searchCustomerButtonActionPerformed
-
-    private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
-        CardLayout cl = (CardLayout) (mainPanel.getLayout());
-
-        cl.show(mainPanel, "menu");
-    }//GEN-LAST:event_backToMenuActionPerformed
 
     private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
         paymentEditingDonePopup.setVisible(false);
@@ -2051,8 +2079,109 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed1
 
-    private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
+    private void inactiveResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inactiveResActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inactiveResActionPerformed
 
+    private void searchChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchChooseActionPerformed
+        Customer c = (Customer) customerList2.getSelectedValue();
+        int customerID = c.getCustomerID();
+        ordersModel.clear();
+        orderList.setModel(ordersModel);
+        for (Order o : allOrders) {
+            if (o.getCustomerID() == customerID) {
+                filteredOrdersByName.add(o);
+            }
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+        searchCustomer2.setVisible(false);
+
+    }//GEN-LAST:event_searchChooseActionPerformed
+
+    private void searchCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCancelActionPerformed
+        searchCustomer2.setVisible(false);
+    }//GEN-LAST:event_searchCancelActionPerformed
+
+    private void customerList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerList2MouseClicked
+    }//GEN-LAST:event_customerList2MouseClicked
+
+    private void orderListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderListMouseClicked
+        if (orderList.isSelectionEmpty()) {
+            selectedOrderDetailModel.clear();
+            selectedOrderDetailModel.add(0, "No Order Selected");
+        } else {
+            selectedOrderDetailModel.clear();
+            Order o = (Order) orderList.getSelectedValue();
+            ArrayList<OrderDetail> selectedOrderDetails = con.getOrderDetail(o);
+            for (OrderDetail od : selectedOrderDetails) {
+                selectedOrderDetailModel.addElement(od);
+                orderDetailList.setModel(selectedOrderDetailModel);
+                discountLabel.setText(o.getDiscount() + "");
+                if (o.isTruckDelivery() == true) {
+                    truckDeliverLabel.setText("yes");
+                } else {
+                    truckDeliverLabel.setText("no");
+                }
+                if (o.isTruckReturn() == true) {
+                    truckReturnLabel.setText("yes");
+                } else {
+                    truckReturnLabel.setText("no");
+                }
+                addressLabel.setText(o.getAdress());
+
+            }
+        }
+    }//GEN-LAST:event_orderListMouseClicked
+
+    private void depositPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidRadioActionPerformed
+        ordersModel.clear();
+        filteredOrdersByName.clear();
+        for (Order o : allOrders) {
+            if ((o.getFullPrice() * 0.25) <= o.getPaidAmount()) {
+                filteredOrdersByName.add(o);
+            }
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_depositPaidRadioActionPerformed
+
+    private void nothingPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nothingPaidRadioActionPerformed
+        ordersModel.clear();
+        filteredOrdersByName.clear();
+        for (Order o : allOrders) {
+            if (o.getPaidAmount() == 0) {
+                filteredOrdersByName.add(o);
+            }
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_nothingPaidRadioActionPerformed
+
+    private void fullyPaidRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullyPaidRadioActionPerformed
+        ordersModel.clear();
+        filteredOrdersByName.clear();
+        for (Order o : allOrders) {
+            if (o.getPaidAmount() == o.getFullPrice()) {
+                filteredOrdersByName.add(o);
+            }
+        }
+        for (Order o : filteredOrdersByName) {
+            ordersModel.addElement(o);
+        }
+    }//GEN-LAST:event_fullyPaidRadioActionPerformed
+
+    private void depositPaidButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositPaidButtonActionPerformed
+        Order currentOrder = (Order) orderList.getSelectedValue();
+        oldPaymentTextField.setText("" + currentOrder.getPaidAmount());
+        paymentStatus.setVisible(true);
+
+    }//GEN-LAST:event_depositPaidButtonActionPerformed
+
+    private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
         if (!orderList.isSelectionEmpty()) {
             con.editOrder((Order) orderList.getSelectedValue());
             editOrder = (Order) orderList.getSelectedValue();
@@ -2087,9 +2216,29 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editOrderButtonActionPerformed
 
-    private void inactiveResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inactiveResActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inactiveResActionPerformed
+    private void cancelOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelOrderButtonActionPerformed
+        Order currentOrder = (Order) orderList.getSelectedValue();
+        currentOrder.setCancelled(true);
+    }//GEN-LAST:event_cancelOrderButtonActionPerformed
+
+    private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
+        String first, last;
+        first = firstNameSearch.getText();
+        last = lastNameSearch.getText();
+        searchCustomer2.setVisible(true);
+        customerList2.setModel(searchCustomerModel2);
+        ArrayList<Customer> list = con.getCustomerList(firstNameSearch.getText(), lastNameSearch.getText());
+        for (Customer c : list) {
+            searchCustomerModel2.addElement(c);
+        }
+
+    }//GEN-LAST:event_searchCustomerButtonActionPerformed
+
+    private void backToMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToMenuActionPerformed
+        //        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        //
+        //        cl.show(mainPanel, "menu");
+    }//GEN-LAST:event_backToMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2165,6 +2314,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField customerAddress;
     private javax.swing.JTextField customerID;
     private javax.swing.JList customerList;
+    private javax.swing.JList customerList2;
     private javax.swing.JList customerOrders;
     private javax.swing.JPanel deliveryPanel;
     private javax.swing.JButton depositPaidButton;
@@ -2226,11 +2376,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -2238,8 +2388,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2277,9 +2429,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JDialog saveOrderResult;
     private javax.swing.JLabel saveOrderResultLabel;
     private javax.swing.JRadioButton searchByName;
+    private javax.swing.JButton searchCancel;
+    private javax.swing.JButton searchChoose;
     private javax.swing.JDialog searchCustomer;
+    private javax.swing.JDialog searchCustomer2;
     private javax.swing.JButton searchCustomerButton;
     private javax.swing.JButton searchCustomersButton;
+    private javax.swing.ButtonGroup searchOrdersButtonGroup;
     private javax.swing.JLabel spEventAddress;
     private javax.swing.JLabel spPaid;
     private javax.swing.JLabel spTotalPrice;
