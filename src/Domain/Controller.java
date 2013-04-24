@@ -167,12 +167,17 @@ public class Controller {
     public Customer createCustomer(String firstName, String lastName, String adress) {
         Customer newCustomer = null;
         int customerID;
-
-        dbFacade.startNewBusinessTransaction();
-        customerID = 0;
-        newCustomer = new Customer(customerID, firstName, lastName, adress);
-        dbFacade.createCustomer(newCustomer);
-        currentCustomer = newCustomer;
+        
+        try{
+            dbFacade.startNewBusinessTransaction();
+            customerID = dbFacade.getUniqueCustomerID();
+            newCustomer = new Customer(customerID, firstName, lastName, adress);
+            dbFacade.createCustomer(newCustomer);
+            currentCustomer = newCustomer;
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the createCustomer - " + ex);
+        }
 
         return newCustomer;
     }
@@ -241,7 +246,7 @@ public class Controller {
      */
     public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate) {
         boolean status = false;
-        int orderID;
+        int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
         
@@ -249,9 +254,9 @@ public class Controller {
             getCustomer(customerID);
         }
 
-        orderID = 0;
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
         currentOrder = newOrder;
+        System.out.println();
         status = dbFacade.createOrder(newOrder);
 
 
@@ -265,11 +270,18 @@ public class Controller {
      */
     public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
+        System.out.println(orderDetail.getOrderID());
         orderDetail.setRessourceName(resourceName);
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-
+    
+    /*
+     * Books a truck for an Order
+     * It needs to be used for each truck which is booked for an order(if there are more trucks for an oreder)
+     * The char is 0 for delivery and 1 for return
+     * Ends in UnitOfWorkProcessOrder
+     */
     public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
         dbFacade.truckBooking(tr);
@@ -283,11 +295,14 @@ public class Controller {
         ArrayList<Order> list = dbFacade.getOrders();
         return list;
     }
-
+    
+    /*
+     * Gets a list of all orders for a specific customer
+     * Ends in OrderMapper
+     */
     public ArrayList<Order> getCustomerOrderHistory(int customerID) {
         ArrayList<Order> orders = dbFacade.getCustomerOrders(customerID);
         return orders;
-
     }
     
     /*
@@ -322,7 +337,8 @@ public class Controller {
 
         return status;
     }
-
+    
+    
     public boolean savePayment(Order currentOrder, Double newPayment) {
         boolean status = false;
         currentOrder.setPaidAmount(newPayment);
