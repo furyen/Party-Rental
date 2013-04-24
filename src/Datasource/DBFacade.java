@@ -65,34 +65,29 @@ public class DBFacade {
     public boolean createNewResource(Resource resource) throws SQLException {
         RessourceMapper ressourceMapper = new RessourceMapper();
         boolean status = false;
-
         status = ressourceMapper.createNewResource(resource, connection);
-
+        
         return status;
     }
 
     public Resource getResource(String name) throws SQLException {
         RessourceMapper resourceMapper = new RessourceMapper();
         Resource resource;
-
         resource = resourceMapper.getResource(name, connection);
-
+        
         return resource;
     }
 
     public boolean editResource(Resource resource) throws SQLException {
         boolean status = false;
         RessourceMapper resourceMapper = new RessourceMapper();
-
         status = resourceMapper.editResource(resource, connection);
-
+        
         return status;
-
     }
 
     public ArrayList<Resource> getAvailableResources(java.util.Date startDate, java.util.Date endDate) {
         ArrayList<Resource> list = null;
-
         list = new RessourceMapper().getAvailableResources(startDate, endDate, connection);
 
         return list;
@@ -108,7 +103,6 @@ public class DBFacade {
     public ArrayList<Customer> getCustomerList(String firstName, String lastName) throws SQLException {
         ArrayList<Customer> customerList;
         CustomerMapper customerMapper = new CustomerMapper();
-
         customerList = customerMapper.getCustomerList(firstName, lastName, connection);
 
         return customerList;
@@ -117,7 +111,6 @@ public class DBFacade {
 
     public boolean createCustomer(Customer newCustomer) {
         boolean status = false;
-
         if (uow != null) {
             uow.newCustomer(newCustomer);
             status = true;
@@ -130,13 +123,12 @@ public class DBFacade {
         if (uow == null) {
             uow = new UnitOfWorkProcessOrder();
         }
-
+        
     }
 
     public int getUniqueCustomerID() throws SQLException {
         CustomerMapper customerMapper = new CustomerMapper();
         int uniqueID = 0;
-
         uniqueID = customerMapper.getUniqueCustomerID(connection);
 
         return uniqueID;
@@ -155,7 +147,6 @@ public class DBFacade {
 
     public boolean createNewInvoice(Order newInvoice) {
         boolean status = false;
-
         if (uow != null) {
             uow.createNewInvoice(newInvoice);
             status = true;
@@ -167,7 +158,6 @@ public class DBFacade {
     public int getUniqueOrderID() {
         int uniqueID;
         OrderMapper orderMapper = new OrderMapper();
-
         uniqueID = orderMapper.getUniqueOrderID(connection);
 
         return uniqueID;
@@ -175,7 +165,6 @@ public class DBFacade {
 
     public boolean createOrder(Order newOrder) {
         boolean status = false;
-
         if (uow != null) {
             uow.createNewOrder(newOrder);
             status = true;
@@ -186,7 +175,6 @@ public class DBFacade {
 
     public boolean createOrderDetail(OrderDetail orderDetail) {
         boolean status = false;
-
         if (uow != null) {
             uow.createOrderDetail(orderDetail);
             status = true;
@@ -212,9 +200,7 @@ public class DBFacade {
     public boolean cancelOrder(Order order) {
         boolean status = false;
         OrderMapper orderMapper = new OrderMapper();
-        
         status = orderMapper.cancelOrder(order, connection);
-        
         
         return status;
     }
@@ -222,7 +208,6 @@ public class DBFacade {
     public Customer getCustomer(int customerID) {
         CustomerMapper customerMapper = new CustomerMapper();
         Customer customer = null;
-        
         customer = customerMapper.getCustomer(customerID, connection);
         
         return customer;
@@ -269,7 +254,6 @@ public class DBFacade {
     public boolean deactiveResource(int resourceID) {
         boolean status = false;
         RessourceMapper resourceMapper = new RessourceMapper();
-        
         status = resourceMapper.deactivateOrder(resourceID, connection);
         
         return status;
@@ -278,9 +262,7 @@ public class DBFacade {
     public boolean reactivateResource(String resourceName) {
         boolean status = false;
         RessourceMapper resourceMapper = new RessourceMapper();
-        
         status = resourceMapper.reactivateResource(resourceName, connection);
-        
         
         return status;
     }
