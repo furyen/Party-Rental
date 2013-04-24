@@ -702,11 +702,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         paymentStatus.getContentPane().add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 20, 136, -1));
 
         oldPaymentTextField.setEnabled(false);
-        oldPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oldPaymentTextFieldActionPerformed(evt);
-            }
-        });
         paymentStatus.getContentPane().add(oldPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 12, 80, 30));
 
         saveNewPayment.setText("Save");
@@ -719,12 +714,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel41.setText("Payment new amount");
         paymentStatus.getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 54, 136, -1));
-
-        newPaymentTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPaymentTextFieldActionPerformed(evt);
-            }
-        });
         paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, -1));
 
         searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
@@ -825,8 +814,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         mainPanel.setLayout(new java.awt.CardLayout());
 
-        Menu.setPreferredSize(null);
-
         jButton5.setText("Make a booking");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -860,7 +847,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(resourcesMenuButton)
                 .add(37, 37, 37)
                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -871,12 +858,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(resourcesMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(401, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
-
-        Booking.setPreferredSize(null);
 
         jButton1.setText("Back to Main Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -1107,9 +1092,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(jLabel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jLabel2)
                             .add(totalPrice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .add(OrderLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(totalSize, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(totalSize, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1152,7 +1135,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         mainPanel.add(Booking, "booking");
 
         ResourceDone.setMaximumSize(new java.awt.Dimension(720, 276));
-        ResourceDone.setPreferredSize(null);
 
         jButton9.setText("Back to Main Menu");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -1256,26 +1238,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel23.setText("Unit Size");
 
-        editResPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editResPriceActionPerformed(evt);
-            }
-        });
-
-        editResQuantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editResQuantityActionPerformed(evt);
-            }
-        });
-
         activeRes.setText("Active");
 
         inactiveRes.setText("Inacative");
-        inactiveRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inactiveResActionPerformed(evt);
-            }
-        });
 
         org.jdesktop.layout.GroupLayout editResLayout = new org.jdesktop.layout.GroupLayout(editRes);
         editRes.setLayout(editResLayout);
@@ -1402,11 +1367,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         TruckIDTextField.setEditable(false);
         TruckIDTextField.setEnabled(false);
-        TruckIDTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TruckIDTextFieldActionPerformed(evt);
-            }
-        });
 
         TruckSizeTextField.setEditable(false);
         TruckSizeTextField.setEnabled(false);
@@ -1574,7 +1534,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .add(0, 59, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(ResourceDoneLayout.createSequentialGroup()
                                 .add(getRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1603,7 +1563,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 204, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1903,8 +1863,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void searchCustomersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomersButtonActionPerformed
+        //Gets the customers with the input name as an object displayed in the JList
         searchCustomerModel.clear();
-
         customerList.setModel(searchCustomerModel);
         ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
         for (Customer c : list) {
@@ -1932,12 +1892,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_newResQuantityActionPerformed
 
     private void createNewResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewResActionPerformed
+        //gets the input from the user to create a new Resource object
         String newName = newResName.getText();
         int newQuantity = Integer.parseInt(newResQuantity.getText());
         double newPrice = Double.parseDouble(newResPrice.getText());
         int newUnitSize = Integer.parseInt(newResUnitSize.getText());
+        //gives feedback for the user that the resource is created
         createdRes.setText(newName + " is created ");
         con.createNewResource(newName, newQuantity, newPrice, newUnitSize);
+        //makes sure that the new resource is displayed in the JList
         resourceModel.clear();
         allResources = con.getAvailableResources(null, null);
         for (Resource res : allResources) {
@@ -1948,6 +1911,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_createNewResActionPerformed
 
     private void UpdateResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateResourceActionPerformed
+        //runs after the getResourceActioPerformed. See details there.
+        //takes in all the info for a new resource, saves in the same ID as was used before
         String newName = editResName.getText();
         int newQuantity = Integer.parseInt(editResQuantity.getText());
         double newPrice = Double.parseDouble(editResPrice.getText());
@@ -1956,15 +1921,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_UpdateResourceActionPerformed
 
-    private void editResPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editResPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editResPriceActionPerformed
-
-    private void editResQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editResQuantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editResQuantityActionPerformed
-
     private void getResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getResourceActionPerformed
+        //when an object is selected from the JList it fills in all the information about it to the update panels fields
         String selectedResource = ((Resource) JList_resources.getSelectedValue()).getResourceName();
         con.getResource(selectedResource);
         editResName.setText(con.getResource(selectedResource).getResourceName());
@@ -2013,7 +1971,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_customerListMouseClicked
 
     private void customerOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerOrdersMouseClicked
-
+        
         if (customerOrders.isSelectionEmpty()) {
             orderDetailsModel.clear();
             orderDetailsModel.add(0, "No order selected");
@@ -2036,10 +1994,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         saveOrderResult.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void TruckIDTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TruckIDTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TruckIDTextFieldActionPerformed
 
     private void GetAllTrucksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetAllTrucksButtonActionPerformed
 
@@ -2097,11 +2051,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         paymentEditingDonePopup.setVisible(false);
     }//GEN-LAST:event_OKActionPerformed
 
-    private void oldPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPaymentTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oldPaymentTextFieldActionPerformed
-
     private void saveNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewPaymentActionPerformed
+        //changes the amount of payment done based on the user's input
         Order currentOrder = (Order) orderList.getSelectedValue();
         boolean status;
         oldPaymentTextField.setText("" + currentOrder.getPaidAmount());
@@ -2116,10 +2067,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         paymentStatus.setVisible(false);
 
     }//GEN-LAST:event_saveNewPaymentActionPerformed
-
-    private void newPaymentTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPaymentTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newPaymentTextFieldActionPerformed
 
     private void jButton2ActionPerformed1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed1
         allOrders = con.getOrders();
@@ -2136,10 +2083,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed1
-
-    private void inactiveResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inactiveResActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inactiveResActionPerformed
 
     private void searchChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchChooseActionPerformed
         Customer c = (Customer) customerList2.getSelectedValue();
