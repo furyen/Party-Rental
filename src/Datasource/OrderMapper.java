@@ -42,9 +42,9 @@ public class OrderMapper {
         java.sql.Date endSQL = new java.sql.Date(newOrderList.get(0).getEndDate().getTime());
 
         try {
-            int orderID = getUniqueOrderID(connection);
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, orderID);
+            System.out.println(newOrderList.get(0).getOrderID());
+            statement.setInt(1, newOrderList.get(0).getOrderID());
             statement.setInt(2, newOrderList.get(0).getCustomerID());
             statement.setDate(3, startSQL);
             statement.setDate(4, endSQL);
@@ -71,6 +71,7 @@ public class OrderMapper {
         try {
             statement = connection.prepareStatement(SQLString);
             for (OrderDetail orderDetail : newOrderDetailList) {
+                System.out.println(orderDetail.getOrderID());
                 statement.setInt(1, orderDetail.getOrderID());
                 statement.setInt(2, orderDetail.getResourceID());
                 statement.setInt(3, orderDetail.getQuantity());

@@ -167,12 +167,17 @@ public class Controller {
     public Customer createCustomer(String firstName, String lastName, String adress) {
         Customer newCustomer = null;
         int customerID;
-
-        dbFacade.startNewBusinessTransaction();
-        customerID = 0;
-        newCustomer = new Customer(customerID, firstName, lastName, adress);
-        dbFacade.createCustomer(newCustomer);
-        currentCustomer = newCustomer;
+        
+        try{
+            dbFacade.startNewBusinessTransaction();
+            customerID = dbFacade.getUniqueCustomerID();
+            newCustomer = new Customer(customerID, firstName, lastName, adress);
+            dbFacade.createCustomer(newCustomer);
+            currentCustomer = newCustomer;
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the createCustomer - " + ex);
+        }
 
         return newCustomer;
     }
@@ -241,7 +246,7 @@ public class Controller {
      */
     public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate) {
         boolean status = false;
-        int orderID;
+        int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
         
@@ -249,9 +254,9 @@ public class Controller {
             getCustomer(customerID);
         }
 
-        orderID = 0;
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
         currentOrder = newOrder;
+        System.out.println();
         status = dbFacade.createOrder(newOrder);
 
 
@@ -265,6 +270,7 @@ public class Controller {
      */
     public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
+        System.out.println(orderDetail.getOrderID());
         orderDetail.setRessourceName(resourceName);
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
