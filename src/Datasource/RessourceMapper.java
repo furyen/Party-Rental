@@ -198,11 +198,9 @@ public class RessourceMapper {
         String SQLString = "select * from ressource where ressource_name=?";
         PreparedStatement statement = null;
         
-        statement = connection.prepareStatement(SQLString);
-        
+        statement = connection.prepareStatement(SQLString);       
         statement.setString(1, name);
         ResultSet rs = statement.executeQuery();
-        
         if(rs.next()){
             resource = new Resource(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
         }
@@ -219,7 +217,6 @@ public class RessourceMapper {
             statement = connection.prepareStatement(SQLString1);
             statement.setInt(1, resourceID);
             int updatedRows = statement.executeUpdate();
-        
         }catch(Exception e){
             System.out.println("Fail in RessourceMapper - deleteResource");
             System.out.println(e.getMessage());
@@ -238,8 +235,7 @@ public class RessourceMapper {
         try{
             statement = connection.prepareStatement(SQLString);
             statement.setInt(1, resourceID);
-            rowsUpdated = statement.executeUpdate();
-            
+            rowsUpdated = statement.executeUpdate();  
             if(rowsUpdated == 1){
                 status = true;
             }
@@ -247,7 +243,6 @@ public class RessourceMapper {
         catch(SQLException ex){
             System.out.println("Error in the deactivateResource() in RessourceMapper - " + ex);
         }
-        
         
         return status;
     }
@@ -263,12 +258,10 @@ public class RessourceMapper {
         try{
             statement = connection.prepareStatement(SQLString);
             statement.setString(1, resourceName);
-            rowsUpdated = statement.executeUpdate();
-            
+            rowsUpdated = statement.executeUpdate(); 
             if(rowsUpdated == 1){
                 status = true;
-            }
-            
+            }       
         }
         catch(SQLException ex){
             System.out.println("Error in reactivateResource() in RessourceMapper - " + ex);
