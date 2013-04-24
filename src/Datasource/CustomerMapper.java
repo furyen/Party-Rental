@@ -56,9 +56,12 @@ public class CustomerMapper {
         String SQLString = "insert into customer values(?,?,?,?)";
         PreparedStatement statement = null;
         
+        
+        
         try{
+            int customerID = getUniqueCustomerID(connection);
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, newCustomerList.get(0).getCustomerID());
+            statement.setInt(1, customerID);
             statement.setString(2, newCustomerList.get(0).getFirstName());
             statement.setString(3, newCustomerList.get(0).getLastName());
             statement.setString(4, newCustomerList.get(0).getAdress());

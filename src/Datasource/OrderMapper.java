@@ -43,6 +43,7 @@ public class OrderMapper {
 
         try {
             statement = connection.prepareStatement(SQLString);
+            System.out.println(newOrderList.get(0).getOrderID());
             statement.setInt(1, newOrderList.get(0).getOrderID());
             statement.setInt(2, newOrderList.get(0).getCustomerID());
             statement.setDate(3, startSQL);
@@ -70,6 +71,7 @@ public class OrderMapper {
         try {
             statement = connection.prepareStatement(SQLString);
             for (OrderDetail orderDetail : newOrderDetailList) {
+                System.out.println(orderDetail.getOrderID());
                 statement.setInt(1, orderDetail.getOrderID());
                 statement.setInt(2, orderDetail.getResourceID());
                 statement.setInt(3, orderDetail.getQuantity());

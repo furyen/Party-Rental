@@ -22,9 +22,9 @@ public class Main {
         ArrayList<Truck> trucks = new ArrayList();
         ArrayList<Order> orders = new ArrayList();
         control.getConnection();
-//        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-//        java.util.Date startD = df.parse("31-12-1995");
-//        java.util.Date endD = df.parse("02-10-2001");
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date startD = df.parse("31-12-1995");
+        java.util.Date endD = df.parse("02-10-2001");
 //        Order order = new Order(1, 10, 150, "Dyringparken", startD, endD, false, 103230, 0.25, 0, 0);
 //        //int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount
 //        OrderDetail orderDetail1 = new OrderDetail(10, 5, 100);
@@ -63,10 +63,17 @@ public class Main {
 //        for(int i=0 ; i<list.size(); i++){
 //            System.out.println(list.get(i).getOrderDetails().toString());;
 //        }
+//        
+//        ArrayList<Order> list = control.getOrders();
+//        Order order = list.get(0);
+//        control.cancelOrder(order);
         
-        ArrayList<Order> list = control.getOrders();
-        Order order = list.get(0);
-        control.cancelOrder(order);
+        control.getConnection();
+        Customer newCustomer = control.createCustomer("Nicklas", "Jensen", "Brøndby Strand");
+        //System.out.println(control.createNewResource("Hamster", 500, 1.25, 1));
+        control.createOrder(3, 500, "Brøndby", startD, endD);
+        control.createOrderDetail(20, 400, "Hamster");
+        control.finishOrder();
     }
     
 }
