@@ -44,8 +44,9 @@ public class OrderMapper {
 
 
         try {
+            int orderID = getUniqueOrderID(connection);
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, newOrderList.get(0).getOrderID());
+            statement.setInt(1, orderID);
             statement.setInt(2, newOrderList.get(0).getCustomerID());
             statement.setDate(3, startSQL);
             statement.setDate(4, endSQL);

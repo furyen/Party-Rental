@@ -47,12 +47,13 @@ public class RessourceMapper {
         statement = connection.prepareStatement(SQLString);
         int rowsInserted = 0;
         char active = 'N';
+        int resourceID = getUniqueID(connection);
         
         if(resource.isActive() == true){
             active = 'Y';
         }
         
-        statement.setInt(1, resource.getResourceID());
+        statement.setInt(1, resourceID);
         statement.setString(2, resource.getResourceName());
         statement.setInt(3, resource.getQuantity());
         statement.setDouble(4, resource.getPrice());
