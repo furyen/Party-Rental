@@ -28,7 +28,6 @@ public class RessourceMapper {
         try{
             statement = connection.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
-            
             if(rs.next()){
                 uniqueID = rs.getInt(1);
             }
@@ -47,7 +46,6 @@ public class RessourceMapper {
         statement = connection.prepareStatement(SQLString);
         int rowsInserted = 0;
         char active = 'N';
-        
         if(resource.isActive() == true){
             active = 'Y';
         }
@@ -83,8 +81,6 @@ public class RessourceMapper {
                 +" FROM order_detail natural join orders"
                 +" where ((orders.start_date >= ?) and (orders.start_date <= ?))"
                 +" or ((orders.end_date >= ?) and (orders.end_date <= ?))";
-
-        
         PreparedStatement statement = null;
         
         try{
@@ -133,12 +129,9 @@ public class RessourceMapper {
                     auxiliarList.add(resourceDate); 
                 }        
             }
-         //   DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-//            java.util.Date startD = df.parse(startDate);
-//            java.util.Date endD = df.parse(endDate);
+       
             java.util.Date auxDate;
             int i;
-            
             if ( ! auxiliarList.isEmpty()) 
             while (startD.compareTo(endD) <= 0 ) {
                 for(i = 0; i<fullList.size()-1; i++){
@@ -164,12 +157,10 @@ public class RessourceMapper {
                 startD = auxDate;
             }
             
-            
         }catch (Exception e) {
             System.out.println("Fail in RessourceMapper - getAvailableResources");
             System.out.println(e.getMessage());
         }
-           
     
         return finalList;
     }
@@ -181,8 +172,7 @@ public class RessourceMapper {
                             + "where ressource_id=?";
         PreparedStatement statement = null;
         int rowsInserted = 0;
-        char active = 'N';
-        
+        char active = 'N';    
         if(resource.isActive() == true){
             active = 'Y';
         }
@@ -194,16 +184,15 @@ public class RessourceMapper {
         statement.setInt(5, resource.getResourceID());
         statement.setString(4, "" + active);
         rowsInserted = statement.executeUpdate();
-         System.out.println(rowsInserted);
         if(rowsInserted == 1){
-            System.out.println("Returned true");
             status = true;
             connection.commit();
         }
         
         return status;
                 
-    }
+     }
+     
      public Resource getResource(String name, Connection connection) throws SQLException{
         Resource resource = null;
         String SQLString = "select * from ressource where ressource_name=?";

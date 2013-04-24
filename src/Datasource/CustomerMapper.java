@@ -29,7 +29,6 @@ public class CustomerMapper {
             String custFirstName = rs.getString(2);
             String custLastName = rs.getString(3);
             String adress = rs.getString(4);
-            
             customerList.add(new Customer(customerID, custFirstName, custLastName, adress));
         }
         
