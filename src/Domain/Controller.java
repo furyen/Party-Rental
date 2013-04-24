@@ -48,7 +48,7 @@ public class Controller {
         availableResources = dbFacade.getAvailableResources(startDate, endDate);
 
 
-
+        
         return availableResources;
     }
 
