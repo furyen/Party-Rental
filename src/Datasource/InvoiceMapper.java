@@ -19,8 +19,6 @@ public class InvoiceMapper {
         int rowsInserted = 0;
         String SQLString = "insert into invoice values(?,?,?,?,?)";
         PreparedStatement statement = null;
-        System.out.println(newInvoiceList.toString());
-        System.out.println("Reached createNewInvoice - InvoiceMapper Level - " + newInvoiceList.toString());
         
         try{
             statement = connection.prepareStatement(SQLString);
@@ -32,7 +30,6 @@ public class InvoiceMapper {
                 statement.setDouble(5, 0);
                 rowsInserted += statement.executeUpdate();
             }
-            
             if(rowsInserted == newInvoiceList.size()){
                 status = true;
             }
@@ -58,10 +55,9 @@ public class InvoiceMapper {
             if (rowsInserted > 0)
                 status = true;
             connection.commit();
-        } catch (SQLException ex)
-                { 
-                    System.err.println("Error in InvoiceMapper - " + ex);
-                }
+        } catch (SQLException ex){ 
+            System.err.println("Error in InvoiceMapper - " + ex);
+        }
         
         return status;
     }

@@ -18,7 +18,6 @@ public class UnitOfWorkProcessOrder {
     private ArrayList<Order> newOrderList = new ArrayList();
     private ArrayList<OrderDetail> newOrderDetailList = new ArrayList();
     private ArrayList<TruckOrder> newTruckBooking = new ArrayList();
-    
     private ArrayList<Order> dirtyOrderList = new ArrayList();
     
     
@@ -62,8 +61,7 @@ public class UnitOfWorkProcessOrder {
                 System.out.println("Error in the commit() - " + ex);
             }
             
-            System.out.println("Error in the commit() - " + ex);
-            
+            System.out.println("Error in the commit() - " + ex);            
             status = false;
         }
 
@@ -78,8 +76,7 @@ public class UnitOfWorkProcessOrder {
 
     public void createNewOrder(Order newOrder) {
         if(!newOrderList.contains(newOrder)){
-            newOrderList.add(newOrder);
-            
+            newOrderList.add(newOrder); 
         }
     }
 
@@ -87,9 +84,7 @@ public class UnitOfWorkProcessOrder {
         if(!newOrderDetailList.contains(newOrderDetail)){
             newOrderDetailList.add(newOrderDetail);
         }
-    }
-    
-    
+    }   
 
     public void registerTruckBooking(TruckOrder tr) {
         newTruckBooking.add(tr);

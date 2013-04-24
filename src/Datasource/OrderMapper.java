@@ -23,7 +23,6 @@ public class OrderMapper {
         try {
             statement = connection.prepareStatement(SQLString);
             ResultSet rs = statement.executeQuery();
-
             if (rs.next()) {
                 uniqueID = rs.getInt(1);
             }
@@ -42,10 +41,10 @@ public class OrderMapper {
         java.sql.Date startSQL = new java.sql.Date(newOrderList.get(0).getStartDate().getTime());
         java.sql.Date endSQL = new java.sql.Date(newOrderList.get(0).getEndDate().getTime());
 
-
         try {
+            int orderID = getUniqueOrderID(connection);
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, newOrderList.get(0).getOrderID());
+            statement.setInt(1, orderID);
             statement.setInt(2, newOrderList.get(0).getCustomerID());
             statement.setDate(3, startSQL);
             statement.setDate(4, endSQL);
@@ -53,7 +52,6 @@ public class OrderMapper {
             statement.setInt(6, newOrderList.get(0).getUnitSize());
             statement.setString(7, "N");
             rowsInserted = statement.executeUpdate();
-
             if (rowsInserted == 1) {
                 status = true;
             }
@@ -78,7 +76,6 @@ public class OrderMapper {
                 statement.setInt(3, orderDetail.getQuantity());
                 rowsInserted += statement.executeUpdate();
             }
-
             if (rowsInserted == newOrderDetailList.size()) {
                 status = true;
             }
@@ -213,6 +210,7 @@ public class OrderMapper {
                 + " from order_detail,ressource  "
                 + " where order_detail.ressource_id = ressource.ressource_id";
         PreparedStatement statement = null;
+        
         try {
             statement = connection.prepareStatement(SQLString1);
             statement.setInt(1, customerID);
@@ -238,10 +236,10 @@ public class OrderMapper {
                 Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
                 orderList.add(order);
             }
+            
             statement = connection.prepareStatement(SQLString2);
             rs = statement.executeQuery();
             while (rs.next()) {
-                System.out.println("muie");
                 OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3));
@@ -252,7 +250,6 @@ public class OrderMapper {
                 while (!found && counter < orderList.size()) {
                     Order order = orderList.get(counter);
                     if (orderID == order.getOrderID()) {
-                        System.out.println("muie");
                         order.insertOrderDetail(orderDetail);
                         found = true;
                     } else {

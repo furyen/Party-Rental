@@ -53,6 +53,7 @@ public class TruckMapper {
                     auxiliarList.add(truck);
                 } 
             }
+            
             statement = con.prepareStatement(SQLString2);
             rs = statement.executeQuery();
             int id;
@@ -85,7 +86,6 @@ public class TruckMapper {
     
     public boolean truckBooking(TruckOrder tr, Connection con) throws SQLException {
         String SQLString = "insert into ";
-        System.out.println("muie");
         if (tr.getCh()  =='0'){
             SQLString += "truck_delivery";
         }
@@ -101,9 +101,7 @@ public class TruckMapper {
         statement.setInt(2, tr.getOrderID());
         statement.setInt(3, tr.getTruckRun());
         statement.setInt(4, tr.getOrderPartSize());
-        System.out.println("muie");
         rowsInserted = statement.executeUpdate();   
-        System.out.println("muie");
         return (rowsInserted == 1);
     }
 
