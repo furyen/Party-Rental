@@ -12,7 +12,16 @@ public class OrderDetail {
 
     private int orderID, resourceID, quantity;
     private String ressourceName;
+    private boolean active;
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+            
     public OrderDetail(int orderID, int resourceID, int quantity) {
         this.orderID = orderID;
         this.resourceID = resourceID;

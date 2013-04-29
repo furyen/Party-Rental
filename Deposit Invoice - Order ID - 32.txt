@@ -1,17 +1,16 @@
 HellebÃ¦k Party Rental						CVR: 32139429
-								Order nr: 5
+								Order nr: 32
 
 
 Dear TIMEA KISS
 You are receiving this invoice in accordance to your order
-with to the following address: Amagerbrogade
+with to the following address: dsafgvdsabdsfasd
 You have ordered the following things:
 
-Table: 1.0
-Table cloth: 1.0
+Chair: 1.0
 
-The full price: 265.0
+The full price: 2.0
 
-You are to pay the deposit of 25% which amounts to: 66.25
+You are to pay the deposit of 25% which amounts to: 0.5
 
 We hope you will enjoy the event

@@ -1086,10 +1086,7 @@
                                       <Component id="totalPrice" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="totalSize" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="totalSize" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
