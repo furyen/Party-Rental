@@ -60,7 +60,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         setLocation((Toolkit.getDefaultToolkit().getScreenSize().width) / 2 - getWidth() / 2, (Toolkit.getDefaultToolkit().getScreenSize().height) / 2 - getHeight() / 2);
         con.getConnection();
         TruckList.setModel(truckListModel);
-
+        customerOrders.setModel(customerOrdersModel);
+        orderDetailsList.setModel(orderDetailsModel);
         activeResButtonGroup.add(activeRes);
         activeResButtonGroup.add(inactiveRes);
 
@@ -2028,6 +2029,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         if (customerOrders.isSelectionEmpty()) {
             orderDetailsModel.clear();
             orderDetailsModel.add(0, "No order selected");
+            
         } else {
             orderDetailsModel.clear();
             Order c = (Order) customerOrders.getSelectedValue();
