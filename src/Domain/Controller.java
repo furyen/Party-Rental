@@ -251,7 +251,6 @@ public class Controller {
         int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
-        System.out.println(orderID);
         
         if(currentCustomer == null){
             getCustomer(customerID);
@@ -259,7 +258,6 @@ public class Controller {
 
         newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
         currentOrder = newOrder;
-        System.out.println();
         status = dbFacade.createOrder(newOrder);
 
 
@@ -273,7 +271,6 @@ public class Controller {
      */
     public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
-        System.out.println(orderDetail.getOrderID());
         orderDetail.setRessourceName(resourceName);
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
