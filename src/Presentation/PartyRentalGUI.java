@@ -1917,7 +1917,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         searchCustomerModel.clear();
 
         customerList.setModel(searchCustomerModel);
-        ArrayList<Customer> list = con.getCustomerList(fName.getText(), lName.getText());
+        ArrayList<Customer> list = con.getCustomerList(fName.getText().toUpperCase(), lName.getText().toUpperCase());
         for (Customer c : list) {
             searchCustomerModel.addElement(c);
         }
