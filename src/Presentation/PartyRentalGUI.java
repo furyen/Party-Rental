@@ -470,6 +470,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
+        depositPaidLabel = new javax.swing.JLabel();
+        fullPriceLabel = new javax.swing.JLabel();
+        paidAmountLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
         searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
@@ -1714,7 +1717,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel36.setText("Address");
         orderDetails.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
 
-        jLabel37.setText("Deposit Paid");
+        jLabel37.setText("Deposit Amount");
         orderDetails.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, -1, -1));
 
         jLabel38.setText("Truck delivering");
@@ -1735,6 +1738,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel43.setText("Paid Amout");
         orderDetails.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
+
+        depositPaidLabel.setText("jLabel11");
+        orderDetails.add(depositPaidLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 60, 30));
+
+        fullPriceLabel.setText("jLabel11");
+        orderDetails.add(fullPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 60, 20));
+
+        paidAmountLabel.setText("jLabel11");
+        orderDetails.add(paidAmountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 70, 60, 30));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 800, 200));
 
@@ -2152,6 +2164,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 selectedOrderDetailModel.addElement(od);
                 orderDetailList.setModel(selectedOrderDetailModel);
                 discountLabel.setText(o.getDiscount() + "");
+                fullPriceLabel.setText(o.getFullPrice() + "");
+                paidAmountLabel.setText(o.getPaidAmount() + "");
+                depositPaidLabel.setText(o.getFullPrice()*0.25 + "");
                 if (o.isTruckDelivery() == true) {
                     truckDeliverLabel.setText("yes");
                 } else {
@@ -2367,6 +2382,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JList customerOrders;
     private javax.swing.JPanel deliveryPanel;
     private javax.swing.JButton depositPaidButton;
+    private javax.swing.JLabel depositPaidLabel;
     private javax.swing.JRadioButton depositPaidRadio;
     private javax.swing.JTextField discount;
     private javax.swing.JLabel discountLabel;
@@ -2383,6 +2399,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fName;
     private javax.swing.JTextField firstName;
     private javax.swing.JTextField firstNameSearch;
+    private javax.swing.JLabel fullPriceLabel;
     private javax.swing.JRadioButton fullyPaidRadio;
     private javax.swing.JPanel gbInventory;
     private javax.swing.JButton getAvailableResourcesButton;
@@ -2472,6 +2489,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JList orderDetailsList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JLabel paidAmountLabel;
     private javax.swing.JLabel paymentEditedLabel;
     private javax.swing.JDialog paymentEditingDonePopup;
     private javax.swing.JDialog paymentStatus;

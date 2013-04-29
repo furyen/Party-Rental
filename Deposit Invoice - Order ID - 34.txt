@@ -1,5 +1,5 @@
 HellebÃ¦k Party Rental						CVR: 32139429
-								Order nr: 30
+								Order nr: 34
 
 
 Dear TIMEA KISS
@@ -9,8 +9,8 @@ You have ordered the following things:
 
 Chair: 1.0
 
-The full price: 89.0
+The full price: 3.0
 
-You are to pay the deposit of 25% which amounts to: 22.25
+You are to pay the deposit of 25% which amounts to: 0.75
 
 We hope you will enjoy the event
