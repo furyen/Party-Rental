@@ -197,7 +197,7 @@ public class RessourceMapper {
      
      public Resource getResource(String name, Connection connection) throws SQLException{
         Resource resource = null;
-        String SQLString = "select * from ressource where ressource_name=?";
+        String SQLString = "select * from ressource where ressource_name=? for update of ressource_name, price, quantity nowait";
         PreparedStatement statement = null;
         
         statement = connection.prepareStatement(SQLString);       
