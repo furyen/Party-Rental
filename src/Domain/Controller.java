@@ -133,9 +133,11 @@ public class Controller {
      */
     public ArrayList<Customer> getCustomerList(String firstName, String lastName) {
         ArrayList<Customer> customerList = new ArrayList();
+        String firstNameUpper = firstName.toUpperCase();
+        String lastNameUpper = lastName.toUpperCase();
 
         try {
-            customerList = dbFacade.getCustomerList(firstName, lastName);
+            customerList = dbFacade.getCustomerList(firstNameUpper, lastNameUpper);
         } catch (SQLException ex) {
             System.out.println("Error in getCustomerList - " + ex);
         }
@@ -249,6 +251,7 @@ public class Controller {
         int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
         dbFacade.startNewBusinessTransaction();
+        System.out.println(orderID);
         
         if(currentCustomer == null){
             getCustomer(customerID);
