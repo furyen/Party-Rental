@@ -323,7 +323,7 @@ public class Controller {
                 if (orderDetail.getQuantity() != 0) {
                     for (Resource resource : resourceList) {
                         if (orderDetail.getResourceID() == resource.getResourceID()) {
-                            status = status && (orderDetail.getQuantity() < resource.getQuantity());
+                            status = status && (orderDetail.getQuantity() <= resource.getQuantity());
                         }
                     }
                 }
