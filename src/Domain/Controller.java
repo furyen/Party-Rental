@@ -163,7 +163,7 @@ public class Controller {
      * dbFacade.startNewBusinessTransaction() makes sure UnitOfWork object
      * is instantiated before using the UnitOfWorkProcessOrder
      * Ends in the UnitOfWordProcessOrder
-     */
+     */ 
     public Customer createCustomer(String firstName, String lastName, String adress) {
         Customer newCustomer = null;
         int customerID;
@@ -275,7 +275,13 @@ public class Controller {
         currentOrder.insertOrderDetail(orderDetail);
         dbFacade.createOrderDetail(orderDetail);
     }
-
+    
+    /*
+     * Books a truck for an Order
+     * It needs to be used for each truck which is booked for an order(if there are more trucks for an oreder)
+     * The char is 0 for delivery and 1 for return
+     * Ends in UnitOfWorkProcessOrder
+     */
     public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
         dbFacade.truckBooking(tr);
@@ -289,11 +295,14 @@ public class Controller {
         ArrayList<Order> list = dbFacade.getOrders();
         return list;
     }
-
+    
+    /*
+     * Gets a list of all orders for a specific customer
+     * Ends in OrderMapper
+     */
     public ArrayList<Order> getCustomerOrderHistory(int customerID) {
         ArrayList<Order> orders = dbFacade.getCustomerOrders(customerID);
         return orders;
-
     }
     
     /*
@@ -328,7 +337,8 @@ public class Controller {
 
         return status;
     }
-
+    
+    
     public boolean savePayment(Order currentOrder, Double newPayment) {
         boolean status = false;
         currentOrder.setPaidAmount(newPayment);

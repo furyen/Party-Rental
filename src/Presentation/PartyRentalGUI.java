@@ -1741,7 +1741,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
         jScrollPane10.setViewportView(orderDetailList);
 
-        orderDetails.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 260, 150));
+        orderDetails.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, 150));
 
         jLabel36.setText("Address");
         orderDetails.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
@@ -2256,7 +2256,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_depositPaidButtonActionPerformed
 
     private void editOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editOrderButtonActionPerformed
-        
+
         editConfirmation.pack();
         editConfirmation.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width) / 2 - getWidth() / 2, (Toolkit.getDefaultToolkit().getScreenSize().height) / 2 - getHeight() / 2);
         editConfirmation.setVisible(true);

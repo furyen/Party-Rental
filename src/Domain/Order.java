@@ -4,6 +4,8 @@
  */
 package Domain;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,12 +14,13 @@ import java.util.Date;
  * @author dekez
  */
 public class Order {
+
     private ArrayList<OrderDetail> orderDetails;
     private int customerID, orderID, unitSize;
     private String adress;
     private Date startDate, endDate;
     private boolean cancelled;
-    private double fullPrice, discount, aditionalCost,paidAmount;
+    private double fullPrice, discount, aditionalCost, paidAmount;
     private boolean truckDelivery, truckReturn;
 
     public boolean isTruckDelivery() {
@@ -35,7 +38,6 @@ public class Order {
     public void setTruckReturn(boolean truckReturn) {
         this.truckReturn = truckReturn;
     }
-    
 
     public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
         this.orderDetails = new ArrayList();
@@ -148,13 +150,17 @@ public class Order {
         this.paidAmount = paidAmount;
     }
 
-    public void insertOrderDetail(OrderDetail orderDetail){
+    public void insertOrderDetail(OrderDetail orderDetail) {
         orderDetails.add(orderDetail);
     }
 
     @Override
     public String toString() {
-        return "Delivery: " + startDate  +" - Address: " + adress + "Cancelled : " + cancelled;
+         DateFormat formatter = new SimpleDateFormat ("dd MMMM YYYY");
+        if (cancelled == true) {
+            return "Delivery: " + formatter.format(startDate) + " - Return: " + formatter.format(endDate) + " [Cancelled]";
+        } else {
+            return "Delivery: " + formatter.format(startDate) + " - Return: " + formatter.format(endDate);
+        }
     }
-    
 }
