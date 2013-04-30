@@ -4,10 +4,20 @@
  */
 package Datasource;
 
+import Domain.Package;
+import java.sql.Connection;
+import java.util.ArrayList;
+
 /**
  *
  * @author dekez
  */
 public class PackageMapper {
+
+    public ArrayList<Package> getAllPackages(Connection connection) {
+        ArrayList<Package> packageList = new ArrayList();
+        
+        
+    }
     
 }

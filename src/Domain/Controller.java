@@ -247,7 +247,7 @@ public class Controller {
      * newOrderList in UnitOfWorkProcessOrder
      * Ends in UnitOfWorkProcessOrder
      */
-    public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate) {
+    public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate, double amountPaid) {
         boolean status = false;
         int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
@@ -554,6 +554,19 @@ public class Controller {
     public ArrayList<Order> deleteTruck(int truckID){
         ArrayList<Order> list = dbFacade.deleteTruck(truckID);
         return list;
+    }
+    
+    /*
+     * Gets all packages that can be used.
+     * Ends in PackageMapper
+     */
+    
+    public ArrayList<Package> getAllPackages(){
+        ArrayList<Package> packageList = new ArrayList();
+        
+        packageList = dbFacade.getAllPackages();
+        
+        return packageList;
     }
 }
 
