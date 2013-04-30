@@ -468,6 +468,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         discountLabel = new javax.swing.JLabel();
         truckDeliverLabel = new javax.swing.JLabel();
         truckReturnLabel = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        fullPriceLabel = new javax.swing.JLabel();
+        paidAmount = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cancelledLabel = new javax.swing.JLabel();
         backToMenu = new javax.swing.JButton();
 
         searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
@@ -736,8 +742,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         paymentStatus.getContentPane().add(newPaymentTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 48, 80, -1));
 
         searchCustomer2.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
+        searchCustomer2.setMaximumSize(new java.awt.Dimension(470, 267));
         searchCustomer2.setMinimumSize(new java.awt.Dimension(470, 267));
+        searchCustomer2.setPreferredSize(new java.awt.Dimension(470, 267));
         searchCustomer2.setResizable(false);
+        searchCustomer2.setSize(new java.awt.Dimension(470, 300));
         searchCustomer2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         searchChoose.setText("Choose");
@@ -757,6 +766,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         searchCustomer2.getContentPane().add(searchCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 223, 130, -1));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search for customer", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 2, 14))); // NOI18N
+        jPanel8.setMaximumSize(new java.awt.Dimension(420, 267));
+        jPanel8.setMinimumSize(new java.awt.Dimension(420, 267));
 
         customerList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -866,7 +877,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(resourcesMenuButton)
                 .add(37, 37, 37)
                 .add(eventManagementButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 196, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         MenuLayout.setVerticalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -877,7 +888,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                         .add(bookingMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(resourcesMenuButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(401, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
@@ -1111,9 +1122,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(jLabel14, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jLabel2)
                             .add(totalPrice, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .add(OrderLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(totalSize, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .add(totalSize, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1577,7 +1586,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
+                        .add(0, 59, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(ResourceDoneLayout.createSequentialGroup()
                                 .add(getRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1606,7 +1615,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 204, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1745,20 +1754,46 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         orderDetails.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 260, 150));
 
         jLabel36.setText("Address");
-        orderDetails.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, -1, -1));
+        orderDetails.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, 20));
 
         jLabel37.setText("Discount");
-        orderDetails.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, -1, -1));
+        orderDetails.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, 20));
 
         jLabel38.setText("Truck delivering");
-        orderDetails.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
+        orderDetails.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, 20));
 
         jLabel6.setText("Truck return");
-        orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, -1, -1));
-        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 60, 20));
-        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 10));
-        orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 60, -1));
-        orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 120, 60, -1));
+        orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 20));
+
+        addressLabel.setText("21020303");
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 70, 20));
+
+        discountLabel.setText("21313121");
+        orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 70, 20));
+
+        truckDeliverLabel.setText("2131312");
+        orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 70, 20));
+
+        truckReturnLabel.setText("12102133");
+        orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 70, 20));
+
+        jLabel39.setText("Full Price");
+        orderDetails.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, 20));
+
+        fullPriceLabel.setText("21313121");
+        orderDetails.add(fullPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 70, 20));
+
+        paidAmount.setText("2131312");
+        orderDetails.add(paidAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 70, 20));
+
+        jLabel42.setText("Paid Amount");
+        orderDetails.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, 20));
+
+        jLabel11.setText("Cancelled");
+        orderDetails.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, 20));
+
+        cancelledLabel.setText("12102133");
+        orderDetails.add(cancelledLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 70, 20));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 800, 200));
 
@@ -2194,6 +2229,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 selectedOrderDetailModel.addElement(od);
                 orderDetailList.setModel(selectedOrderDetailModel);
                 discountLabel.setText(o.getDiscount() + "");
+                fullPriceLabel.setText(o.getFullPrice() + "");
+                paidAmount.setText(o.getPaidAmount() + "");
+                if (o.isCancelled() == true) {
+                    cancelledLabel.setText("yes");
+                } else {
+                    cancelledLabel.setText("no");
+                }
+                
                 if (o.isTruckDelivery() == true) {
                     truckDeliverLabel.setText("yes");
                 } else {
@@ -2398,6 +2441,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton bookingMenuButton;
     private javax.swing.JButton cancelOrderButton;
+    private javax.swing.JLabel cancelledLabel;
     private javax.swing.JButton confirm;
     private javax.swing.JButton createNewRes;
     private javax.swing.JPanel createRes1;
@@ -2425,6 +2469,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField fName;
     private javax.swing.JTextField firstName;
     private javax.swing.JTextField firstNameSearch;
+    private javax.swing.JLabel fullPriceLabel;
     private javax.swing.JRadioButton fullyPaidRadio;
     private javax.swing.JPanel gbInventory;
     private javax.swing.JButton getAvailableResourcesButton;
@@ -2442,6 +2487,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -2469,9 +2515,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2511,6 +2559,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JList orderDetailsList;
     private javax.swing.JList orderList;
     private javax.swing.JPanel orders;
+    private javax.swing.JLabel paidAmount;
     private javax.swing.JLabel paymentEditedLabel;
     private javax.swing.JDialog paymentEditingDonePopup;
     private javax.swing.JDialog paymentStatus;
