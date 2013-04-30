@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author dekez
  */
 public class Package {
-    ArrayList<PackageDetail> packageDetail;
+    ArrayList<PackageDetail> packageDetailList;
     int packageID;
     String packageName;
     double discount;
@@ -19,8 +19,12 @@ public class Package {
     public Package(int packageID, String packageName, double discount) {
         this.packageID = packageID;
         this.packageName = packageName;
-        packageDetail = new ArrayList();
+        packageDetailList = new ArrayList();
         this.discount = discount;
+    }
+    
+    public void addPackageDetail(PackageDetail packageDetail){
+        this.packageDetailList.add(packageDetail);
     }
     
     public double getDiscount(){
