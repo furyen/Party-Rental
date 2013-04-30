@@ -569,5 +569,10 @@ public class Controller {
         
         return packageList;
     }
+    
+    public boolean createNewPackage(String packageName, double discount){
+        
+        return false;
+    }
 }
 

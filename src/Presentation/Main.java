@@ -68,12 +68,13 @@ public class Main {
 //        Order order = list.get(0);
 //        control.cancelOrder(order);
         
-        control.getConnection();
-        Customer newCustomer = control.createCustomer("Nicklas", "Jensen", "Brøndby Strand");
+        Resource resource = control.getResource("Floor");
+        System.out.println(resource.isTentPart());
+        
+        Resource resource2 = control.getResource("Table");
+        System.out.println(resource2.isTentPart());
         //System.out.println(control.createNewResource("Hamster", 500, 1.25, 1));
-        control.createOrder(3, 500, "Brøndby", startD, endD);
-        control.createOrderDetail(20, 400, "Hamster");
-        control.finishOrder();
+       
     }
     
 }
