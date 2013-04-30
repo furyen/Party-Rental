@@ -168,6 +168,7 @@ public class TruckMapper {
 
     ArrayList<Order> deleteTruck(int truckID, Connection connection) {
         ArrayList<Order> list = new ArrayList();
+        
         return list;
     }
     
