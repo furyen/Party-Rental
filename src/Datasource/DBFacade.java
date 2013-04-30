@@ -273,4 +273,10 @@ public class DBFacade {
         return list;
     }
 
+    public ArrayList<Order> deleteTruck(int truckID) {
+        TruckMapper truckMapper = new TruckMapper();
+        ArrayList<Order> list = truckMapper.deleteTruck(truckID , connection);
+        return list;
+    }
+
 }

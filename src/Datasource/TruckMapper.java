@@ -4,6 +4,7 @@
  */
 package Datasource;
 
+import Domain.Order;
 import Domain.Resource;
 import Domain.Truck;
 import Domain.TruckOrder;
@@ -162,6 +163,11 @@ public class TruckMapper {
             System.out.println("Fail in TruckMapper - getTrucks");
             System.out.println(e.getMessage());
         }
+        return list;
+    }
+
+    ArrayList<Order> deleteTruck(int truckID, Connection connection) {
+        ArrayList<Order> list = new ArrayList();
         return list;
     }
     

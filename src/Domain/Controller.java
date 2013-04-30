@@ -550,5 +550,10 @@ public class Controller {
         ArrayList<Order> list = dbFacade.getAffectedOrders(resourceID);
         return list;
     }
+    
+    public ArrayList<Order> deleteTruck(int truckID){
+        ArrayList<Order> list = dbFacade.deleteTruck(truckID);
+        return list;
+    }
 }
 
