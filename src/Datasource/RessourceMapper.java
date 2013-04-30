@@ -96,23 +96,33 @@ public class RessourceMapper {
             ResultSet rs = statement.executeQuery();
             Resource resource,resource1,resource2;
             while (rs.next()) {
+                boolean tentPart;
+                if (rs.getString(6).charAt(0) == 'Y'){
+                    tentPart = true;
+                }
+                else {
+                    tentPart = false;
+                }
                 resource = new Resource(rs.getInt(1),
                                         rs.getString(2),
                                         rs.getInt(3),
                                         rs.getDouble(4),
-                                        rs.getInt(5)
+                                        rs.getInt(5),
+                                        tentPart
                                         );
                 resource1 = new Resource(rs.getInt(1),
                                         rs.getString(2),
                                         rs.getInt(3),
                                         rs.getDouble(4),
-                                        rs.getInt(5)
+                                        rs.getInt(5),
+                                        tentPart
                                         );
                 resource2 = new Resource(rs.getInt(1),
                                         rs.getString(2),
                                         rs.getInt(3),
                                         rs.getDouble(4),
-                                        rs.getInt(5)
+                                        rs.getInt(5),
+                                        tentPart
                                         );
                 fullList.add(resource);
                 finalList.add(resource1);
