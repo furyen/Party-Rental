@@ -29,8 +29,8 @@ public class Resource {
         return tentPart;
     }
     
-    public void setTentPart(boolean tent_part){
-        this.tentPart = tent_part;
+    public void setTentPart(boolean tentPart){
+        this.tentPart = tentPart;
     }
     
     public boolean isActive(){
