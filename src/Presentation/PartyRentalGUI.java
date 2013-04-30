@@ -1764,26 +1764,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Truck return");
         orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 20));
-
-        addressLabel.setText("21020303");
-        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 70, 20));
-
-        discountLabel.setText("21313121");
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 220, 20));
         orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 70, 20));
-
-        truckDeliverLabel.setText("2131312");
         orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 70, 20));
-
-        truckReturnLabel.setText("12102133");
         orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 70, 20));
 
         jLabel39.setText("Full Price");
         orderDetails.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, 20));
-
-        fullPriceLabel.setText("21313121");
         orderDetails.add(fullPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 70, 20));
-
-        paidAmount.setText("2131312");
         orderDetails.add(paidAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 70, 20));
 
         jLabel42.setText("Paid Amount");
@@ -1791,8 +1779,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel11.setText("Cancelled");
         orderDetails.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, 20));
-
-        cancelledLabel.setText("12102133");
         orderDetails.add(cancelledLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 70, 20));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 800, 200));

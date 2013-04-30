@@ -2368,19 +2368,13 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="addressLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="21020303"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="460" y="130" width="70" height="20"/>
+                      <AbsoluteConstraints x="460" y="130" width="220" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="discountLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="21313121"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="460" y="40" width="70" height="20"/>
@@ -2388,9 +2382,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="truckDeliverLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="2131312"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="460" y="70" width="70" height="20"/>
@@ -2398,9 +2389,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="truckReturnLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="12102133"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="460" y="100" width="70" height="20"/>
@@ -2418,9 +2406,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="fullPriceLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="21313121"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="660" y="40" width="70" height="20"/>
@@ -2428,9 +2413,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="paidAmount">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="2131312"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="660" y="70" width="70" height="20"/>
@@ -2458,9 +2440,6 @@
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="cancelledLabel">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="12102133"/>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="660" y="100" width="70" height="20"/>
