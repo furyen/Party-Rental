@@ -87,6 +87,7 @@ public class Controller {
             currentResource = dbFacade.getResource(name);
         } catch (SQLException ex) {
             System.out.println("Error in getResource " + ex);
+            currentResource = null;
         }
 
         return currentResource;
