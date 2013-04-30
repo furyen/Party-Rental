@@ -167,9 +167,60 @@ public class TruckMapper {
     }
 
     ArrayList<Order> deleteTruck(int truckID, Connection connection) {
-        ArrayList<Order> list = new ArrayList();
-        
-        return list;
+        ArrayList<Order> orderList = new ArrayList();
+        String SQLString1 = "select unique order_id, customer_id, start_date, end_date, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
+                          + " from truck_return natural join orders natural join invoice "
+                          + " where truck_id = ? and canceled = 'N' and current_date <= end_date"
+                          + " order by order_id ";
+        String SQLString2 = "select unique order_id, customer_id, start_date, end_date, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
+                          + " from truck_delivery natural join orders natural join invoice "
+                          + " where truck_id = ? and canceled = 'N' and current_date <= start_date"
+                          + " order by order_id ";
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(SQLString1);
+            statement.setInt(1, truckID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                int orderID = rs.getInt(1);
+                int customerID = rs.getInt(2);
+                java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
+                String eventAddress = rs.getString(5);
+                int unitSize = rs.getInt(6);
+                double discount = rs.getDouble(7);
+                double paidAmount = rs.getDouble(8);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, false, 0, discount, 0, paidAmount);
+                orderList.add(order);
+            }
+            statement = connection.prepareStatement(SQLString2);
+            statement.setInt(1, truckID);
+            rs = statement.executeQuery();
+            int count = 0;
+            int max = orderList.size();
+            while (rs.next()){
+                int orderID = rs.getInt(1);
+                int customerID = rs.getInt(2);
+                java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
+                String eventAddress = rs.getString(5);
+                int unitSize = rs.getInt(6);
+                double discount = rs.getDouble(7);
+                double paidAmount = rs.getDouble(8);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, false, 0, discount, 0, paidAmount);
+                while (orderID > orderList.get(count).getOrderID() && count != max){
+                    if (count < max)
+                        count++;
+                }
+                if (orderID != orderList.get(count).getOrderID()){
+                    orderList.add(order);
+                }    
+            }
+        }catch(Exception e){
+            System.out.println("Fail in TruckMapper - deleteTruck");
+            System.out.println(e.getMessage());
+        }
+        return orderList;
     }
     
     

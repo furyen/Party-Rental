@@ -97,7 +97,7 @@ public class RessourceMapper {
             Resource resource,resource1,resource2;
             while (rs.next()) {
                 boolean tentPart;
-                if (rs.getString(6).charAt(0) == 'Y'){
+                if (rs.getString(7).charAt(0) == 'Y'){
                     tentPart = true;
                 }
                 else {
