@@ -1984,7 +1984,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         double newPrice = Double.parseDouble(newResPrice.getText());
         int newUnitSize = Integer.parseInt(newResUnitSize.getText());
         createdRes.setText(newName + " is created ");
-        con.createNewResource(newName, newQuantity, newPrice, newUnitSize);
+        boolean isTent = false; 
+        con.createNewResource(newName, newQuantity, newPrice, newUnitSize, isTent);
         resourceModel.clear();
         allResources = con.getAvailableResources(null, null);
         for (Resource res : allResources) {
