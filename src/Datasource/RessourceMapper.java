@@ -41,15 +41,20 @@ public class RessourceMapper {
     
     public boolean createNewResource(Resource resource, Connection connection) throws SQLException {
         boolean status = false;
-        String SQLString = "INSERT INTO ressource values(?,?,?,?,?,?)";
+        String SQLString = "INSERT INTO ressource values(?,?,?,?,?,?,?)";
         PreparedStatement statement = null;
         statement = connection.prepareStatement(SQLString);
         int rowsInserted = 0;
         char active = 'N';
+        char isTentPart = 'N';
         int resourceID = getUniqueID(connection);
         
         if(resource.isActive() == true){
             active = 'Y';
+        }
+        
+        if(resource.isTentPart() == true){
+            isTentPart = 'N';
         }
         
         statement.setInt(1, resourceID);
@@ -58,6 +63,7 @@ public class RessourceMapper {
         statement.setDouble(4, resource.getPrice());
         statement.setInt(5, resource.getUnitSize());
         statement.setString(6, "" + active);
+        statement.setString(7, "" + isTentPart);
         rowsInserted = statement.executeUpdate();
         
         if(rowsInserted == 1){
@@ -170,21 +176,28 @@ public class RessourceMapper {
      public boolean editResource(Resource resource, Connection connection) throws SQLException{
         boolean status = false;
         String SQLString = "update ressource "
-                            + "set ressource_name=?, quantity=?, price=?, active=?"
+                            + "set ressource_name=?, quantity=?, price=?, active=?, tent_part=?"
                             + "where ressource_id=?";
         PreparedStatement statement = null;
         int rowsInserted = 0;
         char active = 'N';    
+        char isTentPart = 'N';
+        
         if(resource.isActive() == true){
             active = 'Y';
+        }
+        
+        if (resource.isTentPart() == true){
+            isTentPart = 'Y';
         }
         
         statement = connection.prepareStatement(SQLString);
         statement.setString(1, resource.getResourceName());
         statement.setInt(2, resource.getQuantity());
         statement.setFloat(3, (float)resource.getPrice());
-        statement.setInt(5, resource.getResourceID());
+        statement.setInt(6, resource.getResourceID());
         statement.setString(4, "" + active);
+        statement.setString(5, "" + isTentPart);
         rowsInserted = statement.executeUpdate();
         if(rowsInserted == 1){
             status = true;
@@ -203,8 +216,12 @@ public class RessourceMapper {
         statement = connection.prepareStatement(SQLString);       
         statement.setString(1, name);
         ResultSet rs = statement.executeQuery();
+        boolean isTentPart = false;
         if(rs.next()){
-            resource = new Resource(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5));
+            if(rs.getString(6).equals("Y")){
+                isTentPart = true;
+            }
+            resource = new Resource(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5), isTentPart);
         }
         
         return resource;

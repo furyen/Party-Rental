@@ -63,11 +63,11 @@ public class Controller {
      * Creates a new resource 
      * Ends in the ResourceMapper
      */
-    public boolean createNewResource(String resourceName, int quantity, double price, int unitSize) {
+    public boolean createNewResource(String resourceName, int quantity, double price, int unitSize, boolean isTentPart) {
         boolean status = false;
         Resource resource = null;
         int resourceID = dbFacade.getUniqueResourceID();
-        resource = new Resource(resourceID, resourceName, quantity, price, unitSize); //int resourceID, String resourceName,  int quantity,  double price, int unitSize
+        resource = new Resource(resourceID, resourceName, quantity, price, unitSize, isTentPart); //int resourceID, String resourceName,  int quantity,  double price, int unitSize
 
         try {
             status = dbFacade.createNewResource(resource);
