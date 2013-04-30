@@ -124,6 +124,7 @@ public class RessourceMapper {
                                         rs.getInt(5),
                                         tentPart
                                         );
+                System.out.println(tentPart);
                 fullList.add(resource);
                 finalList.add(resource1);
                 auxiliarList2.add(resource2);
