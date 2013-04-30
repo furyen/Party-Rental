@@ -69,6 +69,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         searchOrdersButtonGroup.add(nothingPaidRadio);
         searchOrdersButtonGroup.add(searchByName);
         searchOrdersButtonGroup.add(fullyPaidRadio);
+        
+        tentPartButtonGroup.add(tentPart);
+        tentPartButtonGroup.add(notTentPart);
+        
+        tentPartButtonGroup2.add(tentPart2);
+        tentPartButtonGroup2.add(notTentPart2);
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
@@ -346,6 +352,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        tentPartButtonGroup = new javax.swing.ButtonGroup();
+        tentPartButtonGroup2 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         bookingMenuButton = new javax.swing.JButton();
@@ -400,6 +408,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         newResUnitSize = new javax.swing.JTextField();
         createNewRes = new javax.swing.JButton();
         createdRes = new javax.swing.JLabel();
+        tentPart2 = new javax.swing.JRadioButton();
+        notTentPart2 = new javax.swing.JRadioButton();
         editRes = new javax.swing.JPanel();
         UpdateResource = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
@@ -412,6 +422,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         editResQuantity = new javax.swing.JTextField();
         activeRes = new javax.swing.JRadioButton();
         inactiveRes = new javax.swing.JRadioButton();
+        tentPart = new javax.swing.JRadioButton();
+        notTentPart = new javax.swing.JRadioButton();
         getRes = new javax.swing.JPanel();
         getResource = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
@@ -1174,20 +1186,29 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
 
         createRes1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Create New Resource", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
+        createRes1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setText("Name");
+        createRes1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 31, -1, -1));
 
         jLabel17.setText("Quantity");
+        createRes1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 65, -1, -1));
 
         jLabel18.setText("Price");
+        createRes1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 105, -1, -1));
 
         jLabel19.setText("Unit Size");
+        createRes1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 139, -1, -1));
+        createRes1.add(newResName, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 25, 194, -1));
 
         newResQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newResQuantityActionPerformed(evt);
             }
         });
+        createRes1.add(newResQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 59, 194, -1));
+        createRes1.add(newResPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 93, 194, -1));
+        createRes1.add(newResUnitSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 127, 194, -1));
 
         createNewRes.setText("Create");
         createNewRes.addActionListener(new java.awt.event.ActionListener() {
@@ -1195,58 +1216,19 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 createNewResActionPerformed(evt);
             }
         });
+        createRes1.add(createNewRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 194, -1));
+        createRes1.add(createdRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 208, 158, 59));
 
-        org.jdesktop.layout.GroupLayout createRes1Layout = new org.jdesktop.layout.GroupLayout(createRes1);
-        createRes1.setLayout(createRes1Layout);
-        createRes1Layout.setHorizontalGroup(
-            createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(createRes1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jLabel17)
-                        .add(jLabel18)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel19))
-                    .add(jLabel16))
-                .add(18, 18, 18)
-                .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(newResName)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, createNewRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .add(newResQuantity)
-                    .add(newResPrice)
-                    .add(newResUnitSize))
-                .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, createRes1Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(createdRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(25, 25, 25))
-        );
-        createRes1Layout.setVerticalGroup(
-            createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(createRes1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(createRes1Layout.createSequentialGroup()
-                        .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel16)
-                            .add(newResName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(newResQuantity, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel17))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(newResPrice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jLabel18))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(createRes1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(newResUnitSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel19))
-                .add(18, 18, 18)
-                .add(createNewRes)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(createdRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                .add(18, 18, 18))
-        );
+        tentPart2.setText("Tent Part");
+        createRes1.add(tentPart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+
+        notTentPart2.setText("Not Tent");
+        notTentPart2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notTentPart2ActionPerformed(evt);
+            }
+        });
+        createRes1.add(notTentPart2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
         editRes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Edit Existing Resource", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
@@ -1289,6 +1271,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
         });
 
+        tentPart.setText("Tent Part");
+
+        notTentPart.setText("Not Tent");
+        notTentPart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notTentPartActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout editResLayout = new org.jdesktop.layout.GroupLayout(editRes);
         editRes.setLayout(editResLayout);
         editResLayout.setHorizontalGroup(
@@ -1304,19 +1295,25 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(19, 19, 19)
                         .add(editResLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(editResName)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, UpdateResource, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, UpdateResource, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(editResQuantity)
                             .add(editResPrice)))
                     .add(editResLayout.createSequentialGroup()
                         .add(jLabel23)
                         .add(18, 18, 18)
                         .add(editResLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(editResUnitSize)
                             .add(editResLayout.createSequentialGroup()
-                                .add(activeRes)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(inactiveRes)
-                                .add(19, 19, 19))
-                            .add(editResUnitSize))))
+                                .add(editResLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(editResLayout.createSequentialGroup()
+                                        .add(tentPart)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(notTentPart))
+                                    .add(editResLayout.createSequentialGroup()
+                                        .add(activeRes)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(inactiveRes)))
+                                .add(19, 19, 19)))))
                 .addContainerGap())
         );
         editResLayout.setVerticalGroup(
@@ -1343,9 +1340,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(editResLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(inactiveRes)
                     .add(activeRes))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(editResLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(notTentPart)
+                    .add(tentPart))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 18, Short.MAX_VALUE)
                 .add(UpdateResource)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(19, 19, 19))
         );
 
         getRes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Get Existing Resource", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
@@ -1395,7 +1396,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             .add(getResLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel24)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 95, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(getResource)
@@ -1586,7 +1587,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .add(0, 0, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
-                        .add(0, 59, Short.MAX_VALUE)
+                        .add(0, 66, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(ResourceDoneLayout.createSequentialGroup()
                                 .add(getRes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1607,15 +1608,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             .add(ResourceDoneLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(getRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, createRes1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(editRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(editRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(createRes1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(getRes, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(30, 30, 30)
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 204, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 138, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1764,26 +1765,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Truck return");
         orderDetails.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, 20));
-
-        addressLabel.setText("21020303");
-        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 70, 20));
-
-        discountLabel.setText("21313121");
+        orderDetails.add(addressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 220, 20));
         orderDetails.add(discountLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 70, 20));
-
-        truckDeliverLabel.setText("2131312");
         orderDetails.add(truckDeliverLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 70, 20));
-
-        truckReturnLabel.setText("12102133");
         orderDetails.add(truckReturnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 70, 20));
 
         jLabel39.setText("Full Price");
         orderDetails.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, -1, 20));
-
-        fullPriceLabel.setText("21313121");
         orderDetails.add(fullPriceLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 70, 20));
-
-        paidAmount.setText("2131312");
         orderDetails.add(paidAmount, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 70, 70, 20));
 
         jLabel42.setText("Paid Amount");
@@ -1791,8 +1780,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel11.setText("Cancelled");
         orderDetails.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, 20));
-
-        cancelledLabel.setText("12102133");
         orderDetails.add(cancelledLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 70, 20));
 
         EventManagement.add(orderDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 800, 200));
@@ -1994,7 +1981,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         double newPrice = Double.parseDouble(newResPrice.getText());
         int newUnitSize = Integer.parseInt(newResUnitSize.getText());
         createdRes.setText(newName + " is created ");
-        boolean isTent = false; 
+        boolean isTent = tentPart2.isSelected(); 
         con.createNewResource(newName, newQuantity, newPrice, newUnitSize, isTent);
         resourceModel.clear();
         allResources = con.getAvailableResources(null, null);
@@ -2010,7 +1997,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         int newQuantity = Integer.parseInt(editResQuantity.getText());
         double newPrice = Double.parseDouble(editResPrice.getText());
         boolean active = activeRes.isSelected();
-        con.editResource(newName, newQuantity, newPrice, active);
+        boolean tent = tentPart.isSelected();
+        con.editResource(newName, newQuantity, newPrice, active, tent);
 
     }//GEN-LAST:event_UpdateResourceActionPerformed
 
@@ -2384,6 +2372,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void notTentPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notTentPartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notTentPartActionPerformed
+
+    private void notTentPart2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notTentPart2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notTentPart2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2563,6 +2559,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField newResPrice;
     private javax.swing.JTextField newResQuantity;
     private javax.swing.JTextField newResUnitSize;
+    private javax.swing.JRadioButton notTentPart;
+    private javax.swing.JRadioButton notTentPart2;
     private javax.swing.JRadioButton nothingPaidRadio;
     private javax.swing.JTextField oldPaymentTextField;
     private javax.swing.JList orderDetailList;
@@ -2594,6 +2592,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel spPaid;
     private javax.swing.JLabel spTotalPrice;
     private com.toedter.calendar.JDateChooser startDate;
+    private javax.swing.JRadioButton tentPart;
+    private javax.swing.JRadioButton tentPart2;
+    private javax.swing.ButtonGroup tentPartButtonGroup;
+    private javax.swing.ButtonGroup tentPartButtonGroup2;
     private javax.swing.JLabel totalPrice;
     private javax.swing.JLabel totalSize;
     private javax.swing.JLabel truckDeliverLabel;
