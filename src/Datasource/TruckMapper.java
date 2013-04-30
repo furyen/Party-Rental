@@ -176,6 +176,8 @@ public class TruckMapper {
                           + " from truck_delivery natural join orders natural join invoice "
                           + " where truck_id = ? and canceled = 'N' and current_date <= start_date"
                           + " order by order_id ";
+        String SQLString3 = "delete from truck" 
+                          + " where truck_id = ?";
         PreparedStatement statement = null;
         try{
             statement = connection.prepareStatement(SQLString1);
@@ -216,7 +218,13 @@ public class TruckMapper {
                     orderList.add(order);
                 }    
             }
+            if (orderList.size() == 0){
+                statement = connection.prepareStatement(SQLString3);
+                statement.setInt(1, truckID);
+                int updatedRows = statement.executeUpdate();
+            }
         }catch(Exception e){
+            
             System.out.println("Fail in TruckMapper - deleteTruck");
             System.out.println(e.getMessage());
         }
