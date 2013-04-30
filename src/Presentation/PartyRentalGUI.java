@@ -1967,6 +1967,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        resourceModel.clear();
 
         cl.show(mainPanel, "menu");
     }//GEN-LAST:event_jButton9ActionPerformed
@@ -2017,6 +2018,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         editResQuantity.setText(con.getResource(selectedResource).getQuantity() + "");
         editResPrice.setText(con.getResource(selectedResource).getPrice() + "");
         editResUnitSize.setText(con.getResource(selectedResource).getUnitSize() + "");
+        System.out.println(selectedResource + "is tent part" + con.getResource(selectedResource).isTentPart()) ;
+        System.out.println(selectedResource + "is active" + con.getResource(selectedResource).isActive()) ;
+        if (con.getResource(selectedResource).isTentPart()) {
+            
+            tentPart.setSelected(true);
+        } else {
+            notTentPart.setSelected(true);
+        }
         if (con.getResource(selectedResource).isActive()) {
             activeRes.setSelected(true);
         } else {
