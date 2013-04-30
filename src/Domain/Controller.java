@@ -98,7 +98,7 @@ public class Controller {
      * resource object. 
      * Ends in the ResourceMapper
      */
-    public boolean editResource(String name, int quantitiy, double price, boolean active) {
+    public boolean editResource(String name, int quantitiy, double price, boolean active, boolean isTentPart) {
         boolean status = false;
 
         if (currentResource != null) {
@@ -106,6 +106,7 @@ public class Controller {
             currentResource.setQuantity(quantitiy);
             currentResource.setPrice(price);
             currentResource.setActive(active);
+            currentResource.setTentPart(isTentPart);
             try {
                 status = dbFacade.editResource(currentResource);
             } catch (SQLException ex) {
@@ -247,7 +248,7 @@ public class Controller {
      * newOrderList in UnitOfWorkProcessOrder
      * Ends in UnitOfWorkProcessOrder
      */
-    public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate) {
+    public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate, double amountPaid) {
         boolean status = false;
         int orderID = dbFacade.getUniqueOrderID();
         Order newOrder = null;
@@ -554,6 +555,24 @@ public class Controller {
     public ArrayList<Order> deleteTruck(int truckID){
         ArrayList<Order> list = dbFacade.deleteTruck(truckID);
         return list;
+    }
+    
+    /*
+     * Gets all packages that can be used.
+     * Ends in PackageMapper
+     */
+    
+    public ArrayList<Package> getAllPackages(){
+        ArrayList<Package> packageList = new ArrayList();
+        
+        packageList = dbFacade.getAllPackages();
+        
+        return packageList;
+    }
+    
+    public boolean createNewPackage(String packageName, double discount){
+        
+        return false;
     }
 }
 

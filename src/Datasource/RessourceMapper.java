@@ -54,7 +54,7 @@ public class RessourceMapper {
         }
         
         if(resource.isTentPart() == true){
-            isTentPart = 'N';
+            isTentPart = 'Y';
         }
         
         statement.setInt(1, resourceID);
@@ -220,18 +220,25 @@ public class RessourceMapper {
      
      public Resource getResource(String name, Connection connection) throws SQLException{
         Resource resource = null;
-        String SQLString = "select * from ressource where ressource_name=? for update of ressource_name, price, quantity nowait";
+        String SQLString = "select * from ressource where ressource_name=? for update of ressource_name, price, quantity, active, tent_part nowait";
         PreparedStatement statement = null;
+        boolean isTentPart = false;
+        boolean isActive = true;
         
         statement = connection.prepareStatement(SQLString);       
         statement.setString(1, name);
         ResultSet rs = statement.executeQuery();
-        boolean isTentPart = false;
+        
         if(rs.next()){
-            if(rs.getString(6).equals("Y")){
+            if(rs.getString(7).equalsIgnoreCase("y")){
                 isTentPart = true;
             }
+            
+            if(rs.getString(6).equalsIgnoreCase("n")){
+                isActive = false;
+            }
             resource = new Resource(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5), isTentPart);
+            resource.setActive(isActive);
         }
         
         return resource;
