@@ -279,4 +279,13 @@ public class DBFacade {
         return list;
     }
 
+    public ArrayList<Domain.Package> getAllPackages() {
+        ArrayList<Domain.Package> packageList = new ArrayList();
+        PackageMapper packageMapper = new PackageMapper();
+        
+        packageList = packageMapper.getAllPackages(connection);
+        
+        return packageList;
+    }
+
 }

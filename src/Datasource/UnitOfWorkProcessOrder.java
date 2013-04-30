@@ -18,7 +18,6 @@ public class UnitOfWorkProcessOrder {
     private ArrayList<Order> newOrderList = new ArrayList();
     private ArrayList<OrderDetail> newOrderDetailList = new ArrayList();
     private ArrayList<TruckOrder> newTruckBooking = new ArrayList();
-    private ArrayList<Order> dirtyOrderList = new ArrayList();
     
     
     public void newCustomer(Customer newCustomer){
@@ -64,7 +63,14 @@ public class UnitOfWorkProcessOrder {
             System.out.println("Error in the commit() - " + ex);            
             status = false;
         }
-
+        
+        if(status == true){
+            newOrderList.clear();
+            newOrderDetailList.clear();
+            newTruckBooking.clear();
+            newInvoiceList.clear();
+            newCustomerList.clear();
+        }
         return status;
     }
 

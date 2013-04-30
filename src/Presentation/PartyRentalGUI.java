@@ -1856,13 +1856,23 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         //calculate total unit size
-        int size = 0;
+        int totalUnitSize = 0;
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
-            size = size + entry.getKey().getQuantity() * entry.getKey().getUnitSize();
+            totalUnitSize = totalUnitSize + entry.getKey().getQuantity() * entry.getKey().getUnitSize();
         }
 
-        //Create Order object      
-        con.createOrder(Integer.parseInt(customerID.getText()), size, eventAddress.getText(), startDate.getDate(), endDate.getDate());
+        //Create Order object     
+        if(editOrder!=null) {
+            if (editOrder.getPaidAmount()==0) {
+                 con.createOrder(Integer.parseInt(customerID.getText()), totalUnitSize, eventAddress.getText(), startDate.getDate(), endDate.getDate(),0);
+            } else {
+                con.createOrder(Integer.parseInt(customerID.getText()), totalUnitSize, eventAddress.getText(), startDate.getDate(), endDate.getDate(),editOrder.getPaidAmount()); 
+            }
+            editOrder=null;
+        } else {
+              con.createOrder(Integer.parseInt(customerID.getText()), totalUnitSize, eventAddress.getText(), startDate.getDate(), endDate.getDate(),0);
+        }
+        
         //  Create order detail
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             if (entry.getValue().getSelectedIndex() != 0) {
