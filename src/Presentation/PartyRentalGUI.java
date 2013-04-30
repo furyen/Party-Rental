@@ -101,7 +101,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         while (added < totalItems) {
 
             gbc.gridx = 0;
-            gbInventory.add(new JLabel(inventory.get(added).getResourceName()), gbc);
+            if(inventory.get(added).isTentPart()) {
+                gbInventory.add(new JLabel(inventory.get(added).getResourceName()+"(T)"), gbc);
+            }else{
+                 gbInventory.add(new JLabel(inventory.get(added).getResourceName()), gbc);
+            }
             gbc.gridx = 2;
             gbInventory.add(new JLabel("" + inventory.get(added).getQuantity()), gbc);
             gbc.gridx = 4;
