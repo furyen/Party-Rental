@@ -10,13 +10,11 @@ package Domain;
  */
 public class PackageDetail {
     int packageID, resourceID, quantity;
-    double discount;
 
-    public PackageDetail(int packageID, int resourceID, int quantity, double discount) {
+    public PackageDetail(int packageID, int resourceID, int quantity) {
         this.packageID = packageID;
         this.resourceID = resourceID;
         this.quantity = quantity;
-        this.discount = discount;
     }
 
     public int getPackageID() {
@@ -41,14 +39,6 @@ public class PackageDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public double getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(double discount) {
-        this.discount = discount;
     }
     
     

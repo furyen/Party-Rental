@@ -14,11 +14,21 @@ public class Package {
     ArrayList<PackageDetail> packageDetail;
     int packageID;
     String packageName;
+    double discount;
 
-    public Package(int packageID, String packageName) {
+    public Package(int packageID, String packageName, double discount) {
         this.packageID = packageID;
         this.packageName = packageName;
         packageDetail = new ArrayList();
+        this.discount = discount;
+    }
+    
+    public double getDiscount(){
+        return discount;
+    }
+    
+    public void setDiscount(double discount){
+        this.discount = discount;
     }
 
     public int getPackageID() {

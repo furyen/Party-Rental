@@ -12,25 +12,25 @@ public class Resource {
     private int resourceID, unitSize, quantity;
     private String resourceName;
     private double price;
-    private boolean active, tent_part;
+    private boolean active, tentPart;
     
-    public Resource(int resourceID, String resourceName,  int quantity,  double price, int unitSize, boolean tent_part){
+    public Resource(int resourceID, String resourceName,  int quantity,  double price, int unitSize, boolean tentPart){
         this.price = price;
         this.quantity = quantity;
         this.unitSize = unitSize;
         this.resourceName = resourceName;
         this.resourceID = resourceID;
         this.active = true;
-        this.tent_part = tent_part;
+        this.tentPart = tentPart;
     }
 
     
     public boolean isTentPart(){
-        return tent_part;
+        return tentPart;
     }
     
     public void setTentPart(boolean tent_part){
-        this.tent_part = tent_part;
+        this.tentPart = tent_part;
     }
     
     public boolean isActive(){
