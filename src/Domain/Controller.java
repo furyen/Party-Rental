@@ -98,7 +98,7 @@ public class Controller {
      * resource object. 
      * Ends in the ResourceMapper
      */
-    public boolean editResource(String name, int quantitiy, double price, boolean active) {
+    public boolean editResource(String name, int quantitiy, double price, boolean active, boolean isTentPart) {
         boolean status = false;
 
         if (currentResource != null) {
@@ -106,6 +106,7 @@ public class Controller {
             currentResource.setQuantity(quantitiy);
             currentResource.setPrice(price);
             currentResource.setActive(active);
+            currentResource.setTentPart(isTentPart);
             try {
                 status = dbFacade.editResource(currentResource);
             } catch (SQLException ex) {
