@@ -225,6 +225,9 @@ public class TruckMapper {
                 statement.setInt(1, truckID);
                 int updatedRows = statement.executeUpdate();
             }
+            else {
+                
+            }
         }catch(Exception e){
             
             System.out.println("Fail in TruckMapper - deleteTruck");
