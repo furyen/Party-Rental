@@ -365,7 +365,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         resourceCreated = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        effectedOrders = new javax.swing.JDialog();
+        effectedOrdersDialog = new javax.swing.JDialog();
         effectedOrdersPanel = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         effectedOrdersJList = new javax.swing.JList();
@@ -967,22 +967,22 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        org.jdesktop.layout.GroupLayout effectedOrdersLayout = new org.jdesktop.layout.GroupLayout(effectedOrders.getContentPane());
-        effectedOrders.getContentPane().setLayout(effectedOrdersLayout);
-        effectedOrdersLayout.setHorizontalGroup(
-            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        org.jdesktop.layout.GroupLayout effectedOrdersDialogLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersDialog.getContentPane());
+        effectedOrdersDialog.getContentPane().setLayout(effectedOrdersDialogLayout);
+        effectedOrdersDialogLayout.setHorizontalGroup(
+            effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 409, Short.MAX_VALUE)
-            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(effectedOrdersLayout.createSequentialGroup()
+            .add(effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersDialogLayout.createSequentialGroup()
                     .addContainerGap()
                     .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        effectedOrdersLayout.setVerticalGroup(
-            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        effectedOrdersDialogLayout.setVerticalGroup(
+            effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 194, Short.MAX_VALUE)
-            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(effectedOrdersLayout.createSequentialGroup()
+            .add(effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersDialogLayout.createSequentialGroup()
                     .addContainerGap()
                     .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -2588,12 +2588,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        effectedOrders.setVisible(true);
+       
         effectedOrdersModel.clear();
         Truck selected = (Truck)TruckList.getSelectedValue(); 
         ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
-        if (effectedOrders.size()>0)
+        if (effectedOrders.size()>0){
             effectedOrdersPanel.setVisible(true);
+             effectedOrdersDialog.setVisible(true);}
         
         for (Order o : effectedOrders) {
             effectedOrdersModel.addElement(o);
@@ -2725,7 +2726,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField editResPrice;
     private javax.swing.JTextField editResQuantity;
     private javax.swing.JTextField editResUnitSize;
-    private javax.swing.JDialog effectedOrders;
+    private javax.swing.JDialog effectedOrdersDialog;
     private javax.swing.JList effectedOrdersJList;
     private javax.swing.JPanel effectedOrdersPanel;
     private com.toedter.calendar.JDateChooser endDate;

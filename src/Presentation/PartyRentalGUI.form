@@ -764,7 +764,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JDialog" name="effectedOrders">
+    <Container class="javax.swing.JDialog" name="effectedOrdersDialog">
 
       <Layout>
         <DimensionLayout dim="0">
