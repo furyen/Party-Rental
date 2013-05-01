@@ -380,6 +380,14 @@ public class Controller {
 
         return order;
     }
+    
+    public boolean deleteOrder(Order order){
+        boolean status = false;
+        
+        status = dbFacade.deleteOrder(order);
+        
+        return status;
+    }
 
     /*
      * Creates a deposit invoice file for a specific order
@@ -628,6 +636,12 @@ public class Controller {
         
         return status;
     }
+    
+    public ArrayList<Order> getExpiringOrders(){
+        ArrayList<Order> list = new ArrayList();
+        list = dbFacade.getExpiringOrders();
+        return list;
+    } 
     
 }
 

@@ -331,4 +331,13 @@ public class DBFacade {
         return list;
     }
 
+    public boolean deleteOrder(Order order) {
+        boolean status = false;
+        OrderMapper orderMapper = new OrderMapper();
+        
+        status = orderMapper.deleteOrder(order, connection);
+        
+        return status;
+    }
+
 }
