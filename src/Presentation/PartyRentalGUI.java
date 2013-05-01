@@ -10,7 +10,7 @@ import Domain.Order;
 import Domain.OrderDetail;
 import Domain.Resource;
 import Domain.Truck;
-import java.awt.CardLayout;
+import java.awt.CardLayout; 
 import java.awt.Dialog;
 import java.awt.GridBagConstraints;
 import java.awt.Toolkit;
@@ -1673,6 +1673,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jScrollPane11.setViewportView(effectedOrdersJList);
 
         handleButton.setText("Handle");
+        handleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                handleButtonActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout effectedOrdersPanelLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersPanel);
         effectedOrdersPanel.setLayout(effectedOrdersPanelLayout);
@@ -2559,14 +2564,21 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         effectedOrdersModel.clear();
         Truck selected = (Truck)TruckList.getSelectedValue(); 
         ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
-        effectedOrdersPanel.setVisible(true);
+        if (effectedOrders.size()>0)
+            effectedOrdersPanel.setVisible(true);
         
         for (Order o : effectedOrders) {
             effectedOrdersModel.addElement(o);
+            System.out.println(o);
         }
         effectedOrdersJList.setModel(effectedOrdersModel);
        
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void handleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleButtonActionPerformed
+        Order orderToBeHandled = (Order)effectedOrdersJList.getSelectedValue();
+        
+    }//GEN-LAST:event_handleButtonActionPerformed
 
     /**
      * @param args the command line arguments
