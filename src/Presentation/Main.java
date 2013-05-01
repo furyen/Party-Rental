@@ -64,7 +64,7 @@ public class Main {
 //            System.out.println(list.get(i).getOrderDetails().toString());;
 //        }
 //        
-//        ArrayList<Order> list = control.deleteTruck(1);
+//        ArrayList<Order> list = control.deleteTruck(2);
 //        for(int i = 0; i<list.size(); i++){
 //            Order order = list.get(i);
 //            System.out.println(order.getOrderID());
@@ -83,7 +83,16 @@ public class Main {
 //        System.out.println(control.createPackageDetail(1, 15, "Wedding Package"));
 //        System.out.println(control.deletePackage("Wedding Package"));
         
+       control.getConnection();
+       control.createOrder(1, 400, "Dyringparken", startD, endD, 0);
+//       control.deleteOrder();
+  
        
+       ArrayList<Order> list = control.getExpiringOrders(0);;
+        for(int i = 0; i<list.size(); i++){
+            Order order = list.get(i);
+            System.out.println(order.getOrderID());
+        }
     }
     
 }
