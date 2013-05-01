@@ -235,6 +235,10 @@ public class Controller {
         
         try {
             status = dbFacade.finishOrder();
+            
+            if (status == true){
+                createDepositInvoiceFile(currentOrder);
+            }
         } catch (Exception ex) {
             System.out.println("error in finishOrder - " + ex);
         }
@@ -570,16 +574,60 @@ public class Controller {
         return packageList;
     }
     
+    /*
+     * Creates a new event package
+     * given the name and the discount for it.
+     * Ends in the packageMapper
+     */
+    
     public boolean createNewPackage(String packageName, double discount){
+        boolean status = false;
+        String packageNameUpperCase = packageName.toUpperCase();
         
-        return false;
+        if(getPackage(packageName) == null){
+            status = dbFacade.createNewPackage(packageNameUpperCase, discount);
+        }
+        else{
+            status = false;
+        }
+        
+        
+        return status;
     }
     
-    public ArrayList<Order> getExpiringOrders(){
-        ArrayList<Order> list = new ArrayList();
-        list = dbFacade.getExpiringOrders();
-        return list;
-    } 
+    /*
+     * Getting a package based on the name
+     * and returns the package object.
+     */
+    
+    public Package getPackage(String name){
+        Package newPackage = null;
+        String nameUpperCase = name.toUpperCase();
+        
+        newPackage = dbFacade.getPackage(nameUpperCase);
+        
+        return newPackage;
+    }
+    
+    
+    public boolean deletePackage(String name){
+        boolean status = false;
+        String nameUpperCase = name.toUpperCase();
+        
+        status = dbFacade.deletePackage(nameUpperCase);
+        
+        return status;
+    }
+    
+    public boolean createPackageDetail(int resourceID, int quantity, String packageName){
+        boolean status = false;
+        Package currentPackage = getPackage(packageName);
+        PackageDetail newPackageDetail = new PackageDetail(currentPackage.getPackageID(), resourceID, quantity);
+        
+        status = dbFacade.createPackageDetail(newPackageDetail);
+        
+        return status;
+    }
     
 }
 
