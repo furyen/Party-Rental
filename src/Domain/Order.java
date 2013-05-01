@@ -18,7 +18,7 @@ public class Order {
     private ArrayList<OrderDetail> orderDetails;
     private int customerID, orderID, unitSize;
     private String adress;
-    private Date startDate, endDate;
+    private Date startDate, endDate, dateCreation;
     private boolean cancelled;
     private double fullPrice, discount, aditionalCost, paidAmount;
     private boolean truckDelivery, truckReturn;
@@ -39,7 +39,7 @@ public class Order {
         this.truckReturn = truckReturn;
     }
 
-    public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
+    public Order(int customerID, int orderID, int unitSize, String adress, Date startDate, Date endDate, Date dateCreation, boolean canceled, double fullPrice, double discount, double additionalCost, double paidAmount) {
         this.orderDetails = new ArrayList();
         this.customerID = customerID;
         this.orderID = orderID;
@@ -52,6 +52,15 @@ public class Order {
         this.discount = discount;
         this.aditionalCost = additionalCost;
         this.paidAmount = paidAmount;
+        this.dateCreation = dateCreation;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
     }
 
     public ArrayList<OrderDetail> getOrderDetails() {

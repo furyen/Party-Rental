@@ -168,7 +168,7 @@ public class TruckMapper {
 
     ArrayList<Order> deleteTruck(int truckID, Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
-        String SQLString1 = "select unique order_id, customer_id, start_date, end_date, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
+        String SQLString1 = "select unique order_id, customer_id, start_date, end_date, date_created, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
                           + " from truck_return natural join orders natural join invoice "
                           + " where truck_id = ? and canceled = 'N' and current_date <= end_date"
                           + " order by order_id ";
@@ -176,6 +176,8 @@ public class TruckMapper {
                           + " from truck_delivery natural join orders natural join invoice "
                           + " where truck_id = ? and canceled = 'N' and current_date <= start_date"
                           + " order by order_id ";
+        String SQLString3 = "delete from truck" 
+                          + " where truck_id = ?";
         PreparedStatement statement = null;
         try{
             statement = connection.prepareStatement(SQLString1);
@@ -186,11 +188,12 @@ public class TruckMapper {
                 int customerID = rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
-                String eventAddress = rs.getString(5);
-                int unitSize = rs.getInt(6);
-                double discount = rs.getDouble(7);
-                double paidAmount = rs.getDouble(8);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, false, 0, discount, 0, paidAmount);
+                java.util.Date dateCreated = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                double discount = rs.getDouble(8);
+                double paidAmount = rs.getDouble(9);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreated, false, 0, discount, 0, paidAmount);
                 orderList.add(order);
             }
             statement = connection.prepareStatement(SQLString2);
@@ -203,11 +206,12 @@ public class TruckMapper {
                 int customerID = rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
-                String eventAddress = rs.getString(5);
-                int unitSize = rs.getInt(6);
-                double discount = rs.getDouble(7);
-                double paidAmount = rs.getDouble(8);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, false, 0, discount, 0, paidAmount);
+                java.util.Date dateCreated = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                double discount = rs.getDouble(8);
+                double paidAmount = rs.getDouble(9);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreated, false, 0, discount, 0, paidAmount);
                 while (orderID > orderList.get(count).getOrderID() && count != max){
                     if (count < max)
                         count++;
@@ -216,7 +220,13 @@ public class TruckMapper {
                     orderList.add(order);
                 }    
             }
+            if (orderList.size() == 0){
+                statement = connection.prepareStatement(SQLString3);
+                statement.setInt(1, truckID);
+                int updatedRows = statement.executeUpdate();
+            }
         }catch(Exception e){
+            
             System.out.println("Fail in TruckMapper - deleteTruck");
             System.out.println(e.getMessage());
         }
