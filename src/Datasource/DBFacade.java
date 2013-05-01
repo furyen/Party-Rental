@@ -288,15 +288,6 @@ public class DBFacade {
         return packageList;
     }
 
-//    public int getUniquePackageID() {
-//        int packageID = 0;
-//        PackageMapper packageMapper = new PackageMapper();
-//        
-//        packageID = packageMapper.getUniquePackageID(connection);
-//        
-//        return packageID;        
-//    }
-
     public boolean createNewPackage(String packageName, double discount) {
         boolean status = false;
         PackageMapper packageMapper = new PackageMapper();
@@ -331,6 +322,13 @@ public class DBFacade {
         status = packageMapper.createNewPackageDetail(newPackageDetail, connection);
         
         return status;        
+    }
+    
+    public ArrayList<Order> getExpiringOrders() {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = new ArrayList();
+        list = orderMapper.getExpiringOrders(connection);
+        return list;
     }
 
 }
