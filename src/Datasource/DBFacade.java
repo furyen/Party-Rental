@@ -288,4 +288,11 @@ public class DBFacade {
         return packageList;
     }
 
+    public ArrayList<Order> getExpiringOrders() {
+        OrderMapper orderMapper = new OrderMapper();
+        ArrayList<Order> list = new ArrayList();
+        list = orderMapper.getExpiringOrders(connection);
+        return list;
+    }
+
 }

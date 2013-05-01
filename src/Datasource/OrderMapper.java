@@ -36,7 +36,7 @@ public class OrderMapper {
     public boolean createNewOrder(ArrayList<Order> newOrderList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
-        String SQLString = "insert into orders values(?,?,?,?,?,?,?)";
+        String SQLString = "insert into orders values(?,?,?,?,current_date,?,?,?)";
         PreparedStatement statement = null;
         java.sql.Date startSQL = new java.sql.Date(newOrderList.get(0).getStartDate().getTime());
         java.sql.Date endSQL = new java.sql.Date(newOrderList.get(0).getEndDate().getTime());
@@ -307,6 +307,25 @@ public class OrderMapper {
             System.out.println("Error in the OrderMapper - getAffectedOrders");
             System.out.println(ex);
         }
+        return orderList;
+    }
+
+    ArrayList<Order> getExpiringOrders(Connection connection) {
+        ArrayList<Order> orderList = new ArrayList();
+        String SQLString1 = " select * "
+                + " FROM orders natural join invoice"
+                + " where ressource_id=?";
+        String SQLString2 = " select * "
+                + " from order_detail "
+                + " where order_id in (? ";
+        PreparedStatement statement = null;
+        try{
+            
+        }catch (Exception ex) {
+            System.out.println("Error in the OrderMapper - getExpiringOrders");
+            System.out.println(ex);
+        } 
+        
         return orderList;
     }
 }

@@ -574,5 +574,12 @@ public class Controller {
         
         return false;
     }
+    
+    public ArrayList<Order> getExpiringOrders(){
+        ArrayList<Order> list = new ArrayList();
+        list = dbFacade.getExpiringOrders();
+        return list;
+    } 
+    
 }
 
