@@ -365,6 +365,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         resourceCreated = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        effectedOrders = new javax.swing.JDialog();
+        effectedOrdersPanel = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        effectedOrdersJList = new javax.swing.JList();
+        handleButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         bookingMenuButton = new javax.swing.JButton();
@@ -462,10 +467,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         AddNewTruckButton = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        effectedOrdersPanel = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        effectedOrdersJList = new javax.swing.JList();
-        handleButton = new javax.swing.JButton();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -927,6 +928,66 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(12, 12, 12))
         );
 
+        effectedOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Effected Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        effectedOrdersJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane11.setViewportView(effectedOrdersJList);
+
+        handleButton.setText("Handle");
+        handleButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                handleButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout effectedOrdersPanelLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersPanel);
+        effectedOrdersPanel.setLayout(effectedOrdersPanelLayout);
+        effectedOrdersPanelLayout.setHorizontalGroup(
+            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane11)
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .add(handleButton)
+                .add(30, 30, 30))
+        );
+        effectedOrdersPanelLayout.setVerticalGroup(
+            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(handleButton)
+                .addContainerGap())
+        );
+
+        org.jdesktop.layout.GroupLayout effectedOrdersLayout = new org.jdesktop.layout.GroupLayout(effectedOrders.getContentPane());
+        effectedOrders.getContentPane().setLayout(effectedOrdersLayout);
+        effectedOrdersLayout.setHorizontalGroup(
+            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 409, Short.MAX_VALUE)
+            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        effectedOrdersLayout.setVerticalGroup(
+            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 194, Short.MAX_VALUE)
+            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 150, 0, 0));
         setResizable(false);
@@ -1138,12 +1199,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(20, 20, 20)
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(OrderLayout.createSequentialGroup()
-                                .add(startDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(108, 108, 108)
+                                .add(startDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(32, 32, 32)
                                 .add(jLabel9)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 186, Short.MAX_VALUE)
+                                .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
@@ -1154,7 +1215,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(totalSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(OrderLayout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 171, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 236, Short.MAX_VALUE)
                                 .add(jLabel14)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(discount, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1179,11 +1240,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(OrderLayout.createSequentialGroup()
-                        .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                        .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(jLabel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(startDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, startDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, endDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .add(11, 11, 11))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, OrderLayout.createSequentialGroup()
                         .add(getAvailableResourcesButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -1663,45 +1724,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        effectedOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Effected Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
-
-        effectedOrdersJList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane11.setViewportView(effectedOrdersJList);
-
-        handleButton.setText("Handle");
-        handleButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                handleButtonActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout effectedOrdersPanelLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersPanel);
-        effectedOrdersPanel.setLayout(effectedOrdersPanelLayout);
-        effectedOrdersPanelLayout.setHorizontalGroup(
-            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(effectedOrdersPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane11)
-                .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, effectedOrdersPanelLayout.createSequentialGroup()
-                .addContainerGap(267, Short.MAX_VALUE)
-                .add(handleButton)
-                .add(30, 30, 30))
-        );
-        effectedOrdersPanelLayout.setVerticalGroup(
-            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(effectedOrdersPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(handleButton)
-                .addContainerGap())
-        );
-
         org.jdesktop.layout.GroupLayout ResourceDoneLayout = new org.jdesktop.layout.GroupLayout(ResourceDone);
         ResourceDone.setLayout(ResourceDoneLayout);
         ResourceDoneLayout.setHorizontalGroup(
@@ -1711,9 +1733,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
                         .add(jButton9)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(172, 172, 172))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
                         .add(0, 113, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -1744,15 +1764,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(ResourceDoneLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 179, Short.MAX_VALUE)
-                        .add(jButton9)
-                        .addContainerGap())
-                    .add(ResourceDoneLayout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 179, Short.MAX_VALUE)
+                .add(jButton9)
+                .addContainerGap())
         );
 
         mainPanel.add(ResourceDone, "resources");
@@ -1961,7 +1975,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void resourcesMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resourcesMenuButtonActionPerformed
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
-
+        effectedOrdersPanel.setVisible(false);
+        truckListModel.clear();
+        effectedOrdersModel.clear();
         allTrucks = con.getTrucks();
 
         for (Truck truck : allTrucks) {
@@ -2039,6 +2055,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             saveOrderResultLabel.setText("Order saved succesfully.");
             saveOrderResult.setVisible(true);
         }
+        
+        startDate.setDate(null);
+        endDate.setDate(null);
+        eventAddress.setText("");
+        discount.setText("");
+        totalPrice.setText("");
+        firstName.setText("");
+        customerAddress.setText("");
+        lastName.setText("");
+        customerID.setText("");
+        
 
 
 
@@ -2561,6 +2588,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        effectedOrders.setVisible(true);
         effectedOrdersModel.clear();
         Truck selected = (Truck)TruckList.getSelectedValue(); 
         ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
@@ -2569,14 +2597,42 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         
         for (Order o : effectedOrders) {
             effectedOrdersModel.addElement(o);
-            System.out.println(o);
         }
         effectedOrdersJList.setModel(effectedOrdersModel);
        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void handleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleButtonActionPerformed
-        Order orderToBeHandled = (Order)effectedOrdersJList.getSelectedValue();
+        
+        if (!effectedOrdersJList.isSelectionEmpty()) {
+            Order orderToBeHandled = (Order)effectedOrdersJList.getSelectedValue();
+            //editOrder = (Order) orderList.getSelectedValue();
+            startDate.setDate(orderToBeHandled.getStartDate());
+            endDate.setDate(orderToBeHandled.getEndDate());
+            getAvailableResourcesButton.doClick();
+            ArrayList<OrderDetail> details = orderToBeHandled.getOrderDetails();
+            //Get information about the booked resources and set the dropdowns in the booking menu
+            for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                for (int i = 0; i < details.size(); i++) {
+                    if (details.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                        entry.getValue().setSelectedIndex(details.get(i).getQuantity());
+                    }
+                }
+            }
+            Customer c = con.getCustomer(orderToBeHandled.getCustomerID());
+            eventAddress.setText(orderToBeHandled.getAdress());
+            customerID.setText("" + c.getCustomerID());
+            firstName.setText(c.getFirstName());
+            lastName.setText(c.getLastName());
+            customerAddress.setText(c.getAdress());
+            con.deleteOrder(((Order)effectedOrdersJList.getSelectedValue()).getOrderID());
+
+
+            CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
+            cl.show(mainPanel, "booking");
+        }
+        //editConfirmation.setVisible(false);
         
     }//GEN-LAST:event_handleButtonActionPerformed
 
@@ -2669,6 +2725,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField editResPrice;
     private javax.swing.JTextField editResQuantity;
     private javax.swing.JTextField editResUnitSize;
+    private javax.swing.JDialog effectedOrders;
     private javax.swing.JList effectedOrdersJList;
     private javax.swing.JPanel effectedOrdersPanel;
     private com.toedter.calendar.JDateChooser endDate;
