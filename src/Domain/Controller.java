@@ -643,5 +643,10 @@ public class Controller {
         return list;
     } 
     
+    public boolean cancelUnpaidOrders(){
+        boolean bool = dbFacade.cancelUnpaidOrders();
+        return bool;
+    } 
+    
 }
 

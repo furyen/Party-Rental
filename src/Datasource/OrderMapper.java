@@ -36,7 +36,7 @@ public class OrderMapper {
     public boolean createNewOrder(ArrayList<Order> newOrderList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
-        String SQLString = "insert into orders values(?,?,?,?,current_date-1 ,?,?,?)";
+        String SQLString = "insert into orders values(?,?,?,?,current_date ,?,?,?)";
         PreparedStatement statement = null;
         java.sql.Date startSQL = new java.sql.Date(newOrderList.get(0).getStartDate().getTime());
         java.sql.Date endSQL = new java.sql.Date(newOrderList.get(0).getEndDate().getTime());
@@ -269,7 +269,7 @@ public class OrderMapper {
         return orderList;
     }
 
-    ArrayList<Order> getAffectedOrders(int resourceID, Connection connection) {
+    public ArrayList<Order> getAffectedOrders(int resourceID, Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString = " select * "
                 + " FROM orders natural join invoice natural join order_detail"
@@ -310,11 +310,13 @@ public class OrderMapper {
         return orderList;
     }
 
-    ArrayList<Order> getExpiringOrders(int days,Connection connection) {
+    public ArrayList<Order> getExpiringOrders(int days,Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
                 + " FROM orders natural join invoice"
-                + " where TO_CHAR(date_created + ?, 'DD-MON-YYYY') = TO_CHAR(SYSDATE, 'DD-MON-YYYY')";
+                + " where TO_CHAR(date_created + ?, 'DD-MON-YYYY') = TO_CHAR(SYSDATE, 'DD-MON-YYYY')"
+                + " and canceled = 'N'"
+                + " and paid_amount < (full_price/4)";
         String SQLString2 = " select * "
                 + " from order_detail "
                 + " where order_id in (? ";
@@ -375,7 +377,7 @@ public class OrderMapper {
         return orderList;
     }
 
-    boolean deleteOrder(Order order, Connection connection) {
+    public boolean deleteOrder(Order order, Connection connection) {
         boolean status = false;
         String SQLString = "delete from orders where order_id=?";
         PreparedStatement statement = null;
@@ -396,5 +398,23 @@ public class OrderMapper {
         }
         
         return status;
+    }
+
+    public boolean cancelUnpaidOrders(Connection connection) {
+        boolean bool = true;
+        String SQLString = " update orders"
+                         + " set canceled = 'Y'"
+                         + " where date_created + 8 <= current_date ";
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(SQLString);
+            int rowsUpdated = statement.executeUpdate();
+            connection.commit();
+        }catch (Exception ex){
+            System.out.println("Errot in cancelUnpaidOrders() in OrderMapper ");
+            System.out.println(ex);
+            bool = false;
+        }
+        return bool;
     }
 }
