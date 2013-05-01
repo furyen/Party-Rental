@@ -64,11 +64,11 @@ public class Main {
 //            System.out.println(list.get(i).getOrderDetails().toString());;
 //        }
 //        
-//        ArrayList<Order> list = control.deleteTruck(1);
-//        for(int i = 0; i<list.size(); i++){
-//            Order order = list.get(i);
-//            System.out.println(order.getOrderID());
-//        }
+        ArrayList<Order> list = control.deleteTruck(2);
+        for(int i = 0; i<list.size(); i++){
+            Order order = list.get(i);
+            System.out.println(order.getOrderID());
+        }
 //        control.cancelOrder(order);
         
 //        Resource resource = control.getResource("Floor");

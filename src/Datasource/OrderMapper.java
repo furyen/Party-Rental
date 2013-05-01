@@ -36,7 +36,7 @@ public class OrderMapper {
     public boolean createNewOrder(ArrayList<Order> newOrderList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
-        String SQLString = "insert into orders values(?,?,?,?,current_date,?,?,?)";
+        String SQLString = "insert into orders values(?,?,?,?,current_date-1 ,?,?,?)";
         PreparedStatement statement = null;
         java.sql.Date startSQL = new java.sql.Date(newOrderList.get(0).getStartDate().getTime());
         java.sql.Date endSQL = new java.sql.Date(newOrderList.get(0).getEndDate().getTime());
