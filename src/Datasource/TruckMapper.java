@@ -5,6 +5,7 @@
 package Datasource;
 
 import Domain.Order;
+import Domain.OrderDetail;
 import Domain.Resource;
 import Domain.Truck;
 import Domain.TruckOrder;
@@ -172,7 +173,7 @@ public class TruckMapper {
                           + " from truck_return natural join orders natural join invoice "
                           + " where truck_id = ? and canceled = 'N' and current_date <= end_date"
                           + " order by order_id ";
-        String SQLString2 = "select unique order_id, customer_id, start_date, end_date, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
+        String SQLString2 = "select unique order_id, customer_id, start_date, end_date, date_created, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
                           + " from truck_delivery natural join orders natural join invoice "
                           + " where truck_id = ? and canceled = 'N' and current_date <= start_date"
                           + " order by order_id ";
@@ -215,13 +216,18 @@ public class TruckMapper {
                 double discount = rs.getDouble(8);
                 double paidAmount = rs.getDouble(9);
                 Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreated, false, 0, discount, 0, paidAmount);
-                while (orderID > orderList.get(count).getOrderID() && count != max){
-                    if (count < max)
-                        count++;
+                if (orderList.size() != 0){
+                    while (orderID > orderList.get(count).getOrderID() && count != max){
+                        if (count < max)
+                            count++;
+                    }
+                    if (orderID != orderList.get(count).getOrderID()){
+                       orderList.add(count,order);
+                    }
                 }
-                if (orderID != orderList.get(count).getOrderID()){
-                    orderList.add(count,order);
-                }    
+                else {
+                    orderList.add(order);
+                }
             }
             if (orderList.size() == 0){
                 statement = connection.prepareStatement(SQLString3);
@@ -229,24 +235,28 @@ public class TruckMapper {
                 int updatedRows = statement.executeUpdate();
             }
             else {
-                System.out.println("muie");
                 for(int i = 0; i<orderList.size()-1; i++){
                     SQLString4 = SQLString4.concat(",?");
                 }
-                System.out.println(SQLString4);
-                SQLString4 = SQLString4.concat(")");
-                System.out.println(SQLString4);
+                SQLString4 = SQLString4.concat(") ");
+                SQLString4 = SQLString4.concat(" order by order_id");
                 statement = connection.prepareStatement(SQLString4);
                 for(int i = 0; i<orderList.size(); i++){
                     statement.setInt(i+1, orderList.get(i).getOrderID());
                 }
                 rs = statement.executeQuery();
+                count = 0;
                 while (rs.next()){
-                    
+                    OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
+                                                              rs.getInt(2),
+                                                              rs.getInt(3));
+                    while (orderDetail.getOrderID()>orderList.get(count).getOrderID()){
+                        count++;
+                    }
+                    orderList.get(count).insertOrderDetail(orderDetail);
                 }
             }
-        }catch(Exception e){
-            
+        }catch(Exception e){          
             System.out.println("Fail in TruckMapper - deleteTruck");
             System.out.println(e.getMessage());
         }
