@@ -110,20 +110,21 @@ public class OrderMapper {
                 int customerID = rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
-                String eventAddress = rs.getString(5);
-                int unitSize = rs.getInt(6);
-                char can = rs.getString(7).charAt(0);
+                java.util.Date dateCreating = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                char can = rs.getString(8).charAt(0);
                 boolean canceled;
                 if (can == 'Y') {
                     canceled = true;
                 } else {
                     canceled = false;
                 }
-                double discount = rs.getDouble(8);
-                double fulllPrice = rs.getDouble(9);
-                double additionalCosts = rs.getDouble(10);
-                double paidAmount = rs.getDouble(11);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                double paidAmount = rs.getDouble(12);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreating, canceled, fulllPrice, discount, additionalCosts, paidAmount);
                 orderList.add(order);
             }
             statement = connection.prepareStatement(SQLString2);
@@ -221,20 +222,21 @@ public class OrderMapper {
                 rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
-                String eventAddress = rs.getString(5);
-                int unitSize = rs.getInt(6);
-                char can = rs.getString(7).charAt(0);
+                java.util.Date dateCreating = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                char can = rs.getString(8).charAt(0);
                 boolean canceled;
                 if (can == 'Y') {
                     canceled = true;
                 } else {
                     canceled = false;
                 }
-                double discount = rs.getDouble(8);
-                double fulllPrice = rs.getDouble(9);
-                double additionalCosts = rs.getDouble(10);
-                double paidAmount = rs.getDouble(11);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                double paidAmount = rs.getDouble(12);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreating, canceled, fulllPrice, discount, additionalCosts, paidAmount);
                 orderList.add(order);
             }
             
@@ -282,20 +284,21 @@ public class OrderMapper {
                 int customerID = rs.getInt(2);
                 java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
                 java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
-                String eventAddress = rs.getString(5);
-                int unitSize = rs.getInt(6);
-                char can = rs.getString(7).charAt(0);
+                java.util.Date dateCreating = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                char can = rs.getString(8).charAt(0);
                 boolean canceled;
                 if (can == 'Y') {
                     canceled = true;
                 } else {
                     canceled = false;
                 }
-                double discount = rs.getDouble(8);
-                double fulllPrice = rs.getDouble(9);
-                double additionalCosts = rs.getDouble(10);
-                double paidAmount = rs.getDouble(11);
-                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, canceled, fulllPrice, discount, additionalCosts, paidAmount);
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                double paidAmount = rs.getDouble(12);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreating, canceled, fulllPrice, discount, additionalCosts, paidAmount);
                 if (!canceled){
                     orderList.add(order);
                 }
