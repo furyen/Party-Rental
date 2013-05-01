@@ -30,10 +30,13 @@ public class PackageMapper {
                 statement2 = connection.prepareStatement(SQLString2);
                 statement2.setInt(1, rs.getInt(1));
                 ResultSet rs2 = statement2.executeQuery();
+                System.out.println(" muie");
                 Package newPackage = new Package(rs.getInt(1), rs.getString(2), rs.getDouble(3));
-                
+                System.out.println("muie2");
                 while(rs2.next()){
-                    newPackage.addPackageDetail(new PackageDetail(rs.getInt(1), rs.getInt(2), rs.getInt(3)));
+                    System.out.println("muie3");
+                    newPackage.addPackageDetail(new PackageDetail(rs2.getInt(1), rs2.getInt(2), rs2.getInt(3)));
+                    System.out.println("muie4");
                 }               
                 
                 packageList.add(newPackage);

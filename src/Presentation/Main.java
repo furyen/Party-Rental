@@ -94,7 +94,14 @@ public class Main {
 //            System.out.println(order.getOrderID());
 //        }
         
-        System.out.println(control.cancelUnpaidOrders());   
+//        System.out.println(control.cancelUnpaidOrders());   
+        
+               
+       ArrayList<Domain.Package> list = control.getAllPackages();
+        for(int i = 0; i<list.size(); i++){
+            Domain.Package pack = list.get(i);
+            System.out.println(pack.getPackageID());
+        }
     }
     
 }
