@@ -1973,7 +1973,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         packageRes.setLayout(new java.awt.GridBagLayout());
         jScrollPane12.setViewportView(packageRes);
 
-        bb4.setText("jButton14");
+        bb4.setText("Back to main menu");
+        bb4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bb4ActionPerformed(evt);
+            }
+        });
 
         jLabel44.setText("Package Name");
 
@@ -1996,8 +2001,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(jLabel43)
                                 .add(35, 35, 35)
                                 .add(packageList, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .add(jScrollPane12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 347, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .add(37, 37, 37)
+                            .add(jScrollPane12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 287, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(97, 97, 97)
                         .add(PackageManagementLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jButton14)
                             .add(jButton15)
@@ -2031,12 +2036,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                             .add(jLabel45)
                             .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(32, 32, 32)
-                        .add(jButton14)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED, 507, Short.MAX_VALUE))
+                        .add(jButton14))
                     .add(PackageManagementLayout.createSequentialGroup()
                         .add(18, 18, 18)
-                        .add(jScrollPane12)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                        .add(jScrollPane12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 367, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 261, Short.MAX_VALUE)
                 .add(bb4)
                 .add(18, 18, 18))
         );
@@ -2740,19 +2744,20 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
         cl.show(mainPanel, "packageManagement");
-        
+        packageList.removeAllItems();
         ArrayList<Domain.Package> packages = con.getAllPackages();
         for (int i = 0; i < packages.size(); i++) {
-            packageList.add(packages.get(i).getPackageName(), this);
+            packageList.addItem(packages.get(i).getPackageName());
         }
-        
-        
-          resources.clear();
+
+
+        resources.clear();
         gbInventory.removeAll();
         ArrayList<Resource> inventory = con.getAvailableResources(null, null);
         int totalItems = inventory.size();
-        
+
         int added = 0;
         //Used to control the layout of the Grid Bag
         GridBagConstraints gbc = new GridBagConstraints();
@@ -2784,7 +2789,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
 
             resources.put(inventory.get(added), new JComboBox(quantity));
-      
+
             packageRes.add(resources.get(inventory.get(added)), gbc);
 
             gbc.gridx = 6;
@@ -2793,13 +2798,19 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             added++;
 
         }
-        
+
 
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void packageListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packageListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_packageListActionPerformed
+
+    private void bb4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bb4ActionPerformed
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
+        cl.show(mainPanel, "menu");
+    }//GEN-LAST:event_bb4ActionPerformed
 
     /**
      * @param args the command line arguments
