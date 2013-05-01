@@ -78,13 +78,15 @@ public class Main {
 //        System.out.println(resource2.isTentPart());
         //System.out.println(control.createNewResource("Hamster", 500, 1.25, 1));
 //        
-//        control.getConnection();
+        control.getConnection();
 //        System.out.println(control.createNewPackage("Wedding Package", 0.50));
 //        System.out.println(control.createPackageDetail(1, 15, "Wedding Package"));
 //        System.out.println(control.deletePackage("Wedding Package"));
+//        
+        System.out.println(control.getAllPackages().get(0));
         
-       control.getConnection();
-       control.createOrder(1, 400, "Dyringparken", startD, endD, 0);
+//       control.getConnection();
+//       control.createOrder(1, 400, "Dyringparken", startD, endD, 0);
 //       control.deleteOrder();
   
        
