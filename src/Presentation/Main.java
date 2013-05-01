@@ -64,11 +64,11 @@ public class Main {
 //            System.out.println(list.get(i).getOrderDetails().toString());;
 //        }
 //        
-        ArrayList<Order> list = control.deleteTruck(1);
-        for(int i = 0; i<list.size(); i++){
-            Order order = list.get(i);
-            System.out.println(order.getOrderID());
-        }
+//        ArrayList<Order> list = control.deleteTruck(1);
+//        for(int i = 0; i<list.size(); i++){
+//            Order order = list.get(i);
+//            System.out.println(order.getOrderID());
+//        }
 //        control.cancelOrder(order);
         
 //        Resource resource = control.getResource("Floor");
@@ -77,6 +77,12 @@ public class Main {
 //        Resource resource2 = control.getResource("Table");
 //        System.out.println(resource2.isTentPart());
         //System.out.println(control.createNewResource("Hamster", 500, 1.25, 1));
+//        
+//        control.getConnection();
+//        System.out.println(control.createNewPackage("Wedding Package", 0.50));
+//        System.out.println(control.createPackageDetail(1, 15, "Wedding Package"));
+//        System.out.println(control.deletePackage("Wedding Package"));
+        
        
     }
     
