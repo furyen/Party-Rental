@@ -328,4 +328,27 @@ public class OrderMapper {
         
         return orderList;
     }
+
+    boolean deleteOrder(Order order, Connection connection) {
+        boolean status = false;
+        String SQLString = "delete from orders where order_id=?";
+        PreparedStatement statement = null;
+        int rowsDeleted = 0;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setInt(1, order.getOrderID());
+            rowsDeleted = statement.executeUpdate();
+            
+            if (rowsDeleted == 1){
+                status = true;
+                connection.commit();
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error in deleteOrder() in OrderMapper - " + ex);
+        }
+        
+        return status;
+    }
 }

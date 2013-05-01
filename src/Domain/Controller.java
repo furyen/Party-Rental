@@ -380,6 +380,14 @@ public class Controller {
 
         return order;
     }
+    
+    public boolean deleteOrder(Order order){
+        boolean status = false;
+        
+        status = dbFacade.deleteOrder(order);
+        
+        return status;
+    }
 
     /*
      * Creates a deposit invoice file for a specific order
