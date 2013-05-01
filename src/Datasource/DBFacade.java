@@ -324,10 +324,10 @@ public class DBFacade {
         return status;        
     }
     
-    public ArrayList<Order> getExpiringOrders() {
+    public ArrayList<Order> getExpiringOrders(int days) {
         OrderMapper orderMapper = new OrderMapper();
         ArrayList<Order> list = new ArrayList();
-        list = orderMapper.getExpiringOrders(connection);
+        list = orderMapper.getExpiringOrders(days,connection);
         return list;
     }
 

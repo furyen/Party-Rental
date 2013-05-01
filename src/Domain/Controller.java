@@ -637,9 +637,9 @@ public class Controller {
         return status;
     }
     
-    public ArrayList<Order> getExpiringOrders(){
+    public ArrayList<Order> getExpiringOrders(int days){
         ArrayList<Order> list = new ArrayList();
-        list = dbFacade.getExpiringOrders();
+        list = dbFacade.getExpiringOrders(days);
         return list;
     } 
     
