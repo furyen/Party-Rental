@@ -314,7 +314,7 @@ public class OrderMapper {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
                 + " FROM orders natural join invoice"
-                + " where ressource_id=?";
+                + " where TO_CHAR(date_created + ?, 'DD-MON-YYYY') = TO_CHAR(SYSDATE, 'DD-MON-YYYY')";
         String SQLString2 = " select * "
                 + " from order_detail "
                 + " where order_id in (? ";
