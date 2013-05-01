@@ -178,6 +178,9 @@ public class TruckMapper {
                           + " order by order_id ";
         String SQLString3 = "delete from truck" 
                           + " where truck_id = ?";
+        String SQLString4 = " select * "
+                          + " from order_detail"
+                          + " where order_id in (?";
         PreparedStatement statement = null;
         try{
             statement = connection.prepareStatement(SQLString1);
@@ -217,7 +220,7 @@ public class TruckMapper {
                         count++;
                 }
                 if (orderID != orderList.get(count).getOrderID()){
-                    orderList.add(order);
+                    orderList.add(count,order);
                 }    
             }
             if (orderList.size() == 0){
@@ -226,7 +229,18 @@ public class TruckMapper {
                 int updatedRows = statement.executeUpdate();
             }
             else {
-                
+                for(int i = 0; i<orderList.size()-1; i++){
+                    SQLString4.concat(",?");
+                }
+                SQLString4.concat(")");
+                statement = connection.prepareStatement(SQLString4);
+                for(int i = 0; i<orderList.size(); i++){
+                    statement.setInt(i+1, orderList.get(i).getOrderID());
+                }
+                rs = statement.executeQuery();
+                while (rs.next()){
+                    
+                }
             }
         }catch(Exception e){
             
