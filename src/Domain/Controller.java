@@ -381,10 +381,10 @@ public class Controller {
         return order;
     }
     
-    public boolean deleteOrder(Order order){
+    public boolean deleteOrder(int orderID){
         boolean status = false;
         
-        status = dbFacade.deleteOrder(order);
+        status = dbFacade.deleteOrder(orderID);
         
         return status;
     }

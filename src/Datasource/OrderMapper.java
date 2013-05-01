@@ -329,18 +329,20 @@ public class OrderMapper {
         return orderList;
     }
 
-    boolean deleteOrder(Order order, Connection connection) {
+    boolean deleteOrder(int orderID, Connection connection) {
         boolean status = false;
         String SQLString = "delete from orders where order_id=?";
         PreparedStatement statement = null;
-        int rowsDeleted = 0;
+        PreparedStatement statement2 = null;
+        int orderDeleted = 0;
         
         try{
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, order.getOrderID());
-            rowsDeleted = statement.executeUpdate();
+            statement.setInt(1, orderID);
+            orderDeleted = statement.executeUpdate();
+
             
-            if (rowsDeleted == 1){
+            if (orderDeleted == 1){
                 status = true;
                 connection.commit();
             }
