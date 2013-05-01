@@ -229,10 +229,13 @@ public class TruckMapper {
                 int updatedRows = statement.executeUpdate();
             }
             else {
+                System.out.println("muie");
                 for(int i = 0; i<orderList.size()-1; i++){
-                    SQLString4.concat(",?");
+                    SQLString4 = SQLString4.concat(",?");
                 }
-                SQLString4.concat(")");
+                System.out.println(SQLString4);
+                SQLString4 = SQLString4.concat(")");
+                System.out.println(SQLString4);
                 statement = connection.prepareStatement(SQLString4);
                 for(int i = 0; i<orderList.size(); i++){
                     statement.setInt(i+1, orderList.get(i).getOrderID());
