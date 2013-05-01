@@ -258,7 +258,7 @@ public class Controller {
             getCustomer(customerID);
         }
 
-        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, false, 0, 0, 0, 0);
+        newOrder = new Order(customerID, orderID, unitSize, address, startDate, endDate, null, false, 0, 0, 0, 0);
         currentOrder = newOrder;
         status = dbFacade.createOrder(newOrder);
 
