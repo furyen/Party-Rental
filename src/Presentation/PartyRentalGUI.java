@@ -78,6 +78,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         
         tentPartButtonGroup2.add(tentPart2);
         tentPartButtonGroup2.add(notTentPart2);
+        
+        effectedOrdersPanel.setVisible(false);
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
@@ -1706,7 +1708,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .add(jButton9)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(185, 185, 185))
+                        .add(172, 172, 172))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
                         .add(0, 113, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -1737,12 +1739,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 32, Short.MAX_VALUE)
-                .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(ResourceDoneLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 179, Short.MAX_VALUE)
                         .add(jButton9)
                         .addContainerGap())
-                    .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(ResourceDoneLayout.createSequentialGroup()
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         mainPanel.add(ResourceDone, "resources");
