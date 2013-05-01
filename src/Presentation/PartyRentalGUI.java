@@ -930,6 +930,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel43.setText("You have tent in the order. You have to select trucks for delivery and return.");
 
         jButton12.setText("OK");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout trucksRequiredPopupLayout = new org.jdesktop.layout.GroupLayout(trucksRequiredPopup.getContentPane());
         trucksRequiredPopup.getContentPane().setLayout(trucksRequiredPopupLayout);
@@ -2546,6 +2551,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         resourceCreated.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    trucksRequiredPopup.setVisible(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
