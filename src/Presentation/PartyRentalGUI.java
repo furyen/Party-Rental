@@ -53,6 +53,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private Order editOrder;
     private DefaultListModel searchCustomerModel2 = new DefaultListModel();
     private ArrayList<Order> filteredOrdersByName = new ArrayList();
+    private DefaultListModel effectedOrdersModel = new DefaultListModel();
+
 
     public PartyRentalGUI() {
         initComponents();
@@ -62,6 +64,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         TruckList.setModel(truckListModel);
         customerOrders.setModel(customerOrdersModel);
         orderDetailsList.setModel(orderDetailsModel);
+        
         activeResButtonGroup.add(activeRes);
         activeResButtonGroup.add(inactiveRes);
 
@@ -457,6 +460,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         AddNewTruckButton = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
+        effectedOrdersPanel = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        effectedOrdersJList = new javax.swing.JList();
+        handleButton = new javax.swing.JButton();
         EventManagement = new javax.swing.JPanel();
         orders = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -1654,6 +1661,40 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        effectedOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Effected Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
+
+        effectedOrdersJList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane11.setViewportView(effectedOrdersJList);
+
+        handleButton.setText("Handle");
+
+        org.jdesktop.layout.GroupLayout effectedOrdersPanelLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersPanel);
+        effectedOrdersPanel.setLayout(effectedOrdersPanelLayout);
+        effectedOrdersPanelLayout.setHorizontalGroup(
+            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane11)
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap(267, Short.MAX_VALUE)
+                .add(handleButton)
+                .add(30, 30, 30))
+        );
+        effectedOrdersPanelLayout.setVerticalGroup(
+            effectedOrdersPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(effectedOrdersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 110, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(handleButton)
+                .addContainerGap())
+        );
+
         org.jdesktop.layout.GroupLayout ResourceDoneLayout = new org.jdesktop.layout.GroupLayout(ResourceDone);
         ResourceDone.setLayout(ResourceDoneLayout);
         ResourceDoneLayout.setHorizontalGroup(
@@ -1663,7 +1704,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
                         .add(jButton9)
-                        .add(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(185, 185, 185))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
                         .add(0, 113, Short.MAX_VALUE)
                         .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -1694,9 +1737,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 179, Short.MAX_VALUE)
-                .add(jButton9)
-                .addContainerGap())
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 32, Short.MAX_VALUE)
+                .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(ResourceDoneLayout.createSequentialGroup()
+                        .add(jButton9)
+                        .addContainerGap())
+                    .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
         );
 
         mainPanel.add(ResourceDone, "resources");
@@ -2505,8 +2551,16 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        effectedOrdersModel.clear();
         Truck selected = (Truck)TruckList.getSelectedValue(); 
-        ArrayList affectedOrders = con.deleteTruck(selected.getTruckID());
+        ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
+        effectedOrdersPanel.setVisible(true);
+        
+        for (Order o : effectedOrders) {
+            effectedOrdersModel.addElement(o);
+        }
+        effectedOrdersJList.setModel(effectedOrdersModel);
+       
     }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
@@ -2598,6 +2652,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField editResPrice;
     private javax.swing.JTextField editResQuantity;
     private javax.swing.JTextField editResUnitSize;
+    private javax.swing.JList effectedOrdersJList;
+    private javax.swing.JPanel effectedOrdersPanel;
     private com.toedter.calendar.JDateChooser endDate;
     private javax.swing.JTextField eventAddress;
     private javax.swing.JButton eventManagementButton;
@@ -2610,6 +2666,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton getAvailableResourcesButton;
     private javax.swing.JPanel getRes;
     private javax.swing.JButton getResource;
+    private javax.swing.JButton handleButton;
     private javax.swing.JRadioButton inactiveRes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -2673,6 +2730,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
