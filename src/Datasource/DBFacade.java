@@ -340,4 +340,10 @@ public class DBFacade {
         return status;
     }
 
+    public boolean cancelUnpaidOrders() {
+        OrderMapper orderMapper = new OrderMapper();
+        boolean bool = orderMapper.cancelUnpaidOrders(connection);
+        return bool;
+    }
+
 }

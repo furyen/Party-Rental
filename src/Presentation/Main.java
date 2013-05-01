@@ -90,10 +90,19 @@ public class Main {
 //       control.deleteOrder();
   
        
-       ArrayList<Order> list = control.getExpiringOrders(0);;
+//       ArrayList<Order> list = control.getExpiringOrders(1);;
+//        for(int i = 0; i<list.size(); i++){
+//            Order order = list.get(i);
+//            System.out.println(order.getOrderID());
+//        }
+        
+//        System.out.println(control.cancelUnpaidOrders());   
+        
+               
+       ArrayList<Domain.Package> list = control.getAllPackages();
         for(int i = 0; i<list.size(); i++){
-            Order order = list.get(i);
-            System.out.println(order.getOrderID());
+            Domain.Package pack = list.get(i);
+            System.out.println(pack.getPackageID());
         }
     }
     
