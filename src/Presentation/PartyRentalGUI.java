@@ -1966,7 +1966,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_customerAddressActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        boolean truckRequired;
+        boolean truckRequired=false;
 
 
 
@@ -1974,18 +1974,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         int totalUnitSize = 0;
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             totalUnitSize = totalUnitSize + entry.getKey().getQuantity() * entry.getKey().getUnitSize();
-            if (entry.getKey().isTentPart() && entry.getValue().getSelectedIndex() != 0) {
+            if (entry.getKey().isTentPart() && entry.getValue().getSelectedIndex()!=0) {
                 truckRequired = true;
-            } else {
-                truckRequired = false;
             }
         }
 
-        if (truckRequired = true) {
+        if (truckRequired == true) {
             if (unitsDeliver == 0 && unitsReturn == 0) {
                 saveOrder(totalUnitSize);
 
             } else {
+                trucksRequiredPopup.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width) / 2 - getWidth() / 2, (Toolkit.getDefaultToolkit().getScreenSize().height) / 2 - getHeight() / 2);
                 trucksRequiredPopup.pack();
                 trucksRequiredPopup.setVisible(true);
             }
