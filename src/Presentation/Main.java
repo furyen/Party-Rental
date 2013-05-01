@@ -85,7 +85,14 @@ public class Main {
         
        control.getConnection();
        control.createOrder(1, 400, "Dyringparken", startD, endD, 0);
-       control.deleteOrder();
+//       control.deleteOrder();
+  
+       
+       ArrayList<Order> list = control.getExpiringOrders(0);;
+        for(int i = 0; i<list.size(); i++){
+            Order order = list.get(i);
+            System.out.println(order.getOrderID());
+        }
     }
     
 }

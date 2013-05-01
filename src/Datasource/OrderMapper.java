@@ -310,7 +310,7 @@ public class OrderMapper {
         return orderList;
     }
 
-    ArrayList<Order> getExpiringOrders(Connection connection) {
+    ArrayList<Order> getExpiringOrders(int days,Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = " select * "
                 + " FROM orders natural join invoice"
@@ -320,7 +320,53 @@ public class OrderMapper {
                 + " where order_id in (? ";
         PreparedStatement statement = null;
         try{
-            
+            statement = connection.prepareStatement(SQLString1);
+            statement.setInt(1, days);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                int orderID = rs.getInt(1);
+                int customerID = rs.getInt(2);
+                java.util.Date startDate = new java.util.Date(rs.getDate(3).getTime());
+                java.util.Date endDate = new java.util.Date(rs.getDate(4).getTime());
+                java.util.Date dateCreating = new java.util.Date(rs.getDate(5).getTime());
+                String eventAddress = rs.getString(6);
+                int unitSize = rs.getInt(7);
+                char can = rs.getString(8).charAt(0);
+                boolean canceled;
+                if (can == 'Y') {
+                    canceled = true;
+                } else {
+                    canceled = false;
+                }
+                double discount = rs.getDouble(9);
+                double fulllPrice = rs.getDouble(10);
+                double additionalCosts = rs.getDouble(11);
+                double paidAmount = rs.getDouble(12);
+                Order order = new Order(customerID, orderID, unitSize, eventAddress, startDate, endDate, dateCreating, canceled, fulllPrice, discount, additionalCosts, paidAmount);
+                orderList.add(order);
+            }
+            if (orderList.size() != 0) {
+                for(int i = 0; i<orderList.size()-1; i++){
+                    SQLString2 = SQLString2.concat(",?");
+                }
+                SQLString2 = SQLString2.concat(") ");
+                SQLString2 = SQLString2.concat(" order by order_id");
+                statement = connection.prepareStatement(SQLString2);
+                for(int i = 0; i<orderList.size(); i++){
+                    statement.setInt(i+1, orderList.get(i).getOrderID());
+                }
+                rs = statement.executeQuery();
+                int count = 0;
+                while (rs.next()){
+                    OrderDetail orderDetail = new OrderDetail(rs.getInt(1),
+                                                              rs.getInt(2),
+                                                              rs.getInt(3));
+                    while (orderDetail.getOrderID()>orderList.get(count).getOrderID()){
+                        count++;
+                    }
+                    orderList.get(count).insertOrderDetail(orderDetail);
+                }
+            }
         }catch (Exception ex) {
             System.out.println("Error in the OrderMapper - getExpiringOrders");
             System.out.println(ex);
