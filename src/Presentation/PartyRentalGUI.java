@@ -367,7 +367,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         trucksRequiredPopup = new javax.swing.JDialog();
         jLabel43 = new javax.swing.JLabel();
-        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         bookingMenuButton = new javax.swing.JButton();
@@ -926,14 +926,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(12, 12, 12))
         );
 
-        trucksRequiredPopup.setPreferredSize(null);
-
         jLabel43.setText("You have tent in the order. You have to select trucks for delivery and return.");
 
-        jButton12.setText("OK");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        jButton13.setText("OK");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                jButton13ActionPerformed(evt);
             }
         });
 
@@ -944,7 +942,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             .add(trucksRequiredPopupLayout.createSequentialGroup()
                 .add(20, 20, 20)
                 .add(trucksRequiredPopupLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jButton12)
+                    .add(jButton13)
                     .add(jLabel43))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -954,7 +952,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(19, 19, 19)
                 .add(jLabel43)
                 .add(18, 18, 18)
-                .add(jButton12)
+                .add(jButton13)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -1602,11 +1600,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         });
 
         jButton12.setText("Delete");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
 
         org.jdesktop.layout.GroupLayout GetExistingTrucksPanelLayout = new org.jdesktop.layout.GroupLayout(GetExistingTrucksPanel);
         GetExistingTrucksPanel.setLayout(GetExistingTrucksPanelLayout);
@@ -1734,7 +1727,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 237, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -2564,14 +2557,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         resourceCreated.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-    trucksRequiredPopup.setVisible(false);
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        Truck selected = (Truck)TruckList.getSelectedValue(); 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    Truck selected = (Truck)TruckList.getSelectedValue(); 
         ArrayList affectedOrders = con.deleteTruck(selected.getTruckID());
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }                                         
+    
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    trucksRequiredPopup.setVisible(false);
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2679,6 +2672,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
