@@ -288,4 +288,49 @@ public class DBFacade {
         return packageList;
     }
 
+//    public int getUniquePackageID() {
+//        int packageID = 0;
+//        PackageMapper packageMapper = new PackageMapper();
+//        
+//        packageID = packageMapper.getUniquePackageID(connection);
+//        
+//        return packageID;        
+//    }
+
+    public boolean createNewPackage(String packageName, double discount) {
+        boolean status = false;
+        PackageMapper packageMapper = new PackageMapper();
+        
+        status = packageMapper.createNewPackage(packageName, discount, connection);
+        
+        return status;
+    }
+
+    public Domain.Package getPackage(String name) {
+        Domain.Package newPackage = null;
+        PackageMapper packageMapper = new PackageMapper();
+        
+        newPackage = packageMapper.getPackage(name, connection);
+        
+        return newPackage;
+    }
+
+    public boolean deletePackage(String name) {
+        boolean status = false;
+        PackageMapper packageMapper = new PackageMapper();
+        
+        status = packageMapper.deletePackage(name, connection);
+        
+        return status;
+    }
+
+    public boolean createPackageDetail(PackageDetail newPackageDetail) {
+        boolean status = false;
+        PackageMapper packageMapper = new PackageMapper();
+        
+        status = packageMapper.createNewPackageDetail(newPackageDetail, connection);
+        
+        return status;        
+    }
+
 }

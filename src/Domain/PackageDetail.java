@@ -41,6 +41,10 @@ public class PackageDetail {
         this.quantity = quantity;
     }
     
+    public String toString(){
+        return packageID + " - " + resourceID + " - " + quantity;
+    }
+    
     
     
 }

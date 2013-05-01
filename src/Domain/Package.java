@@ -51,6 +51,8 @@ public class Package {
         this.packageName = packageName;
     }
     
-    
+    public String toString(){
+        return packageName + " - " + packageID + " - " + discount;
+    }
     
 }
