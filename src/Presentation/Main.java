@@ -78,10 +78,13 @@ public class Main {
 //        System.out.println(resource2.isTentPart());
         //System.out.println(control.createNewResource("Hamster", 500, 1.25, 1));
 //        
-//        control.getConnection();
+        control.getConnection();
 //        System.out.println(control.createNewPackage("Wedding Package", 0.50));
 //        System.out.println(control.createPackageDetail(1, 15, "Wedding Package"));
 //        System.out.println(control.deletePackage("Wedding Package"));
+//        
+       // System.out.println(control.getAllPackages().get(0));
+        //System.out.println(control.getAllPackages().get(1));
         
 //       control.getConnection();
 //       control.createOrder(1, 400, "Dyringparken", startD, endD, 0);
@@ -97,11 +100,15 @@ public class Main {
 //        System.out.println(control.cancelUnpaidOrders());   
         
                
-       ArrayList<Domain.Package> list = control.getAllPackages();
-        for(int i = 0; i<list.size(); i++){
-            Domain.Package pack = list.get(i);
-            System.out.println(pack.getPackageID());
-        }
+//       ArrayList<Domain.Package> list = control.getAllPackages();
+//        for(int i = 0; i<list.size(); i++){
+//            Domain.Package pack = list.get(i);
+//            System.out.println(pack.getPackageID());
+//        }
+//    }
+     
+        //System.out.println(control.getPackage("newpacksddfs"));
+        
     }
     
 }
