@@ -80,7 +80,7 @@ public class CustomerMapper {
         
     }
 
-    Customer getCustomer(int customerID, Connection connection) {
+    public Customer getCustomer(int customerID, Connection connection) {
         Customer customer = null;
         String SQLString = "select * from customer where customer_id=?";
         PreparedStatement statement = null;
