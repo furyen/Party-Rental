@@ -228,7 +228,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
@@ -2966,11 +2966,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             discount.setText("" + p.getDiscount());
             ArrayList<PackageDetail> pd = p.getPackageDetailList();
 
-            for (int i = 0; i < pd.size(); i++) {
+            
                 for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                     entry.getValue().setSelectedIndex(0);
+                     for (int i = 0; i < pd.size(); i++) {
                     if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
                         entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
-                    }
+                    } 
                 }
             }
 
