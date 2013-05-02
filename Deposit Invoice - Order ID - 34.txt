@@ -2,15 +2,20 @@ HellebÃ¦k Party Rental						CVR: 32139429
 								Order nr: 34
 
 
-Dear TIMEA KISS
+Dear DANIEL S
 You are receiving this invoice in accordance to your order
-with to the following address: Kgns Lyngby
+with to the following address: asdsd
 You have ordered the following things:
 
+Table: 1.0
 Chair: 1.0
+Toilet: 1.0
+Glas: 1.0
+Cutlery: 1.0
+Heating system: 1.0
 
-The full price: 3.0
+The full price: 2299.0
 
-You are to pay the deposit of 25% which amounts to: 0.75
+You are to pay the deposit of 25% which amounts to: 574.75
 
 We hope you will enjoy the event

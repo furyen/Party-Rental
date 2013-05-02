@@ -2280,7 +2280,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         startDate.setDate(null);
         endDate.setDate(null);
         eventAddress.setText("");
-        discount.setText("");
+        discount.setText("0");
         totalPrice.setText("");
         firstName.setText("");
         customerAddress.setText("");
