@@ -22,6 +22,10 @@ public class Package {
         packageDetailList = new ArrayList();
         this.discount = discount;
     }
+
+    public ArrayList<PackageDetail> getPackageDetailList() {
+        return packageDetailList;
+    }
     
     public void addPackageDetail(PackageDetail packageDetail){
         this.packageDetailList.add(packageDetail);
