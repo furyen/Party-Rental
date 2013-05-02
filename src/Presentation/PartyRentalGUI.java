@@ -228,7 +228,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
@@ -293,7 +293,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
@@ -2971,7 +2971,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void bookingPackagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingPackagesActionPerformed
-        if (bookingPackages.getSelectedIndex()!=0) {
+        if (bookingPackages.getSelectedIndex()!=0&&bookingPackages.getSelectedItem()!=null) {
 
             Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
 
