@@ -2425,7 +2425,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
     private void getResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getResourceActionPerformed
         String selectedResource = ((Resource) JList_resources.getSelectedValue()).getResourceName();
-        con.getResource(selectedResource);
+        con.getResourceWithLock(selectedResource);
         editResName.setText(con.getResource(selectedResource).getResourceName());
         editResQuantity.setText(con.getResource(selectedResource).getQuantity() + "");
         editResPrice.setText(con.getResource(selectedResource).getPrice() + "");

@@ -1020,7 +1020,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="344" max="32767" attributes="0"/>
+                      <EmptySpace pref="379" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton13" min="-2" pref="252" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1044,7 +1044,7 @@
                       <Component id="eventManagementButton" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jButton13" min="-2" pref="81" max="-2" attributes="0"/>
-                      <EmptySpace pref="199" max="32767" attributes="0"/>
+                      <EmptySpace pref="240" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1124,7 +1124,7 @@
                           <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="108" max="32767" attributes="0"/>
+                      <EmptySpace pref="117" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1309,7 +1309,7 @@
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="endDate" min="-2" pref="185" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="182" max="32767" attributes="0"/>
                                           <Component id="getAvailableResourcesButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="eventAddress" max="32767" attributes="0"/>
@@ -2874,7 +2874,7 @@
                           </Group>
                           <Component id="bb4" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="260" max="32767" attributes="0"/>
+                      <EmptySpace pref="271" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2907,7 +2907,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane12" min="-2" pref="512" max="-2" attributes="0"/>
-                              <EmptySpace pref="118" max="32767" attributes="0"/>
+                              <EmptySpace pref="147" max="32767" attributes="0"/>
                               <Component id="bb4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>

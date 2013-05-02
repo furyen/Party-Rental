@@ -288,19 +288,10 @@ public class Controller {
      * The char is 0 for delivery and 1 for return
      * Ends in UnitOfWorkProcessOrder
      */
-    public boolean truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
-        boolean status = false;
+    public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
-        ArrayList<Truck> truckList = dbFacade.getTrucks();
         
-        for(Truck truck : truckList){
-            if(truck.getTruckID() == truckID){
-                dbFacade.truckBooking(tr);
-                status = true;
-            }
-        }
-        
-        return status;
+        dbFacade.truckBooking(tr);
     }
     
     /*
@@ -658,6 +649,13 @@ public class Controller {
         boolean bool = dbFacade.cancelUnpaidOrders();
         return bool;
     } 
+    
+    public Resource getResourceWithLock(String name) {
+        
+        currentResource = dbFacade.getResourceWithLock(name);
+
+        return currentResource;
+    }
     
 }
 

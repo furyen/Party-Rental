@@ -221,7 +221,7 @@ public class RessourceMapper {
      
      public Resource getResource(String name, Connection connection) throws SQLException{
         Resource resource = null;
-        String SQLString = "select * from ressource where ressource_name=? for update of ressource_name, price, quantity, active, tent_part nowait";
+        String SQLString = "select * from ressource where ressource_name=?";
         PreparedStatement statement = null;
         boolean isTentPart = false;
         boolean isActive = true;
@@ -244,6 +244,7 @@ public class RessourceMapper {
         
         return resource;
     }
+     
 
     public ArrayList<Order> deleteResource(int resourceID, Connection connection) {
         ArrayList<Order> list = null;
@@ -305,6 +306,38 @@ public class RessourceMapper {
         }
         
         return status;
+    }
+
+    Resource getResourceWithLock(String name, Connection connection) {
+        Resource resource = null;
+        String SQLString = "select * from ressource where ressource_name=? for update of ressource_name, quantity, price, active, tent_part";
+        PreparedStatement statement = null;
+        boolean isTentPart = false;
+        boolean isActive = true;
+        
+        try{
+            statement = connection.prepareStatement(SQLString);
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString(7).equalsIgnoreCase("y")) {
+                    isTentPart = true;
+                }
+
+                if (rs.getString(6).equalsIgnoreCase("n")) {
+                    isActive = false;
+                }
+                resource = new Resource(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getInt(5), isTentPart);
+                resource.setActive(isActive);
+            }
+        }
+        catch(SQLException ex){
+            System.out.println("Error in the getResourceWithLock() in RessourceMapper - " + ex);
+        }
+        
+        
+        return resource;
     }
     
 }
