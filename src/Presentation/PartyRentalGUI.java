@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.InputVerifier;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
@@ -80,6 +81,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         tentPartButtonGroup2.add(notTentPart2);
 
         effectedOrdersPanel.setVisible(false);
+     
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
