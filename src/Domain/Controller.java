@@ -186,7 +186,7 @@ public class Controller {
         return newCustomer;
     }
 
-    public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, int discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
+    public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, double discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
         double finalPrice = 0;
 
         for (Map.Entry<Resource, JComboBox> entry : resourceList.entrySet()) {
