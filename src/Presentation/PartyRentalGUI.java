@@ -2828,7 +2828,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         if (!effectedOrdersJList.isSelectionEmpty()) {
             Order orderToBeHandled = (Order) effectedOrdersJList.getSelectedValue();
-            //editOrder = (Order) orderList.getSelectedValue();
+            con.cancelOrder(orderToBeHandled);
             startDate.setDate(orderToBeHandled.getStartDate());
             endDate.setDate(orderToBeHandled.getEndDate());
             getAvailableResourcesButton.doClick();
