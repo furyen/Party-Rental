@@ -186,7 +186,7 @@ public class Controller {
         return newCustomer;
     }
 
-    public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, int discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
+    public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, double discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
         double finalPrice = 0;
 
         for (Map.Entry<Resource, JComboBox> entry : resourceList.entrySet()) {
@@ -641,6 +641,11 @@ public class Controller {
         ArrayList<Order> list = new ArrayList();
         list = dbFacade.getExpiringOrders(days);
         return list;
+    } 
+    
+    public boolean cancelUnpaidOrders(){
+        boolean bool = dbFacade.cancelUnpaidOrders();
+        return bool;
     } 
     
 }

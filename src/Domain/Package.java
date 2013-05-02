@@ -11,16 +11,20 @@ import java.util.ArrayList;
  * @author dekez
  */
 public class Package {
-    ArrayList<PackageDetail> packageDetailList;
-    int packageID;
-    String packageName;
-    double discount;
+    private ArrayList<PackageDetail> packageDetailList;
+    private int packageID;
+    private String packageName;
+    private double discount;
 
     public Package(int packageID, String packageName, double discount) {
         this.packageID = packageID;
         this.packageName = packageName;
         packageDetailList = new ArrayList();
         this.discount = discount;
+    }
+
+    public ArrayList<PackageDetail> getPackageDetailList() {
+        return packageDetailList;
     }
     
     public void addPackageDetail(PackageDetail packageDetail){

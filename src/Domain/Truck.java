@@ -10,8 +10,8 @@ package Domain;
  */
 public class Truck {
 
-    int truckID, size, truckRun, filledSpace;
-    double unitPrice;
+    private int truckID, size, truckRun, filledSpace;
+    private double unitPrice;
 
     public Truck(int truckID, int truckRun, int filledSpace, int size, double unitPrice) {
         this.truckID = truckID;
