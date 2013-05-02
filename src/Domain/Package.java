@@ -12,6 +12,10 @@ import java.util.ArrayList;
  */
 public class Package {
     ArrayList<PackageDetail> packageDetailList;
+
+    public ArrayList<PackageDetail> getPackageDetailList() {
+        return packageDetailList;
+    }
     int packageID;
     String packageName;
     double discount;
