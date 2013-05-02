@@ -22,7 +22,7 @@ public class DBFacade {
     private DBFacade() {
     }
 
-    public static DBFacade getIntance() {
+    public static DBFacade getInstance() {
         if (instance == null) {
             instance = new DBFacade();
         }

@@ -35,17 +35,22 @@ public class CustomerMapper {
         return customerList;
     }
 
-    public int getUniqueCustomerID(Connection connection) throws SQLException{
+    public int getUniqueCustomerID(Connection connection){
         int uniqueID = 0;
         String SQLString = "select SEQ_CUSTOMER.nextval from dual";
         PreparedStatement statement = null;
-        
-        statement = connection.prepareStatement(SQLString);
-        ResultSet rs = statement.executeQuery();
-        
-        if(rs.next()){
-            uniqueID = rs.getInt(1);
+        try{
+             statement = connection.prepareStatement(SQLString);
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                uniqueID = rs.getInt(1);
+            }
         }
+        catch(SQLException ex){
+            System.out.println("Error in the getUniqueCustomerID() in CustomerMapper - " + ex);
+        }
+       
         
         return uniqueID;
     }
@@ -80,7 +85,7 @@ public class CustomerMapper {
         
     }
 
-    Customer getCustomer(int customerID, Connection connection) {
+    public Customer getCustomer(int customerID, Connection connection) {
         Customer customer = null;
         String SQLString = "select * from customer where customer_id=?";
         PreparedStatement statement = null;
