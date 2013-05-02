@@ -2,16 +2,17 @@ HellebÃ¦k Party Rental						CVR: 32139429
 								Order nr: 24
 
 
-Dear Daniel S
+Dear DANIEL S
 You are receiving this invoice in accordance to your order
-with to the following address: Lyngby
+with to the following address: sdfs
 You have ordered the following things:
 
-Table: 1.0
 Chair: 1.0
+Glas: 1.0
+Floor: 1.0
 
-The full price: 99.0
+The full price: 827.64
 
-You are to pay the deposit of 25% which amounts to: 24.75
+You are to pay the deposit of 25% which amounts to: 206.91
 
 We hope you will enjoy the event

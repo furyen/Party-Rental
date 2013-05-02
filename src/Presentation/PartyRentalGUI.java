@@ -8,6 +8,7 @@ import Domain.Controller;
 import Domain.Customer;
 import Domain.Order;
 import Domain.OrderDetail;
+import Domain.PackageDetail;
 import Domain.Resource;
 import Domain.Truck;
 import java.awt.CardLayout;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.InputVerifier;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
@@ -79,6 +81,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         tentPartButtonGroup2.add(notTentPart2);
 
         effectedOrdersPanel.setVisible(false);
+     
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
@@ -140,7 +143,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     //Limit the total price to have only 2 decimal places
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
@@ -227,7 +230,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
@@ -292,7 +295,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         }
                     }
 
-                    totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+                    totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
                     DecimalFormat f = new DecimalFormat("##.00");
                     totalPrice.setText("Total Price: " + f.format(totalPriceValue));
                 }
@@ -312,6 +315,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pleaseSelectCustomer = new javax.swing.JDialog();
+        jLabel43 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
         searchCustomer = new javax.swing.JDialog();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -364,7 +370,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         resourceCreated = new javax.swing.JDialog();
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        effectedOrders = new javax.swing.JDialog();
+        effectedOrdersDialog = new javax.swing.JDialog();
         effectedOrdersPanel = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         effectedOrdersJList = new javax.swing.JList();
@@ -414,6 +420,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         totalSize = new javax.swing.JLabel();
         remainingDelivery = new javax.swing.JLabel();
         remainingReturn = new javax.swing.JLabel();
+        bookingPackages = new javax.swing.JComboBox();
+        spLabel = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         ResourceDone = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
@@ -945,6 +953,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(12, 12, 12))
         );
 
+        effectedOrdersDialog.setMaximumSize(new java.awt.Dimension(420, 210));
+        effectedOrdersDialog.setMinimumSize(new java.awt.Dimension(420, 210));
+        effectedOrdersDialog.setPreferredSize(new java.awt.Dimension(420, 210));
+        effectedOrdersDialog.setSize(new java.awt.Dimension(420, 210));
+
         effectedOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Effected Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
         effectedOrdersJList.setModel(new javax.swing.AbstractListModel() {
@@ -984,25 +997,25 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        org.jdesktop.layout.GroupLayout effectedOrdersLayout = new org.jdesktop.layout.GroupLayout(effectedOrders.getContentPane());
-        effectedOrders.getContentPane().setLayout(effectedOrdersLayout);
-        effectedOrdersLayout.setHorizontalGroup(
-            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 409, Short.MAX_VALUE)
-            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(effectedOrdersLayout.createSequentialGroup()
+        org.jdesktop.layout.GroupLayout effectedOrdersDialogLayout = new org.jdesktop.layout.GroupLayout(effectedOrdersDialog.getContentPane());
+        effectedOrdersDialog.getContentPane().setLayout(effectedOrdersDialogLayout);
+        effectedOrdersDialogLayout.setHorizontalGroup(
+            effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 415, Short.MAX_VALUE)
+            .add(effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersDialogLayout.createSequentialGroup()
                     .addContainerGap()
                     .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(12, Short.MAX_VALUE)))
         );
-        effectedOrdersLayout.setVerticalGroup(
-            effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 194, Short.MAX_VALUE)
-            .add(effectedOrdersLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(effectedOrdersLayout.createSequentialGroup()
+        effectedOrdersDialogLayout.setVerticalGroup(
+            effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 204, Short.MAX_VALUE)
+            .add(effectedOrdersDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(effectedOrdersDialogLayout.createSequentialGroup()
                     .addContainerGap()
                     .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(16, Short.MAX_VALUE)))
         );
 
         deletePackageConfirmation.setPreferredSize(null);
@@ -1256,6 +1269,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         remainingReturn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
+        bookingPackages.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingPackagesActionPerformed(evt);
+            }
+        });
+
+        spLabel.setText("Select a package");
+
         org.jdesktop.layout.GroupLayout OrderLayout = new org.jdesktop.layout.GroupLayout(Order);
         Order.setLayout(OrderLayout);
         OrderLayout.setHorizontalGroup(
@@ -1279,11 +1300,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
-                        .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 298, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(OrderLayout.createSequentialGroup()
                                 .add(10, 10, 10)
-                                .add(totalSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(totalSize, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(OrderLayout.createSequentialGroup()
+                                .add(spLabel)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(bookingPackages, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(OrderLayout.createSequentialGroup()
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 236, Short.MAX_VALUE)
@@ -1323,17 +1348,20 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
                     .add(eventAddress, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(18, 18, 18)
+                .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(OrderLayout.createSequentialGroup()
-                        .add(18, 18, 18)
                         .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 288, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(remainingDelivery, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(remainingReturn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, OrderLayout.createSequentialGroup()
-                        .add(25, 25, 25)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 305, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(OrderLayout.createSequentialGroup()
+                        .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(bookingPackages, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(spLabel))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 280, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(0, 0, 0)
                 .add(OrderLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(OrderLayout.createSequentialGroup()
@@ -1386,6 +1414,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         mainPanel.add(Booking, "booking");
 
         ResourceDone.setMaximumSize(new java.awt.Dimension(720, 276));
+        ResourceDone.setPreferredSize(null);
 
         jButton9.setText("Back to Main Menu");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -1840,6 +1869,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         mainPanel.add(ResourceDone, "resources");
 
         EventManagement.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Event Managenent", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
+        EventManagement.setPreferredSize(null);
         EventManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orders.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
@@ -2130,7 +2160,19 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookingMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingMenuButtonActionPerformed
-
+        bookingPackages.setVisible(false);
+        remainingDelivery.setText("Units left to deliver: ");
+        remainingReturn.setText("Units left to return: ");
+        totalPrice.setText("Total Price: ");
+        totalSize.setText("Total Unit Size: ");
+        
+        eventAddress.setText("");
+        firstName.setText("");
+        lastName.setText("");
+        customerAddress.setText("");
+        customerID.setText("");
+        
+        spLabel.setVisible(false);
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
         truckDelivery.clear();
         truckReturn.clear();
@@ -2138,6 +2180,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         gbInventory.removeAll();
         deliveryPanel.removeAll();
         returnPanel.removeAll();
+        bookingPackages.removeAllItems();
+
+        ArrayList<Domain.Package> packages = con.getAllPackages();
+        bookingPackages.addItem("No Package Selected");
+        for (int i = 0; i < packages.size(); i++) {
+            bookingPackages.addItem(packages.get(i).getPackageName());
+        }
+
         Order.repaint();
 
         cl.show(mainPanel, "booking");
@@ -2249,6 +2299,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         gbInventory.removeAll();
         deliveryPanel.removeAll();
         returnPanel.removeAll();
+        spLabel.setVisible(true);
+        bookingPackages.setVisible(true);
         refreshAvailableResources(con.getAvailableResources(startDate.getDate(), endDate.getDate()));
         // 0 is for delivery, 1 for return of trucks
         refreshTruckDelivery(con.getTruckDeliveryForDate(startDate.getDate(), '0'));
@@ -2294,7 +2346,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         lastName.setText(selected.getLastName());
         customerAddress.setText(selected.getAdress());
         customerID.setText("" + selected.getCustomerID());
-        searchCustomer.setVisible(false);
+        searchCustomer.setVisible(false); 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -2404,7 +2456,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
             entry.getKey().setQuantity(entry.getValue().getSelectedIndex());
         }
-        totalPriceValue = con.calculatePrice(resources, Integer.parseInt(discount.getText()), truckDelivery, truckReturn);
+        totalPriceValue = con.calculatePrice(resources, Double.parseDouble(discount.getText()), truckDelivery, truckReturn);
         DecimalFormat f = new DecimalFormat("##.00");
         totalPrice.setText("Total Price: " + f.format(totalPriceValue));
     }//GEN-LAST:event_discountActionPerformed
@@ -2759,14 +2811,14 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        effectedOrders.setVisible(true);
+       
         effectedOrdersModel.clear();
         Truck selected = (Truck) TruckList.getSelectedValue();
         ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
-        if (effectedOrders.size() > 0) {
+        if (effectedOrders.size()>0){
             effectedOrdersPanel.setVisible(true);
-        }
-
+             effectedOrdersDialog.setVisible(true);}
+        
         for (Order o : effectedOrders) {
             effectedOrdersModel.addElement(o);
         }
@@ -2778,7 +2830,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         if (!effectedOrdersJList.isSelectionEmpty()) {
             Order orderToBeHandled = (Order) effectedOrdersJList.getSelectedValue();
-            //editOrder = (Order) orderList.getSelectedValue();
+            con.cancelOrder(orderToBeHandled);
             startDate.setDate(orderToBeHandled.getStartDate());
             endDate.setDate(orderToBeHandled.getEndDate());
             getAvailableResourcesButton.doClick();
@@ -2809,11 +2861,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_handleButtonActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-            CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
 
         cl.show(mainPanel, "packageManagement");
         packageList.removeAllItems();
+        
         packageRes.removeAll();
+        packageList.addItem("No Package Selected");
         ArrayList<Domain.Package> packages = con.getAllPackages();
         for (int i = 0; i < packages.size(); i++) {
             packageList.addItem(packages.get(i).getPackageName());
@@ -2821,7 +2875,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
 
         resources.clear();
-        gbInventory.removeAll();
         ArrayList<Resource> inventory = con.getAvailableResources(null, null);
         int totalItems = inventory.size();
 
@@ -2870,10 +2923,25 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void packageListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packageListActionPerformed
+         if (packageList.getSelectedIndex() != 0&&packageList.getSelectedItem()!=null) {
+        Domain.Package p = con.getPackage(packageList.getSelectedItem().toString());
+      
+            pName.setText(p.getPackageName());
+            pDiscount.setText("" + p.getDiscount());
+            ArrayList<PackageDetail> pd = p.getPackageDetailList();
+            
+         
+                for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                    entry.getValue().setSelectedIndex(0);
+                       for (int i = 0; i < pd.size(); i++) {
+                    if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                        entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
+                    }
+                }
+            }
 
-
+        }
     }//GEN-LAST:event_packageListActionPerformed
-
     private void bb4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bb4ActionPerformed
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
 
@@ -2901,8 +2969,30 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     con.createPackageDetail(entry.getKey().getResourceID(), entry.getValue().getSelectedIndex(), pName.getText());
                 }
             }
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
-    }
+
+    private void bookingPackagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingPackagesActionPerformed
+        if (bookingPackages.getSelectedIndex()!=0&&bookingPackages.getSelectedItem()!=null) {
+
+            Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
+
+
+            discount.setText("" + p.getDiscount());
+            ArrayList<PackageDetail> pd = p.getPackageDetailList();
+
+            
+                for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                    entry.getValue().setSelectedIndex(0);
+                    for (int i = 0; i < pd.size(); i++) {
+                    if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                        entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
+                    }
+                }
+            }
+
+        }
+    }//GEN-LAST:event_bookingPackagesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2918,6 +3008,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
+
 
 
                 }
@@ -2973,6 +3065,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton backToMenu;
     private javax.swing.JButton bb4;
     private javax.swing.JButton bookingMenuButton;
+    private javax.swing.JComboBox bookingPackages;
     private javax.swing.JButton cancelOrderButton;
     private javax.swing.JLabel cancelledLabel;
     private javax.swing.JButton confirm;
@@ -2996,7 +3089,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JTextField editResPrice;
     private javax.swing.JTextField editResQuantity;
     private javax.swing.JTextField editResUnitSize;
-    private javax.swing.JDialog effectedOrders;
+    private javax.swing.JDialog effectedOrdersDialog;
     private javax.swing.JList effectedOrdersJList;
     private javax.swing.JPanel effectedOrdersPanel;
     private com.toedter.calendar.JDateChooser endDate;
@@ -3123,6 +3216,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel paymentEditedLabel;
     private javax.swing.JDialog paymentEditingDonePopup;
     private javax.swing.JDialog paymentStatus;
+    private javax.swing.JDialog pleaseSelectCustomer;
     private javax.swing.JLabel remainingDelivery;
     private javax.swing.JLabel remainingReturn;
     private javax.swing.JLabel resSelected;
@@ -3142,6 +3236,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton searchCustomersButton;
     private javax.swing.ButtonGroup searchOrdersButtonGroup;
     private javax.swing.JLabel spEventAddress;
+    private javax.swing.JLabel spLabel;
     private javax.swing.JLabel spPaid;
     private javax.swing.JLabel spTotalPrice;
     private com.toedter.calendar.JDateChooser startDate;

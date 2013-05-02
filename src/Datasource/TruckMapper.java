@@ -124,7 +124,7 @@ public class TruckMapper {
         return updatedRows == 1;
     }
 
-    boolean editTruck(int truckID, double unitPrice, Connection connection) {
+    public boolean editTruck(int truckID, double unitPrice, Connection connection) {
         String SQLScript = " update truck "
                           + " SET unit_price = ? "
                           + " where truck_id = ? ";
@@ -143,7 +143,7 @@ public class TruckMapper {
         return updatedRows == 1;
     }
 
-    ArrayList<Truck> getTrucks(Connection connection) {
+    public ArrayList<Truck> getTrucks(Connection connection) {
         String SQLScript = " select * "
                           + " from truck ";
         PreparedStatement statement = null;
@@ -167,7 +167,7 @@ public class TruckMapper {
         return list;
     }
 
-    ArrayList<Order> deleteTruck(int truckID, Connection connection) {
+    public ArrayList<Order> deleteTruck(int truckID, Connection connection) {
         ArrayList<Order> orderList = new ArrayList();
         String SQLString1 = "select unique order_id, customer_id, start_date, end_date, date_created, delivery_adress, unit_size, invoice.discount, invoice.paid_amount"
                           + " from truck_return natural join orders natural join invoice "

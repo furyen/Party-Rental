@@ -261,7 +261,7 @@ public class RessourceMapper {
         return list;
     }
 
-    boolean deactivateOrder(int resourceID, Connection connection) {
+    public boolean deactivateOrder(int resourceID, Connection connection) {
         boolean status = false;
         String SQLString = "update resource"
                          + "set activated=false"
@@ -284,7 +284,7 @@ public class RessourceMapper {
         return status;
     }
 
-    boolean reactivateResource(String resourceName, Connection connection) {
+    public boolean reactivateResource(String resourceName, Connection connection) {
         boolean status = false;
         String SQLString = "update resource"
                 + "set activated=true"

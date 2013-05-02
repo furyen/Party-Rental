@@ -9,7 +9,9 @@ package Domain;
  * @author dekez
  */
 public class PackageDetail {
-    int packageID, resourceID, quantity;
+    private int packageID;
+    private int resourceID;
+    private int quantity;
 
     public PackageDetail(int packageID, int resourceID, int quantity) {
         this.packageID = packageID;
