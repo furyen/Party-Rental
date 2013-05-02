@@ -46,7 +46,7 @@ public class PackageMapper {
         return packageList;
     }
 
-    int getUniquePackageID(Connection connection) {
+    public int getUniquePackageID(Connection connection) {
         int packageID = 0;
         String SQLString = "select SEQ_PACKAGE.nextval from dual";
         PreparedStatement statement = null;
@@ -67,7 +67,7 @@ public class PackageMapper {
         return packageID;
     }
 
-    boolean createNewPackage(String packageName, double discount, Connection connection) {
+    public boolean createNewPackage(String packageName, double discount, Connection connection) {
         boolean status = false;
         String SQLString = "insert into event_package values(?,?,?)";
         PreparedStatement statement = null;

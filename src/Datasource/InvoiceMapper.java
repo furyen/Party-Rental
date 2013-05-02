@@ -42,7 +42,7 @@ public class InvoiceMapper {
         return status;
     }
     
-        public boolean savePayment(Order currentOrder, Connection connection) {
+    public boolean savePayment(Order currentOrder, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
         String SQLString = "update invoice set paid_amount = ? where order_id = ?";

@@ -28,7 +28,7 @@ public class Controller {
     private Order currentOrder;
 
     private Controller() {
-        dbFacade = DBFacade.getIntance();
+        dbFacade = DBFacade.getInstance();
     }
 
     public static Controller getInstance() {
@@ -288,9 +288,19 @@ public class Controller {
      * The char is 0 for delivery and 1 for return
      * Ends in UnitOfWorkProcessOrder
      */
-    public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
+    public boolean truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
+        boolean status = false;
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
-        dbFacade.truckBooking(tr);
+        ArrayList<Truck> truckList = dbFacade.getTrucks();
+        
+        for(Truck truck : truckList){
+            if(truck.getTruckID() == truckID){
+                dbFacade.truckBooking(tr);
+                status = true;
+            }
+        }
+        
+        return status;
     }
     
     /*
@@ -320,10 +330,11 @@ public class Controller {
      */
     public boolean checkOrder() {
         boolean status = true;
-
+        
         if (currentOrder != null) {
             ArrayList<Resource> resourceList = getAvailableResources(currentOrder.getStartDate(), currentOrder.getEndDate());
             ArrayList<OrderDetail> orderDetailList = currentOrder.getOrderDetails();
+            
 
             for (OrderDetail orderDetail : orderDetailList) {
                 if (orderDetail.getQuantity() != 0) {

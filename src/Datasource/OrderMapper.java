@@ -62,7 +62,7 @@ public class OrderMapper {
         return status;
     }
 
-    boolean createNewOrderDetail(ArrayList<OrderDetail> newOrderDetailList, Connection connection) {
+    public boolean createNewOrderDetail(ArrayList<OrderDetail> newOrderDetailList, Connection connection) {
         boolean status = false;
         int rowsInserted = 0;
         String SQLString = "insert into order_detail values (?,?,?)";
@@ -181,7 +181,7 @@ public class OrderMapper {
         return orderList;
     }
 
-    boolean cancelOrder(Order order, Connection connection) {
+    public boolean cancelOrder(Order order, Connection connection) {
         boolean status = false;
         String SQLString = "update orders "
                         + " set canceled = 'Y' "
@@ -377,7 +377,7 @@ public class OrderMapper {
         return orderList;
     }
 
-    boolean deleteOrder(int orderID, Connection connection) {
+    public boolean deleteOrder(int orderID, Connection connection) {
         boolean status = false;
         String SQLString = "delete from orders where order_id=?";
         PreparedStatement statement = null;
