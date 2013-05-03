@@ -1432,6 +1432,9 @@
                 <Component class="com.toedter.calendar.JDateChooser" name="startDate">
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="endDate">
+                  <BindingProperties>
+                    <BindingProperty name="minSelectableDate" source="startDate" sourcePath="${date}" target="endDate" targetPath="minSelectableDate" updateStrategy="0" immediately="false"/>
+                  </BindingProperties>
                 </Component>
                 <Component class="javax.swing.JButton" name="getAvailableResourcesButton">
                   <Properties>

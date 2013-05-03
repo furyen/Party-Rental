@@ -314,10 +314,11 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         pleaseSelectCustomer = new javax.swing.JDialog();
-        jLabel43 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
+        jLabel48 = new javax.swing.JLabel();
+        jButton18 = new javax.swing.JButton();
         searchCustomer = new javax.swing.JDialog();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
@@ -528,6 +529,19 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jLabel47 = new javax.swing.JLabel();
+
+        pleaseSelectCustomer.setMinimumSize(new java.awt.Dimension(100, 20));
+
+        jLabel48.setText("Please Select Customer!");
+        pleaseSelectCustomer.getContentPane().add(jLabel48, java.awt.BorderLayout.CENTER);
+
+        jButton18.setText("OK");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        pleaseSelectCustomer.getContentPane().add(jButton18, java.awt.BorderLayout.PAGE_START);
 
         searchCustomer.setBounds(new java.awt.Rectangle(300, 300, 900, 300));
         searchCustomer.setMinimumSize(new java.awt.Dimension(470, 267));
@@ -953,10 +967,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(12, 12, 12))
         );
 
-        effectedOrdersDialog.setMaximumSize(new java.awt.Dimension(420, 210));
         effectedOrdersDialog.setMinimumSize(new java.awt.Dimension(420, 210));
-        effectedOrdersDialog.setPreferredSize(new java.awt.Dimension(420, 210));
-        effectedOrdersDialog.setSize(new java.awt.Dimension(420, 210));
 
         effectedOrdersPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Effected Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
 
@@ -1017,8 +1028,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(effectedOrdersPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(16, Short.MAX_VALUE)))
         );
-
-        deletePackageConfirmation.setPreferredSize(null);
 
         jLabel46.setText("Are you sure you want to delete the selected package?");
 
@@ -1102,7 +1111,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         MenuLayout.setHorizontalGroup(
             MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, MenuLayout.createSequentialGroup()
-                .addContainerGap(344, Short.MAX_VALUE)
+                .addContainerGap(379, Short.MAX_VALUE)
                 .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jButton13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 252, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(MenuLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
@@ -1122,7 +1131,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(eventManagementButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jButton13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         mainPanel.add(Menu, "menu");
@@ -1227,6 +1236,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         jLabel9.setText("End Date");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, startDate, org.jdesktop.beansbinding.ELProperty.create("${date}"), endDate, org.jdesktop.beansbinding.BeanProperty.create("minSelectableDate"));
+        bindingGroup.addBinding(binding);
+
         getAvailableResourcesButton.setText("Get Available Resources");
         getAvailableResourcesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1296,7 +1308,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(jLabel9)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 244, Short.MAX_VALUE)
                                 .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
@@ -1408,13 +1420,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(BookingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton7)
                     .add(jButton1))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         mainPanel.add(Booking, "booking");
 
         ResourceDone.setMaximumSize(new java.awt.Dimension(720, 276));
-        ResourceDone.setPreferredSize(null);
 
         jButton9.setText("Back to Main Menu");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -1829,7 +1840,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         ResourceDoneLayout.setHorizontalGroup(
             ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(ResourceDoneLayout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .add(ResourceDoneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jButton9)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, ResourceDoneLayout.createSequentialGroup()
@@ -1861,7 +1872,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                     .add(AddNewTruckPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(GetExistingTrucksPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(TruckHandlingPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 221, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 262, Short.MAX_VALUE)
                 .add(jButton9)
                 .addContainerGap())
         );
@@ -1869,7 +1880,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         mainPanel.add(ResourceDone, "resources");
 
         EventManagement.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Event Managenent", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14))); // NOI18N
-        EventManagement.setPreferredSize(null);
         EventManagement.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         orders.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Orders", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 2, 14), java.awt.Color.black)); // NOI18N
@@ -2106,10 +2116,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                     .add(PackageManagementLayout.createSequentialGroup()
                                         .add(pDiscount, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 64, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jLabel47)
-                                        .add(149, 149, 149))))))
+                                        .add(jLabel47))))))
                     .add(bb4))
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
         PackageManagementLayout.setVerticalGroup(
             PackageManagementLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -2136,7 +2145,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                         .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(PackageManagementLayout.createSequentialGroup()
                         .add(jScrollPane12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 512, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 118, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 159, Short.MAX_VALUE)
                         .add(bb4)
                         .add(18, 18, 18))))
         );
@@ -2155,6 +2164,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                 .add(mainPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2976,25 +2987,27 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void bookingPackagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingPackagesActionPerformed
-        try {
-            if (bookingPackages.getSelectedIndex() != 0 && bookingPackages.getSelectedItem() != null) {
-                Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
-                discount.setText("" + p.getDiscount());
-                ArrayList<PackageDetail> pd = p.getPackageDetailList();
+
+        if (bookingPackages.getSelectedIndex() != 0 && bookingPackages.getSelectedItem() != null) {
+            Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
+            discount.setText("" + p.getDiscount());
+            ArrayList<PackageDetail> pd = p.getPackageDetailList();
 
 
-                for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
-                    entry.getValue().setSelectedIndex(0);
-                    for (int i = 0; i < pd.size(); i++) {
-                        if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
-                            entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
-                        }
+            for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                entry.getValue().setSelectedIndex(0);
+                for (int i = 0; i < pd.size(); i++) {
+                    if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                        entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
                     }
                 }
-
             }
-        } catch (NullPointerException ex) {
-            System.out.println("not enough resources");
+
+        } else {
+            discount.setText("");
+            for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                entry.getValue().setSelectedIndex(0);
+            }
         }
 
     }//GEN-LAST:event_bookingPackagesActionPerformed
@@ -3120,6 +3133,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3170,6 +3184,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -3253,5 +3268,6 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel totalSize;
     private javax.swing.JLabel truckDeliverLabel;
     private javax.swing.JLabel truckReturnLabel;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
