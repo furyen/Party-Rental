@@ -88,23 +88,32 @@ public class TruckMapper {
     
     public boolean truckBooking(TruckOrder tr, Connection con) throws SQLException {
         String SQLString = "insert into ";
-        if (tr.getCh()  =='0'){
-            SQLString += "truck_delivery";
-        }
-        else {
-            SQLString += "truck_return";
-        }
-        SQLString += " values (?,?,?,?)";
-        PreparedStatement statement = null; 
-        int rowsInserted = 0;
+        ArrayList<Truck> truckList = getTrucks(con);
+        boolean status = false;
         
-        statement = con.prepareStatement(SQLString);
-        statement.setInt(1, tr.getTruckID());
-        statement.setInt(2, tr.getOrderID());
-        statement.setInt(3, tr.getTruckRun());
-        statement.setInt(4, tr.getOrderPartSize());
-        rowsInserted = statement.executeUpdate();   
-        return (rowsInserted == 1);
+        for(Truck truck : truckList){
+            if(tr.getTruckID() == truck.getTruckID()){
+                if (tr.getCh()  =='0'){
+                SQLString += "truck_delivery";
+                }
+                else {
+                    SQLString += "truck_return";
+                }
+                SQLString += " values (?,?,?,?)";
+                PreparedStatement statement = null; 
+                int rowsInserted = 0;
+
+                statement = con.prepareStatement(SQLString);
+                statement.setInt(1, tr.getTruckID());
+                statement.setInt(2, tr.getOrderID());
+                statement.setInt(3, tr.getTruckRun());
+                statement.setInt(4, tr.getOrderPartSize());
+                rowsInserted = statement.executeUpdate();  
+                status = rowsInserted == 1;
+            }
+        }
+        
+        return status;
     }
 
     public boolean createTruck(int truckSize, double unitPrice, Connection connection) {
