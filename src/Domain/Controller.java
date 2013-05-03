@@ -576,10 +576,27 @@ public class Controller {
      * Ends in PackageMapper
      */
     
-    public ArrayList<Package> getAllPackages(){
+    public ArrayList<Package> getAllPackages(Date startD, Date endD){
         ArrayList<Package> packageList = new ArrayList();
+        ArrayList<Resource> resourceList = getAvailableResources(startD, endD);
+        boolean status = true;
         
         packageList = dbFacade.getAllPackages();
+        
+        for (Package packages : packageList){
+            for(PackageDetail packageDetail : packages.getPackageDetailList()){
+                for(Resource resource : resourceList){
+                    if(packageDetail.getResourceID() == resource.getResourceID()){
+                        if(packageDetail.getQuantity() > resource.getQuantity()){
+                            packageList.remove(packages);
+                        }
+                    }
+                    else{
+                        packageList.remove(packages);
+                    }
+                }
+            }
+        }
         
         return packageList;
     }
@@ -613,6 +630,7 @@ public class Controller {
     public Package getPackage(String name){
         Package newPackage = null;
         String nameUpperCase = name.toUpperCase();
+        
         
         newPackage = dbFacade.getPackage(nameUpperCase);
         
