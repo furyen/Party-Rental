@@ -2973,11 +2973,9 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void bookingPackagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingPackagesActionPerformed
-        if (bookingPackages.getSelectedIndex()!=0&&bookingPackages.getSelectedItem()!=null) {
-
+        try{
+              if (bookingPackages.getSelectedIndex()!=0&&bookingPackages.getSelectedItem()!=null) {
             Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
-
-
             discount.setText("" + p.getDiscount());
             ArrayList<PackageDetail> pd = p.getPackageDetailList();
 
@@ -2992,6 +2990,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
 
         }
+        }catch(NullPointerException ex){
+            System.out.println("not enough resources");
+        }
+      
     }//GEN-LAST:event_bookingPackagesActionPerformed
 
     /**

@@ -2,15 +2,17 @@ HellebÃ¦k Party Rental						CVR: 32139429
 								Order nr: 58
 
 
-Dear TIMEA KISS
+Dear DANIEL S
 You are receiving this invoice in accordance to your order
-with to the following address: aaaaaa
+with to the following address: 
 You have ordered the following things:
 
-Cutlery: 1.0
+Chair: 1.0
+Glas: 1.0
+Floor: 1.0
 
-The full price: 2.0
+The full price: 71.94000000000001
 
-You are to pay the deposit of 25% which amounts to: 0.5
+You are to pay the deposit of 25% which amounts to: 17.985000000000003
 
 We hope you will enjoy the event
