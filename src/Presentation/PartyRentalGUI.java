@@ -81,7 +81,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         tentPartButtonGroup2.add(notTentPart2);
 
         effectedOrdersPanel.setVisible(false);
-     
+
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
@@ -2165,13 +2165,13 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         remainingReturn.setText("Units left to return: ");
         totalPrice.setText("Total Price: ");
         totalSize.setText("Total Unit Size: ");
-        
+
         eventAddress.setText("");
         firstName.setText("");
         lastName.setText("");
         customerAddress.setText("");
         customerID.setText("");
-        
+
         spLabel.setVisible(false);
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
         truckDelivery.clear();
@@ -2182,11 +2182,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         returnPanel.removeAll();
         bookingPackages.removeAllItems();
 
-        ArrayList<Domain.Package> packages = con.getAllPackages();
-        bookingPackages.addItem("No Package Selected");
-        for (int i = 0; i < packages.size(); i++) {
-            bookingPackages.addItem(packages.get(i).getPackageName());
-        }
+
 
         Order.repaint();
 
@@ -2293,6 +2289,12 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
     //Clears the currently shown resources and trucks and shows them with the specified dates
     private void getAvailableResourcesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAvailableResourcesButtonActionPerformed
+        ArrayList<Domain.Package> packages = con.getAllPackages(startDate.getDate(), endDate.getDate());
+        bookingPackages.removeAllItems();
+        bookingPackages.addItem("No Package Selected");
+        for (int i = 0; i < packages.size(); i++) {
+            bookingPackages.addItem(packages.get(i).getPackageName());
+        }
         truckDelivery.clear();
         truckReturn.clear();
         resources.clear();
@@ -2346,7 +2348,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         lastName.setText(selected.getLastName());
         customerAddress.setText(selected.getAdress());
         customerID.setText("" + selected.getCustomerID());
-        searchCustomer.setVisible(false); 
+        searchCustomer.setVisible(false);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -2811,14 +2813,15 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-       
+
         effectedOrdersModel.clear();
         Truck selected = (Truck) TruckList.getSelectedValue();
         ArrayList<Order> effectedOrders = con.deleteTruck(selected.getTruckID());
-        if (effectedOrders.size()>0){
+        if (effectedOrders.size() > 0) {
             effectedOrdersPanel.setVisible(true);
-             effectedOrdersDialog.setVisible(true);}
-        
+            effectedOrdersDialog.setVisible(true);
+        }
+
         for (Order o : effectedOrders) {
             effectedOrdersModel.addElement(o);
         }
@@ -2865,10 +2868,10 @@ public class PartyRentalGUI extends javax.swing.JFrame {
 
         cl.show(mainPanel, "packageManagement");
         packageList.removeAllItems();
-        
+
         packageRes.removeAll();
         packageList.addItem("No Package Selected");
-        ArrayList<Domain.Package> packages = con.getAllPackages();
+        ArrayList<Domain.Package> packages = con.getAllPackages(null, null);
         for (int i = 0; i < packages.size(); i++) {
             packageList.addItem(packages.get(i).getPackageName());
         }
@@ -2923,17 +2926,17 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void packageListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_packageListActionPerformed
-         if (packageList.getSelectedIndex() != 0&&packageList.getSelectedItem()!=null) {
-        Domain.Package p = con.getPackage(packageList.getSelectedItem().toString());
-      
+        if (packageList.getSelectedIndex() != 0 && packageList.getSelectedItem() != null) {
+            Domain.Package p = con.getPackage(packageList.getSelectedItem().toString());
+
             pName.setText(p.getPackageName());
             pDiscount.setText("" + p.getDiscount());
             ArrayList<PackageDetail> pd = p.getPackageDetailList();
-            
-         
-                for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
-                    entry.getValue().setSelectedIndex(0);
-                       for (int i = 0; i < pd.size(); i++) {
+
+
+            for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
+                entry.getValue().setSelectedIndex(0);
+                for (int i = 0; i < pd.size(); i++) {
                     if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
                         entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
                     }
@@ -2973,27 +2976,27 @@ public class PartyRentalGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void bookingPackagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingPackagesActionPerformed
-        try{
-              if (bookingPackages.getSelectedIndex()!=0&&bookingPackages.getSelectedItem()!=null) {
-            Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
-            discount.setText("" + p.getDiscount());
-            ArrayList<PackageDetail> pd = p.getPackageDetailList();
+        try {
+            if (bookingPackages.getSelectedIndex() != 0 && bookingPackages.getSelectedItem() != null) {
+                Domain.Package p = con.getPackage(bookingPackages.getSelectedItem().toString());
+                discount.setText("" + p.getDiscount());
+                ArrayList<PackageDetail> pd = p.getPackageDetailList();
 
-            
+
                 for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
                     entry.getValue().setSelectedIndex(0);
                     for (int i = 0; i < pd.size(); i++) {
-                    if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
-                        entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
+                        if (pd.get(i).getResourceID() == entry.getKey().getResourceID()) {
+                            entry.getValue().setSelectedIndex(pd.get(i).getQuantity());
+                        }
                     }
                 }
-            }
 
-        }
-        }catch(NullPointerException ex){
+            }
+        } catch (NullPointerException ex) {
             System.out.println("not enough resources");
         }
-      
+
     }//GEN-LAST:event_bookingPackagesActionPerformed
 
     /**

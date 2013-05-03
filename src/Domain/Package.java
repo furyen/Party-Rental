@@ -56,7 +56,7 @@ public class Package {
     }
     
     public String toString(){
-        return packageName + " - " + packageID + " - " + discount;
+        return packageName;
     }
     
 }

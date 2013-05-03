@@ -579,6 +579,7 @@ public class Controller {
     public ArrayList<Package> getAllPackages(Date startD, Date endD){
         ArrayList<Package> packageList = new ArrayList();
         ArrayList<Resource> resourceList = getAvailableResources(startD, endD);
+        ArrayList<Package> newPackageList = new ArrayList();
         boolean status = true;
         
         packageList = dbFacade.getAllPackages();
@@ -587,18 +588,23 @@ public class Controller {
             for(PackageDetail packageDetail : packages.getPackageDetailList()){
                 for(Resource resource : resourceList){
                     if(packageDetail.getResourceID() == resource.getResourceID()){
-                        if(packageDetail.getQuantity() > resource.getQuantity()){
-                            packageList.remove(packages);
+                        if(packageDetail.getQuantity() <= resource.getQuantity()){
+                            status = status && true;
                         }
-                    }
-                    else{
-                        packageList.remove(packages);
+                        else{
+                            status = status && false;
+                        }
                     }
                 }
             }
+            if(status == true){
+                newPackageList.add(packages);
+                System.out.println("added");
+            }
+            
         }
         
-        return packageList;
+        return newPackageList;
     }
     
     /*
