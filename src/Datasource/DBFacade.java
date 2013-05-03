@@ -346,4 +346,12 @@ public class DBFacade {
         return bool;
     }
 
+    public Resource getResourceWithLock(String name) {
+        RessourceMapper resourceMapper = new RessourceMapper();
+        Resource resource;
+        resource = resourceMapper.getResourceWithLock(name, connection);
+        
+        return resource;
+    }
+
 }

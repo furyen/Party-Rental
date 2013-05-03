@@ -288,19 +288,10 @@ public class Controller {
      * The char is 0 for delivery and 1 for return
      * Ends in UnitOfWorkProcessOrder
      */
-    public boolean truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
-        boolean status = false;
+    public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
-        ArrayList<Truck> truckList = dbFacade.getTrucks();
         
-        for(Truck truck : truckList){
-            if(truck.getTruckID() == truckID){
-                dbFacade.truckBooking(tr);
-                status = true;
-            }
-        }
-        
-        return status;
+        dbFacade.truckBooking(tr);
     }
     
     /*
@@ -585,10 +576,27 @@ public class Controller {
      * Ends in PackageMapper
      */
     
-    public ArrayList<Package> getAllPackages(){
+    public ArrayList<Package> getAllPackages(Date startD, Date endD){
         ArrayList<Package> packageList = new ArrayList();
+        ArrayList<Resource> resourceList = getAvailableResources(startD, endD);
+        boolean status = true;
         
         packageList = dbFacade.getAllPackages();
+        
+        for (Package packages : packageList){
+            for(PackageDetail packageDetail : packages.getPackageDetailList()){
+                for(Resource resource : resourceList){
+                    if(packageDetail.getResourceID() == resource.getResourceID()){
+                        if(packageDetail.getQuantity() > resource.getQuantity()){
+                            packageList.remove(packages);
+                        }
+                    }
+                    else{
+                        packageList.remove(packages);
+                    }
+                }
+            }
+        }
         
         return packageList;
     }
@@ -622,6 +630,7 @@ public class Controller {
     public Package getPackage(String name){
         Package newPackage = null;
         String nameUpperCase = name.toUpperCase();
+        
         
         newPackage = dbFacade.getPackage(nameUpperCase);
         
@@ -658,6 +667,13 @@ public class Controller {
         boolean bool = dbFacade.cancelUnpaidOrders();
         return bool;
     } 
+    
+    public Resource getResourceWithLock(String name) {
+        
+        currentResource = dbFacade.getResourceWithLock(name);
+
+        return currentResource;
+    }
     
 }
 
