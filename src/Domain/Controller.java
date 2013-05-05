@@ -644,6 +644,11 @@ public class Controller {
     }
     
     
+    /*
+     * Deletes a package from the database.
+     * Ends at the PackageMapper
+     */
+    
     public boolean deletePackage(String name){
         boolean status = false;
         String nameUpperCase = name.toUpperCase();
