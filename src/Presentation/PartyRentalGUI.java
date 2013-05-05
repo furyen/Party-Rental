@@ -81,7 +81,8 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         tentPartButtonGroup2.add(notTentPart2);
 
         effectedOrdersPanel.setVisible(false);
-
+        con.cancelUnpaidOrders();
+     
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
     //Since the resources are dynamic we need to specify Constraints manually and declare them when adding a new component instead of using the Layout Manager in NetBeans
@@ -1084,7 +1085,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
         });
 
-        resourcesMenuButton.setText("Create and Edit Resources\n");
+        resourcesMenuButton.setText("Create and Edit Resources ");
         resourcesMenuButton.setMargin(null);
         resourcesMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1308,7 +1309,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
                                 .add(jLabel9)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(endDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 185, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 244, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 182, Short.MAX_VALUE)
                                 .add(getAvailableResourcesButton))
                             .add(eventAddress)))
                     .add(OrderLayout.createSequentialGroup()
