@@ -78,7 +78,7 @@ public class RessourceMapper {
         ArrayList<Resource> fullList = new ArrayList<Resource>();
         ArrayList<ResourceDate> auxiliarList = new ArrayList<ResourceDate>();
         ArrayList<Resource> finalList = new ArrayList<Resource>();
-        ArrayList<Resource> daylyList = new ArrayList<Resource>();
+        ArrayList<Resource> dailyList = new ArrayList<Resource>();
         String SQLString1 = 
                 "select *"
                 + " from ressource"
@@ -127,7 +127,7 @@ public class RessourceMapper {
                 
                 fullList.add(resource);
                 finalList.add(resource1);
-                daylyList.add(resource2);
+                dailyList.add(resource2);
             }
             statement = con.prepareStatement(SQLString2);
             java.sql.Date startDate = new java.sql.Date(startD.getTime());
@@ -146,7 +146,7 @@ public class RessourceMapper {
                 char canceled = rs.getString(5).charAt(0);
                 if (canceled == 'N'){
                     auxiliarList.add(resourceDate); 
-                }        
+                }         
             }
        
             java.util.Date auxDate;
@@ -154,22 +154,22 @@ public class RessourceMapper {
             if ( ! auxiliarList.isEmpty()) 
             while (startD.compareTo(endD) <= 0 ) {
                 for(i = 0; i<fullList.size()-1; i++){
-                    daylyList.get(i).setQuantity(fullList.get(i).getQuantity());
+                    dailyList.get(i).setQuantity(fullList.get(i).getQuantity());
                 }
                 for(i = 0; i<auxiliarList.size(); i++){
                     resourceDate = auxiliarList.get(i);
                     if (!(startD.before(resourceDate.getStartDate())) && !(startD.after(resourceDate.getEndDate()))){
-                        for (int j = 0; j<daylyList.size(); j++){
-                            if (daylyList.get(j).getResourceID() == resourceDate.getResourceID()){
-                                daylyList.get(j).setQuantity(daylyList.get(j).getQuantity() - resourceDate.getQuantity());
+                        for (int j = 0; j<dailyList.size(); j++){
+                            if (dailyList.get(j).getResourceID() == resourceDate.getResourceID()){
+                                dailyList.get(j).setQuantity(dailyList.get(j).getQuantity() - resourceDate.getQuantity());
                             }
                         }
                     }
                 
                 }
                 for(i = 0; i<finalList.size()-1; i++){
-                    if (finalList.get(i).getQuantity() > daylyList.get(i).getQuantity()){
-                        finalList.get(i).setQuantity(daylyList.get(i).getQuantity())  ;
+                    if (finalList.get(i).getQuantity() > dailyList.get(i).getQuantity()){
+                        finalList.get(i).setQuantity(dailyList.get(i).getQuantity())  ;
                     }    
                 }
                 auxDate = new java.util.Date(startD.getTime() + (1000 * 60 * 60 * 24)); 
