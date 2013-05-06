@@ -37,6 +37,7 @@ public class CustomerMapper {
 
     public int getUniqueCustomerID(Connection connection){
         int uniqueID = 0;
+        System.out.println("muie");
         String SQLString = "select SEQ_CUSTOMER.nextval from dual";
         PreparedStatement statement = null;
         try{
@@ -64,9 +65,8 @@ public class CustomerMapper {
         
         
         try{
-            int customerID = getUniqueCustomerID(connection);
             statement = connection.prepareStatement(SQLString);
-            statement.setInt(1, customerID);
+            statement.setInt(1, newCustomerList.get(0).getCustomerID());
             statement.setString(2, newCustomerList.get(0).getFirstName());
             statement.setString(3, newCustomerList.get(0).getLastName());
             statement.setString(4, newCustomerList.get(0).getAdress());
