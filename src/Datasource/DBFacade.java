@@ -31,7 +31,7 @@ public class DBFacade {
     }
 
     public int getUniqueResourceID() {
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         int uniqueID = 0;
 
         
@@ -63,7 +63,7 @@ public class DBFacade {
     }
 
     public boolean createNewResource(Resource resource) throws SQLException {
-        RessourceMapper ressourceMapper = new RessourceMapper();
+        ResourceMapper ressourceMapper = new ResourceMapper();
         boolean status = false;
         status = ressourceMapper.createNewResource(resource, connection);
         
@@ -71,7 +71,7 @@ public class DBFacade {
     }
 
     public Resource getResource(String name) throws SQLException {
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         Resource resource;
         resource = resourceMapper.getResource(name, connection);
         
@@ -80,7 +80,7 @@ public class DBFacade {
 
     public boolean editResource(Resource resource) throws SQLException {
         boolean status = false;
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         status = resourceMapper.editResource(resource, connection);
         
         return status;
@@ -88,7 +88,7 @@ public class DBFacade {
 
     public ArrayList<Resource> getAvailableResources(java.util.Date startDate, java.util.Date endDate) {
         ArrayList<Resource> list = null;
-        list = new RessourceMapper().getAvailableResources(startDate, endDate, connection);
+        list = new ResourceMapper().getAvailableResources(startDate, endDate, connection);
 
         return list;
     }
@@ -222,7 +222,7 @@ public class DBFacade {
 
     public ArrayList<Order> deleteResource(int resourceID) {
         ArrayList<Order> list = null;
-        RessourceMapper ressourceMapper = new RessourceMapper();
+        ResourceMapper ressourceMapper = new ResourceMapper();
         list = ressourceMapper.deleteResource(resourceID, connection);
         return list;
     }
@@ -253,7 +253,7 @@ public class DBFacade {
 
     public boolean deactiveResource(int resourceID) {
         boolean status = false;
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         status = resourceMapper.deactivateOrder(resourceID, connection);
         
         return status;
@@ -261,7 +261,7 @@ public class DBFacade {
 
     public boolean reactivateResource(String resourceName) {
         boolean status = false;
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         status = resourceMapper.reactivateResource(resourceName, connection);
         
         return status;
@@ -347,7 +347,7 @@ public class DBFacade {
     }
 
     public Resource getResourceWithLock(String name) {
-        RessourceMapper resourceMapper = new RessourceMapper();
+        ResourceMapper resourceMapper = new ResourceMapper();
         Resource resource;
         resource = resourceMapper.getResourceWithLock(name, connection);
         

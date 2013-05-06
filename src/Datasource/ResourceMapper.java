@@ -17,7 +17,7 @@ import java.util.*;
  *
  * @author dekez
  */
-public class RessourceMapper {
+public class ResourceMapper {
     
 
     public int getUniqueID(Connection connection){
