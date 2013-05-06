@@ -3004,7 +3004,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
             }
 
         } else {
-            discount.setText("");
+            discount.setText("0");
             for (Map.Entry<Resource, JComboBox> entry : resources.entrySet()) {
                 entry.getValue().setSelectedIndex(0);
             }
