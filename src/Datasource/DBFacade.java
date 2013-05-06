@@ -34,9 +34,9 @@ public class DBFacade {
         RessourceMapper resourceMapper = new RessourceMapper();
         int uniqueID = 0;
 
-        if (resourceMapper.getUniqueID(connection) != 0) {
+        
             uniqueID = resourceMapper.getUniqueID(connection);
-        }
+        
 
         return uniqueID;
     }
