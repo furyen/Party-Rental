@@ -41,6 +41,7 @@ public class Controller {
     /*
      * Fetches the connection from the DBFacade.
      * Ends in the DBFacade.
+     * Nicklas
      */
     public void getConnection() {
         dbFacade.getConnection();
@@ -50,6 +51,7 @@ public class Controller {
      * Gets all available resources from the start date
      * to the end date inputted.
      * Ends in the ResourceMapper
+     * Daniel
      */
     public ArrayList getAvailableResources(Date startDate, Date endDate) {
         ArrayList<Resource> availableResources = new ArrayList();
@@ -62,6 +64,7 @@ public class Controller {
     /*
      * Creates a new resource 
      * Ends in the ResourceMapper
+     * Nicklas
      */
     public boolean createNewResource(String resourceName, int quantity, double price, int unitSize, boolean isTentPart) {
         boolean status = false;
@@ -81,6 +84,7 @@ public class Controller {
     /*
      * Gets a resource based on its name.
      * Ends in ResourceMapper
+     * Nicklas
      */
     public Resource getResource(String name) {
         try {
@@ -97,6 +101,7 @@ public class Controller {
      * Takes in the values for a resource to edit the current
      * resource object. 
      * Ends in the ResourceMapper
+     * Nicklas
      */
     public boolean editResource(String name, int quantitiy, double price, boolean active, boolean isTentPart) {
         boolean status = false;
@@ -120,6 +125,7 @@ public class Controller {
     /*
      * Gets the trucks for a specific delivery date
      * Ends in the TruckMapper
+     * Daniel
      */
     public ArrayList getTruckDeliveryForDate(Date date, char ch) {
         //char 0=delivery,1=return
@@ -132,6 +138,7 @@ public class Controller {
      * Get's a list of customers with the inputted
      * string in their names.
      * Ends in the CustomerMapper
+     * Nicklas
      */
     public ArrayList<Customer> getCustomerList(String firstName, String lastName) {
         ArrayList<Customer> customerList = new ArrayList();
@@ -150,6 +157,7 @@ public class Controller {
     /*
      * Gets a customer based on his customerID
      * Ends in the CustomerMapper
+     * Nicklas
      */
     public Customer getCustomer(int customerID) {
         Customer customer = null;
@@ -167,6 +175,7 @@ public class Controller {
      * dbFacade.startNewBusinessTransaction() makes sure UnitOfWork object
      * is instantiated before using the UnitOfWorkProcessOrder
      * Ends in the UnitOfWordProcessOrder
+     * Nicklas
      */ 
     public Customer createCustomer(String firstName, String lastName, String adress) {
         Customer newCustomer = null;
@@ -186,6 +195,10 @@ public class Controller {
         return newCustomer;
     }
 
+    /*
+     * Petko
+     */
+    
     public double calculatePrice(LinkedHashMap<Resource, JComboBox> resourceList, double discount, LinkedHashMap<Truck, JToggleButton> truckDelivery, LinkedHashMap<Truck, JToggleButton> truckReturn) {
         double finalPrice = 0;
 
@@ -212,6 +225,7 @@ public class Controller {
      * Creates a new invoice and adds it to the 
      * newInvoiceList in UnitOfWorkProcessOrder
      * Ends in the UnitOfWorkProcessOrder
+     * Nicklas
      */
     public boolean createNewInvoice(double discount, double finalPrice) {
         boolean status = false;
@@ -229,6 +243,7 @@ public class Controller {
     /*
      * Commits all business transactions to the database
      * Ends in commit() in UnitOfWorkProcessOrder
+     * Nicklas
      */
     public boolean finishOrder() {
         boolean status = false;
@@ -251,6 +266,7 @@ public class Controller {
      * orderID and adds it to the 
      * newOrderList in UnitOfWorkProcessOrder
      * Ends in UnitOfWorkProcessOrder
+     * Nicklas
      */
     public boolean createOrder(int customerID, int unitSize, String address, Date startDate, Date endDate, double amountPaid) {
         boolean status = false;
@@ -274,6 +290,7 @@ public class Controller {
      * Creates a new OrderDetail and adds it to the currentOrder
      * It also adds it to the NewOrderDetailList in the UnitOfWorkProcessOrder
      * Ends in the UnitOfWorkProcessOrder
+     * Nicklas
      */
     public void createOrderDetail(int resourceID, int quantity, String resourceName) {
         OrderDetail orderDetail = new OrderDetail(currentOrder.getOrderID(), resourceID, quantity);
@@ -287,6 +304,7 @@ public class Controller {
      * It needs to be used for each truck which is booked for an order(if there are more trucks for an oreder)
      * The char is 0 for delivery and 1 for return
      * Ends in UnitOfWorkProcessOrder
+     * Daniel
      */
     public void truckBooking(int truckID, int truckRun, char ch, int orderPartSize) {
         TruckOrder tr = new TruckOrder(truckID, truckRun, currentOrder.getOrderID(), ch, orderPartSize);
@@ -297,6 +315,7 @@ public class Controller {
     /*
      * Gets a list of all orders
      * Ends in OrderMapper
+     * Nicklas
      */
     public ArrayList<Order> getOrders() {
         ArrayList<Order> list = dbFacade.getOrders();
@@ -306,6 +325,7 @@ public class Controller {
     /*
      * Gets a list of all orders for a specific customer
      * Ends in OrderMapper
+     * Petko
      */
     public ArrayList<Order> getCustomerOrderHistory(int customerID) {
         ArrayList<Order> orders = dbFacade.getCustomerOrders(customerID);
@@ -318,6 +338,7 @@ public class Controller {
      * available resources
      * Runs finishOrder() to commit everything to database and returns
      * true if it succeeds and all resources in the order is still available.
+     * Nicklas
      */
     public boolean checkOrder() {
         boolean status = true;
@@ -346,6 +367,9 @@ public class Controller {
         return status;
     }
     
+    /*
+     * Timea
+     */
     
     public boolean savePayment(Order currentOrder, Double newPayment) {
         boolean status = false;
@@ -359,6 +383,7 @@ public class Controller {
      * Sets the boolean cancelled of an Order object to true
      * again making the order inactive.
      * Ends in OrderMapper
+     * Nicklas
      */
     public boolean cancelOrder(Order order){
         boolean status = false;
@@ -374,6 +399,7 @@ public class Controller {
      * Sets the boolean cancelled of the current order to false
      * making it active again.
      * Ends in OrderMapper.
+     * Nicklas
      */
     public Order cancelEditOrder(Order order) {
         order.setCancelled(false);
@@ -382,6 +408,13 @@ public class Controller {
 
         return order;
     }
+    
+    /*
+     * Deletes an order from the database
+     * based on the orderID.
+     * Ends in orderMapper.
+     * Nicklas
+     */
     
     public boolean deleteOrder(int orderID){
         boolean status = false;
@@ -395,6 +428,7 @@ public class Controller {
      * Creates a deposit invoice file for a specific order
      * Returns true if the file was created successfully.
      * Ends in the Controller.
+     * Nicklas
      */
     public boolean createDepositInvoiceFile(Order order) {
         boolean status = false;
@@ -442,6 +476,7 @@ public class Controller {
      * Creates a final invoice file for an order
      * Returns true if it succeeds.
      * Ends in the controller.
+     * Nicklas
      */
     public boolean createFinalInvoiceFile(Order order) {
         boolean status = false;
@@ -488,6 +523,7 @@ public class Controller {
     /*
      * Gets the orderdetails of a certain order
      * Ends in the Order class.
+     * Nicklas
      */
     public ArrayList<OrderDetail> getOrderDetail(Order o) {
         return o.getOrderDetails();
@@ -496,6 +532,7 @@ public class Controller {
     /*
      * Creates a new truck for use.
      * Ends in the TruckMapper.
+     * Daniel
      */
     public boolean createTruck(int truckSize, Double unitPrice){
         boolean bool  = dbFacade.createTruck(truckSize, unitPrice);
@@ -505,6 +542,7 @@ public class Controller {
     /*
      * Edits the unitprice of a truck identified by a given truckID
      * Ends in TruckMapper.
+     * Daniel
      */
     public boolean editTruck(int truckID, double unitPrice){
         boolean bool = dbFacade.editTruck(truckID, unitPrice);
@@ -514,6 +552,7 @@ public class Controller {
     /*
      * Gets a list of all trucks
      * Ends in TruckMapper
+     * Daniel
      */
     public ArrayList<Truck> getTrucks(){
         ArrayList<Truck> list = dbFacade.getTrucks();
@@ -524,6 +563,7 @@ public class Controller {
      * Sets the boolean active of a resource to false
      * Making the resource unavailable
      * Ends in ResourceMapper
+     * Nicklas
      */
     public boolean deactivateResource(int resourceID){
         boolean status = false;
@@ -543,6 +583,7 @@ public class Controller {
      * Sets the active boolean of a resource to true
      * making the resource available again.
      * Ends in ResourceMapper.
+     * Nicklas
      */
     public boolean reactivateResource(String resourceName){
         boolean status = false;
@@ -560,11 +601,18 @@ public class Controller {
     /*
      * Gets all orders which include the resource, with the given resourceID
      * Ends in the OrderMapper
+     * Daniel
      */
     public ArrayList<Order> getAffectedOrders(int resourceID){
         ArrayList<Order> list = dbFacade.getAffectedOrders(resourceID);
         return list;
     }
+    
+    /*
+     * Deletes a truck from the database
+     * Ends in TruckMapper
+     * Daniel
+     */
     
     public ArrayList<Order> deleteTruck(int truckID){
         ArrayList<Order> list = dbFacade.deleteTruck(truckID);
@@ -574,6 +622,7 @@ public class Controller {
     /*
      * Gets all packages that can be used.
      * Ends in PackageMapper
+     * Nicklas
      */
     
     public ArrayList<Package> getAllPackages(Date startD, Date endD){
@@ -611,6 +660,7 @@ public class Controller {
      * Creates a new event package
      * given the name and the discount for it.
      * Ends in the packageMapper
+     * Nicklas
      */
     
     public boolean createNewPackage(String packageName, double discount){
@@ -631,6 +681,7 @@ public class Controller {
     /*
      * Getting a package based on the name
      * and returns the package object.
+     * Nicklas
      */
     
     public Package getPackage(String name){
@@ -647,6 +698,7 @@ public class Controller {
     /*
      * Deletes a package from the database.
      * Ends at the PackageMapper
+     * Nicklas
      */
     
     public boolean deletePackage(String name){
@@ -658,6 +710,12 @@ public class Controller {
         return status;
     }
     
+    /*
+     * Creates a package detail to attach to a package
+     * Ends in the PackageMapper
+     * Nicklas
+     */
+    
     public boolean createPackageDetail(int resourceID, int quantity, String packageName){
         boolean status = false;
         Package currentPackage = getPackage(packageName);
@@ -668,16 +726,38 @@ public class Controller {
         return status;
     }
     
+    /*
+     * This method gives all orders which
+     * are unpaid or has less than the deposit paid 
+     * based on the number of days since it was created.
+     * Ends in the orderMapper
+     * Daniel
+     */
+    
     public ArrayList<Order> getExpiringOrders(int days){
         ArrayList<Order> list = new ArrayList();
         list = dbFacade.getExpiringOrders(days);
         return list;
     } 
     
+    /*
+     * Cancels orders that have not been paid within
+     * eight days of creation.
+     * Ends in the orderMapper
+     * Daniel
+     */
+    
     public boolean cancelUnpaidOrders(){
         boolean bool = dbFacade.cancelUnpaidOrders();
         return bool;
     } 
+    
+    /*
+     * Gets a resource based on the name
+     * and puts a pessimistic lock on it
+     * Ends in resourceMapper.
+     * Nicklas
+     */
     
     public Resource getResourceWithLock(String name) {
         

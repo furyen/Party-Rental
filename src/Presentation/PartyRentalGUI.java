@@ -81,6 +81,7 @@ public class PartyRentalGUI extends javax.swing.JFrame {
         tentPartButtonGroup2.add(notTentPart2);
 
         effectedOrdersPanel.setVisible(false);
+        con.cancelUnpaidOrders();
 
     }
     //Shows all available resources in the "Make Booking" menu for a given period of time using a GridBagLayout
