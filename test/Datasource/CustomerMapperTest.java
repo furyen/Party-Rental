@@ -45,6 +45,7 @@ public class CustomerMapperTest {
      * This method takes in two strings and a connection
      * The strings represent search keys from the user
      * and the connection is used for the database.
+     * Nicklas
      */
     @Test
     public void testGetCustomerList() throws Exception {
@@ -66,6 +67,7 @@ public class CustomerMapperTest {
      * Here we are getting a unique number from the SEQ_CUSTOMER
      * and to test this we are checking if the received number
      * is already in the database.
+     * Nicklas
      */
     @Test
     public void testGetUniqueCustomerID() throws Exception {
@@ -93,18 +95,28 @@ public class CustomerMapperTest {
      * Test of createNewCustomer method, of class CustomerMapper.
      * Takes in the attributes for a customer and inputs it into the database
      * after which it gives back a boolean. 
-     * Test looks if this boolean is true.
+     * Test looks in the database to see if the customer
+     * has been created.
+     * Nicklas
      */
     @Test
-    public void testCreateNewCustomer() {
+    public void testCreateNewCustomer() throws Exception {
         System.out.println("createNewCustomer");
         DBFacade dbFacade = DBFacade.getInstance();
         ArrayList<Customer> newCustomerList = new ArrayList();
         Connection connection = dbFacade.getConnection();
         CustomerMapper instance = new CustomerMapper();
-        newCustomerList.add(new Customer(instance.getUniqueCustomerID(connection), "NICKLAS", "JESNEN", "DYRINGPARKEN"));
+        newCustomerList.add(new Customer(instance.getUniqueCustomerID(connection), "TESTCASE", "TESTCASE", "TESTCASE"));
+        instance.createNewCustomer(newCustomerList, connection);
+        ArrayList<Customer> customerList = instance.getCustomerList("TESTCASE", "TESTCASE", connection);
         boolean expResult = true;
-        boolean result = instance.createNewCustomer(newCustomerList, connection);
+        boolean result = false;
+        Customer expCustomer = newCustomerList.get(0);
+        Customer resultCustomer = customerList.get(0);
+        
+        if(resultCustomer.getFirstName().equals(expCustomer.getFirstName()) && resultCustomer.getLastName().equals(expCustomer.getLastName())){
+            result = true;
+        }
         
         assertEquals(expResult, result);
     }
@@ -114,6 +126,7 @@ public class CustomerMapperTest {
      * Gets a customer based on the expected customer ID
      * Returns a customer object after which the ID of the object
      * and the expected ID is compared to see if they match.
+     * Nicklas
      */
     @Test
     public void testGetCustomer() {
